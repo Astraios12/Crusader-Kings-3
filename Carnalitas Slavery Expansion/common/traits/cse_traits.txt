@@ -1,0 +1,343 @@
+﻿cse_slave = {
+	#category = education
+	icon = "cse_slave.dds"
+
+	shown_in_ruler_designer = no
+	
+	name = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					NOT = { exists = this }
+				}
+				desc = trait_cse_slave
+			}
+			triggered_desc = {
+				trigger = {
+					cse_is_assigned_as_slave_prostitute_trigger = yes
+				}
+				desc = trait_cse_slave_slave_prostitute
+			}
+			triggered_desc = {
+				trigger = {
+					cse_is_assigned_as_labour_slave_trigger = yes
+				}
+				desc = trait_cse_slave_labour_slave
+			}
+			triggered_desc = {
+				trigger = {
+					cse_is_assigned_as_military_slave_trigger = yes
+				}
+				desc = trait_cse_slave_military_slave
+			}
+			triggered_desc = {
+				trigger = {
+					cse_is_assigned_as_sex_slave_trigger = yes
+				}
+				desc = trait_cse_slave_sex_slave
+			}
+			desc = trait_cse_slave
+		}
+	}
+	
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					NOT = { exists = this }
+				}
+				desc = trait_cse_slave_desc
+			}
+			triggered_desc = {
+				trigger = {
+					cse_is_assigned_as_slave_prostitute_trigger = yes
+				}
+				desc = cse_slave_prostitute_calculation
+			}
+			triggered_desc = {
+				trigger = {
+					cse_is_assigned_as_labour_slave_trigger = yes
+				}
+				desc = cse_labour_slave_calculation
+			}
+			triggered_desc = {
+				trigger = {
+					cse_is_assigned_as_military_slave_trigger = yes
+				}
+				desc = cse_military_slave_calculation
+			}
+			triggered_desc = {
+				trigger = {
+					cse_is_assigned_as_sex_slave_trigger = yes
+				}
+				desc = cse_sex_slave_calculation
+			}
+			desc = trait_cse_slave_character_desc
+		}
+	}
+
+	tracks = {
+		cse_slave_prostitute = {
+			20 = {
+				intrigue = 1
+				diplomacy = 2
+				attraction_opinion = 2
+				#seduce_scheme_power_add = 5
+				seduce_scheme_phase_duration_add = -5
+			}
+			40 = {
+				intrigue = 2
+				diplomacy = 2
+				attraction_opinion = 2
+				#seduce_scheme_power_add = 5
+				seduce_scheme_phase_duration_add = -5
+			}
+			60 = {
+				intrigue = 3
+				diplomacy = 2
+				attraction_opinion = 2
+				#seduce_scheme_power_add = 5
+				seduce_scheme_phase_duration_add = -5
+			}
+			80 = {
+				intrigue = 4
+				diplomacy = 2
+				attraction_opinion = 2
+				#seduce_scheme_power_add = 5
+				seduce_scheme_phase_duration_add = -5
+			}
+			100 = {
+				intrigue = 5
+				diplomacy = 2
+				attraction_opinion = 2
+				#seduce_scheme_power_add = 5
+				seduce_scheme_phase_duration_add = -5
+			}
+		}
+		cse_labour_slave = {
+			20 = {
+				stewardship = 1
+				learning = 2
+				negate_health_penalty_add = 0.1
+			}
+			40 = {
+				stewardship = 2
+				learning = 2
+				negate_health_penalty_add = 0.1
+			}
+			60 = {
+				stewardship = 3
+				learning = 2
+				negate_health_penalty_add = 0.1
+			}
+			80 = {
+				stewardship = 4
+				learning = 2
+				negate_health_penalty_add = 0.1
+			}
+			100 = {
+				stewardship = 5
+				learning = 2
+				negate_health_penalty_add = 0.1
+			}	
+		}
+		cse_military_slave = {
+			20 = {
+				martial = 1
+				prowess = 2
+				health = minor_health_bonus
+			}
+			40 = {
+				martial = 2
+				prowess = 4
+				health = minor_health_bonus
+			}
+			60 = {
+				martial = 3
+				prowess = 6
+				health = minor_health_bonus
+			}
+			80 = {
+				martial = 4
+				prowess = 3
+				health = minor_health_bonus
+			}
+			100 = {
+				martial = 5
+				health = minor_health_bonus
+			}
+		}
+		cse_sex_slave = {
+			20 = {
+				diplomacy = 1
+				learning = 2
+				attraction_opinion = 3
+				fertility = 0.1
+			}
+			40 = {
+				diplomacy = 2
+				learning = 2
+				attraction_opinion = 3
+				fertility = 0.1
+			}
+			60 = {
+				diplomacy = 3
+				learning = 2
+				attraction_opinion = 3
+				fertility = 0.1
+			}
+			80 = {
+				diplomacy = 4
+				learning = 2
+				attraction_opinion = 3
+				fertility = 0.1
+			}
+			100 = {
+				diplomacy = 5
+				learning = 2
+				attraction_opinion = 3
+				fertility = 0.1
+			}	
+		}
+	}	
+}
+
+cse_courtesan = {
+	category = fame
+	icon = "cse_courtesan.dds"
+
+	shown_in_ruler_designer = no
+	
+	name = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					NOT = { exists = this }
+				}
+				desc = trait_cse_courtesan
+			}
+			triggered_desc = {
+				trigger = {
+					cse_is_assigned_as_courtesan_trigger = yes
+					has_trait_xp = {
+						trait = cse_courtesan
+						track = cse_courtesan_worth
+						value < 80
+					}
+				}
+				desc = trait_cse_courtesan_t1
+			}
+			triggered_desc = {
+				trigger = {
+					cse_is_assigned_as_courtesan_trigger = yes
+					has_trait_xp = {
+						trait = cse_courtesan
+						track = cse_courtesan_worth
+						value >= 80
+					}
+				}
+				desc = trait_cse_courtesan_t2
+			}
+			desc = trait_cse_courtesan
+		}
+	}
+	
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					NOT = { exists = this }
+				}
+				desc = trait_cse_courtesan_desc
+			}
+			triggered_desc = {
+				trigger = {
+					cse_is_assigned_as_courtesan_trigger = yes
+					has_trait_xp = {
+						trait = cse_courtesan
+						track = cse_courtesan_worth
+						value < 80
+					}
+				}
+				desc = trait_cse_courtesan_t1_desc
+			}
+			triggered_desc = {
+				trigger = {
+					cse_is_assigned_as_courtesan_trigger = yes
+					has_trait_xp = {
+						trait = cse_courtesan
+						track = cse_courtesan_worth
+						value >= 80
+					}
+				}
+				desc = trait_cse_courtesan_t2_desc
+			}
+			desc = trait_cse_courtesan_character_desc
+		}
+	}
+	
+	flag = carn_suppress_all_on_pregnancy_notification
+	
+	triggered_opinion = {
+		parameter = carn_prostitution_illegal
+		opinion_modifier = cse_courtesan_crime_opinion
+		ignore_opinion_value_if_same_trait = yes
+	}
+
+	triggered_opinion = {
+		parameter = carn_prostitution_shunned
+		opinion_modifier = cse_courtesan_intolerant_opinion
+		ignore_opinion_value_if_same_trait = yes
+	}
+	
+	spouse_opinion = -30
+
+	tracks = {
+		cse_courtesan_worth = {
+			80 = {
+				general_opinion = 25
+				#seduce_scheme_power_add = 25
+				#seduce_scheme_phase_duration_add = 25
+				owned_personal_scheme_success_chance_add = 25
+			}
+		}
+		cse_courtesan_experience = {
+			20 = {
+				diplomacy = 1
+				intrigue = 1
+				learning = 1
+			}
+			40 = {
+				diplomacy = 1
+				intrigue = 1
+				learning = 1
+			}
+			60 = {
+				diplomacy = 1
+				intrigue = 1
+				learning = 1
+			}
+			80 = {
+				diplomacy = 1
+				intrigue = 1
+				learning = 1
+			}
+			100 = {
+				diplomacy = 1
+				intrigue = 1
+				learning = 1
+			}		
+		}
+	}
+	
+	compatibility = {
+		lustful = @pos_compat_high
+		seducer = @pos_compat_medium
+		gregarious = @pos_compat_low
+		lifestyle_reveler = @pos_compat_low
+		
+		shy = @neg_compat_low
+		chaste = @neg_compat_high
+		celibate = @neg_compat_high
+	}	
+}

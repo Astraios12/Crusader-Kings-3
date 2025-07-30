@@ -1,0 +1,15 @@
+﻿l_russian:
+
+ action_carn_can_sex_interaction:0 "Вы можете $carn_sex_interaction$"
+ action_carn_can_sex_interaction_label:0 "$action_carn_can_sex_interaction$"
+ action_carn_can_sex_interaction_desc:0 "Вы можете использовать $carn_sex_interaction$ [character_interaction|E], чтобы уменьшить [stress|E] или попытаться зачать ребенка, среди прочих эффектов."
+ action_carn_can_sex_interaction_click:0 "#I Нажать на $carn_sex_interaction$#!".
+
+ action_carn_can_demand_free_illegal_slaves_interaction:0 "Вы можете $carn_demand_free_illegal_slaves_interaction$"
+ action_carn_can_demand_free_illegal_slaves_interaction_combined_group_label:0 "$action_carn_can_demand_free_illegal_slaves_interaction$"
+ action_carn_can_demand_free_illegal_slaves_interaction_combined_group_name:0 "$action_carn_can_demand_free_illegal_slaves_interaction$"
+ action_carn_can_demand_free_illegal_slaves_interaction_desc:0 "Вы можете потребовать, чтобы [recipient.GetUIName] освободил всех незаконных [slaves|E], которыми он владеет".
+ action_carn_can_demand_free_illegal_slaves_interaction_combined_group_description:0 "Вы можете потребовать, чтобы ваши вассалы освободили всех незаконных [slaves|E], которыми они владеют".
+ action_carn_can_demand_free_illegal_slaves_interaction_label:0 "Вы можете $carn_demand_free_illegal_slaves_interaction$ от [recipient.GetShortUINameNoTooltip]".
+ action_carn_can_demand_free_illegal_slaves_interaction_combined_label:0 "Вы можете $carn_demand_free_illegal_slaves_interaction$ от [recipient.GetUINameNoTooltip]"
+ action_carn_can_demand_free_illegal_slaves_interaction_click:0 "#I Нажать на $carn_demand_free_illegal_slaves_interaction$#!".

@@ -1,0 +1,90 @@
+﻿## Forced Labour: Adds "cse_is_working_as_labour_slave_trigger = no" to "is_valid_showing_failures_only", line 27
+## Military Slaves: Adds "cse_is_working_as_military_slave_trigger = no" to "is_valid_showing_failures_only", line 28
+## Sex Slaves: Adds "cse_is_working_as_sex_slave_trigger = no" to "is_valid_showing_failures_only", line 29
+#
+#carn_force_start_prostitution_interaction = {
+#	interface_priority = 32
+#	common_interaction = no
+#	category = interaction_category_prison
+#
+#	desc = carn_force_start_prostitution_interaction_desc
+#	
+#	is_shown = {
+#		scope:actor = {
+#			has_relation_slave = scope:recipient
+#			NOT = { faith = { has_doctrine = carn_doctrine_prostitution_crime } }
+#		}
+#		scope:recipient = {
+#			carn_can_be_prostitute_trigger = yes
+#			carn_is_working_as_prostitute_trigger = no
+#		}
+#	}
+#
+#	is_valid_showing_failures_only = {
+#		scope:recipient = {
+#			is_busy_in_events_localised = yes
+#			cse_can_have_sex_trigger = yes
+#			cse_is_working_as_labour_slave_trigger = no
+#			cse_is_working_as_military_slave_trigger = no
+#			cse_is_working_as_sex_slave_trigger = no
+#		}
+#	}
+#
+#	is_valid = {
+#		scope:recipient = {
+#			effective_age < carn_prostitution_age_cutoff
+#		}
+#		scope:actor = {
+#			custom_description = {
+#				text = "carn_cannot_have_max_number_of_slave_prostitutes"
+#				any_relation = {
+#					type = slave
+#					carn_is_working_as_prostitute_trigger = yes
+#					count < carn_max_slave_prostitutes_per_owner
+#				}
+#			}
+#		}
+#	}
+#	
+#	on_accept = {
+#		scope:actor = {
+#			if = {
+#				limit = {
+#					carn_is_prostitute_trigger = no
+#					carn_accepts_prostitution_trigger = no
+#				}
+#				add_piety_level = -1
+#			}
+#			send_interface_toast = {
+#				type = event_generic_neutral
+#				title = msg_carn_started_working_as_prostitute
+#				right_icon = scope:recipient
+#				scope:recipient = {
+#					if = {
+#						limit = {
+#							carn_is_prostitute_trigger = no
+#							NOT = {
+#								carn_has_fetish_trigger = {
+#									FETISH = submission
+#								}
+#							}
+#						}
+#						add_opinion = {
+#							target = scope:actor
+#							modifier = carn_forced_me_into_prostitution_opinion
+#						}
+#					}
+#					carn_start_working_as_prostitute_effect = yes
+#				}
+#			}
+#			stress_impact = {
+#				generous = medium_stress_impact_gain
+#				compassionate = major_stress_impact_gain
+#			}
+#		}
+#	}
+#
+#	auto_accept = yes
+#
+#}
+#

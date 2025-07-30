@@ -1,0 +1,17 @@
+﻿l_german:
+
+ cse_no_drama_trigger_positive_desc: "#P Sex wird kein Drama nach sich ziehen.#!"
+ cse_no_drama_trigger_negative_desc: "#N Sex kann Drama nach sich ziehen!#!"
+
+ #################### SLAVE ############################################################
+
+ cse_slave_prostitute_ownership_limit_reached_loc: "Ihr könnt nicht mehr als [EmptyScope.ScriptValue('cse_slave_prostitute_ownership_limit_value')|0] Sklaven-Prostituierte gleichzeitig für Euch arbeiten lassen!"
+ cse_labour_slave_ownership_limit_reached_loc: "Ihr könnt nicht mehr als [EmptyScope.ScriptValue('cse_labour_slave_ownership_limit_value')|0] Arbeitssklaven gleichzeitig für Euch arbeiten lassen!"
+ cse_military_slave_ownership_limit_reached_loc: "Euch können nicht mehr als [EmptyScope.ScriptValue('cse_military_slave_ownership_limit_value')|0] Militärsklaven gleichzeitig dienen!"
+ cse_sex_slave_ownership_limit_reached_loc: "Ihr könnt nicht mehr als [EmptyScope.ScriptValue('cse_sex_slave_ownership_limit_value')|0] Sklaven-Konkubinen gleichzeitig für Euch arbeiten lassen!"
+ 
+ #################### COURT ############################################################
+ 
+ cse_courtesan_ownership_limit_reached_loc: "Ihr könnt nicht mehr als [EmptyScope.ScriptValue('cse_courtesan_ownership_limit_value')|0] Kurtisanen gleichzeitig unterhalten!"
+ 
+ #HOMOSEXUALITY_NOT_ACCEPTED: "Homosexualität wird in Ihrem Glauben nicht akzeptiert, und/oder Sie haben nicht die richtigen Eigenschaften, um diesen Partner zu ernennen."

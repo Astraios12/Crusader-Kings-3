@@ -1,0 +1,24 @@
+﻿l_german:
+
+ cse_forced_me_into_slave_prostitution_opinion: "Gegen meinen Willen zur Sklaven-Prostituierten gemacht"
+ cse_forced_me_to_end_my_celibacy_opinion: "Zwang mich, mein Zölibat zu beenden"
+ 
+ cse_forced_me_into_forced_labour_opinion: "Gegen meinen Willen zum Arbeitssklaven gemacht"
+ 
+ cse_forced_me_into_slave_military_opinion: "Gegen meinen Willen zum Militärsklaven gemacht"
+
+ cse_forced_me_into_sex_slavery_opinion: "Gegen meinen Willen zur Sklaven-Konkubine gemacht"
+ cse_forced_me_to_have_sex_opinion: "Gegen meinen Willen zum Sex gezwungen"
+ cse_pleasant_night_spent_opinion: "Angenehme Nacht verbracht"
+ cse_adopted_my_child_opinion: "Hat mein Kind adoptiert"
+ cse_adopted_me_opinion: "Hat mich adoptiert"
+ cse_revealed_father_opinion: "Offenbarte meinen Vater"
+
+ #################### COURT ############################################################
+ 
+ cse_courtesan_crime_opinion: "Kurtisanen sind illegal"
+ cse_courtesan_intolerant_opinion: "Kurtisanen sind verpönt"
+ cse_made_me_a_courtesan_opinion: "Hat mich zur Kurtisane gemacht"
+ cse_dismissed_me_as_courtesan_opinion: "Hat mich als Kurtisane entlassen"
+ cse_lover_breakup_opinion: "$lover_breakup_opinion$"
+ cse_former_courtesan_or_courtesan_owner_opinion: "Ehemaliges Kurtisanen-Verhältnis"

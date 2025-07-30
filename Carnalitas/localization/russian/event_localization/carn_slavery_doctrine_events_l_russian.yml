@@ -1,0 +1,19 @@
+﻿l_russian:
+  carn_slavery_doctrine.0001.desc:0 "Я исполню свой [ROOT.Char.GetFaith.GetReligion.GetAdjectiveNoTooltip] долг и освобожу моих незаконно порабощенных слуг от их цепей".
+  carn_slavery_doctrine.0001.a:0 "Мудрое решение".
+
+  carn_slavery_doctrine.0002.desc:0 "Я понимаю ваши опасения, но я приобрел этих рабов за большие деньги...\n\nЕсли вы окупите мои вложения, я буду более чем готов дать им свободу."
+  carn_slavery_doctrine.0002.a:0 "Это [ROOT.Char.GetFaith.GetReligion.GetAdjectiveNoTooltip] то, что нужно сделать."
+  carn_slavery_doctrine.0002.b:0 "Я не буду платить за ваши греховные приобретения!"
+  carn_slavery_doctrine.0002.c:0 "Боюсь, что у вас нет выбора в этом вопросе".
+
+  carn_slavery_doctrine.0003.default.desc:0 "Я вижу мудрость в вашей просьбе, но эти рабы незаменимы на службе...\n\nПожалуй, если бы вы пообещали поддержать меня в других моих делах, я бы смог справиться с их потерей."
+  carn_slavery_doctrine.0003.a:0 "Я помогу вам все исправить".
+  carn_slavery_doctrine.0003.b:0 "Твои ошибки - не мое дело!".
+  carn_slavery_doctrine.0003.c:0 "У тебя есть другие долги, которые ты должен вернуть мне в первую очередь".
+
+  carn_slavery_doctrine.0004.desc:0 "Ваши требования неразумны и необоснованны. Мои рабы не имеют никакого значения для [recipient.GetFaith.PantheonTerm]".
+  carn_slavery_doctrine.0004.hooking_out:0 "\n\nЯ также хочу напомнить вам, что вы должны мне, и лучше не продолжать этот вопрос."
+  carn_slavery_doctrine.0004.b:0 "Тогда [recipient.GetFaith.PantheonTerm] будет свидетелем твоего решения."
+  carn_slavery_doctrine.0004.c:0 "Не думай, что я оставлю это так!".
+  carn_slavery_doctrine.0004.d:0 "О, я думаю, ты сделаешь именно то, что я тебе прикажу".

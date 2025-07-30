@@ -1,0 +1,29 @@
+﻿carn_slave_prostitution_income_value = {
+	value = 0
+	if = {
+		limit = {
+			has_trait_xp = {
+				trait = lifestyle_prostitute
+				value >= 100
+			}
+		}
+		add = 12 # 2 multiplied by 6 months
+	}
+	else_if = {
+		limit = {
+			has_trait_xp = {
+				trait = lifestyle_prostitute
+				value >= 50
+			}
+		}
+		add = 6 # 1 multiplied by 6 months
+	}
+	else_if = {
+		limit = {
+			has_trait = lifestyle_prostitute
+		}
+		add = 3 # 0.5 multiplied by 6 months
+	}
+}
+
+carn_max_slave_prostitutes_per_owner = 10

@@ -1,0 +1,117 @@
+﻿# Old effects preserved for backward compatibility
+# These are DEPRECATED, please use the new effects
+
+# better version of had_sex_with_effect
+#
+# CHARACTER_1: the character doing the laying with.
+# CHARACTER_2: the character getting laid.
+# C1_PREGNANCY_CHANCE: the chance for Character 1 to get pregnant.
+# C2_PREGNANCY_CHANCE: the chance for Character 2 to get pregnant.
+# STRESS_EFFECTS: if yes, enables stress effects
+# DRAMA: if yes, enables adultery suspicion and story cycles
+#
+# sends scope:carn_sex_char_1 and scope:carn_sex_char_2 to carn_on_sex
+#
+# returns scope:carn_sex_char_1_could_be_impregnated, scope:carn_sex_char_2_could_be_impregnated
+# these are yes if the character had a pregnancy chance greater than 0 through this sex effect, and no otherwise
+#
+# returns scope:carn_sex_char_1_impregnated, scope:carn_sex_char_2_impregnated
+# these are yes if the character was impregnated through this sex effect, and no otherwise
+
+carn_had_sex_with_effect = {
+	$CHARACTER_1$ = {
+		# Set stress and drama
+		if = {
+			limit = { $STRESS_EFFECTS$ = no }
+			carn_sex_scene_no_stress_effect = yes
+		}
+		if = {
+			limit = { $DRAMA$ = no }
+			carn_sex_scene_no_drama_effect = yes
+		}
+
+		# Save additional scopes for backward compatibility
+		# These are required also here if pregnancy chances are dynamic values using them
+		save_scope_as = had_sex_root_character
+		$CHARACTER_2$ = {
+			save_scope_as = had_sex_with_effect_partner
+		}
+
+		# Set pregnancy chances
+		set_variable = {
+			name = carn_pregnancy_chance
+			value = $C1_PREGNANCY_CHANCE$
+		}
+		$CHARACTER_2$ = {
+			set_variable = {
+				name = carn_pregnancy_chance
+				value = $C2_PREGNANCY_CHANCE$
+			}
+		}
+
+		# Set default sex scene flags if not already set
+		if = {
+			limit = {
+				NOR = {
+					carn_sex_scene_character_is_giving_player_trigger = yes
+					carn_sex_scene_character_is_receiving_player_trigger = yes
+				}
+			}
+			carn_sex_scene_character_is_giving_player_effect = yes
+		}
+		if = {
+			limit = {
+				NOR = {
+					carn_sex_scene_is_consensual_trigger = yes
+					carn_sex_scene_is_dubcon_trigger = yes
+					carn_sex_scene_is_noncon_trigger = yes
+				}
+			}
+			carn_sex_scene_is_consensual_effect = yes
+		}
+		if = {
+			limit = {
+				NOR = {
+					carn_sex_scene_is_oral_trigger = yes
+					carn_sex_scene_is_vaginal_trigger = yes
+					carn_sex_scene_is_anal_trigger = yes
+					carn_sex_scene_is_handjob_trigger = yes
+					carn_sex_scene_is_masturbation_trigger = yes
+				}
+			}
+			carn_sex_scene_is_vaginal_effect = yes
+		}
+		if = {
+			limit = {
+				NOT = {
+					carn_sex_scene_is_cum_inside_trigger = yes
+					carn_sex_scene_is_cum_outside_trigger = yes
+				}
+			}
+			carn_sex_scene_is_cum_inside_effect = yes
+		}
+
+		# Execute the new effect
+		carn_had_sex_with_effect_v2 = {
+			PARTNER = $CHARACTER_2$
+		}
+
+		# Cleanup flags if the effect was not executed in a sex scene
+		# For sex scenes, this cleanup should happen either in the sex scene itself
+		# or in carn_sex_scene_effect
+		if = {
+			limit = { NOT = { exists = scope:carn_sex_scene } }
+			carn_sex_scene_clean_up_flags_effect = yes
+			carn_sex_scene_clean_up_character_flags_effect = yes
+			$CHARACTER_2$ = {
+				carn_sex_scene_clean_up_character_flags_effect = yes
+			}
+		}
+
+		# Remove pregnancy chances
+		remove_variable = carn_pregnancy_chance
+		$CHARACTER_2$ = {
+			remove_variable = carn_pregnancy_chance
+		}
+	}
+}

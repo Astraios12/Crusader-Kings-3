@@ -1,0 +1,255 @@
+﻿namespace = cse_custom_pregnancy
+
+cse_custom_pregnancy.0001 = {
+	hidden = yes
+	
+	trigger = { has_trait = cse_courtesan }
+	
+	immediate = {
+		if = {
+			limit = {
+				NOT = { is_consort_of = scope:real_father }
+				OR = {
+					has_relation_courtesan = scope:real_father
+					has_relation_courtesan_owner = scope:real_father
+					cse_is_former_courtesan_or_courtesan_owner_trigger = yes
+				}
+				NOT = { has_character_flag = jus_pregnant_from_jus_as_subject }
+				NOT = { has_character_flag = jus_pregnant_from_jus_as_liege }
+			}
+			trigger_event = { on_action = cse_custom_on_pregnancy_mother }
+		}
+		else_if = {
+			limit = {
+				NOT = { has_character_flag = jus_pregnant_from_jus_as_subject }
+				NOT = { has_character_flag = jus_pregnant_from_jus_as_liege }
+			}
+			trigger_event = { on_action = cse_vanilla_on_pregnancy_mother }
+		}
+	}
+}
+
+#Unmarried mother pregnant with child
+cse_custom_pregnancy.2001 = {
+	title = pregnancy.2001.t
+	desc = {
+		desc = pregnancy.2001.opening
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					scope:real_father = { is_married = yes }
+				}
+				desc = pregnancy.2001.father_is_married
+			}
+			desc = pregnancy.2001.father_is_unmarried
+		}
+	}
+	theme = pregnancy
+	override_background = { reference = bedchamber }
+	left_portrait = {
+		character = root
+	}
+	right_portrait = {
+		character = scope:real_father
+		triggered_animation = {
+			trigger = { has_any_bad_relationship_with_character_trigger = { CHARACTER = scope:mother } }
+			animation = stress
+		}
+		animation = happiness
+	}
+
+	trigger = {
+		is_pregnant = yes # Fix to prevent pipeline failures on account of set_num_pregnancy_children being used on an unpregnant character
+		NOR = {
+			# If we are married or have concubines (or are a concubine) this event is not valid, as there is a (assumed) father.
+			any_consort = {
+				count > 0
+			}
+		}
+		carn_has_absolute_birth_control_trigger = no
+	}
+
+	immediate = {
+		play_music_cue = "mx_cue_succession"
+		hidden_effect = {
+			set_num_pregnancy_children = 1
+			add_character_flag = {
+				flag = unmarried_bastard_pregnancy
+				months = 9
+			}
+		}
+		add_trait_force_tooltip = pregnant
+	}
+
+	option = { #Publicly name the father!
+		name = pregnancy.2001.a
+		
+		cse_bastard_pregnancy_mother_announcement_effect = yes
+		
+		ai_chance = {
+			base = 100
+		}
+	}
+}
+
+#Married woman pregnant with a bastard child
+cse_custom_pregnancy.2002 = {
+	type = character_event
+	title = pregnancy.2002.t
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = { faith = { has_doctrine_parameter = no_unfaithfulness_penalty_active } }
+				desc = pregnancy.2002.desc.polyamorous
+			}
+			desc = pregnancy.2002.desc
+		}
+	}
+	theme = pregnancy
+	left_portrait = {
+		character = root
+		animation = worry
+	}
+	right_portrait = scope:father
+	lower_center_portrait = scope:real_father
+
+	trigger = {
+		# If we are married and/or have concubines, but the real father is not one of them, it's a bastard!
+		any_consort = {
+			carn_gender_can_impregnate_trigger = yes
+		}
+		pregnancy_real_father = {
+			NOT = {	is_consort_of = root }
+		}
+		carn_has_absolute_birth_control_trigger = no
+	}
+
+	immediate = {
+		play_music_cue = "mx_cue_succession"
+		# If we got pregnant before our marriage, there will be no assumed father set. However, we need one for the event logic to work correctly.
+		# Since this is a pretty rare edge case, we just go ahead and set the assumed father to a current living spouse.
+		if = {
+			limit = {
+				NOT = { exists = pregnancy_assumed_father }
+			}
+			random_consort = {
+				save_scope_as = assumed_father
+			}
+			hidden_effect = {
+				set_pregnancy_assumed_father = scope:assumed_father
+			}
+		}
+
+		save_scope_as = mother
+		hidden_effect = {
+			set_num_pregnancy_children = 1
+			if = {
+				limit = {
+					exists = primary_partner
+				}
+				primary_partner = {
+					save_scope_as = spouse
+				}
+			}
+			else = {
+				random_consort = {
+					save_scope_as = spouse
+				}
+			}
+			add_character_flag = {
+				flag = bastard_pregnancy
+				months = 9
+			}
+		}
+		add_trait_force_tooltip = pregnant
+	}
+
+	option = { #Confess
+		name = {
+			trigger = { NOT = { faith = { has_doctrine_parameter = no_unfaithfulness_penalty_active } } }
+			text = pregnancy.2002.a
+
+		}
+		name = {
+			trigger = { faith = { has_doctrine_parameter = no_unfaithfulness_penalty_active } }
+			text = pregnancy.2001.a
+		}
+
+		cse_bastard_pregnancy_mother_announcement_effect = yes
+		
+		ai_chance = {
+			base = 100
+		}
+	}
+}
+
+#Mother announces child father - event for real father
+cse_custom_pregnancy.6002 = {
+	type = character_event
+	title = pregnancy.6002.t
+	desc = {
+		desc = pregnancy.6002.desc
+		triggered_desc = {
+			trigger = {
+				exists = scope:spouse
+				scope:spouse = { NOT = { faith = { has_doctrine_parameter = no_unfaithfulness_penalty_active } } }
+			}
+			desc = pregnancy.6002.married
+		}
+#		triggered_desc = {
+#			trigger = {
+#				is_married = no
+#				opinion = {
+#					target = scope:mother
+#					value <= 0
+#				}
+#			}
+#			desc = pregnancy.6002.unmarried_unsympathetic
+#		}
+		triggered_desc = {
+			trigger = {
+				is_married = no
+#				opinion = {
+#					target = scope:mother
+#					value > 0
+#				}
+			}
+			desc = pregnancy.6002.unmarried_sympathetic
+		}
+	}
+
+	theme = pregnancy
+	left_portrait = scope:mother
+	right_portrait = {
+		character = scope:spouse
+		animation = disapproval
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				exists = primary_partner
+				primary_partner = { NOT = { faith = { has_doctrine_parameter = no_unfaithfulness_penalty_active } } }
+			}
+			primary_partner = {
+				save_scope_as = spouse
+			}
+		}
+		else = {
+			random_consort = {
+				limit = {
+					NOT = { faith = { has_doctrine_parameter = no_unfaithfulness_penalty_active } }
+				}
+				save_scope_as = spouse
+			}
+		}
+	}
+
+	option = {
+		name = pregnancy.6002.a
+	}
+
+	after = {
+		custom_tooltip = pregnancy_announcement_the_child_will_be_a_bastard_real_father
+	}
+}

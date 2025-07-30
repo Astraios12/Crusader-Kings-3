@@ -1,0 +1,13 @@
+﻿l_russian:
+  carn_can_no_longer_work_as_prostitute_tooltip:0 "[carn_prostitute.GetShortUIName|U] больше не может работать проституткой"
+  carn_prostitution_random_events.0001.notification:0 "Проституция: Улучшенные Навыки"
+  carn_prostitution_random_events.0002.notification:0 "Проституция: Конкуренты Клевещут На Вас"
+  carn_prostitution_random_events.0003.notification:0 "Проституция: [ROOT.Char.GetFaith.PriestNeuterPlural|U] Осуждает Вас"
+  carn_prostitution_random_events.0005.notification:0 "Проституция: Клиент Дает Большые Чаевые"
+
+  carn_prostitution_random_events.0011.t:0 "Проституция: Заманчивое предложение"
+  carn_prostitution_random_events.0011.desc:0 "Когда я соблазнительно лежу в своей постели, я заинтригованно узнаю, что мой следующий клиент - никто иной, как [client.Custom2('MyCharacterIntroduction', ROOT.Char)].\n\nГлядя на мои формы с безудержным желанием, [client.GetSheHe] уверяет меня, что мне хорошо заплатят за мои услуги..."
+
+  carn_prostitution_random_events.0011.a:0 "Кто я, чтобы отказываться от такой возможности?"
+  carn_prostitution_random_events.0011.b:0 "Извиняюсь, но я отказываюсь".
+  carn_prostitution_random_events.0011.c:0 "Это может стать сочным скандалом..."

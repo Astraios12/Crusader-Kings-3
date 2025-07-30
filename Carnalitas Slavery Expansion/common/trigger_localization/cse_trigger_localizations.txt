@@ -1,0 +1,39 @@
+﻿required_doctrine_slavery_accepted_trigger = {
+    first = REQUIRED_DOCTRINE_SLAVERY_ACCEPTED_TRIGGER
+    third = REQUIRED_DOCTRINE_SLAVERY_ACCEPTED_TRIGGER
+	global = REQUIRED_DOCTRINE_SLAVERY_ACCEPTED_TRIGGER
+}
+
+cse_slave_prostitute_ownership_limit_reached = {
+	first = cse_slave_prostitute_ownership_limit_reached_loc
+    third = cse_slave_prostitute_ownership_limit_reached_loc
+	global = cse_slave_prostitute_ownership_limit_reached_loc
+}
+
+cse_labour_slave_ownership_limit_reached = {
+	first = cse_labour_slave_ownership_limit_reached_loc
+    third = cse_labour_slave_ownership_limit_reached_loc
+	global = cse_labour_slave_ownership_limit_reached_loc
+}
+
+cse_military_slave_ownership_limit_reached = {
+	first = cse_military_slave_ownership_limit_reached_loc
+    third = cse_military_slave_ownership_limit_reached_loc
+	global = cse_military_slave_ownership_limit_reached_loc
+}
+
+cse_sex_slave_ownership_limit_reached = {
+	first = cse_sex_slave_ownership_limit_reached_loc
+    third = cse_sex_slave_ownership_limit_reached_loc
+	global = cse_sex_slave_ownership_limit_reached_loc
+}
+
+cse_courtesan_ownership_limit_reached = {
+	first = cse_courtesan_ownership_limit_reached_loc
+    third = cse_courtesan_ownership_limit_reached_loc
+	global = cse_courtesan_ownership_limit_reached_loc
+}
+
+#cse_homosexuality_not_accepted = {
+#	first_not = HOMOSEXUALITY_NOT_ACCEPTED
+#}

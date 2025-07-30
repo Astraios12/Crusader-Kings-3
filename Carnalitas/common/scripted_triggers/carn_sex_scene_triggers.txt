@@ -1,0 +1,263 @@
+﻿###############################################################################################################
+# carn_sex_scene_triggers                                                                                     #
+###############################################################################################################
+#                                                                                                             #
+# These scripted triggers are meant for sex scene events to check which flags have been set for the sex scene.# 
+#                                                                                                             #
+###############################################################################################################
+#carn_had_sex_with_effect triggers
+
+carn_sex_scene_no_pregnancy_trigger = {
+	OR = {
+		is_target_in_variable_list = {
+			name = carn_sex_scene_option_flag_list
+			target = flag:no_pregnancy
+		}
+		exists = scope:carn_sex_no_pregnancy
+	}
+}
+
+carn_sex_scene_no_stress_trigger = {
+	OR = {
+		is_target_in_variable_list = {
+			name = carn_sex_scene_option_flag_list
+			target = flag:no_stress
+		}
+		exists = scope:carn_sex_no_stress
+	}
+}
+
+carn_sex_scene_no_drama_trigger = {
+	OR = {
+		is_target_in_variable_list = {
+			name = carn_sex_scene_option_flag_list
+			target = flag:no_drama
+		}
+		exists = scope:carn_sex_no_drama
+	}
+}
+
+carn_sex_scene_no_memory_trigger = {
+	OR = {
+		is_target_in_variable_list = {
+			name = carn_sex_scene_option_flag_list
+			target = flag:no_memory
+		}
+		exists = scope:carn_sex_no_memory
+	}
+}
+
+carn_sex_scene_no_std_trigger = {
+	OR = {
+		is_target_in_variable_list = {
+			name = carn_sex_scene_option_flag_list
+			target = flag:no_std
+		}
+		exists = scope:carn_sex_no_std
+	}
+}
+
+# Here is a list of supported sex scene flags.
+# It is possible for mods to add more flags, but these will not be supported and have no guarantee of working with other mods.
+#
+# carn_sex_scene_character_is_giving_player_trigger
+# carn_sex_scene_character_is_receiving_player_trigger
+# carn_sex_scene_character_is_dom_player_trigger
+# carn_sex_scene_character_is_sub_player_trigger
+# carn_sex_scene_is_vaginal_trigger
+# carn_sex_scene_is_anal_trigger
+# carn_sex_scene_is_oral_trigger
+# carn_sex_scene_is_handjob_trigger
+# carn_sex_scene_is_masturbation_trigger
+# carn_sex_scene_is_orgy_trigger
+# carn_sex_scene_is_cum_inside_trigger
+# carn_sex_scene_is_cum_outside_trigger
+# carn_sex_scene_is_consensual_trigger
+# carn_sex_scene_is_noncon_trigger
+# carn_sex_scene_is_dubcon_trigger
+# carn_sex_scene_is_painful_trigger
+# carn_sex_scene_is_bdsm_trigger
+# carn_sex_scene_is_bestiality_trigger
+# carn_sex_scene_is_petplay_trigger
+# carn_sex_scene_is_bondage_trigger
+# carn_sex_scene_is_toy_trigger
+# carn_sex_scene_is_watersports_trigger
+# carn_sex_scene_is_scat_trigger
+# carn_sex_scene_is_gore_trigger
+#
+
+carn_sex_scene_character_is_giving_player_trigger = {
+	is_target_in_variable_list = {
+		name = carn_sex_scene_character_flag_list
+		target = flag:giving_player
+	}
+}
+
+carn_sex_scene_character_is_receiving_player_trigger = {
+	is_target_in_variable_list = {
+		name = carn_sex_scene_character_flag_list
+		target = flag:receiving_player
+	}
+}
+
+carn_sex_scene_character_is_dom_player_trigger = {
+	is_target_in_variable_list = {
+		name = carn_sex_scene_character_flag_list
+		target = flag:dom_player
+	}
+}
+
+carn_sex_scene_character_is_sub_player_trigger = {
+	is_target_in_variable_list = {
+		name = carn_sex_scene_character_flag_list
+		target = flag:sub_player
+	}
+}
+
+carn_sex_scene_is_oral_trigger = {
+	is_target_in_variable_list = {
+		name = carn_sex_scene_flag_list
+		target = flag:oral
+	}
+}
+
+carn_sex_scene_is_vaginal_trigger = {
+	is_target_in_variable_list = {
+		name = carn_sex_scene_flag_list
+		target = flag:vaginal
+	}
+}
+
+carn_sex_scene_is_anal_trigger = {
+	has_game_rule = carn_content_anal_enabled
+	is_target_in_variable_list = {
+		name = carn_sex_scene_flag_list
+		target = flag:anal
+	}
+}
+
+carn_sex_scene_is_handjob_trigger = {
+	is_target_in_variable_list = {
+		name = carn_sex_scene_flag_list
+		target = flag:handjob
+	}
+}
+
+carn_sex_scene_is_masturbation_trigger = {
+	is_target_in_variable_list = {
+		name = carn_sex_scene_flag_list
+		target = flag:masturbation
+	}
+}
+
+carn_sex_scene_is_orgy_trigger = {
+	is_target_in_variable_list = {
+		name = carn_sex_scene_flag_list
+		target = flag:orgy
+	}
+}
+
+carn_sex_scene_is_cum_inside_trigger = {
+	is_target_in_variable_list = {
+		name = carn_sex_scene_flag_list
+		target = flag:cum_inside
+	}
+}
+
+carn_sex_scene_is_cum_outside_trigger = {
+	is_target_in_variable_list = {
+		name = carn_sex_scene_flag_list
+		target = flag:cum_outside
+	}
+}
+
+carn_sex_scene_is_consensual_trigger = {
+	is_target_in_variable_list = {
+		name = carn_sex_scene_flag_list
+		target = flag:consensual
+	}
+}
+
+carn_sex_scene_is_noncon_trigger = {
+	has_game_rule = carn_content_consent_noncon
+	is_target_in_variable_list = {
+		name = carn_sex_scene_flag_list
+		target = flag:noncon
+	}
+}
+
+carn_sex_scene_is_dubcon_trigger = {
+ 	NOT = { has_game_rule = carn_content_consent_always }
+	is_target_in_variable_list = {
+		name = carn_sex_scene_flag_list
+		target = flag:dubcon
+	}
+}
+
+carn_sex_scene_is_painful_trigger = {
+	has_game_rule = carn_content_painful_enabled
+	is_target_in_variable_list = {
+		name = carn_sex_scene_flag_list
+		target = flag:painful
+	}
+}
+
+carn_sex_scene_is_bdsm_trigger = {
+	is_target_in_variable_list = {
+		name = carn_sex_scene_flag_list
+		target = flag:bdsm
+	}
+}
+
+carn_sex_scene_is_bestiality_trigger = {
+	has_game_rule = carn_content_bestiality_enabled
+	is_target_in_variable_list = {
+		name = carn_sex_scene_flag_list
+		target = flag:bestiality
+	}
+}
+
+carn_sex_scene_is_petplay_trigger = {
+	is_target_in_variable_list = {
+		name = carn_sex_scene_flag_list
+		target = flag:petplay
+	}
+}
+
+carn_sex_scene_is_bondage_trigger = {
+	is_target_in_variable_list = {
+		name = carn_sex_scene_flag_list
+		target = flag:bondage
+	}
+}
+
+carn_sex_scene_is_toy_trigger = {
+	is_target_in_variable_list = {
+		name = carn_sex_scene_flag_list
+		target = flag:toy
+	}
+}
+
+carn_sex_scene_is_watersports_trigger = {
+	has_game_rule = carn_content_watersports_enabled
+	is_target_in_variable_list = {
+		name = carn_sex_scene_flag_list
+		target = flag:watersports
+	}
+}
+
+carn_sex_scene_is_scat_trigger = {
+	has_game_rule = carn_content_scat_enabled
+	is_target_in_variable_list = {
+		name = carn_sex_scene_flag_list
+		target = flag:scat
+	}
+}
+
+carn_sex_scene_is_gore_trigger = {
+	has_game_rule = carn_content_gore_enabled
+	is_target_in_variable_list = {
+		name = carn_sex_scene_flag_list
+		target = flag:gore
+	}
+}

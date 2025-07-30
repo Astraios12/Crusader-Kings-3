@@ -1,0 +1,465 @@
+﻿#################### VANILLA / CARNALITAS ON ACTIONS ############################################################
+
+yearly_playable_pulse = {
+	on_actions = {
+		cse_runaway_slave_owner_yearly_playable_pulse
+	}
+	events = {
+		cse_slave_payment_event.0001 # owners earn from their slaves
+	}
+}
+
+random_yearly_everyone_pulse = {
+	on_actions = {
+		cse_slave_prostitute_random_yearly_everyone_pulse
+		cse_labour_slave_random_yearly_everyone_pulse
+		cse_military_slave_random_yearly_everyone_pulse
+		cse_sex_slave_random_yearly_everyone_pulse
+	}
+}
+
+carn_on_sex = {
+	on_actions = {
+		cse_slave_prostitute_xp_gain_on_action
+		cse_sex_slave_xp_gain_on_action
+	}
+}
+
+carn_on_slave_freed = {
+	on_actions = {
+		cse_end_forced_interactions_on_action
+	}
+}
+
+cse_end_forced_interactions_on_action = {
+	effect = {
+		cse_clear_all_slave_modifiers_effect = yes
+	}
+}
+
+#################### SLAVE OWNER ############################################################
+
+# Fix for slaves that somehow got to leave your court.
+# Add character_flag "cse_runaway_slave" to the slave if the absence from court is intended.
+cse_runaway_slave_owner_yearly_playable_pulse = {
+	trigger = {
+		any_relation = {
+			type = slave
+			NOT = { is_courtier_of = PREV }
+			NOT = { has_character_flag = cse_runaway_slave }
+		}
+	}
+	effect = {
+		save_scope_as = runaway_slave_owner
+		every_relation = {
+			type = slave
+			limit = {
+				NOT = { is_courtier_of = scope:runaway_slave_owner }
+				NOT = { has_character_flag = cse_runaway_slave }
+			}
+			scope:runaway_slave_owner = { add_courtier = PREV }
+		}
+	}
+}
+
+#################### SLAVE PROSTITUTE ############################################################
+
+cse_started_working_as_slave_prostitute_on_action = {
+}
+
+cse_stopped_working_as_slave_prostitute_on_action = {
+}
+
+cse_slave_prostitute_random_yearly_everyone_pulse = {
+	trigger = {
+		cse_is_working_as_slave_prostitute_trigger = yes
+	}
+	effect = {
+		save_scope_as = cse_slave_prostitute
+		if = {
+			limit = {
+				OR = {
+					cse_can_be_slave_prostitute_trigger = no
+					cse_can_have_sex_trigger = no
+				}
+			}
+			send_interface_message = {
+				type = event_generic_neutral
+				title = cse_msg_stopped_working_as_slave_prostitute
+				left_icon = scope:cse_slave_prostitute
+				custom_tooltip = cse_can_no_longer_work_as_slave_prostitute_tooltip
+			}
+			every_relation = {
+				type = slave_owner
+				send_interface_message = {
+					type = event_generic_neutral
+					title = cse_msg_stopped_working_as_slave_prostitute
+					left_icon = scope:cse_slave_prostitute
+					custom_tooltip = cse_can_no_longer_work_as_slave_prostitute_tooltip
+				}
+			}
+			cse_stop_working_as_slave_prostitute_effect = yes
+		}
+		else = {
+			random_list = {
+				800 = { trigger_event = { on_action = cse_slave_prostitute_yearly_sex_pulse } }
+				#200 = { trigger_event = { on_action = cse_slave_prostitute_random_events_pulse } }
+			}
+		}
+	}
+}
+
+cse_slave_prostitute_yearly_sex_pulse = {
+	trigger = {
+		cse_is_working_as_slave_prostitute_trigger = yes
+	}
+	effect = {
+		random_list = {
+			100 = {
+				# Sex with non-existent character
+				add_trait_xp = {
+					trait = cse_slave
+					track = cse_slave_prostitute
+					value = cse_slave_prostitute_xp_gain_value
+				}
+				random = {
+					chance = 20
+					random_list = {
+						20 = {
+							contract_disease_notify_effect = { DISEASE = lovers_pox }
+						}
+						5 = {
+							contract_disease_notify_effect = { DISEASE = great_pox }
+						}
+					}
+					modifier = {
+						add = {
+							value = 0
+							subtract = cse_slave_prostitute_xp_value
+							multiply = 0.2
+						}
+					}
+					modifier = {
+						factor = 0
+						has_game_rule = carn_std_disabled
+					}
+				}
+			} 
+			0 = {
+				random_list = {
+					75 = {
+						# Sex with existent ai character
+						trigger_event = { id = cse_slave_prostitute_yearly_sex_event.0001 }
+					}
+					25 = {
+						# Sex with existent liege
+						save_scope_as = carn_sex_partner
+						add_character_flag = {
+							flag = cse_recently_picked_liege
+							years = 2
+						}
+						liege = { 
+							save_scope_as = carn_sex_player
+							trigger_event = { id = cse_slave_prostitute_yearly_sex_event.0002 }
+							add_character_flag = {
+								flag = cse_recently_picked_by_slave_prostitute
+								years = 1
+							}
+						}
+						modifier = {
+							factor = 0
+							OR = {
+								liege ?= { has_character_flag = cse_recently_picked_by_slave_prostitute }
+								has_character_flag = cse_recently_picked_liege
+								liege ?= { NOT = { is_attracted_to_gender_of = PREV } }
+								liege ?= { carn_can_have_sex_trigger = no }
+							}
+						}
+					}
+				}
+				modifier = {
+					add = cse_slave_prostitute_worth_value
+				}
+				modifier = {
+					factor = 0
+					effective_age < 16
+				}
+				modifier = {
+					factor = 0
+					has_trait = great_pox
+				}
+			}
+		}
+	}
+}
+
+cse_slave_prostitute_xp_gain_on_action = {
+	trigger = {
+		cse_is_working_as_slave_prostitute_trigger = yes
+	}
+	
+	effect = {
+		add_trait_xp = {
+			trait = cse_slave
+			track = cse_slave_prostitute
+			value = cse_slave_prostitute_xp_gain_value
+		}
+	}
+}
+
+#################### LABOUR SLAVE ############################################################
+
+cse_started_working_as_labour_slave_on_action = {
+}
+
+cse_stopped_working_as_labour_slave_on_action = {
+}
+
+cse_labour_slave_random_yearly_everyone_pulse = {
+	trigger = {
+		cse_is_working_as_labour_slave_trigger = yes
+	}
+	effect = {
+		save_scope_as = cse_labour_slave
+		if = {
+			limit = {
+				cse_can_work_trigger = no
+			}
+			send_interface_message = {
+				type = event_generic_neutral
+				title = cse_msg_stopped_working_as_labour_slave
+				left_icon = scope:cse_labour_slave
+				custom_tooltip = cse_can_no_longer_work_as_labour_slave_tooltip
+			}
+			every_relation = {
+				type = slave_owner
+				send_interface_message = {
+					type = event_generic_neutral
+					title = cse_msg_stopped_working_as_labour_slave
+					left_icon = scope:cse_labour_slave
+					custom_tooltip = cse_can_no_longer_work_as_labour_slave_tooltip
+				}
+			}
+			cse_stop_working_as_labour_slave_effect = yes
+		}
+		else = {
+			add_trait_xp = {
+				trait = cse_slave
+				track = cse_labour_slave
+				value = cse_labour_slave_xp_gain_value
+			}
+			cse_update_health_penalty_for_labour_slave_effect = yes
+			random = {
+				chance = 25
+				trigger_event = { on_action = cse_labour_slave_random_events_pulse }
+			}
+		}
+	}
+}
+
+cse_labour_slave_random_events_pulse = {}
+
+#################### MILITARY SLAVE ############################################################
+
+cse_started_working_as_military_slave_on_action = {
+}
+
+cse_update_military_slave_rank_on_action = {
+}
+
+cse_stopped_working_as_military_slave_on_action = {
+}
+
+cse_military_slave_random_yearly_everyone_pulse = {
+	trigger = {
+		cse_is_working_as_military_slave_trigger = yes
+	}
+	effect = {
+		save_scope_as = cse_military_slave
+		if = {
+			limit = {
+				cse_can_work_trigger = no
+			}
+			send_interface_message = {
+				type = event_generic_neutral
+				title = cse_msg_stopped_working_as_miliary_slave
+				left_icon = scope:cse_military_slave
+				custom_tooltip = cse_can_no_longer_work_as_military_slave_tooltip
+			}
+			every_relation = {
+				type = slave_owner
+				send_interface_message = {
+					type = event_generic_neutral
+					title = cse_msg_stopped_working_as_miliary_slave
+					left_icon = scope:cse_military_slave
+					custom_tooltip = cse_can_no_longer_work_as_military_slave_tooltip
+				}
+			}
+			cse_stop_working_as_military_slave_effect = yes
+		}
+		else = {
+			cse_update_health_penalty_for_military_slave_effect = yes
+			add_trait_xp = {
+				trait = cse_slave
+				track = cse_military_slave
+				value = cse_military_slave_xp_gain_value
+			}
+			trigger_event = { on_action = cse_update_military_slave_rank_on_action }
+			random = {
+				chance = {
+					value = cse_military_slave_xp_gain_value
+					multiply = 2
+				}
+				give_random_commander_trait_effect = yes
+			}
+			random = {
+				chance = 25
+				trigger_event = { on_action = cse_military_slave_random_events_pulse }
+			}
+		}
+	}
+}
+
+cse_military_slave_random_events_pulse = {
+}
+
+#################### SEX SLAVE ############################################################
+
+cse_started_working_as_sex_slave_on_action = {
+}
+
+cse_stopped_working_as_sex_slave_on_action = {
+}
+
+cse_sex_slave_random_yearly_everyone_pulse = {
+	trigger = {
+		any_relation = {
+			type = slave
+			cse_is_working_as_sex_slave_trigger = yes
+		}
+	}
+	effect = {
+		every_relation = {
+			type = slave
+			limit = { cse_is_working_as_sex_slave_trigger = yes }
+			save_scope_as = cse_sex_slave
+			if = {
+				limit = {
+					cse_can_work_trigger = no
+				}
+				send_interface_message = {
+					type = event_generic_neutral
+					title = cse_msg_stopped_working_as_sex_slave
+					left_icon = scope:cse_sex_slave
+					custom_tooltip = cse_can_no_longer_work_as_sex_slave_tooltip
+				}
+				every_relation = {
+					type = slave_owner
+					send_interface_message = {
+						type = event_generic_neutral
+						title = cse_msg_stopped_working_as_sex_slave
+						left_icon = scope:cse_sex_slave
+						custom_tooltip = cse_can_no_longer_work_as_sex_slave_tooltip
+					}
+				}
+				cse_stop_working_as_sex_slave_effect = yes
+			}
+		}
+		random_list = {
+			800 = { trigger_event = { on_action = cse_sex_slave_yearly_sex_pulse } }
+			#200 = { trigger_event = { on_action = cse_sex_slave_random_events_pulse } }
+		}
+	}
+}
+
+cse_sex_slave_yearly_sex_pulse = {
+	trigger = {
+		carn_can_have_sex_trigger = yes
+		any_relation = {
+			type = slave
+			cse_is_working_as_sex_slave_trigger = yes
+		}
+	}
+	effect = {
+		save_scope_as = carn_sex_player
+		if = {
+			limit = {
+				any_relation = {
+					type = slave
+					count > 1
+					cse_is_working_as_sex_slave_trigger = yes
+				}
+			}
+			random_relation = {
+				type = slave
+				limit = {
+					cse_is_working_as_sex_slave_trigger = yes
+					NOT = { has_character_flag = cse_recently_picked_sex_slave }
+				}
+				save_scope_as = carn_sex_partner
+				add_character_flag = cse_recently_picked_sex_slave
+			}
+			every_relation = {
+				type = slave
+				limit = {
+					cse_is_working_as_sex_slave_trigger = yes
+					NOT = { this = scope:carn_sex_partner }
+				}
+				if = {
+					limit = { has_character_flag = cse_recently_picked_sex_slave }
+					remove_character_flag = cse_recently_picked_sex_slave
+				}
+				add_trait_xp = {
+					trait = cse_slave
+					track = cse_sex_slave
+					value = {
+						value = cse_sex_slave_xp_gain_value
+						multiply = 0.5
+						round = yes
+					}
+				}
+			}
+		}
+		else = {
+			if = {
+				limit = {
+					any_relation = {
+						type = slave
+						cse_is_working_as_sex_slave_trigger = yes
+						has_character_flag = cse_recently_picked_sex_slave
+					}
+				}
+				every_relation = {
+					type = slave
+					limit = {
+						cse_is_working_as_sex_slave_trigger = yes
+						has_character_flag = cse_recently_picked_sex_slave
+					}
+					remove_character_flag = cse_recently_picked_sex_slave
+				}
+			}
+			random_relation = {
+				type = slave
+				limit = {
+					cse_is_working_as_sex_slave_trigger = yes
+				}
+				save_scope_as = carn_sex_partner
+			}
+		}
+		trigger_event = { id = cse_sex_slave_yearly_sex_event.0001 } #~sex slaves approach their masters to have sex
+	}
+}
+
+cse_sex_slave_xp_gain_on_action = {
+	trigger = {
+		cse_is_working_as_sex_slave_trigger = yes
+	}
+	
+	effect = {
+		add_trait_xp = {
+			trait = cse_slave
+			track = cse_sex_slave
+			value = cse_sex_slave_xp_gain_value
+		}
+	}
+}

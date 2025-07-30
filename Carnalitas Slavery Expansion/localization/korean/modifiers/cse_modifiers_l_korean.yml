@@ -1,0 +1,50 @@
+﻿l_korean:
+  
+ cse_slave_prostitute_modifier: "Slave Prostitute"
+ cse_slave_prostitute_modifier_desc: "This character is a Slave Prostitute."
+  
+ cse_labour_slave_modifier: "Labour Slave"
+ cse_labour_slave_modifier_desc: "This character does forced labour as a Labour Slave."
+  
+ cse_labour_slave_health_modifier: "Labour Slave - Health Malus"
+ cse_labour_slave_health_modifier_desc: "The fewer skills Labour Slaves have, the more they have to do physical work."
+  
+ cse_military_slave_modifier: "Military Slave"
+ cse_military_slave_modifier_desc: "This character serves as a Military Slave."
+  
+ cse_military_slave_health_modifier: "Military Slave - Health Malus"
+ cse_military_slave_health_modifier_desc: "The hard training of a Military Slave has its price."
+  
+ cse_sex_slave_modifier: "Slave Concubine"
+ cse_sex_slave_modifier_desc: "This character has to offer love services as a Slave Concubine."
+  
+  #################### COURT ############################################################ 
+  
+ cse_courtesan_modifier: "Courtesan"
+ cse_courtesan_modifier_desc: "This character supports her benefactors as a courtesan."
+  
+ cse_courtesan_spouse_modifier: "$game_concept_prestige$ bonus through the benefactor of the spouse"
+ cse_courtesan_spouse_modifier_desc: "Through the activities of the spouse as a courtesan, this character gains prestige."
+  
+ cse_courtesan_owner_diplomacy_modifier: "$game_concept_diplomacy$ bonus through your courtesans"
+ cse_courtesan_owner_diplomacy_modifier_desc: "Skills are being improved by the support of this character's own courtesans."
+  
+ cse_courtesan_owner_intrigue_modifier: "$game_concept_intrigue$ bonus through your courtesans"
+ cse_courtesan_owner_intrigue_modifier_desc: "Skills are being improved by the support of this character's own courtesans."
+  
+ cse_courtesan_owner_learning_modifier: "$game_concept_learning$ bonus through your courtesans"
+ cse_courtesan_owner_learning_modifier_desc: "Skills are being improved by the support of this character's own courtesans."
+  
+ cse_courtesan_owner_expenses_modifier: "Maintenance of your courtesans"
+ cse_courtesan_owner_expenses_modifier_desc: "Maintaining courtesans draws on this character's income."
+  
+ cse_courtesan_owner_spouse_modifier: "$game_concept_opinion$ because of your courtesans"
+ cse_courtesan_owner_spouse_modifier_desc: "The maintenance of courtesans causes jealousy among the spouses of this character."
+  
+ cse_courtesan_owner_base_modifier: "Minimum"
+  
+ cse_scandalous_royal_mistress_modifier: "Scandal over mistress"
+ cse_scandalous_royal_mistress_modifier_desc: "This character is or was involved in a scandal involving a mistress." 
+  
+ cse_is_scandalous_royal_mistress_modifier: "Scandalous mistress"
+ cse_is_scandalous_royal_mistress_modifier_desc: "This character is or was a scandalous mistress."

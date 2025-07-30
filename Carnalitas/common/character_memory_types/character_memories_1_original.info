@@ -1,0 +1,42 @@
+had_sex = {
+	categories = { positive relationships private intimate }
+	icon = "intimate.dds"
+	description = {
+		random_valid = {
+			desc = had_sex_desc
+			desc = had_sex_desc_1
+			desc = had_sex_desc_2
+			desc = had_sex_desc_3
+			desc = had_sex_desc_4
+			desc = had_sex_desc_5
+		}
+	}
+
+	second_perspective_description = {
+		random_valid = {
+			desc = had_sex_desc_second_perspective
+			desc = had_sex_desc_second_perspective_1
+			desc = had_sex_desc_second_perspective_2
+			desc = had_sex_desc_second_perspective_3
+			desc = had_sex_desc_second_perspective_4
+			desc = had_sex_desc_second_perspective_5
+		}
+	}
+
+	third_perspective_description = {
+		random_valid = {
+			desc = had_sex_desc_third_perspective
+			desc = had_sex_desc_third_perspective_1
+			desc = had_sex_desc_third_perspective_2
+			desc = had_sex_desc_third_perspective_3
+			desc = had_sex_desc_third_perspective_4
+			desc = had_sex_desc_third_perspective_5
+		}
+	}
+
+	participants = { sex_partner }
+
+	duration = {
+		years = memory_default_duration
+	}
+}

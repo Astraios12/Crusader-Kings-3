@@ -1,0 +1,486 @@
+﻿cse_make_my_courtesan_interaction = {
+	interface_priority = 10
+	common_interaction = no
+	category = interaction_category_friendly
+
+	desc = cse_make_my_courtesan_interaction_desc
+	
+	ai_maybe = yes
+	ai_min_reply_days = 1
+	ai_max_reply_days = 3
+	
+	should_use_extra_icon = {
+		scope:actor = { has_usable_hook = scope:recipient }
+	}
+	extra_icon = "gfx/interface/icons/character_interactions/hook_icon.dds"
+	
+	is_shown = {
+		scope:recipient = {
+			effective_age >= cse_courtesan_age_start_value
+			cse_can_work_ignoring_age_trigger = yes
+			cse_is_working_as_courtesan_trigger = no
+			NOT = { has_trait = celibate }
+			NOT = { scope:recipient = scope:actor }
+			NOT = { is_consort_of = scope:actor }
+			OR = {
+				is_courtier_of = scope:actor
+				is_vassal_of = scope:actor
+				top_liege = scope:actor
+				AND = {
+					has_relation_slave_owner = scope:actor
+					OR = {
+						cse_is_working_as_slave_prostitute_trigger = yes
+						cse_is_working_as_sex_slave_trigger = yes
+					}
+				}
+			}
+		}
+	}
+	
+	is_valid = {
+		scope:actor = {
+			custom_description = {
+				text = cse_courtesan_ownership_limit_reached
+				any_relation = {
+					type = courtesan
+					cse_is_assigned_as_courtesan_trigger = yes
+					count < cse_courtesan_ownership_limit_value
+				}
+			}
+			gold >= scope:recipient.cse_courtesan_worth_value
+		}
+	}
+
+	is_valid_showing_failures_only = {
+		scope:recipient = {
+			is_busy_in_events_localised = yes
+		}
+	}
+	
+	#################### NO MAINTENANCE ############################################################
+	send_option = {
+		
+		flag = cse_no_maintenance
+		localization = cse_no_maintenance_loc
+	}
+	
+	#################### LOW MAINTENANCE ############################################################
+	send_option = {
+		#is_shown = { NOT = { scope:recipient = { has_relation_slave_owner = scope:actor } }	}
+		
+		is_valid = {
+			scope:actor = {
+				gold >= {
+					value = scope:recipient.cse_courtesan_worth_value
+					multiply = 2
+				}
+			}
+		}
+		
+	#	is_valid = {
+	#		scope:cse_medium_maintenance = no
+	#		scope:cse_high_maintenance = no
+	#		scope:hook = no
+	#	}
+		
+		flag = cse_low_maintenance
+		localization = cse_low_maintenance_loc
+		#starts_enabled = { }
+	}
+	
+	#################### MEDIUM MAINTENANCE ############################################################
+	send_option = {
+		#is_shown = { NOT = { scope:recipient = { has_relation_slave_owner = scope:actor } }	}
+		
+		is_valid = {
+			scope:actor = {
+				gold >= {
+					value = scope:recipient.cse_courtesan_worth_value
+					multiply = 3
+				}
+			}
+		}
+		
+	#	is_valid = {
+	#		scope:cse_low_maintenance = no
+	#		scope:cse_high_maintenance = no
+	#		scope:hook = no
+	#	}
+		
+		flag = cse_medium_maintenance
+		localization = cse_medium_maintenance_loc
+		#starts_enabled = { }
+	}
+	
+	#################### HIGH MAINTENANCE ############################################################
+	send_option = {
+		#is_shown = { NOT = { scope:recipient = { has_relation_slave_owner = scope:actor } }	}
+		
+		is_valid = {
+			scope:actor = {
+				gold >= {
+					value = scope:recipient.cse_courtesan_worth_value
+					multiply = 4
+				}
+			}
+		}
+		
+	#	is_valid = {
+	#		scope:cse_low_maintenance = no
+	#		scope:cse_medium_maintenance = no
+	#		scope:hook = no
+	#	}
+		
+		flag = cse_high_maintenance
+		localization = cse_high_maintenance_loc
+		#starts_enabled = { }
+	}
+
+	#Use hook
+	send_option = {
+		#is_shown = { NOT = { scope:recipient = { has_relation_slave_owner = scope:actor } }	}
+		
+		is_valid = {
+	#		scope:cse_low_maintenance = no
+	#		scope:cse_medium_maintenance = no
+	#		scope:hook = no
+			exists = scope:recipient
+			scope:actor = {
+				has_usable_hook = scope:recipient
+			}
+		}
+		
+		flag = hook
+		localization = SCHEME_HOOK
+	}
+	
+	send_options_exclusive = yes
+
+	on_accept = {
+		scope:recipient = { save_scope_as = cse_courtesan }
+		scope:actor = {
+			pay_short_term_gold = {
+				target = scope:recipient
+				gold = scope:recipient.cse_courtesan_worth_value
+			}
+			if = {
+				limit = { scope:cse_low_maintenance = yes }
+				pay_short_term_gold = {
+					target = scope:recipient
+					gold = {
+						value = scope:recipient.cse_courtesan_worth_value
+						multiply = 1
+					}
+				}
+			}
+			if = {
+				limit = { scope:cse_medium_maintenance = yes }
+				pay_short_term_gold = {
+					target = scope:recipient
+					gold = {
+						value = scope:recipient.cse_courtesan_worth_value
+						multiply = 2
+					}
+				}
+			}
+			if = {
+				limit = { scope:cse_high_maintenance = yes }
+				pay_short_term_gold = {
+					target = scope:recipient
+					gold = {
+						value = scope:recipient.cse_courtesan_worth_value
+						multiply = 3
+					}
+				}
+			}
+			if = {
+				limit = { scope:hook = yes }
+				use_hook = scope:recipient
+			}
+
+			save_scope_as = courtesan_owner
+			custom_tooltip = cse_gain_courtesan_loc
+			send_interface_toast = {
+				type = event_generic_neutral
+				title = cse_msg_started_working_as_courtesan
+				right_icon = scope:recipient
+				scope:recipient = {
+					cse_start_working_as_courtesan_effect = yes
+					if = {
+						limit = {
+							scope:hook = no
+							opinion = {
+								target = scope:actor
+								value >= 0
+							}
+							scope:actor.attraction >= 0
+						}
+						add_opinion = {
+							target = scope:actor
+							modifier = cse_made_me_a_courtesan_opinion
+						}
+					}
+				}
+			}
+			stress_impact = {
+				lustful = minor_stress_impact_loss
+				chaste = major_stress_impact_gain
+			}
+		}
+	}
+	
+	on_decline = {
+		scope:actor = {
+			trigger_event = char_interaction.0236
+			if = {
+				limit = { highest_held_title_tier >= tier_empire }
+				add_prestige = major_prestige_loss
+			}
+			else_if = {
+				limit = { highest_held_title_tier >= tier_kingdom }
+				add_prestige = medium_prestige_loss
+			}
+			else_if = {
+				limit = { highest_held_title_tier >= tier_duchy }
+				add_prestige = minor_prestige_loss
+			}
+			else = {
+				add_prestige = miniscule_prestige_loss
+			}
+			remove_short_term_gold = {
+					value = scope:recipient.cse_courtesan_worth_value
+					multiply = 0.5
+					round = yes
+			}
+		}
+	}
+	
+	auto_accept = {
+		OR = {
+			scope:hook = yes
+			#scope:recipient = { has_relation_slave_owner = scope:actor }
+			scope:recipient = { has_relation_lover = scope:actor }
+			scope:recipient = { has_relation_soulmate = scope:actor }
+		}
+	}
+	
+	ai_accept = {
+		base = 10
+		
+		# Attraction
+		modifier = {
+			desc = CSE_ATTRACTION_MODIFIER
+			#add = { scope:actor = { add = attraction }}
+			add = {
+				value = scope:actor.attraction
+				multiply = 0.5
+			}
+			scope:recipient = { is_attracted_to_gender_of = scope:actor }
+			trigger_if = {
+				limit = { scope:actor = { is_female = yes } }
+				scope:actor = { effective_age < 50 }
+			}
+			trigger_else = {
+				scope:actor = { effective_age < 65 }
+			}
+		}
+		
+		# Slave
+		modifier = {
+			add = 25
+			scope:recipient = {	has_trait = slave }
+		}
+		
+		# Age
+		modifier = {
+			desc = CSE_EFFECTIVE_AGE_MODIFIER
+			add = {
+				subtract = scope:actor.effective_age
+				add = 30
+			}
+			scope:actor = { effective_age > 20 }
+		}
+		
+		# Maintenance
+		modifier = {
+			add = 20
+			desc = CSE_MAINTENANCE_MODIFIER
+			scope:cse_low_maintenance = yes
+		}
+		modifier = {
+			add = 40
+			desc = CSE_MAINTENANCE_MODIFIER
+			scope:cse_medium_maintenance = yes
+		}
+		modifier = {
+			add = 60
+			desc = CSE_MAINTENANCE_MODIFIER
+			scope:cse_high_maintenance = yes
+		}
+		
+		# Opinion
+		modifier = {
+			add = 20
+			scope:recipient = { 
+				opinion = {
+					target = scope:actor
+					value >= 50
+				}
+			}
+		}
+		modifier = {
+			add = -10
+			scope:recipient = { 
+				opinion = {
+					target = scope:actor
+					value < 0
+				}
+			}
+		}
+		modifier = {
+			add = -10
+			scope:recipient = { 
+				opinion = {
+					target = scope:actor
+					value < -50
+				}
+			}
+		}
+		
+		# Rank Actor
+		modifier = {
+			add = 15
+			scope:actor = { highest_held_title_tier = tier_duchy }
+		}
+		modifier = {
+			add = 30
+			scope:actor = { highest_held_title_tier = tier_kingdom }
+		}
+		modifier = {
+			add = 45
+			scope:actor = { highest_held_title_tier = tier_empire }
+		}
+		
+		# Rank Recipient
+		modifier = {
+			add = -5
+			scope:recipient = { highest_held_title_tier = tier_barony }
+		}
+		modifier = {
+			add = -10
+			scope:recipient = { highest_held_title_tier = tier_county }
+		}
+		modifier = {
+			add = -15
+			scope:recipient = { highest_held_title_tier = tier_duchy }
+		}
+		modifier = {
+			add = -20
+			scope:recipient = { highest_held_title_tier = tier_kingdom }
+		}
+		modifier = {
+			add = -25
+			scope:recipient = { highest_held_title_tier = tier_empire }
+		}
+		
+		# Rank Comparison
+		modifier = {
+			add = -50
+			scope:recipient = { highest_held_title_tier >= scope:actor.highest_held_title_tier }
+		}
+		
+		# Chaste
+		modifier = {
+			add = -50
+			scope:recipient = { has_trait = chaste }
+		}
+		
+		# Married
+		modifier = {
+			add = -20
+			scope:recipient = { is_married = yes }
+		}
+		
+		# Soulmate
+		modifier = {
+			add = -60
+			desc = CSE_SOULMATE_MODIFIER
+			scope:recipient = {
+				any_relation = {
+					type = soulmate
+					count >= 1
+				}
+			}
+			NOT = { scope:recipient = { has_relation_soulmate = scope:actor } }
+		}
+		
+		# Gender
+		modifier = {
+			factor = 0
+			scope:recipient = { NOT = { is_attracted_to_gender_of = scope:actor } }
+		}
+		# Incest
+		modifier = {
+			desc = CSE_INCEST_MODIFIER
+			factor = 0
+			scope:recipient = { relation_with_character_is_incestuous_in_my_faith_trigger = { CHARACTER = scope:actor } }
+		}
+	}
+}
+
+cse_dismiss_courtesan_interaction = {
+	interface_priority = 10
+	common_interaction = no
+	category = interaction_category_friendly
+
+	desc = cse_dismiss_courtesan_interaction_desc
+	
+	is_shown = {
+		scope:recipient = {
+			has_relation_courtesan_owner = scope:actor
+			cse_is_working_as_courtesan_trigger = yes
+		}
+	}
+
+	is_valid_showing_failures_only = {
+		scope:recipient = {
+			is_busy_in_events_localised = yes
+		}
+	}
+
+	on_accept = {
+		
+		#################### DISMISS ############################################################
+
+		scope:recipient = { save_scope_as = cse_courtesan }
+		scope:actor = {
+			send_interface_message = {
+				type = event_generic_neutral
+				title = cse_msg_stopped_working_as_courtesan
+				right_icon = scope:recipient
+				scope:recipient = {
+					cse_stop_working_as_courtesan_effect = yes
+					if = {
+						limit = {
+							opinion = {
+								target = scope:actor
+								value >= 0
+							}
+						}
+						add_opinion = {
+							target = scope:actor
+							modifier = cse_dismissed_me_as_courtesan_opinion
+						}
+					}
+				}
+			}
+			stress_impact = {
+				lustful = minor_stress_impact_gain
+				chaste = major_stress_impact_loss
+			}
+		}
+	}
+
+	auto_accept = yes
+
+}

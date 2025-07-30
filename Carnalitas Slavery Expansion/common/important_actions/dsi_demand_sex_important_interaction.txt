@@ -1,0 +1,59 @@
+﻿dsi_demand_sex_important_interaction = {
+	check_create_action = {
+		if = {
+			limit = {
+        		NOR = {
+					has_game_rule = carn_sex_interaction_disabled
+					has_character_flag = dsi_demand_sex_interaction_effect_cd
+				}
+				carn_can_have_sex_trigger = yes
+				any_relation = {
+					type = slave
+					is_busy_in_events_localised = yes
+					carn_can_have_sex_trigger = yes
+				}			
+			}
+			if = {
+				limit = { 
+					any_relation = {
+						type = slave
+						cse_is_working_as_sex_slave_trigger = yes
+					}
+				}
+				random_relation = {
+					type = slave
+					limit = {
+						is_busy_in_events_localised = yes
+						carn_can_have_sex_trigger = yes
+						cse_is_working_as_sex_slave_trigger = yes
+					}
+					save_temporary_scope_as = sexable_partner
+				}
+			}
+			else = {
+				random_relation = {
+					type = slave
+					limit = {
+						#root = { is_attracted_to_gender_of = prev }
+						is_busy_in_events_localised = yes
+						carn_can_have_sex_trigger = yes
+					}
+					save_temporary_scope_as = sexable_partner
+				}
+			}
+			try_create_important_action = {
+				important_action_type = dsi_demand_sex_important_interaction
+				actor = root
+				recipient = scope:sexable_partner
+			}
+		}
+	}
+
+	effect = {
+		open_interaction_window = {
+			interaction = dsi_demand_sex_interaction
+			actor = scope:actor
+			recipient = scope:recipient
+		}
+	}
+}

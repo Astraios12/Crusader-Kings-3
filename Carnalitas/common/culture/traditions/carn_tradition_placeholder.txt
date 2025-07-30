@@ -1,0 +1,23 @@
+﻿#Adopted From Carnalitas Slavery Reimagined
+#Parameters can be used as a trigger for effect/event 
+#lustful_trait_more_common = yes is used in carn_childhood event
+#carn_no_consequences_for_extramarital_sex_with_me,carn_no_consequences_for_extramarital_sex_with_others = yes,carn_prostitution_accepted,
+#and carn_more_good_prostitution_events has been used in random prostitution event, prostitution job
+
+carn_tradition_placeholder = {
+	category = regional
+
+	is_shown = { always = no }
+	can_pick = { always = no }
+	can_pick_for_hybridization = { always = no }
+
+	parameters = {
+		lustful_trait_more_common = yes
+		carn_no_consequences_for_extramarital_sex_with_me = yes
+		carn_no_consequences_for_extramarital_sex_with_others = yes
+		carn_prostitution_accepted = yes
+		carn_more_good_prostitution_events = yes
+		allows_polygamy = yes
+		allows_concubinage = yes
+	}
+}

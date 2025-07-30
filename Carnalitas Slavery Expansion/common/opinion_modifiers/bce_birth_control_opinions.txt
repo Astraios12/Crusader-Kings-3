@@ -1,0 +1,7 @@
+﻿bce_forced_me_into_using_birth_control_opinion = {
+	opinion = -5
+}
+
+bce_forced_me_into_wearing_chastity_belt_opinion = {
+	opinion = -10
+}

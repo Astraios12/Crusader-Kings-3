@@ -1,0 +1,23 @@
+﻿carn_prostitution_age_cutoff = 45
+
+carn_prostitute_sex_interaction_price_value = {
+	value = 15
+	if = {
+		limit = {
+			has_trait_xp = {
+				trait = lifestyle_prostitute
+				value >= 100
+			}
+		}
+		multiply = 5
+	}
+	else_if = {
+		limit = {
+			has_trait_xp = {
+				trait = lifestyle_prostitute
+				value >= 50
+			}
+		}
+		multiply = 2
+	}
+}

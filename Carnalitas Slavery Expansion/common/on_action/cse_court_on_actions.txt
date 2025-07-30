@@ -1,0 +1,375 @@
+﻿#################### VANILLA / CARNALITAS ON ACTIONS ############################################################
+
+yearly_playable_pulse = {
+	on_actions = {
+		cse_courtesan_owner_yearly_playable_pulse
+	}
+}
+
+random_yearly_everyone_pulse = {
+	on_actions = {
+		cse_courtesan_random_yearly_everyone_pulse
+		cse_courtesan_spouse_random_yearly_everyone_pulse
+	}
+}
+
+carn_on_sex = {
+	on_actions = {
+		cse_courtesan_xp_gain_on_action
+	}
+	#events = {
+	#	cse_carn_on_sex_handler_event.0001
+	#}
+}
+
+carn_on_pregnancy_notification_suppressed = {
+	events = {
+		cse_custom_pregnancy.0001
+	}
+}
+
+cse_custom_on_pregnancy_mother = {
+	events = {
+		cse_custom_pregnancy.2001 # Unwed mother gives birth to bastard child.
+		cse_custom_pregnancy.2002 # Married mother gives birth to bastard child.
+	}
+}
+
+cse_vanilla_on_pregnancy_mother = {
+	events = {
+		cse_vanilla_pregnancy.1001 # Mother gives birth to current husband's child.
+		cse_vanilla_pregnancy.1101 # Mother gives birth to ex-husband's child.
+		cse_vanilla_pregnancy.2001 # Unwed mother gives birth to bastard child.
+		cse_vanilla_pregnancy.2002 # Married mother gives birth to bastard child.
+	}
+}
+
+#on_birth_child = {
+#	events = {
+#		cse_custom_pregnancy.2001
+#	}
+#}
+#
+#
+#on_pregnancy_ended_mother = {
+#	events = {
+#		cse_custom_pregnancy.2002
+#	}
+#}
+#
+#carn_on_birth_notification_suppressed = {
+#	events = {
+#		cse_custom_pregnancy.3001
+#	}
+#}
+
+on_marriage = {
+	on_actions = {
+		cse_marriage_ends_courtesan_relationship_on_action
+		cse_marriage_ends_courtesan_owner_relationship_on_action
+	}
+}
+
+on_concubinage = {
+	on_actions = {
+		cse_concubinage_ends_courtesan_relationship_on_action
+		cse_concubinage_ends_courtesan_owner_relationship_on_action
+	}
+}
+
+carn_on_slave_enslaved = {
+	on_actions = {
+		cse_stop_working_as_courtesan_on_action
+	}
+}
+
+on_death = {
+	on_actions = {
+		cse_death_ends_courtesan_relationship_on_action
+		cse_death_ends_courtesan_owner_relationship_on_action
+	}
+}
+
+#################### RELATION ON ACTIONS ############################################################
+# root = actor / scope:target = recipient
+
+on_set_relation_courtesan = {
+	on_actions = {
+		cse_update_courtesan_skill_bonus_as_owner_on_action
+	}
+}
+
+on_set_relation_courtesan_owner = {
+	on_actions = {
+		cse_update_courtesan_skill_bonus_as_courtesan_on_action
+	}
+}
+
+on_remove_relation_courtesan = {
+	on_actions = {
+		cse_update_courtesan_skill_bonus_as_owner_on_action
+	}
+}
+
+on_remove_relation_courtesan_owner = {
+	on_actions = {
+		cse_update_courtesan_skill_bonus_as_courtesan_on_action
+	}
+}
+
+cse_update_courtesan_skill_bonus_as_owner_on_action = {
+	effect = {
+		cse_update_courtesan_skill_bonus_as_owner_effect = yes
+	}
+}
+
+cse_update_courtesan_skill_bonus_as_courtesan_on_action = {
+	effect = {
+		scope:target = { cse_update_courtesan_skill_bonus_as_owner_effect = yes }
+	}
+}
+
+#################### COURTESAN ############################################################
+
+cse_death_ends_courtesan_relationship_on_action = {
+	trigger = {
+		any_relation = {
+			type = courtesan
+			count >= 1
+		}
+	}
+	effect = {
+		every_relation = {
+			type = courtesan
+			cse_stop_working_as_courtesan_effect = yes
+		}
+	}
+}
+
+cse_death_ends_courtesan_owner_relationship_on_action = {
+	trigger = {
+		any_relation = {
+			type = courtesan_owner
+			count >= 1
+		}
+	}
+	on_actions = {
+		cse_stop_working_as_courtesan_on_action
+	}
+}
+
+cse_marriage_ends_courtesan_relationship_on_action = {
+	trigger = {
+		has_relation_courtesan = scope:spouse
+	}
+	effect = {
+		scope:spouse = {
+			cse_stop_working_as_courtesan_effect = yes
+		}
+	}
+}
+
+cse_marriage_ends_courtesan_owner_relationship_on_action = {
+	trigger = {
+		cse_is_assigned_as_courtesan_trigger = yes
+		has_relation_courtesan_owner = scope:spouse
+	}
+	on_actions = {
+		cse_stop_working_as_courtesan_on_action
+	}
+}
+
+cse_concubinage_ends_courtesan_relationship_on_action = {
+	trigger = {
+		has_relation_courtesan = scope:concubine
+	}
+	effect = {
+		scope:concubine = {
+			cse_stop_working_as_courtesan_effect = yes
+		}
+	}
+}
+
+cse_concubinage_ends_courtesan_owner_relationship_on_action = {
+	trigger = {
+		cse_is_assigned_as_courtesan_trigger = yes
+		has_relation_courtesan_owner = scope:concubine
+	}
+	on_actions = {
+		cse_stop_working_as_courtesan_on_action
+	}
+}
+
+cse_stop_working_as_courtesan_on_action = {
+	effect = {
+		cse_stop_working_as_courtesan_effect = yes
+	}
+}
+
+cse_started_working_as_courtesan_on_action = {}
+
+cse_update_courtesan_skills_on_action = {
+	effect = {
+		cse_update_courtesan_worth_effect = yes
+	}
+}
+
+cse_stopped_working_as_courtesan_on_action = {}
+
+cse_courtesan_spouse_random_yearly_everyone_pulse = {
+	trigger = {
+		has_character_modifier = cse_courtesan_spouse_modifier
+		OR = {
+			is_married = no
+			any_spouse = {
+				count = all
+				cse_is_working_as_courtesan_trigger = no
+			}
+		}
+	}
+	effect = {
+		cse_update_courtesan_spouse_prestige_bonus_effect = yes
+	}
+}
+
+cse_courtesan_random_yearly_everyone_pulse = {
+	trigger = {
+		cse_is_working_as_courtesan_trigger = yes
+	}
+	effect = {
+		save_scope_as = cse_courtesan
+		if = {
+			limit = {
+				cse_can_work_trigger = no
+			}
+			send_interface_message = {
+				type = event_generic_neutral
+				title = cse_msg_stopped_working_as_courtesan
+				left_icon = scope:cse_courtesan
+				custom_tooltip = cse_can_no_longer_work_as_courtesan_tooltip
+			}
+			every_relation = {
+				type = courtesan_owner
+				send_interface_message = {
+					type = event_generic_neutral
+					title = cse_msg_stopped_working_as_courtesan
+					left_icon = scope:cse_courtesan
+					custom_tooltip = cse_can_no_longer_work_as_courtesan_tooltip
+				}
+			}
+			cse_stop_working_as_courtesan_effect = yes
+		}
+		else = {
+			add_trait_xp = {
+				trait = cse_courtesan
+				track = cse_courtesan_experience
+				value = cse_courtesan_xp_gain_value
+			}
+			trigger_event = { on_action = cse_update_courtesan_skills_on_action }
+			random = {
+				chance = 25
+				trigger_event = { on_action = cse_courtesan_random_events_pulse }
+			}
+		}
+	}
+}
+
+cse_courtesan_random_events_pulse = {}
+
+cse_courtesan_xp_gain_on_action = {
+	trigger = {
+		cse_is_working_as_courtesan_trigger = yes
+	}
+	
+	effect = {
+		add_trait_xp = {
+			trait = cse_courtesan
+			track = cse_courtesan_experience
+			value = cse_courtesan_xp_gain_value
+		}
+	}
+}
+
+cse_courtesan_owner_yearly_playable_pulse = {
+	trigger = {
+		any_relation = {
+			type = courtesan
+			cse_is_working_as_courtesan_trigger = yes
+		}
+	}
+	on_actions = {
+        delay = { days = { 1 360 } }
+        cse_courtesan_yearly_sex_on_action
+    }
+	effect = {
+		cse_update_courtesan_skill_bonus_as_owner_effect = yes
+	}
+}
+
+
+cse_courtesan_yearly_sex_on_action = {
+	trigger = {
+		carn_can_have_sex_trigger = yes
+		any_relation = {
+			type = courtesan
+			cse_is_working_as_courtesan_trigger = yes
+		}
+	}
+	effect = {
+		save_scope_as = carn_sex_player
+		if = {
+			limit = {
+				any_relation = {
+					type = courtesan
+					count > 1
+					cse_is_working_as_courtesan_trigger = yes
+				}
+			}
+			random_relation = {
+				type = courtesan
+				limit = {
+					cse_is_working_as_courtesan_trigger = yes
+					NOT = { has_character_flag = cse_recently_picked_courtesan }
+				}
+				save_scope_as = carn_sex_partner
+				add_character_flag = cse_recently_picked_courtesan
+			}
+			every_relation = {
+				type = courtesan
+				limit = {
+					cse_is_working_as_courtesan_trigger = yes
+					has_character_flag = cse_recently_picked_courtesan
+					NOT = { this = scope:carn_sex_partner }
+				}
+				remove_character_flag = cse_recently_picked_courtesan
+			}
+		}
+		else = {
+			if = {
+				limit = {
+					any_relation = {
+						type = courtesan
+						cse_is_working_as_courtesan_trigger = yes
+						has_character_flag = cse_recently_picked_courtesan
+					}
+				}
+				every_relation = {
+					type = courtesan
+					limit = {
+						cse_is_working_as_courtesan_trigger = yes
+						has_character_flag = cse_recently_picked_courtesan
+					}
+					remove_character_flag = cse_recently_picked_courtesan
+				}
+			}
+			random_relation = {
+				type = courtesan
+				limit = {
+					cse_is_working_as_courtesan_trigger = yes
+				}
+				save_scope_as = carn_sex_partner
+			}
+		}
+		trigger_event = { id = cse_courtesan_yearly_sex_event.0001 } # courtesan approaches their owner to have sex
+	}
+}

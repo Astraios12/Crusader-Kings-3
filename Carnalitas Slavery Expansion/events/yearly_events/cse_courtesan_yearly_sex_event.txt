@@ -1,0 +1,181 @@
+﻿namespace = cse_courtesan_yearly_sex_event
+
+# 0001. sex slaves approach their masters to have reduce stress
+
+cse_courtesan_yearly_sex_event.0001 = {
+	type = character_event
+	title = cse_courtesan_yearly_sex_event.0001.t
+	desc = cse_courtesan_yearly_sex_event.0001.desc
+	theme = seduction
+	
+	override_background = { reference = garden }
+	
+	left_portrait = {
+		character = scope:carn_sex_partner
+		animation = flirtation_left
+	}
+	
+	right_portrait = {
+		character = scope:carn_sex_player
+		animation = personality_rational
+	}
+	
+	immediate = {}
+	
+	option = {
+		name = cse_courtesan_yearly_sex_event.0001.a
+		trigger = {
+			scope:carn_sex_player.effective_age >= 18
+			scope:carn_sex_partner.effective_age >= 18
+			scope:carn_sex_partner = { cse_can_have_sex_trigger = yes }
+			is_ai = no
+		}
+		
+		show_as_tooltip = {
+			carn_had_sex_with_effect_v2 = {
+				PARTNER = scope:carn_sex_partner
+			}
+		}
+		
+		if = {
+			limit = {
+				OR = {
+					any_scheme = {
+						scheme_type = seduce
+						scheme_target_character = scope:carn_sex_partner
+					}
+					any_scheme = {
+						scheme_type = courting
+						scheme_target_character = scope:carn_sex_partner
+					}
+				}
+			}
+			progress_towards_lover_effect = {
+				REASON = lover_seducing_courtier
+				CHARACTER = scope:carn_sex_partner
+				OPINION = default_lover_opinion
+			}
+		}
+		
+		cse_sex_slave_yearly_sex_event_effect = yes
+		
+		carn_sex_scene_effect_v2 = {
+			PARTNER = scope:carn_sex_partner
+		}
+	}
+	
+	option = {
+		name = cse_courtesan_yearly_sex_event.0001.b
+		trigger = {
+			scope:carn_sex_player.effective_age >= 16
+			scope:carn_sex_partner.effective_age >= 16
+			scope:carn_sex_partner = { cse_can_have_sex_trigger = yes }
+			is_ai = no
+		}
+		
+		if = {
+			limit = {
+				OR = {
+					any_scheme = {
+						scheme_type = seduce
+						scheme_target_character = scope:carn_sex_partner
+					}
+					any_scheme = {
+						scheme_type = courting
+						scheme_target_character = scope:carn_sex_partner
+					}
+				}
+			}
+			progress_towards_lover_effect = {
+				REASON = lover_seducing_courtier
+				CHARACTER = scope:carn_sex_partner
+				OPINION = default_lover_opinion
+			}
+		}
+		
+		cse_sex_slave_yearly_sex_event_effect = yes
+		
+		carn_had_sex_with_effect_v2 = {
+			PARTNER = scope:carn_sex_partner
+		}
+	}
+	
+	option = {
+		name = cse_courtesan_yearly_sex_event.0001.c
+		
+		if = {
+			limit = {
+				OR = {
+					any_scheme = {
+						scheme_type = seduce
+						scheme_target_character = scope:carn_sex_partner
+					}
+					any_scheme = {
+						scheme_type = courting
+						scheme_target_character = scope:carn_sex_partner
+					}
+				}
+			}
+			progress_towards_lover_effect = {
+				REASON = lover_seducing_courtier
+				CHARACTER = scope:carn_sex_partner
+				OPINION = default_lover_opinion
+			}
+		}
+		else = {
+			progress_towards_friend_effect = {
+				REASON = friend_showed_personal_interest
+				CHARACTER = scope:carn_sex_partner
+				OPINION = default_friend_opinion
+			}
+		}
+		
+		hidden_effect = {
+			scope:carn_sex_partner = {
+				add_trait_xp = {
+					trait = cse_courtesan
+					track = cse_courtesan_experience
+					value = cse_courtesan_xp_gain_value
+				}
+			}
+		}
+		
+		save_scope_as = owner
+
+		scope:carn_sex_partner = {
+			root = {
+				add_stress = {
+					value = 0
+					subtract = prev.cse_courtesan_worth_value
+					multiply = 0.5
+					multiply = prev.cse_opinion_multiplier_owner_value
+					round = yes
+				}
+			}
+			add_stress = {
+				value = 0
+				subtract = cse_courtesan_worth_value
+				multiply = 0.5
+				round = yes
+			}
+		}
+	}
+	
+#	option = {
+#		name = cse_courtesan_yearly_sex_event.0001.d
+#	}
+	
+	after = {
+		scope:carn_sex_player = {
+			remove_character_flag = is_naked
+		}
+		scope:carn_sex_partner = {
+			remove_character_flag = is_naked
+			add_opinion = {
+				target = scope:carn_sex_player
+				modifier = cse_pleasant_night_spent_opinion
+			}
+		}
+	}
+}
+

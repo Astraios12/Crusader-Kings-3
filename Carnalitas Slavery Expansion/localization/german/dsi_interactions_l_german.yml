@@ -1,0 +1,6 @@
+﻿l_german:
+
+ dsi_demand_sex_interaction: "Liebe einfordern"
+ dsi_demand_sex_interaction_extra_icon: "$hook_extra_icon$"
+ dsi_demand_sex_interaction_desc: "Zwingt [recipient.GetShortUINameNoTooltip] aufgrund eures [hook|E]s dazu, mit euch zu schlafen"
+ 

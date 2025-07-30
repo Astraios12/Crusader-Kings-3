@@ -1,0 +1,17 @@
+﻿l_german:
+
+ dominant:1 "[dominant|E]"
+ relation_dominant:1 "Dominus"
+ relation_dominant_possessive:1 "Dominanten"
+ 
+ submissive:1 "[submissive|E]"
+ relation_submissive:1 "Submissiver"
+ relation_submissive_possessive:1 "Submissiven"
+ 
+ slave:1 "[slave|E]"
+ relation_slave:1 "Sklave"
+ relation_slave_possessive:1 "Sklaven"
+
+ slave_owner:1 "[slave_owner|E]"
+ relation_slave_owner:1 "Besitzer"
+ relation_slave_owner_possessive:1 "Besitzers"

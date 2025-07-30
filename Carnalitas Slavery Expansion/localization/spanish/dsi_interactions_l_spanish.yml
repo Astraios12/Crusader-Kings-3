@@ -1,0 +1,6 @@
+﻿l_spanish:
+  
+ dsi_demand_sex_interaction: "Demand Love"
+ dsi_demand_sex_interaction_extra_icon: "$hook_extra_icon$"
+ dsi_demand_sex_interaction_desc: "Forces [recipient.GetShortUINameNoTooltip] to sleep with you because of your [hook|E]"
+  

@@ -1,0 +1,7 @@
+﻿l_simp_chinese:
+ carn_tradition_placeholder_desc:0 "Carnalitas传统占位符"
+ culture_parameter_carn_no_consequences_for_extramarital_sex_with_others:0 "与他人发生[extramarital_sex|E]不会受到任何惩罚"
+ culture_parameter_carn_no_consequences_for_extramarital_sex_with_me:0 "其他具有这种文化特征的角色不会因[extramarital_sex|E]而受惩罚"
+ culture_parameter_carn_prostitution_accepted:0 "[prostitution|E]合法"
+ culture_parameter_carn_more_good_prostitution_events:0 "来自[prostitution|E]的幸运随机事件会更为常见"
+ culture_parameter_lustful_trait_more_common:0 "[GetTrait('lustful').GetName( GetNullCharacter )][trait|E]会更为常见"

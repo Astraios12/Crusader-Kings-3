@@ -1,0 +1,11 @@
+﻿#dsi_attempted_pressured_sex_opinion = {
+#	opinion = -40
+#	decaying = yes
+#	years = 15
+#}
+
+dsi_pressured_me_to_have_sex_opinion = {
+	opinion = -20
+	decaying = yes
+	years = 5
+}

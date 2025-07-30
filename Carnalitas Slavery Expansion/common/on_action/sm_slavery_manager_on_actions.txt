@@ -1,0 +1,492 @@
+﻿sm_setup_slave_category = {
+	effect = {
+		save_scope_as = owner
+		every_relation = {
+			type = slave
+			save_scope_as = slave
+			if = {
+				limit = { scope:slave = { cse_is_working_as_slave_prostitute_trigger = yes } }
+				scope:owner = { set_relation_slave_prostitute = scope:slave }
+			}
+			else_if = {
+				limit = { scope:slave = { cse_is_working_as_labour_slave_trigger = yes } }
+				scope:owner = { set_relation_labour_slave = scope:slave }
+			}
+			else_if = {
+				limit = { scope:slave = { cse_is_working_as_military_slave_trigger = yes } }
+				scope:owner = { set_relation_military_slave = scope:slave }
+			}
+			else_if = {
+				limit = { scope:slave = { cse_is_working_as_sex_slave_trigger = yes } }
+				scope:owner = { set_relation_sex_slave = scope:slave }
+			}
+			else_if = {
+				limit = {
+					scope:owner = {
+						has_relation_slave_prostitute = scope:slave
+					}
+				}
+				scope:slave = {
+					cse_clear_all_slave_legacy_modifiers_effect = yes
+					cse_start_working_as_slave_prostitute_effect = yes
+				}
+			}
+			else_if = {
+				limit = {
+					scope:owner = {
+						has_relation_labour_slave = scope:slave
+					}
+				}
+				scope:slave = {
+					cse_clear_all_slave_legacy_modifiers_effect = yes
+					cse_start_working_as_labour_slave_effect = yes
+				}
+			}
+			else_if = {
+				limit = {
+					scope:owner = {
+						has_relation_military_slave = scope:slave
+					}
+				}
+				scope:slave = {
+					cse_clear_all_slave_legacy_modifiers_effect = yes
+					cse_start_working_as_military_slave_effect = yes
+				}
+			}
+			else_if = {
+				limit = {
+					scope:owner = {
+						has_relation_sex_slave = scope:slave
+					}
+				}
+				scope:slave = { 
+					cse_clear_all_slave_legacy_modifiers_effect = yes
+					cse_start_working_as_sex_slave_effect = yes
+				}
+			}
+			else = {
+				scope:owner = { set_relation_court_slave = scope:slave }
+			}
+		}
+	}
+}
+
+##########################################################################
+
+on_set_relation_slave = {
+	on_actions = {
+		sm_set_slave_category
+	}
+}
+
+sm_set_slave_category = {
+	#trigger = { is_ai = no }
+	effect = {
+		if = {
+			limit = { scope:target = { cse_is_assigned_as_slave_prostitute_trigger = yes } }
+			set_relation_slave_prostitute = scope:target
+		}
+		else_if = {
+			limit = { scope:target = { cse_is_assigned_as_labour_slave_trigger = yes } }
+			set_relation_labour_slave = scope:target
+		}
+		else_if = {
+			limit = { scope:target = { cse_is_assigned_as_military_slave_trigger = yes } }
+			set_relation_military_slave = scope:target
+		}
+		else_if = {
+			limit = { scope:target = { cse_is_assigned_as_sex_slave_trigger = yes } }
+			set_relation_sex_slave = scope:target
+		}
+		else = {
+			set_relation_court_slave = scope:target
+		}
+	}
+}
+
+on_set_relation_slave_owner = {
+	on_actions = {
+		sm_set_slave_owner_category
+	}
+}
+
+sm_set_slave_owner_category = {
+	effect = {
+		if = {
+			limit = { cse_is_assigned_as_slave_prostitute_trigger = yes }
+			scope:target = { set_relation_slave_prostitute = root }
+		}
+		else_if = {
+			limit = { cse_is_assigned_as_labour_slave_trigger = yes }
+			scope:target = { set_relation_labour_slave = root }
+		}
+		else_if = {
+			limit = { cse_is_assigned_as_military_slave_trigger = yes }
+			scope:target = { set_relation_military_slave = root }
+		}
+		else_if = {
+			limit = { cse_is_assigned_as_sex_slave_trigger = yes }
+			scope:target = { set_relation_sex_slave = root }
+		}
+		else = {
+			scope:target = { set_relation_court_slave = root }
+		}
+	}
+}
+
+##########################################################################
+
+on_remove_relation_slave = {
+	on_actions = {
+		sm_remove_slave_category
+	}
+}
+
+sm_remove_slave_category = {
+	#trigger = {}
+	effect = {
+		remove_relation_slave_prostitute = scope:target
+		remove_relation_labour_slave = scope:target
+		remove_relation_slave_recruit = scope:target
+		remove_relation_slave_soldier = scope:target
+		remove_relation_slave_commander = scope:target
+		remove_relation_military_slave = scope:target
+		remove_relation_sex_slave = scope:target
+		remove_relation_court_slave = scope:target
+	}
+}
+
+on_remove_relation_slave_owner = {
+	on_actions = {
+		sm_remove_slave_owner_category
+	}
+}
+
+sm_remove_slave_owner_category = {
+	effect = {
+		scope:target = {
+			remove_relation_slave_prostitute = root
+			remove_relation_labour_slave = root
+			remove_relation_slave_recruit = root
+			remove_relation_slave_soldier = root
+			remove_relation_slave_commander = root
+			remove_relation_military_slave = root
+			remove_relation_sex_slave = root
+			remove_relation_court_slave = root
+		}
+	}
+}
+
+##########################################################################
+#
+#on_death_relation_slave = {
+#	on_actions = {
+#		sm_update_slave_category
+#	}
+#}
+#
+#sm_update_slave_category = {
+#	trigger = {}
+#	effect = {}
+#}
+
+##########################################################################
+
+cse_started_working_as_slave_prostitute_on_action = {
+	on_actions = {
+		sm_set_slave_prostitute_category
+	}
+}
+
+sm_set_slave_prostitute_category = {
+	effect = {
+		every_relation = {
+			type = slave_owner
+			set_relation_slave_prostitute = prev
+			remove_relation_labour_slave = prev
+			remove_relation_slave_recruit = prev
+			remove_relation_slave_soldier = prev
+			remove_relation_slave_commander = prev
+			remove_relation_military_slave = prev
+			remove_relation_sex_slave = prev
+			remove_relation_court_slave = prev
+		}
+	}
+}
+
+cse_stopped_working_as_slave_prostitute_on_action = {
+	on_actions = {
+		sm_remove_slave_prostitute_category
+	}
+}
+
+sm_remove_slave_prostitute_category = {
+	effect = {
+		every_relation = {
+			type = slave_owner
+			remove_relation_slave_prostitute = prev
+			remove_relation_labour_slave = prev
+			remove_relation_slave_recruit = prev
+			remove_relation_slave_soldier = prev
+			remove_relation_slave_commander = prev
+			remove_relation_military_slave = prev
+			remove_relation_sex_slave = prev
+			set_relation_court_slave = prev
+		}
+	}
+}
+
+##########################################################################
+
+cse_started_working_as_labour_slave_on_action = {
+	on_actions = {
+		sm_set_labour_slave_category
+	}
+}
+
+sm_set_labour_slave_category = {
+	effect = {
+		every_relation = {
+			type = slave_owner
+			remove_relation_slave_prostitute = prev
+			set_relation_labour_slave = prev
+			remove_relation_slave_recruit = prev
+			remove_relation_slave_soldier = prev
+			remove_relation_slave_commander = prev
+			remove_relation_military_slave = prev
+			remove_relation_sex_slave = prev
+			remove_relation_court_slave = prev
+		}
+	}
+}
+
+cse_stopped_working_as_labour_slave_on_action = {
+	on_actions = {
+		sm_remove_labour_slave_category
+	}
+}
+
+sm_remove_labour_slave_category = {
+	effect = {
+		every_relation = {
+			type = slave_owner
+			remove_relation_slave_prostitute = prev
+			remove_relation_labour_slave = prev
+			remove_relation_slave_recruit = prev
+			remove_relation_slave_soldier = prev
+			remove_relation_slave_commander = prev
+			remove_relation_military_slave = prev
+			remove_relation_sex_slave = prev
+			set_relation_court_slave = prev
+		}
+	}
+}
+
+##########################################################################
+
+cse_started_working_as_military_slave_on_action = {
+	on_actions = {
+		sm_set_military_slave_category
+	}
+}
+
+sm_set_military_slave_category = {
+	effect = {
+		every_relation = {
+			type = slave_owner
+			remove_relation_slave_prostitute = prev
+			remove_relation_labour_slave = prev
+			set_relation_military_slave = prev
+			remove_relation_sex_slave = prev
+			remove_relation_court_slave = prev
+		}
+	}
+}
+
+on_set_relation_military_slave = {
+	on_actions = {
+		sm_set_military_slave_subcategory
+	}
+}
+
+sm_set_military_slave_subcategory = {
+	#trigger = { is_ai = no }
+	effect = {
+		if = {
+			limit = { scope:target = { cse_is_slave_recruit_trigger = yes } }
+			set_relation_slave_recruit = scope:target
+		}
+		else_if = {
+			limit = { scope:target = { cse_is_slave_commander_trigger = yes } }
+			set_relation_slave_commander = scope:target
+		}
+		else = {
+			set_relation_slave_soldier = scope:target
+		}
+		remove_relation_military_slave = scope:target
+	}
+}
+
+cse_update_military_slave_rank_on_action = {
+	on_actions = {
+		sm_update_military_slave_subcategory
+	}
+}
+
+sm_update_military_slave_subcategory = {
+	#trigger = { is_ai = no }
+	effect = {
+		if = {
+			limit = { cse_is_slave_recruit_trigger = yes }
+			if = {
+				limit = {
+					any_relation = {
+						type = slave_owner
+						count = all
+						has_relation_slave_recruit = prev
+						NOT = { has_relation_slave_soldier = prev }
+						NOT = { has_relation_slave_commander = prev }
+					}
+				}
+				# Do Nothing
+			}
+			else = {
+				every_relation = {
+					type = slave_owner
+					set_relation_slave_recruit = prev
+					remove_relation_slave_soldier = prev
+					remove_relation_slave_commander = prev
+				}
+			}
+		}
+		else_if = {
+			limit = { cse_is_slave_soldier_trigger = yes }
+			if = {
+				limit = {
+					any_relation = {
+						type = slave_owner
+						count = all
+						NOT = { has_relation_slave_recruit = prev }
+						has_relation_slave_soldier = prev
+						NOT = { has_relation_slave_commander = prev }
+					}
+				}
+				# Do Nothing
+			}
+			else = {
+				every_relation = {
+					type = slave_owner
+					remove_relation_slave_recruit = prev
+					set_relation_slave_soldier = prev
+					remove_relation_slave_commander = prev
+				}
+			}
+		}
+		else_if = {
+			limit = { cse_is_slave_commander_trigger = yes }
+			if = {
+				limit = {
+					any_relation = {
+						type = slave_owner
+						count = all
+						NOT = { has_relation_slave_recruit = prev }
+						NOT = { has_relation_slave_soldier = prev }
+						has_relation_slave_commander = prev
+					}
+				}
+				# Do Nothing
+			}
+			else = {
+				every_relation = {
+					type = slave_owner
+					remove_relation_slave_recruit = prev
+					remove_relation_slave_soldier = prev
+					set_relation_slave_commander = prev
+				}
+			}
+		}
+	}
+}
+
+cse_stopped_working_as_military_slave_on_action = {
+	on_actions = {
+		sm_remove_military_slave_category
+	}
+}
+
+sm_remove_military_slave_category = {
+	effect = {
+		every_relation = {
+			type = slave_owner
+			remove_relation_slave_prostitute = prev
+			remove_relation_labour_slave = prev
+			remove_relation_slave_recruit = prev
+			remove_relation_slave_soldier = prev
+			remove_relation_slave_commander = prev
+			remove_relation_military_slave = prev
+			remove_relation_sex_slave = prev
+			set_relation_court_slave = prev
+		}
+	}
+}
+
+#on_remove_relation_military_slave = {
+#	on_actions = {
+#		sm_remove_military_slave_subcategory
+#	}
+#}
+#
+#sm_remove_military_slave_subcategory = {
+#	#trigger = {}
+#	effect = {
+#		remove_relation_slave_recruit = scope:target
+#		remove_relation_slave_soldier = scope:target
+#		remove_relation_slave_commander = scope:target
+#	}
+#}
+
+##########################################################################
+
+cse_started_working_as_sex_slave_on_action = {
+	on_actions = {
+		sm_set_sex_slave_category
+	}
+}
+
+sm_set_sex_slave_category = {
+	effect = {
+		every_relation = {
+			type = slave_owner
+			remove_relation_slave_prostitute = prev
+			remove_relation_labour_slave = prev
+			remove_relation_slave_recruit = prev
+			remove_relation_slave_soldier = prev
+			remove_relation_slave_commander = prev
+			remove_relation_military_slave = prev
+			set_relation_sex_slave = prev
+			remove_relation_court_slave = prev
+		}
+	}
+}
+
+cse_stopped_working_as_sex_slave_on_action = {
+	on_actions = {
+		sm_remove_sex_slave_category
+	}
+}
+
+sm_remove_sex_slave_category = {
+	effect = {
+		every_relation = {
+			type = slave_owner
+			remove_relation_slave_prostitute = prev
+			remove_relation_labour_slave = prev
+			remove_relation_slave_recruit = prev
+			remove_relation_slave_soldier = prev
+			remove_relation_slave_commander = prev
+			remove_relation_military_slave = prev
+			remove_relation_sex_slave = prev
+			set_relation_court_slave = prev
+		}
+	}
+}

@@ -1,0 +1,4 @@
+﻿l_simp_chinese:
+ carn_had_sex_with_effect.first_person.tt: "你和[carn_sex_partner.GetShortUIName]共赴巫山"
+ carn_had_sex_with_effect.second_person.tt: "[carn_sex_partner.GetShortUIName]和你共赴巫山"
+ carn_had_sex_with_effect.third_person.tt: "[root.GetShortUIName]和[carn_sex_partner.GetShortUIName]共赴巫山"

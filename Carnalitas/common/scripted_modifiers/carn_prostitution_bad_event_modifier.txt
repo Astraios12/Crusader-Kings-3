@@ -1,0 +1,39 @@
+﻿carn_prostitution_bad_event_modifier = {
+
+	modifier = {
+		add = {
+			value = diplomacy
+			add = -10
+			multiply = -2
+		}
+	}
+
+	modifier = {
+		add = {
+			value = intrigue
+			add = -10
+			multiply = -2
+		}
+	}
+
+	modifier = {
+		factor = 0.8
+		has_trait = seducer
+	}
+
+	modifier = {
+		factor = 0.9
+		has_trait_xp = {
+			trait = lifestyle_prostitute
+			value >= 50
+		}
+	}
+
+	modifier = {
+		factor = 0.9
+		has_trait_xp = {
+			trait = lifestyle_prostitute
+			value >= 100
+		}
+	}
+}

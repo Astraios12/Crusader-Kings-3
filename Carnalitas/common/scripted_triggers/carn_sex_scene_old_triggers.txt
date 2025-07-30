@@ -1,0 +1,328 @@
+﻿# Old triggers preserved for compatibility
+# These are DEPRECATED, please use the new triggers above
+
+carn_sex_scene_matches_requested_flags_trigger = {
+	# Add default sex scene flags if not already added
+	trigger_if = {
+		limit = {
+			NOT = {
+				any_in_list = {
+					list = carn_sex_scene_flags
+					OR = {
+						this = flag:giving_player
+						this = flag:receiving_player
+					}
+				}
+			}
+		}
+		carn_sex_scene_is_giving_player = yes
+	}
+	trigger_if = {
+		limit = {
+			NOT = {
+				any_in_list = {
+					list = carn_sex_scene_flags
+					OR = {
+						this = flag:consensual
+						this = flag:dubcon
+						this = flag:noncon
+					}
+				}
+			}
+		}
+		carn_sex_scene_is_consensual = yes
+	}
+	trigger_if = {
+		limit = {
+			NOT = {
+				any_in_list = {
+					list = carn_sex_scene_flags
+					OR = {
+						this = flag:oral
+						this = flag:vaginal
+						this = flag:anal
+						this = flag:handjob
+						this = flag:masturbation
+					}
+				}
+			}
+		}
+		carn_sex_scene_is_vaginal = yes
+	}
+	trigger_if = {
+		limit = {
+			NOT = {
+				any_in_list = {
+					list = carn_sex_scene_flags
+					OR = {
+						this = flag:cum_inside
+						this = flag:cum_outside
+					}
+				}
+			}
+		}
+		carn_sex_scene_is_cum_inside = yes
+	}
+
+	NOR = {
+		any_in_list = {
+			variable = carn_sex_scene_flag_list
+			NOT = { is_in_list = carn_sex_scene_flags }
+		}
+		any_in_list = {
+			variable = carn_sex_scene_character_flag_list
+			NOT = { is_in_list = carn_sex_scene_flags }
+		}
+		any_in_list = {
+			variable = carn_sex_scene_excluded_flag_list
+			is_in_list = carn_sex_scene_flags
+		}
+		any_in_list = {
+			variable = carn_sex_scene_character_excluded_flag_list
+			is_in_list = carn_sex_scene_flags
+		}
+	}
+}
+
+carn_sex_scene_is_giving_player = {
+	carn_sex_scene_character_is_flag = { FLAG = giving_player }
+}
+
+carn_sex_scene_is_receiving_player = {
+	carn_sex_scene_character_is_flag = { FLAG = receiving_player }
+}
+
+carn_sex_scene_is_dom_player = {
+	carn_sex_scene_character_is_flag = { FLAG = dom_player }
+}
+
+carn_sex_scene_is_sub_player = {
+	carn_sex_scene_character_is_flag = { FLAG = sub_player }
+}
+
+carn_sex_scene_is_oral = {
+	carn_sex_scene_is_flag = { FLAG = oral }
+}
+
+carn_sex_scene_is_vaginal = {
+	carn_sex_scene_is_flag = { FLAG = vaginal }
+}
+
+carn_sex_scene_is_anal = {
+	has_game_rule = carn_content_anal_enabled
+	carn_sex_scene_is_flag = { FLAG = anal }
+}
+
+carn_sex_scene_is_handjob = {
+	carn_sex_scene_is_flag = { FLAG = handjob }
+}
+
+carn_sex_scene_is_masturbation = {
+	carn_sex_scene_is_flag = { FLAG = masturbation }
+}
+
+carn_sex_scene_is_orgy = {
+	carn_sex_scene_is_flag = { FLAG = orgy }
+}
+
+carn_sex_scene_is_cum_inside = {
+	carn_sex_scene_is_flag = { FLAG = cum_inside }
+}
+
+carn_sex_scene_is_cum_outside = {
+	carn_sex_scene_is_flag = { FLAG = cum_outside }
+}
+
+carn_sex_scene_is_consensual = {
+	carn_sex_scene_is_flag = { FLAG = consensual }
+}
+
+carn_sex_scene_is_noncon = {
+	has_game_rule = carn_content_consent_noncon
+	carn_sex_scene_is_flag = { FLAG = noncon }
+}
+
+carn_sex_scene_is_dubcon = {
+ 	NOT = { has_game_rule = carn_content_consent_always }
+	carn_sex_scene_is_flag = { FLAG = dubcon }
+}
+
+carn_sex_scene_is_painful = {
+	has_game_rule = carn_content_painful_enabled
+	carn_sex_scene_is_flag = { FLAG = painful }
+}
+
+carn_sex_scene_is_bdsm = {
+	carn_sex_scene_is_flag = { FLAG = bdsm }
+}
+
+carn_sex_scene_is_bestiality = {
+	has_game_rule = carn_content_bestiality_enabled
+	carn_sex_scene_is_flag = { FLAG = bestiality }
+}
+
+carn_sex_scene_is_petplay = {
+	carn_sex_scene_is_flag = { FLAG = petplay }
+}
+
+carn_sex_scene_is_bondage = {
+	carn_sex_scene_is_flag = { FLAG = petplay }
+}
+
+carn_sex_scene_is_toy = {
+	carn_sex_scene_is_flag = { FLAG = toy }
+}
+
+carn_sex_scene_is_watersports = {
+	has_game_rule = carn_content_watersports_enabled
+	carn_sex_scene_is_flag = { FLAG = watersports }
+}
+
+carn_sex_scene_is_scat = {
+	has_game_rule = carn_content_scat_enabled
+	carn_sex_scene_is_flag = { FLAG = scat }
+}
+
+carn_sex_scene_is_gore = {
+	has_game_rule = carn_content_gore_enabled
+	carn_sex_scene_is_flag = { FLAG = gore }
+}
+
+# These triggers are for events in carn_on_sex to check the flags of the sex scene from which it was called.
+
+carn_sex_scene_was_giving_player = {
+	carn_sex_scene_character_was_flag = { FLAG = giving_player }
+}
+
+carn_sex_scene_was_receiving_player = {
+	carn_sex_scene_character_was_flag = { FLAG = receiving_player }
+}
+
+carn_sex_scene_was_dom_player = {
+	carn_sex_scene_character_was_flag = { FLAG = dom_player }
+}
+
+carn_sex_scene_was_sub_player = {
+	carn_sex_scene_character_was_flag = { FLAG = sub_player }
+}
+
+carn_sex_scene_was_oral = {
+	carn_sex_scene_was_flag = { FLAG = oral }
+}
+
+carn_sex_scene_was_vaginal = {
+	carn_sex_scene_was_flag = { FLAG = vaginal }
+}
+
+carn_sex_scene_was_anal = {
+	carn_sex_scene_was_flag = { FLAG = anal }
+}
+
+carn_sex_scene_was_handjob = {
+	carn_sex_scene_was_flag = { FLAG = handjob }
+}
+
+carn_sex_scene_was_masturbation = {
+	carn_sex_scene_was_flag = { FLAG = masturbation }
+}
+
+carn_sex_scene_was_orgy = {
+	carn_sex_scene_was_flag = { FLAG = orgy }
+}
+
+carn_sex_scene_was_cum_inside = {
+	carn_sex_scene_was_flag = { FLAG = cum_inside }
+}
+
+carn_sex_scene_was_cum_outside = {
+	carn_sex_scene_was_flag = { FLAG = cum_outside }
+}
+
+carn_sex_scene_was_consensual = {
+	carn_sex_scene_was_flag = { FLAG = consensual }
+}
+
+carn_sex_scene_was_noncon = {
+	carn_sex_scene_was_flag = { FLAG = noncon }
+}
+
+carn_sex_scene_was_dubcon = {
+	carn_sex_scene_was_flag = { FLAG = dubcon }
+}
+
+carn_sex_scene_was_painful = {
+	carn_sex_scene_was_flag = { FLAG = painful }
+}
+
+carn_sex_scene_was_bdsm = {
+	carn_sex_scene_was_flag = { FLAG = bdsm }
+}
+
+carn_sex_scene_was_bestiality = {
+	carn_sex_scene_was_flag = { FLAG = bestiality }
+}
+
+carn_sex_scene_was_petplay = {
+	carn_sex_scene_was_flag = { FLAG = petplay }
+}
+
+carn_sex_scene_was_bondage = {
+	carn_sex_scene_was_flag = { FLAG = bondage }
+}
+
+carn_sex_scene_was_toy = {
+	carn_sex_scene_was_flag = { FLAG = toy }
+}
+
+carn_sex_scene_was_watersports = {
+	carn_sex_scene_was_flag = { FLAG = watersports }
+}
+
+carn_sex_scene_was_scat = {
+	carn_sex_scene_was_flag = { FLAG = scat }
+}
+
+carn_sex_scene_was_gore = {
+	carn_sex_scene_was_flag = { FLAG = gore }
+}
+
+# Internal triggers
+
+carn_sex_scene_character_is_flag = {
+	# Flags can't be added directly to temporary lists
+	# e.g. flag:<flag> = { add_to_temporary_list = ... } doesn't work
+	# Hoewever, they can be saved as a temporary scope value and then added
+	save_temporary_scope_value_as = { name = flag value = flag:$FLAG$ }
+	scope:flag = { add_to_temporary_list = carn_sex_scene_flags }
+}
+
+carn_sex_scene_is_flag = {
+	save_temporary_scope_value_as = { name = flag value = flag:$FLAG$ }
+	scope:flag = { add_to_temporary_list = carn_sex_scene_flags }
+}
+
+carn_sex_scene_character_was_flag = {
+	is_target_in_variable_list = {
+		name = carn_sex_scene_character_flag_list
+		target = flag:$FLAG$
+	}
+}
+
+carn_sex_scene_was_flag = {
+	is_target_in_variable_list = {
+		name = carn_sex_scene_flag_list
+		target = flag:$FLAG$
+	}
+}
+
+carn_can_get_pregnant_scenes = {
+	NOR = {
+		carn_sex_scene_was_anal = yes
+		carn_sex_scene_was_bestiality = yes
+		carn_sex_scene_was_cum_outside = yes
+		carn_sex_scene_was_handjob = yes
+		carn_sex_scene_was_masturbation = yes
+		carn_sex_scene_was_oral = yes
+		carn_sex_scene_was_toy = yes
+	}
+}

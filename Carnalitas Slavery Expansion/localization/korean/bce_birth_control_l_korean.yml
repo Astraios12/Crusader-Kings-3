@@ -1,0 +1,52 @@
+﻿l_korean:
+  
+ bce_start_birth_control_interaction: "$carn_start_birth_control_decision$"
+ bce_start_birth_control_interaction_desc: "$carn_start_birth_control_decision_desc$"
+ bce_start_mass_birth_control_interaction: "Start Birth Control for consorts and children"
+ bce_start_mass_birth_control_interaction_desc: "By maintaining a stockpile of condoms, diaphragms, silphium leaves, and other supplies, I can ensure that their dalliances are less likely to result in unwanted children."
+ msg_bce_started_birth_control: "[msg_target.GetFirstName] is now using contraception"
+ msg_bce_wearing_chastity_belt: "[msg_target.GetFirstName] is now wearing a chastity belt"
+  
+ bce_stop_birth_control_interaction: "$carn_stop_birth_control_decision$"
+ bce_stop_birth_control_interaction_desc: "$carn_stop_birth_control_decision_desc$"
+ bce_stop_mass_birth_control_interaction: "Stop Birth Control for consorts and children"
+ bce_stop_mass_birth_control_interaction_desc: "These artificial impediments have become too much of a burden. They can set them aside and let their passions roam wild and free, as nature intended."
+ msg_bce_stopped_birth_control: "[msg_target.GetFirstName] is no longer using contraception"
+ msg_bce_stopped_wearing_chastity_belt: "[msg_target.GetFirstName] is no longer wearing a chastity belt"
+  
+ option_bce_birth_control_only_this: "Enforce Birth Control"
+ option_bce_birth_control_every_consort: "Enforce Birth Control for your consorts"
+ option_bce_birth_control_every_child: "Enforce Birth Control for your children"
+ option_bce_chastity_belt_only_this: "Enforce wearing a chastity belt"
+ option_bce_chastity_belt_every_consort: "Enforce wearing a chastity belt for your consorts"
+ option_bce_chastity_belt_every_child: "Enforce wearing a chastity belt for your children"
+  
+ option_end_bce_birth_control_only_this: "Stop enforcing Birth Control"
+ option_end_bce_birth_control_every_consort: "Stop enforcing Birth Control for your consorts"
+ option_end_bce_birth_control_every_child: "Stop enforcing Birth Control for your children"
+ option_end_bce_chastity_belt_only_this: "Stop enforcing wearing a chastity belt"
+ option_end_bce_chastity_belt_every_consort: "Stop enforcing wearing a chastity belt for your consorts"
+ option_end_bce_chastity_belt_every_child: "Stop enforcing wearing a chastity belt for your children"
+  
+ bce_wearing_chastity_belt_modifier: "Wears chastity belt"
+ bce_wearing_chastity_belt_modifier_desc: "This character wears a chastity belt to drastically reduce the likelihood of having unwanted children."
+  
+ bce_forced_me_into_using_birth_control_opinion: "Forced me to use contraception"
+ bce_forced_me_into_wearing_chastity_belt_opinion: "Forced me to wear a chastity belt"
+  
+ bce_gender_birth_control_interaction: "Set child gender focus"
+ bce_gender_birth_control_interaction_desc: "The sex of newborn babies can be influenced by a certain diet and the consumption of various herbs."
+ option_bce_gender_birth_male: "Focus on boys"
+ option_bce_gender_birth_female: "Focus on girls"
+ option_bce_gender_birth_twins: "Focus on twins"
+  
+ bce_gender_birth_male: "Focuses on boys"
+ bce_gender_birth_male_desc: "Through a certain diet and the consumption of various herbs, this character can influence the gender of their newborns."
+ bce_gender_birth_female: "Focuses on girls"
+ bce_gender_birth_female_desc: "Through a certain diet and the consumption of various herbs, this character can influence the gender of their newborns."
+ bce_gender_birth_twins: "Focuses on twins"
+ bce_gender_birth_twins_desc: "Through a certain diet and the consumption of various herbs, this character can influence the quantity of their newborns."
+ bce_gender_birth_twins_male: "Focuses on male twins"
+ bce_gender_birth_twins_male_desc: "Through a certain diet and the consumption of various herbs, this character can influence the gender and quantity of their newborns."
+ bce_gender_birth_twins_female: "Focuses on female twins"
+ bce_gender_birth_twins_female_desc: "Through a certain diet and the consumption of various herbs, this character can influence the gender and quantity of their newborns."

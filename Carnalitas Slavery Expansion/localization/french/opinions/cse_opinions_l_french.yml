@@ -1,0 +1,24 @@
+﻿l_french:
+  
+ cse_forced_me_into_slave_prostitution_opinion: "Turned me into a Slave Prostitute against my will"
+ cse_forced_me_to_end_my_celibacy_opinion: "Forced me to end my celibacy"
+  
+ cse_forced_me_into_forced_labour_opinion: "Turned me into a Labour Slave against my will"
+  
+ cse_forced_me_into_slave_military_opinion: "Turned me into a Military Slave against my will"
+  
+ cse_forced_me_into_sex_slavery_opinion: "Turned me into a Slave Concubine against my will"
+ cse_forced_me_to_have_sex_opinion: "Forced to have sex against my will"
+ cse_pleasant_night_spent_opinion: "Pleasant night spent"
+ cse_adopted_my_child_opinion: "Adopted my child"
+ cse_adopted_me_opinion: "Adopted me"
+ cse_revealed_father_opinion: "Revealed my father"
+  
+  #################### COURT ############################################################ 
+  
+ cse_courtesan_crime_opinion: "Courtesans are illegal"
+ cse_courtesan_intolerant_opinion: "Courtesans are frowned upon"
+ cse_made_me_a_courtesan_opinion: "Made me a courtesan"
+ cse_dismissed_me_as_courtesan_opinion: "Dismissed me as a courtesan"
+ cse_lover_breakup_opinion: "$lover_breakup_opinion$"
+ cse_former_courtesan_or_courtesan_owner_opinion: "Former courtesan relationship"

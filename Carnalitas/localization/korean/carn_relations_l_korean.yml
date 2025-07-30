@@ -1,0 +1,13 @@
+﻿l_korean:
+ dominant: "[dominant|E]"
+ relation_dominant: "도미넌트"
+ relation_dominant_possessive: "도미넌트의"
+ submissive: "[submissive|E]"
+ relation_submissive: "서브미시브"
+ relation_submissive_possessive: "서브미시브의"
+ slave: "[slave|E]"
+ relation_slave: "노예"
+ relation_slave_possessive: "노예의"
+ slave_owner: "[slave_owner|E]"
+ relation_slave_owner: "주인"
+ relation_slave_owner_possessive: "주인의"

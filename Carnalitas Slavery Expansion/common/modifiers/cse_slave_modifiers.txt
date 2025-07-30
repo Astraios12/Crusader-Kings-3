@@ -1,0 +1,129 @@
+﻿cse_slave_prostitute_modifier = {
+	icon = prostitution_positive
+}
+
+cse_labour_slave_modifier = {
+	icon = prison_positive
+}
+cse_labour_slave_health_modifier = {
+	icon = prison_negative
+	health = miniscule_health_penalty
+	#scale = {
+    #    value = cse_labour_slave_health_inverted_value
+    #    display_mode = scaled
+	#	#desc = base_value_description
+    #}
+	stacking = yes
+}
+
+cse_military_slave_modifier = {
+	icon = slave_soldier_positive
+}
+
+cse_military_slave_health_modifier = {
+	icon = slave_soldier_negative
+	health = massive_health_penalty
+	#stacking = yes
+}
+
+cse_sex_slave_modifier = {
+	icon = sex_slave_positive
+}
+
+#################### LEGACY MODIFIERS ############################################################
+
+fl_is_working_as_child_labour_slave_0_modifier = {
+	icon = prison_positive
+}
+
+fl_is_working_as_child_labour_slave_1_modifier = {
+	icon = prison_positive
+}
+
+fl_is_working_as_child_labour_slave_2_modifier = {
+	icon = prison_positive
+}
+
+fl_is_working_as_child_labour_slave_3_modifier = {
+	icon = prison_positive
+}
+
+fl_is_working_as_labour_slave_0_modifier = {
+	icon = prison_positive
+}
+
+fl_is_working_as_labour_slave_1_modifier = {
+	icon = prison_positive
+}
+
+fl_is_working_as_labour_slave_2_modifier = {
+	icon = prison_positive
+}
+
+fl_is_working_as_labour_slave_3_modifier = {
+	icon = prison_positive
+}
+
+sso_is_working_as_child_slave_soldier_0_modifier = {
+	icon = slave_soldier_positive
+}
+
+sso_is_working_as_child_slave_soldier_1_modifier = {
+	icon = slave_soldier_positive
+}
+
+sso_is_working_as_child_slave_soldier_2_modifier = {
+	icon = slave_soldier_positive
+}
+
+sso_is_working_as_child_slave_soldier_3_modifier = {
+	icon = slave_soldier_positive
+}
+
+sso_is_working_as_slave_soldier_0_modifier = {
+	icon = slave_soldier_positive
+}
+
+sso_is_working_as_slave_soldier_1_modifier = {
+	icon = slave_soldier_positive
+}
+
+sso_is_working_as_slave_soldier_2_modifier = {
+	icon = slave_soldier_positive
+}
+
+sso_is_working_as_slave_soldier_3_modifier = {
+	icon = slave_soldier_positive
+}
+
+sso_is_working_as_slave_commander_1_modifier = {
+	icon = slave_soldier_positive
+}
+
+sso_is_working_as_slave_commander_2_modifier = {
+	icon = slave_soldier_positive
+}
+
+sso_is_working_as_slave_commander_3_modifier = {
+	icon = slave_soldier_positive
+}
+
+sso_is_working_as_slave_commander_4_modifier = {
+	icon = slave_soldier_positive
+}
+
+ssx_is_working_as_sex_slave_0_modifier = {
+	icon = sex_slave_positive
+}
+
+ssx_is_working_as_sex_slave_1_modifier = {
+	icon = sex_slave_positive
+}
+
+ssx_is_working_as_sex_slave_2_modifier = {
+	icon = sex_slave_positive
+}
+
+ssx_is_working_as_sex_slave_3_modifier = {
+	icon = sex_slave_positive
+}

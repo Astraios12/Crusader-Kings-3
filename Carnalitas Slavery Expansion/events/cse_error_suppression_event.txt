@@ -1,0 +1,12 @@
+﻿namespace = cse_error_suppression_event
+
+cse_error_suppression_event.0001 = {
+	hidden = yes
+	orphan = yes
+	
+	immediate = {
+		add_character_flag = jus_pregnant_from_jus_as_liege
+		add_character_flag = jus_pregnant_from_jus_as_subject
+		add_character_flag = cse_runaway_slave
+	}
+}

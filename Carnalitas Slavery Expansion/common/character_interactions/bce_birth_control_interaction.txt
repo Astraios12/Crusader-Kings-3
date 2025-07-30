@@ -1,0 +1,792 @@
+﻿bce_start_birth_control_interaction = {
+	category = interaction_category_friendly
+	#ai_potential = { always = no }
+	#ai_frequency = 0
+	
+	auto_accept = yes
+	use_diplomatic_range = no
+    common_interaction = no
+
+	desc = bce_start_birth_control_interaction_desc
+
+	is_shown = {
+		scope:recipient = {
+			OR = {
+				scope:recipient = scope:actor
+				primary_spouse = scope:actor
+				is_concubine_of = scope:actor
+				AND = { 
+					is_child_of = scope:actor
+					NOT = { exists = primary_spouse }
+				}
+				AND = {
+					has_relation_lover = scope:actor
+					is_courtier_of = scope:actor
+					NOT = { exists = primary_spouse }
+				}
+				AND = {
+					has_relation_soulmate = scope:actor
+					is_courtier_of = scope:actor
+					NOT = { exists = primary_spouse }
+				}
+				AND = {
+					has_relation_courtesan_owner = scope:actor
+					is_ruler = no
+					NOT = { exists = primary_spouse }
+				}
+				has_relation_slave_owner = scope:actor
+#				trigger_if = {
+#					limit = { 
+#						scope:actor = {
+#							any_relation = {
+#								type = slave
+#								cse_is_working_as_sex_slave_trigger = yes
+#							}
+#						}
+#					}
+#					cse_is_working_as_sex_slave_trigger = yes
+#				}
+			}
+			is_adult = yes
+			OR = {
+				has_game_rule = carn_birth_control_any_gender
+				AND = {
+					carn_gender_can_impregnate_trigger = yes
+					has_game_rule = carn_birth_control_male_only
+				}
+				AND = {
+					is_female = yes
+					has_game_rule = carn_birth_control_female_only
+				}
+			}
+			NOR = {
+				has_character_modifier = carn_using_birth_control_modifier
+				has_character_modifier = bce_wearing_chastity_belt_modifier
+				has_character_flag = carn_cannot_use_birth_control
+				has_trait_with_flag = carn_cannot_use_birth_control
+			}
+		}
+	}
+
+	is_valid_showing_failures_only = {
+		scope:actor = {
+			NOT = { faith = { has_doctrine = tenet_natural_primitivism } }
+		}
+		scope:recipient = {
+			carn_can_have_sex_trigger = yes
+			NOT = { faith = { has_doctrine = tenet_natural_primitivism } }
+		}
+	}
+	
+	send_option = {
+		flag = bce_birth_control_only_this
+		localization = option_bce_birth_control_only_this
+	}
+	send_option = {
+		flag = bce_chastity_belt_only_this
+		localization = option_bce_chastity_belt_only_this
+	}
+
+	on_accept = {
+		scope:recipient = {
+			if = {
+				limit = { scope:bce_birth_control_only_this = yes }
+				add_character_modifier = carn_using_birth_control_modifier
+				if = {
+					limit = {
+						NOR = {
+							scope:recipient = scope:actor
+							scope:recipient = { has_trait = chaste }
+							scope:recipient = { has_trait = paranoid }
+							scope:recipient = { carn_has_fetish_trigger = {	FETISH = submission	} }
+						}
+					}
+					add_opinion = {
+						target = scope:actor
+						modifier = bce_forced_me_into_using_birth_control_opinion
+					}
+				}
+				save_scope_as = msg_target
+				scope:actor = {
+					send_interface_toast = {
+						title = msg_bce_started_birth_control
+						left_icon = scope:msg_target
+					}
+				}
+			}
+			if = {
+				limit = { scope:bce_chastity_belt_only_this = yes }
+				add_character_modifier = bce_wearing_chastity_belt_modifier
+				if = {
+					limit = {
+						NOR = {
+							scope:recipient = scope:actor
+							scope:recipient = { has_trait = chaste }
+							scope:recipient = { has_trait = paranoid }
+							scope:recipient = { carn_has_fetish_trigger = {	FETISH = submission	} }
+						}
+					}
+					add_opinion = {
+						target = scope:actor
+						modifier = bce_forced_me_into_wearing_chastity_belt_opinion
+					}
+				}
+				save_scope_as = msg_target
+				scope:actor = {
+					send_interface_toast = {
+						title = msg_bce_wearing_chastity_belt
+						left_icon = scope:msg_target
+					}
+				}
+			}
+			#force_character_skill_recalculation = yes
+			trigger_event = { on_action = carn_on_start_birth_control }
+		}
+	}
+}
+
+bce_start_mass_birth_control_interaction = {
+	category = interaction_category_friendly
+	#ai_potential = { always = no }
+	#ai_frequency = 0
+	
+	auto_accept = yes
+	use_diplomatic_range = yes
+    common_interaction = yes
+
+	desc = bce_start_mass_birth_control_interaction_desc
+
+	is_shown = {
+		scope:recipient = scope:actor
+	}
+
+	is_valid_showing_failures_only = {
+		scope:actor = { NOT = { faith = { has_doctrine = tenet_natural_primitivism } } }
+	}
+	
+	send_option = {
+		flag = bce_birth_control_every_consort
+		localization = option_bce_birth_control_every_consort
+	}
+	send_option = {
+		flag = bce_birth_control_every_child
+		localization = option_bce_birth_control_every_child
+	}
+	send_option = {
+		flag = bce_chastity_belt_every_consort
+		localization = option_bce_chastity_belt_every_consort
+	}
+	send_option = {
+		flag = bce_chastity_belt_every_child
+		localization = option_bce_chastity_belt_every_child
+	}
+
+	on_accept = {
+		scope:recipient = {
+			if = {
+				limit = { scope:bce_birth_control_every_consort = yes }
+				every_spouse = {
+					limit = {
+						primary_spouse = scope:recipient
+						NOT = { has_character_modifier = carn_using_birth_control_modifier }
+						NOT = { has_character_modifier = bce_wearing_chastity_belt_modifier }
+						NOT = { has_character_flag = carn_cannot_use_birth_control }
+						NOT = { has_trait_with_flag = carn_cannot_use_birth_control }
+						OR = {
+							has_game_rule = carn_birth_control_any_gender
+							AND = {
+								carn_gender_can_impregnate_trigger = yes
+								has_game_rule = carn_birth_control_male_only
+							}
+							AND = {
+								is_female = yes
+								has_game_rule = carn_birth_control_female_only
+							}
+						}
+					}
+					add_character_modifier = carn_using_birth_control_modifier
+					if = {
+						limit = {
+							NOR = {
+								has_trait = chaste 
+								has_trait = paranoid
+								carn_has_fetish_trigger = {	FETISH = submission	}
+							}
+						}
+						add_opinion = {
+							target = scope:actor
+							modifier = bce_forced_me_into_using_birth_control_opinion
+						}
+					}
+					save_scope_as = msg_target
+					scope:actor = {
+						send_interface_toast = {
+							title = msg_bce_started_birth_control
+							left_icon = scope:msg_target
+						}
+					}
+					#force_character_skill_recalculation = yes
+					trigger_event = { on_action = carn_on_start_birth_control }
+				}
+				every_concubine = {
+					limit = {
+						NOT = { has_character_modifier = carn_using_birth_control_modifier }
+						NOT = { has_character_modifier = bce_wearing_chastity_belt_modifier }
+						NOT = { has_character_flag = carn_cannot_use_birth_control }
+						NOT = { has_trait_with_flag = carn_cannot_use_birth_control }
+						OR = {
+							has_game_rule = carn_birth_control_any_gender
+							AND = {
+								carn_gender_can_impregnate_trigger = yes
+								has_game_rule = carn_birth_control_male_only
+							}
+							AND = {
+								is_female = yes
+								has_game_rule = carn_birth_control_female_only
+							}
+						}
+					}
+					add_character_modifier = carn_using_birth_control_modifier
+					if = {
+						limit = {
+							NOR = {
+								has_trait = chaste 
+								has_trait = paranoid
+								carn_has_fetish_trigger = {	FETISH = submission	}
+							}
+						}
+						add_opinion = {
+							target = scope:actor
+							modifier = bce_forced_me_into_using_birth_control_opinion
+						}
+					}
+					save_scope_as = msg_target
+					scope:actor = {
+						send_interface_toast = {
+							title = msg_bce_started_birth_control
+							left_icon = scope:msg_target
+						}
+					}
+					#force_character_skill_recalculation = yes
+					trigger_event = { on_action = carn_on_start_birth_control }
+				}
+			}
+			if = {
+				limit = { scope:bce_birth_control_every_child = yes }
+				every_child = {
+					limit = {
+						is_adult = yes
+						NOT = { has_character_modifier = carn_using_birth_control_modifier }
+						NOT = { has_character_modifier = bce_wearing_chastity_belt_modifier }
+						NOT = { has_character_flag = carn_cannot_use_birth_control }
+						NOT = { has_trait_with_flag = carn_cannot_use_birth_control }
+						NOT = { exists = primary_spouse }
+						OR = {
+							has_game_rule = carn_birth_control_any_gender
+							AND = {
+								carn_gender_can_impregnate_trigger = yes
+								has_game_rule = carn_birth_control_male_only
+							}
+							AND = {
+								is_female = yes
+								has_game_rule = carn_birth_control_female_only
+							}
+						}
+					}
+					add_character_modifier = carn_using_birth_control_modifier
+					if = {
+						limit = {
+							NOR = {
+								has_trait = chaste 
+								has_trait = paranoid
+								carn_has_fetish_trigger = {	FETISH = submission	}
+							}
+						}
+						add_opinion = {
+							target = scope:actor
+							modifier = bce_forced_me_into_using_birth_control_opinion
+						}
+					}
+					save_scope_as = msg_target
+					scope:actor = {
+						send_interface_toast = {
+							title = msg_bce_started_birth_control
+							left_icon = scope:msg_target
+						}
+					}
+					#force_character_skill_recalculation = yes
+					trigger_event = { on_action = carn_on_start_birth_control }
+				}
+			}
+			if = {
+				limit = { scope:bce_chastity_belt_every_consort = yes }
+				every_spouse = {
+					limit = {
+						primary_spouse = scope:recipient
+						NOT = { has_character_modifier = carn_using_birth_control_modifier }
+						NOT = { has_character_modifier = bce_wearing_chastity_belt_modifier }
+						NOT = { has_character_flag = carn_cannot_use_birth_control }
+						NOT = { has_trait_with_flag = carn_cannot_use_birth_control }
+						OR = {
+							has_game_rule = carn_birth_control_any_gender
+							AND = {
+								carn_gender_can_impregnate_trigger = yes
+								has_game_rule = carn_birth_control_male_only
+							}
+							AND = {
+								is_female = yes
+								has_game_rule = carn_birth_control_female_only
+							}
+						}
+					}
+					add_character_modifier = bce_wearing_chastity_belt_modifier
+					if = {
+						limit = {
+							NOR = {
+								has_trait = chaste 
+								has_trait = paranoid
+								carn_has_fetish_trigger = {	FETISH = submission	}
+							}
+						}
+						add_opinion = {
+							target = scope:actor
+							modifier = bce_forced_me_into_wearing_chastity_belt_opinion
+						}
+					}
+					save_scope_as = msg_target
+					scope:actor = {
+						send_interface_toast = {
+							title = msg_bce_wearing_chastity_belt
+							left_icon = scope:msg_target
+						}
+					}
+					#force_character_skill_recalculation = yes
+					trigger_event = { on_action = carn_on_start_birth_control }
+				}
+				every_concubine = {
+					limit = {
+						NOT = { has_character_modifier = carn_using_birth_control_modifier }
+						NOT = { has_character_modifier = bce_wearing_chastity_belt_modifier }
+						NOT = { has_character_flag = carn_cannot_use_birth_control }
+						NOT = { has_trait_with_flag = carn_cannot_use_birth_control }
+						OR = {
+							has_game_rule = carn_birth_control_any_gender
+							AND = {
+								carn_gender_can_impregnate_trigger = yes
+								has_game_rule = carn_birth_control_male_only
+							}
+							AND = {
+								is_female = yes
+								has_game_rule = carn_birth_control_female_only
+							}
+						}
+					}
+					add_character_modifier = bce_wearing_chastity_belt_modifier
+					if = {
+						limit = {
+							NOR = {
+								has_trait = chaste 
+								has_trait = paranoid
+								carn_has_fetish_trigger = {	FETISH = submission	}
+							}
+						}
+						add_opinion = {
+							target = scope:actor
+							modifier = bce_forced_me_into_wearing_chastity_belt_opinion
+						}
+					}
+					save_scope_as = msg_target
+					scope:actor = {
+						send_interface_toast = {
+							title = msg_bce_wearing_chastity_belt
+							left_icon = scope:msg_target
+						}
+					}
+					#force_character_skill_recalculation = yes
+					trigger_event = { on_action = carn_on_start_birth_control }
+				}
+			}
+			if = {
+				limit = { scope:bce_chastity_belt_every_child = yes }
+				every_child = {
+					limit = {
+						is_adult = yes
+						NOT = { has_character_modifier = carn_using_birth_control_modifier }
+						NOT = { has_character_modifier = bce_wearing_chastity_belt_modifier }
+						NOT = { has_character_flag = carn_cannot_use_birth_control }
+						NOT = { has_trait_with_flag = carn_cannot_use_birth_control }
+						NOT = { exists = primary_spouse }
+						OR = {
+							has_game_rule = carn_birth_control_any_gender
+							AND = {
+								carn_gender_can_impregnate_trigger = yes
+								has_game_rule = carn_birth_control_male_only
+							}
+							AND = {
+								is_female = yes
+								has_game_rule = carn_birth_control_female_only
+							}
+						}
+					}
+					add_character_modifier = bce_wearing_chastity_belt_modifier
+					if = {
+						limit = {
+							NOR = {
+								has_trait = chaste 
+								has_trait = paranoid
+								carn_has_fetish_trigger = {	FETISH = submission	}
+							}
+						}
+						add_opinion = {
+							target = scope:actor
+							modifier = bce_forced_me_into_wearing_chastity_belt_opinion
+						}
+					}
+					save_scope_as = msg_target
+					scope:actor = {
+						send_interface_toast = {
+							title = msg_bce_wearing_chastity_belt
+							left_icon = scope:msg_target
+						}
+					}
+					#force_character_skill_recalculation = yes
+					trigger_event = { on_action = carn_on_start_birth_control }
+				}
+			}
+		}
+	}
+}
+
+#############################################################################################################################
+
+bce_stop_birth_control_interaction = {
+	category = interaction_category_friendly
+	#ai_potential = { always = no }
+	#ai_frequency = 0
+	
+	auto_accept = yes
+	use_diplomatic_range = no
+    common_interaction = no
+
+	desc = bce_stop_birth_control_interaction_desc
+
+	is_shown = {
+		scope:recipient = {
+			OR = {
+				scope:recipient = scope:actor
+				primary_spouse = scope:actor
+				is_concubine_of = scope:actor
+				is_child_of = scope:actor
+				has_relation_lover = scope:actor
+				has_relation_soulmate = scope:actor
+				has_relation_courtesan_owner = scope:actor
+				has_relation_slave_owner = scope:actor
+#				trigger_if = {
+#					limit = { 
+#						scope:actor = {
+#							any_relation = {
+#								type = slave
+#								cse_is_working_as_sex_slave_trigger = yes
+#							}
+#						}
+#					}
+#					cse_is_working_as_sex_slave_trigger = yes
+#				}
+			}
+			OR = {
+				has_character_modifier = carn_using_birth_control_modifier
+				has_character_modifier = bce_wearing_chastity_belt_modifier
+			}
+		}
+	}
+	
+	send_option = {
+		is_shown = { scope:recipient = { has_character_modifier = carn_using_birth_control_modifier } }
+		flag = bce_birth_control_only_this
+		localization = option_end_bce_birth_control_only_this
+	}
+	send_option = {
+		is_shown = { scope:recipient = { has_character_modifier = bce_wearing_chastity_belt_modifier } }
+		flag = bce_chastity_belt_only_this
+		localization = option_end_bce_chastity_belt_only_this
+	}
+
+	on_accept = {
+		scope:recipient = {
+			if = {
+				limit = { scope:bce_birth_control_only_this = yes }
+				remove_character_modifier = carn_using_birth_control_modifier
+				if = {
+					limit = {
+						NOR = {
+							scope:recipient = scope:actor
+							scope:recipient = { has_trait = chaste }
+							scope:recipient = { has_trait = paranoid }
+							scope:recipient = { carn_has_fetish_trigger = {	FETISH = submission	} }
+						}
+					}
+					remove_opinion = {
+						target = scope:actor
+						modifier = bce_forced_me_into_using_birth_control_opinion
+					}
+				}
+				save_scope_as = msg_target
+				scope:actor = {
+					send_interface_toast = {
+						title = msg_bce_stopped_birth_control
+						left_icon = scope:msg_target
+					}
+				}
+			}
+			if = {
+				limit = { scope:bce_chastity_belt_only_this = yes }
+				remove_character_modifier = bce_wearing_chastity_belt_modifier
+				if = {
+					limit = {
+						NOR = {
+							scope:recipient = scope:actor
+							scope:recipient = { has_trait = chaste }
+							scope:recipient = { has_trait = paranoid }
+							scope:recipient = { carn_has_fetish_trigger = {	FETISH = submission	} }
+						}
+					}
+					remove_opinion = {
+						target = scope:actor
+						modifier = bce_forced_me_into_wearing_chastity_belt_opinion
+					}
+				}
+				save_scope_as = msg_target
+				scope:actor = {
+					send_interface_toast = {
+						title = msg_bce_stopped_wearing_chastity_belt
+						left_icon = scope:msg_target
+					}
+				}
+			}
+			force_character_skill_recalculation = yes
+			trigger_event = { on_action = carn_on_stop_birth_control }
+		}
+	}
+}
+
+bce_stop_mass_birth_control_interaction = {
+	category = interaction_category_friendly
+	#ai_potential = { always = no }
+	#ai_frequency = 0
+	
+	auto_accept = yes
+	use_diplomatic_range = yes
+    common_interaction = yes
+
+	desc = bce_stop_mass_birth_control_interaction_desc
+
+	is_shown = {
+		scope:recipient = scope:actor
+	}
+	
+	send_option = {
+		flag = bce_birth_control_every_consort
+		localization = option_end_bce_birth_control_every_consort
+	}
+	send_option = {
+		flag = bce_birth_control_every_child
+		localization = option_end_bce_birth_control_every_child
+	}
+	send_option = {
+		flag = bce_chastity_belt_every_consort
+		localization = option_end_bce_chastity_belt_every_consort
+	}
+	send_option = {
+		flag = bce_chastity_belt_every_child
+		localization = option_end_bce_chastity_belt_every_child
+	}
+
+	on_accept = {
+		scope:recipient = {
+			if = {
+				limit = { scope:bce_birth_control_every_consort = yes }
+				every_spouse = {
+					limit = {
+						primary_spouse = scope:recipient
+						has_character_modifier = carn_using_birth_control_modifier
+					}
+					remove_character_modifier = carn_using_birth_control_modifier
+					if = {
+						limit = {
+							NOR = {
+								has_trait = chaste 
+								has_trait = paranoid
+								carn_has_fetish_trigger = {	FETISH = submission	}
+							}
+						}
+						remove_opinion = {
+							target = scope:actor
+							modifier = bce_forced_me_into_using_birth_control_opinion
+						}
+					}
+					save_scope_as = msg_target
+					scope:actor = {
+						send_interface_toast = {
+							title = msg_bce_stopped_birth_control
+							left_icon = scope:msg_target
+						}
+					}
+					force_character_skill_recalculation = yes
+					trigger_event = { on_action = carn_on_stop_birth_control }
+				}
+				every_concubine = {
+					limit = {
+						has_character_modifier = carn_using_birth_control_modifier
+					}
+					remove_character_modifier = carn_using_birth_control_modifier
+					if = {
+						limit = {
+							NOR = {
+								has_trait = chaste 
+								has_trait = paranoid
+								carn_has_fetish_trigger = {	FETISH = submission	}
+							}
+						}
+						remove_opinion = {
+							target = scope:actor
+							modifier = bce_forced_me_into_using_birth_control_opinion
+						}
+					}
+					save_scope_as = msg_target
+					scope:actor = {
+						send_interface_toast = {
+							title = msg_bce_stopped_birth_control
+							left_icon = scope:msg_target
+						}
+					}
+					force_character_skill_recalculation = yes
+					trigger_event = { on_action = carn_on_stop_birth_control }
+				}
+			}
+			if = {
+				limit = { scope:bce_birth_control_every_child = yes }
+				every_child = {
+					limit = {
+						is_adult = yes
+						has_character_modifier = carn_using_birth_control_modifier
+					}
+					remove_character_modifier = carn_using_birth_control_modifier
+					if = {
+						limit = {
+							NOR = {
+								has_trait = chaste 
+								has_trait = paranoid
+								carn_has_fetish_trigger = {	FETISH = submission	}
+							}
+						}
+						remove_opinion = {
+							target = scope:actor
+							modifier = bce_forced_me_into_using_birth_control_opinion
+						}
+					}
+					save_scope_as = msg_target
+					scope:actor = {
+						send_interface_toast = {
+							title = msg_bce_stopped_birth_control
+							left_icon = scope:msg_target
+						}
+					}
+					force_character_skill_recalculation = yes
+					trigger_event = { on_action = carn_on_stop_birth_control }
+				}
+			}
+			if = {
+				limit = { scope:bce_chastity_belt_every_consort = yes }
+				every_spouse = {
+					limit = {
+						primary_spouse = scope:recipient
+						has_character_modifier = bce_wearing_chastity_belt_modifier
+					}
+					remove_character_modifier = bce_wearing_chastity_belt_modifier
+					if = {
+						limit = {
+							NOR = {
+								has_trait = chaste 
+								has_trait = paranoid
+								carn_has_fetish_trigger = {	FETISH = submission	}
+							}
+						}
+						remove_opinion = {
+							target = scope:actor
+							modifier = bce_forced_me_into_wearing_chastity_belt_opinion
+						}
+					}
+					save_scope_as = msg_target
+					scope:actor = {
+						send_interface_toast = {
+							title = msg_bce_stopped_wearing_chastity_belt
+							left_icon = scope:msg_target
+						}
+					}
+					force_character_skill_recalculation = yes
+					trigger_event = { on_action = carn_on_stop_birth_control }
+				}
+				every_concubine = {
+					limit = {
+						has_character_modifier = bce_wearing_chastity_belt_modifier
+					}
+					remove_character_modifier = bce_wearing_chastity_belt_modifier
+					if = {
+						limit = {
+							NOR = {
+								has_trait = chaste 
+								has_trait = paranoid
+								carn_has_fetish_trigger = {	FETISH = submission	}
+							}
+						}
+						remove_opinion = {
+							target = scope:actor
+							modifier = bce_forced_me_into_wearing_chastity_belt_opinion
+						}
+					}
+					save_scope_as = msg_target
+					scope:actor = {
+						send_interface_toast = {
+							title = msg_bce_stopped_wearing_chastity_belt
+							left_icon = scope:msg_target
+						}
+					}
+					force_character_skill_recalculation = yes
+					trigger_event = { on_action = carn_on_stop_birth_control }
+				}
+			}
+			if = {
+				limit = { scope:bce_chastity_belt_every_child = yes }
+				every_child = {
+					limit = {
+						is_adult = yes
+						has_character_modifier = bce_wearing_chastity_belt_modifier
+					}
+					remove_character_modifier = bce_wearing_chastity_belt_modifier
+					if = {
+						limit = {
+							NOR = {
+								has_trait = chaste 
+								has_trait = paranoid
+								carn_has_fetish_trigger = {	FETISH = submission	}
+							}
+						}
+						remove_opinion = {
+							target = scope:actor
+							modifier = bce_forced_me_into_wearing_chastity_belt_opinion
+						}
+					}
+					save_scope_as = msg_target
+					scope:actor = {
+						send_interface_toast = {
+							title = msg_bce_stopped_wearing_chastity_belt
+							left_icon = scope:msg_target
+						}
+					}
+					force_character_skill_recalculation = yes
+					trigger_event = { on_action = carn_on_stop_birth_control }
+				}
+			}
+		}
+	}
+}

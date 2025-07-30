@@ -1,0 +1,101 @@
+﻿namespace = cse_carn_on_sex_handler_event
+
+cse_carn_on_sex_handler_event.0001 = {
+	hidden = yes
+
+	trigger = {
+		cse_vassal_and_liege_had_sex_trigger = yes
+		is_female = yes
+	}
+
+	immediate = {
+		#Save the scope of who the other participant was
+		if = {
+			limit = { scope:carn_sex_player = this }
+			scope:carn_sex_partner = {
+				save_scope_as = partner
+			}
+		}
+		else = {
+			scope:carn_sex_player = {
+				save_scope_as = partner
+			}
+		}
+		
+		if = {
+			limit = {
+				is_pregnant = yes
+				#NOT = { is_consort_of = scope:partner }
+			}
+
+			#save appropriate pregnancy flag for vassal or liege
+			if = {
+				limit = {
+					has_character_flag = cse_had_sex_as_liege
+				}
+				add_character_flag = cse_pregnant_as_liege
+			}
+			else = {
+				add_character_flag = cse_pregnant_as_vassal
+			}
+
+			#carnalitas flag to suppress normal events
+			add_character_flag = carn_suppress_next_on_pregnancy_notification
+			add_character_flag = carn_suppress_next_on_birth_notification
+		}
+		
+		if = {
+			limit = {
+				any_consort = {
+					count >= 1
+					has_character_flag = cse_potential_father
+				}
+			}
+			every_consort = {
+				limit = {
+					has_character_flag = cse_potential_father
+				}
+				add_to_temporary_list = cse_potential_replacement_father_list
+			}
+			
+			if = {
+				limit = {
+					is_pregnant = yes
+				}
+			
+				ordered_in_list = {
+					list = cse_potential_replacement_father_list
+					position = 0
+					add_character_flag = cse_replacement_father
+				}
+			}
+				
+			every_in_list = {
+				list = cse_potential_replacement_father_list
+				remove_character_flag = cse_potential_father
+			}
+		}
+		else_if = {
+			limit = {
+				is_pregnant = yes
+			}
+			primary_spouse ?= {
+				add_character_flag = cse_replacement_father
+			}
+		}
+		
+		if = {
+			limit = { has_character_flag = cse_had_sex_as_liege }
+			remove_character_flag = cse_had_sex_as_liege
+		}
+		else = { remove_character_flag = cse_had_sex_as_vassal }
+
+		scope:partner = {
+			if = {
+				limit = { has_character_flag = cse_had_sex_as_liege }
+				remove_character_flag = cse_had_sex_as_liege
+			}
+			else = { remove_character_flag = cse_had_sex_as_vassal }
+		}
+	}
+}

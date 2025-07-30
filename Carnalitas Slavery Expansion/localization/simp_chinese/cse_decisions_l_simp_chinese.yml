@@ -1,0 +1,13 @@
+﻿l_simp_chinese:
+  
+ cse_no_slave_trait_inheritance_decision: "Free newborns who are born into slavery"
+ cse_no_slave_trait_inheritance_decision_desc: "Newborns born into slavery are born as free people instead of slaves."
+ cse_no_slave_trait_inheritance_decision_tooltip: "Newborns born into slavery are born as free people instead of slaves."
+ cse_no_slave_trait_inheritance_decision_confirm: "Free the newborns!"
+ cse_no_slave_trait_inheritance_tt: "Switches the inheritance of the slave trait off."
+  
+ cse_revert_slave_trait_inheritance_decision: "Enslave Newborns born into slavery"
+ cse_revert_slave_trait_inheritance_decision_desc: "Newborns born into slavery are also enslaved."
+ cse_revert_slave_trait_inheritance_decision_tooltip: "Newborns born into slavery are also enslaved."
+ cse_revert_slave_trait_inheritance_decision_confirm: "Enslave the newborns!"
+ cse_revert_slave_trait_inheritance_tt: "Switches the inheritance of the slave trait on."

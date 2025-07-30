@@ -1,0 +1,393 @@
+﻿cse_slave_report_interaction = {
+    category = interaction_category_prison
+	#ai_potential = { always = no }
+	#ai_frequency = 0
+
+    auto_accept = yes	
+    use_diplomatic_range = no
+	common_interaction = yes
+	interface_priority = 90
+	
+	desc = cse_slave_report_interaction_desc
+
+	ignores_pending_interaction_block = yes
+	
+    is_shown = {
+        OR = {
+			AND = {
+				scope:actor = {
+					has_relation_slave = scope:recipient
+				}
+				scope:recipient = {
+					OR = {
+						cse_is_working_as_slave_prostitute_trigger = yes
+						cse_is_working_as_labour_slave_trigger = yes
+						cse_is_working_as_military_slave_trigger = yes
+						cse_is_working_as_sex_slave_trigger = yes
+					}
+				}
+			}
+			AND = {
+				scope:recipient = scope:actor
+				scope:actor = {
+					any_relation = {
+						type = slave
+						count > 0
+					}
+				}
+			}
+		}
+    }
+	
+	send_option = {
+		is_shown = { scope:recipient = scope:actor }
+		flag = cse_slave_prostitute_report
+		localization = game_concept_prostitutes
+		#starts_enabled = { scope:recipient = scope:actor }
+	}
+	send_option = {
+		is_shown = { scope:recipient = scope:actor }
+		flag = cse_labour_slave_report
+		localization = game_concept_cse_labour_slaves
+		#starts_enabled = { scope:recipient = scope:actor }
+	}
+	send_option = {
+		is_shown = { scope:recipient = scope:actor }
+		flag = cse_military_slave_report
+		localization = game_concept_cse_military_slaves
+		#starts_enabled = { scope:recipient = scope:actor }
+	}
+	send_option = {
+		is_shown = { scope:recipient = scope:actor }
+		flag = cse_sex_slave_report
+		localization = game_concept_cse_sex_slaves
+		#starts_enabled = { scope:recipient = scope:actor }
+	}
+	send_option = {
+		is_shown = { scope:recipient = scope:actor }
+		flag = cse_slave_xp_gain_prediction
+		localization = trait_cse_slave
+		#starts_enabled = { scope:recipient = scope:actor }
+	}
+	
+	send_options_exclusive = no
+
+    on_accept = {
+		
+		#################### CHECKBOXES ############################################################
+		
+		if = {
+			limit = {
+				scope:recipient = scope:actor
+				scope:cse_slave_prostitute_report = yes
+			}
+			scope:actor = {
+				every_relation = {
+					type = slave
+					if = {
+						limit = { cse_is_working_as_slave_prostitute_trigger = yes }
+						show_as_tooltip = {
+							add_gold = cse_slave_prostitute_income_value
+							if = {
+								limit = { cse_slave_piety_loss_through_prostitution_trigger = yes }
+								add_piety = cse_slave_piety_loss_through_prostitution_amount_value
+							}
+							if = {
+								limit = { cse_slave_piety_loss_through_faith_trigger = yes }
+								add_piety = cse_slave_piety_loss_through_faith_amount_value
+							}
+							else_if = {
+								limit = { cse_slave_piety_on_opinion_trigger = yes }
+								add_piety = cse_slave_piety_on_opinion_amount_value
+							}
+							if = {
+								limit = { scope:cse_slave_xp_gain_prediction = yes }
+								cse_slave_xp_gain_prediction_effect = yes
+							}
+						}
+					}
+				}
+			}
+		}
+		if = {
+			limit = {
+				scope:recipient = scope:actor
+				scope:cse_labour_slave_report = yes
+			}
+			scope:actor = {
+				every_relation = {
+					type = slave
+					if = {
+						limit = { cse_is_working_as_labour_slave_trigger = yes }
+						show_as_tooltip = {
+							add_gold = cse_labour_slave_income_value
+							if = {
+								limit = { cse_slave_piety_loss_through_faith_trigger = yes }
+								add_piety = cse_slave_piety_loss_through_faith_amount_value
+							}
+							else_if = {
+								limit = { cse_slave_piety_on_opinion_trigger = yes }
+								add_piety = cse_slave_piety_on_opinion_amount_value
+							}
+							if = {
+								limit = { scope:cse_slave_xp_gain_prediction = yes }
+								cse_slave_xp_gain_prediction_effect = yes
+							}
+						}
+					}
+				}
+			}
+		}
+		if = {
+			limit = {
+				scope:recipient = scope:actor
+				scope:cse_military_slave_report = yes
+			}
+			scope:actor = {
+				every_relation = {
+					type = slave
+					if = {
+						limit = { cse_is_working_as_military_slave_trigger = yes }
+						show_as_tooltip = {
+							add_prestige = cse_military_slave_income_value
+							remove_short_term_gold = cse_military_slave_expense_value
+							if = {
+								limit = { cse_slave_piety_loss_through_faith_trigger = yes }
+								add_piety = cse_slave_piety_loss_through_faith_amount_value
+							}
+							else_if = {
+								limit = { cse_slave_piety_on_opinion_trigger = yes }
+								add_piety = cse_slave_piety_on_opinion_amount_value
+							}
+							if = {
+								limit = { scope:cse_slave_xp_gain_prediction = yes }
+								cse_slave_xp_gain_prediction_effect = yes
+							}
+						}
+					}
+				}
+			}
+		}
+		if = {
+			limit = {
+				scope:recipient = scope:actor
+				scope:cse_sex_slave_report = yes
+			}
+			scope:actor = {
+				every_relation = {
+					type = slave
+					if = {
+						limit = { cse_is_working_as_sex_slave_trigger = yes }
+						show_as_tooltip = {
+							scope:actor = {
+								add_stress = prev.cse_sex_slave_income_inverted_value
+							}
+							custom_tooltip = cse_slave_report_interaction_sex_slave_stress_reduction_value
+							remove_short_term_gold = cse_sex_slave_expense_value
+							if = {
+								limit = { cse_slave_piety_loss_through_faith_trigger = yes }
+								add_piety = cse_slave_piety_loss_through_faith_amount_value
+							}
+							else_if = {
+								limit = { cse_slave_piety_on_opinion_trigger = yes }
+								add_piety = cse_slave_piety_on_opinion_amount_value
+							}
+							if = {
+								limit = { scope:cse_slave_xp_gain_prediction = yes }
+								cse_slave_xp_gain_prediction_effect = yes
+							}
+						}
+					}
+				}
+			}
+		}
+
+		#################### NO CHECKBOXES ############################################################
+		
+		if = {
+			limit = {
+				scope:recipient = scope:actor
+				scope:cse_slave_prostitute_report = no
+				scope:cse_labour_slave_report = no
+				scope:cse_military_slave_report = no
+				scope:cse_sex_slave_report = no
+			}
+			scope:actor = {
+				every_relation = {
+					type = slave
+					if = {
+						limit = { cse_is_working_as_slave_prostitute_trigger = yes }
+						show_as_tooltip = {
+							add_gold = cse_slave_prostitute_income_value
+							if = {
+								limit = { cse_slave_piety_loss_through_prostitution_trigger = yes }
+								add_piety = cse_slave_piety_loss_through_prostitution_amount_value
+							}
+							if = {
+								limit = { cse_slave_piety_loss_through_faith_trigger = yes }
+								add_piety = cse_slave_piety_loss_through_faith_amount_value
+							}
+							else_if = {
+								limit = { cse_slave_piety_on_opinion_trigger = yes }
+								add_piety = cse_slave_piety_on_opinion_amount_value
+							}
+							if = {
+								limit = { scope:cse_slave_xp_gain_prediction = yes }
+								cse_slave_xp_gain_prediction_effect = yes
+							}
+						}
+					}
+					if = {
+						limit = { cse_is_working_as_labour_slave_trigger = yes }
+						show_as_tooltip = {
+							add_gold = cse_labour_slave_income_value
+							if = {
+								limit = { cse_slave_piety_loss_through_faith_trigger = yes }
+								add_piety = cse_slave_piety_loss_through_faith_amount_value
+							}
+							else_if = {
+								limit = { cse_slave_piety_on_opinion_trigger = yes }
+								add_piety = cse_slave_piety_on_opinion_amount_value
+							}
+							if = {
+								limit = { scope:cse_slave_xp_gain_prediction = yes }
+								cse_slave_xp_gain_prediction_effect = yes
+							}
+						}
+					}
+					if = {
+						limit = { cse_is_working_as_military_slave_trigger = yes }
+						show_as_tooltip = {
+							add_prestige = cse_military_slave_income_value
+							remove_short_term_gold = cse_military_slave_expense_value
+							if = {
+								limit = { cse_slave_piety_loss_through_faith_trigger = yes }
+								add_piety = cse_slave_piety_loss_through_faith_amount_value
+							}
+							else_if = {
+								limit = { cse_slave_piety_on_opinion_trigger = yes }
+								add_piety = cse_slave_piety_on_opinion_amount_value
+							}
+							if = {
+								limit = { scope:cse_slave_xp_gain_prediction = yes }
+								cse_slave_xp_gain_prediction_effect = yes
+							}
+						}
+					}
+					if = {
+						limit = { cse_is_working_as_sex_slave_trigger = yes }
+						show_as_tooltip = {
+							#scope:actor = {
+							#	add_stress = prev.cse_sex_slave_income_inverted_value
+							#}
+							custom_tooltip = cse_slave_report_interaction_sex_slave_stress_reduction_value
+							remove_short_term_gold = cse_sex_slave_expense_value
+							if = {
+								limit = { cse_slave_piety_loss_through_faith_trigger = yes }
+								add_piety = cse_slave_piety_loss_through_faith_amount_value
+							}
+							else_if = {
+								limit = { cse_slave_piety_on_opinion_trigger = yes }
+								add_piety = cse_slave_piety_on_opinion_amount_value
+							}
+							if = {
+								limit = { scope:cse_slave_xp_gain_prediction = yes }
+								cse_slave_xp_gain_prediction_effect = yes
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		#################### INDIVIDUAL REPORT ############################################################
+		
+		if = {
+			limit = {
+				NOT = { scope:recipient = scope:actor }
+				scope:cse_slave_prostitute_report = no
+				scope:cse_labour_slave_report = no
+				scope:cse_military_slave_report = no
+				scope:cse_sex_slave_report = no
+			}
+			scope:recipient = {
+				if = {
+					limit = { cse_is_working_as_slave_prostitute_trigger = yes }
+					show_as_tooltip = {
+						scope:actor = {
+							add_gold = prev.cse_slave_prostitute_income_value
+							if = {
+								limit = { cse_slave_piety_loss_through_prostitution_trigger = yes }
+								add_piety = cse_slave_piety_loss_through_prostitution_amount_value
+							}
+							if = {
+								limit = { scope:recipient = { cse_slave_piety_loss_through_faith_trigger = yes } }
+								add_piety = cse_slave_piety_loss_through_faith_amount_value
+							}
+							else_if = {
+								limit = { scope:recipient = { cse_slave_piety_on_opinion_trigger = yes } }
+								add_piety = cse_slave_piety_on_opinion_amount_value
+							}
+						}
+						scope:recipient = { cse_slave_xp_gain_prediction_effect = yes }
+					}
+					#scope:recipient = { trigger_event = { on_action = cse_slave_prostitute_random_yearly_everyone_pulse } }
+				}
+				if = {
+					limit = { cse_is_working_as_labour_slave_trigger = yes }
+					show_as_tooltip = {
+						scope:actor = {
+							add_gold = prev.cse_labour_slave_income_value
+							if = {
+								limit = { scope:recipient = { cse_slave_piety_loss_through_faith_trigger = yes } }
+								add_piety = cse_slave_piety_loss_through_faith_amount_value
+							}
+							else_if = {
+								limit = { scope:recipient = { cse_slave_piety_on_opinion_trigger = yes } }
+								add_piety = cse_slave_piety_on_opinion_amount_value
+							}
+						}
+						scope:recipient = { cse_slave_xp_gain_prediction_effect = yes }
+					}
+				}
+				if = {
+					limit = { cse_is_working_as_military_slave_trigger = yes }
+					show_as_tooltip = {
+						scope:actor = {
+							add_prestige = prev.cse_military_slave_income_value
+							remove_short_term_gold = prev.cse_military_slave_expense_value
+							if = {
+								limit = { scope:recipient = { cse_slave_piety_loss_through_faith_trigger = yes } }
+								add_piety = cse_slave_piety_loss_through_faith_amount_value
+							}
+							else_if = {
+								limit = { scope:recipient = { cse_slave_piety_on_opinion_trigger = yes } }
+								add_piety = cse_slave_piety_on_opinion_amount_value
+							}
+						}
+						scope:recipient = { cse_slave_xp_gain_prediction_effect = yes }
+					}
+					#scope:recipient = { trigger_event = { on_action = cse_military_slave_random_yearly_everyone_pulse } }
+				}
+				if = {
+					limit = { cse_is_working_as_sex_slave_trigger = yes }
+					show_as_tooltip = {
+						scope:actor = {
+							add_stress = prev.cse_sex_slave_income_inverted_value
+							remove_short_term_gold = prev.cse_sex_slave_expense_value
+							if = {
+								limit = { scope:recipient = { cse_slave_piety_loss_through_faith_trigger = yes } }
+								add_piety = cse_slave_piety_loss_through_faith_amount_value
+							}
+							else_if = {
+								limit = { scope:recipient = { cse_slave_piety_on_opinion_trigger = yes } }
+								add_piety = cse_slave_piety_on_opinion_amount_value
+							}
+						}
+						scope:recipient = { cse_slave_xp_gain_prediction_effect = yes }
+					}
+				}
+			}
+		}
+	}
+}

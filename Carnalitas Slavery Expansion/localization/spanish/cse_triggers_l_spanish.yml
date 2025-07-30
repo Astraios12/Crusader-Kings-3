@@ -1,0 +1,15 @@
+﻿l_spanish:
+  
+ cse_no_drama_trigger_positive_desc: "#P Sex will not result in drama.#!"
+ cse_no_drama_trigger_negative_desc: "#N Sex can result in drama!#!"
+  
+  #################### SLAVE ############################################################ 
+  
+ cse_slave_prostitute_ownership_limit_reached_loc: "You can not have more than [EmptyScope.ScriptValue('cse_slave_prostitute_ownership_limit_value')|0] Slave Prostitutes work for you at the same time!"
+ cse_labour_slave_ownership_limit_reached_loc: "You can not have more than [EmptyScope.ScriptValue('cse_labour_slave_ownership_limit_value')|0] Labour Slaves work for you at the same time!"
+ cse_military_slave_ownership_limit_reached_loc: "You can not have more than [EmptyScope.ScriptValue('cse_military_slave_ownership_limit_value')|0] Military Slaves serve you at the same time!"
+ cse_sex_slave_ownership_limit_reached_loc: "You can not have more than [EmptyScope.ScriptValue('cse_sex_slave_ownership_limit_value')|0] Slave Concubines work for you at the same time!"
+  
+  #################### COURT ############################################################ 
+  
+ cse_courtesan_ownership_limit_reached_loc: "You can not maintain more than [EmptyScope.ScriptValue('cse_courtesan_ownership_limit_value')|0] Courtesans at the same time!"

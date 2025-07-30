@@ -1,0 +1,212 @@
+﻿#################### PREGNANCY EFFECTS ############################################################
+
+cse_bastard_pregnancy_mother_announcement_effect = {
+	hidden_effect = {
+		if = {
+			limit = {
+				NOT = { has_trait = pregnant }
+			}
+			add_trait_force_tooltip = pregnant
+		}
+	}
+	# Could build an event target list instead, and use it to fire a first_valid on_action where all the events have triggers inside them so that only one event will fire for any given character
+
+	scope:mother = {
+		set_known_bastard_on_pregnancy = yes
+		add_character_flag = {
+			flag = pregnancy_real_father_of_bastard_is_known_flag
+			months = 9
+		}
+		trigger_event = {
+			id = pregnancy.6001
+			days = 3
+		}
+	}
+	scope:real_father = {
+		trigger_event = {
+			id = cse_custom_pregnancy.6002
+			days = 3
+		}
+	}
+	if = {
+		limit = {
+			scope:mother = { is_married = yes }
+		}
+		scope:mother = {
+			every_spouse = {
+				if = {
+					limit = {
+						faith = { has_doctrine_parameter = no_unfaithfulness_penalty_active }
+					}
+					trigger_event = {
+						id = pregnancy.6999
+						days = 3
+					}
+				}
+				else = {
+					trigger_event = {
+						id = pregnancy.6003
+						days = 3
+					}
+				}
+			}
+		}
+	
+	}
+
+
+	scope:mother = {
+		every_parent = {
+			limit = {
+				is_ai = no # No need to send pure notifications to AI
+				NOR = {
+					this = scope:mother
+					this = scope:real_father
+				}
+				trigger_if = {
+					limit = {
+						exists = scope:father
+					}
+					NOT = { this = scope:father }
+				}
+				NOT = { faith = { has_doctrine_parameter = no_unfaithfulness_penalty_active } }
+			}
+			add_to_list = mother_family_list
+			trigger_event = {
+				id = pregnancy.6004
+				days = 3
+			}
+		}
+		every_child = {
+			limit = {
+				is_ai = no # No need to send pure notifications to AI
+				NOR = {
+					this = scope:mother
+					this = scope:real_father
+				}
+				trigger_if = {
+					limit = {
+						exists = scope:father
+					}
+					NOT = { this = scope:father }
+				}
+				NOT = { faith = { has_doctrine_parameter = no_unfaithfulness_penalty_active } }
+			}
+			add_to_list = mother_family_list
+			trigger_event = {
+				id = pregnancy.6004
+				days = 3
+			}
+		}
+		every_sibling = {
+			limit = {
+				is_ai = no # No need to send pure notifications to AI
+				NOR = {
+					this = scope:mother
+					this = scope:real_father
+				}
+				trigger_if = {
+					limit = {
+						exists = scope:father
+					}
+					NOT = { this = scope:father }
+				}
+				NOT = { faith = { has_doctrine_parameter = no_unfaithfulness_penalty_active } }
+			}
+			add_to_list = mother_family_list
+			trigger_event = {
+				id = pregnancy.6004
+				days = 3
+			}
+		}
+	}
+	scope:real_father = {
+		if = {
+			limit = { exists = primary_partner }
+			primary_partner = {
+				if = {
+					limit = {
+						NOT = { is_in_list = mother_family_list } #To guard against incest triggering multiple events
+						is_ai = no # No need to send pure notifications to AI
+						NOR = {
+							this = scope:mother
+							this = scope:real_father
+						}
+						trigger_if = {
+							limit = {
+								exists = scope:father
+							}
+							NOT = { this = scope:father }
+						}
+						NOT = { faith = { has_doctrine_parameter = no_unfaithfulness_penalty_active } }
+					}
+					trigger_event = {
+						id = pregnancy.6005
+						days = 3
+					}
+				}
+			}
+		}
+		every_parent = {
+			limit = {
+				NOT = { is_in_list = mother_family_list } #To guard against incest triggering multiple events
+				is_ai = no # No need to send pure notifications to AI
+				NOR = {
+					this = scope:mother
+					this = scope:real_father
+				}
+				trigger_if = {
+					limit = {
+						exists = scope:father
+					}
+					NOT = { this = scope:father }
+				}
+				NOT = { faith = { has_doctrine_parameter = no_unfaithfulness_penalty_active } }
+			}
+			trigger_event = {
+				id = pregnancy.6006
+				days = 3
+			}
+		}
+		every_child = {
+			limit = {
+				NOT = { is_in_list = mother_family_list } #To guard against incest triggering multiple events
+				NOR = {
+					this = scope:mother
+					this = scope:real_father
+				}
+				trigger_if = {
+					limit = {
+						exists = scope:father
+					}
+					NOT = { this = scope:father }
+				}
+				NOT = { faith = { has_doctrine_parameter = no_unfaithfulness_penalty_active } }
+			}
+			trigger_event = {
+				id = pregnancy.6006
+				days = 3
+			}
+		}
+		every_sibling = {
+			limit = {
+				NOT = { is_in_list = mother_family_list } #To guard against incest triggering multiple events
+				NOR = {
+					this = scope:mother
+					this = scope:real_father
+				}
+				trigger_if = {
+					limit = {
+						exists = scope:father
+					}
+					NOT = { this = scope:father }
+				}
+				NOT = { faith = { has_doctrine_parameter = no_unfaithfulness_penalty_active } }
+			}
+			trigger_event = {
+				id = pregnancy.6006
+				days = 3
+			}
+		}
+	}
+}

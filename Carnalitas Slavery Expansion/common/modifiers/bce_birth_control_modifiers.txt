@@ -1,0 +1,8 @@
+﻿bce_wearing_chastity_belt_modifier = {
+	icon = county_modifier_control_negative
+	fertility = -10.0
+	seduce_scheme_phase_duration_add = 10
+	#monthly_prestige = -0.1
+	#monthly_piety = -0.1
+	#ai_honor = dominant_positive_ai_value
+}

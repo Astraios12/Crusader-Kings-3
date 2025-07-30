@@ -1,0 +1,836 @@
+﻿#################### SLAVE OWNERSHIP LIMITS ############################################################
+
+cse_slave_prostitute_ownership_limit_value = 9999
+
+cse_labour_slave_ownership_limit_value = 9999
+
+cse_military_slave_ownership_limit_value = 9999
+
+cse_sex_slave_ownership_limit_value = 9999
+
+#################### SLAVE PIETY OPINION VALUES ############################################################
+
+cse_slave_piety_loss_through_prostitution_amount_value = 20
+
+cse_slave_piety_loss_through_faith_amount_value = 20
+
+cse_slave_piety_on_opinion_threshold_value = 50
+
+cse_slave_piety_on_opinion_amount_value = 10
+
+#################### SLAVE AGE LIMITS ############################################################
+
+cse_slave_prostitute_age_start_value = 12
+cse_slave_prostitute_age_limit_value = 50
+
+cse_labour_slave_age_start_value = 6
+cse_labour_slave_age_limit_value = 50
+
+cse_military_slave_age_start_value = 6
+cse_military_slave_age_limit_value = 50
+
+cse_sex_slave_age_start_value = 12
+cse_sex_slave_age_limit_value = 50
+
+#################### SLAVE AGE MULTIPLIER ############################################################
+
+cse_slave_prostitute_age_multiplier_value = {
+	value = 1
+	
+	if = {
+        limit = {
+           effective_age < cse_slave_prostitute_age_start_value
+        }
+        multiply = 0
+    }
+	else_if = {
+        limit = {
+            OR = {
+				is_adult = no
+				effective_age > cse_slave_prostitute_age_limit_value
+			}
+        }
+        multiply = 0.5
+    }
+}
+
+cse_labour_slave_age_multiplier_value = {
+	value = 1
+	
+	if = {
+        limit = {
+           effective_age < cse_labour_slave_age_start_value
+        }
+        multiply = 0
+    }
+	else_if = {
+        limit = {
+            OR = {
+				is_adult = no
+				effective_age > cse_labour_slave_age_limit_value
+			}
+        }
+        multiply = 0.5
+    }
+}
+
+cse_military_slave_age_multiplier_value = {
+	value = 1
+	
+	if = {
+        limit = {
+           effective_age < cse_military_slave_age_start_value
+        }
+        multiply = 0
+    }
+	else_if = {
+        limit = {
+            OR = {
+				is_adult = no
+				effective_age > cse_military_slave_age_limit_value
+			}
+        }
+        multiply = 0.5
+    }
+}
+
+cse_sex_slave_age_multiplier_value = {
+	value = 1
+	
+	if = {
+        limit = {
+           effective_age < cse_sex_slave_age_start_value
+        }
+        multiply = 0
+    }
+	else_if = {
+        limit = {
+            OR = {
+				is_adult = no
+				effective_age > cse_sex_slave_age_limit_value
+			}
+        }
+        multiply = 0.5
+    }
+}
+
+#################### SLAVE XP VALUES ############################################################
+
+cse_slave_prostitute_xp_value = {
+	value = 0
+	
+	if = {
+        limit = {
+            has_trait_xp = {
+				trait = cse_slave
+				track = cse_slave_prostitute
+				value >= 100
+			}
+        }
+        add = 100
+    }
+	else_if = {
+        limit = {
+            has_trait_xp = {
+				trait = cse_slave
+				track = cse_slave_prostitute
+				value >= 90
+			}
+        }
+        add = 90
+    }
+	else_if = {
+        limit = {
+            has_trait_xp = {
+				trait = cse_slave
+				track = cse_slave_prostitute
+				value >= 80
+			}
+        }
+        add = 80
+    }
+	else_if = {
+        limit = {
+            has_trait_xp = {
+				trait = cse_slave
+				track = cse_slave_prostitute
+				value >= 70
+			}
+        }
+        add = 70
+    }
+	else_if = {
+        limit = {
+            has_trait_xp = {
+				trait = cse_slave
+				track = cse_slave_prostitute
+				value >= 60
+			}
+        }
+        add = 60
+    }
+	else_if = {
+        limit = {
+            has_trait_xp = {
+				trait = cse_slave
+				track = cse_slave_prostitute
+				value >= 50
+			}
+        }
+        add = 50
+    }
+	else_if = {
+        limit = {
+            has_trait_xp = {
+				trait = cse_slave
+				track = cse_slave_prostitute
+				value >= 40
+			}
+        }
+        add = 40
+    }
+	else_if = {
+        limit = {
+            has_trait_xp = {
+				trait = cse_slave
+				track = cse_slave_prostitute
+				value >= 30
+			}
+        }
+        add = 30
+    }
+	else_if = {
+        limit = {
+            has_trait_xp = {
+				trait = cse_slave
+				track = cse_slave_prostitute
+				value >= 20
+			}
+        }
+        add = 20
+    }
+	else_if = {
+        limit = {
+            has_trait_xp = {
+				trait = cse_slave
+				track = cse_slave_prostitute
+				value >= 10
+			}
+        }
+        add = 10
+    }
+	
+	min = 0
+}
+
+#################### NEGATIVE TRAIT MULTIPLIER ############################################################
+
+cse_slave_prostitute_illness_multiplier_value = {
+	value = 1
+	
+	if = {
+        limit = {
+            OR = {
+				carn_has_sex_blocking_disease_trigger = yes
+				has_trait = great_pox # Checking for Syphilis, since other illnesses are covered in can_have_sex_trigger
+			}
+        }
+        multiply = 0.7
+    }
+}
+
+#################### SLAVE PROSTITUTE ############################################################
+
+cse_slave_prostitute_income_value = {
+	value = 0
+	
+	add = {
+		add = intrigue
+		multiply = 0.4
+		min = 1
+	}
+	
+	add = {
+		add = diplomacy
+		multiply = 0.2
+		min = 1
+	}
+	
+	add = {
+		add = attraction
+		multiply = 0.1
+		min = 0
+	}
+	
+	if = {
+        limit = {
+            exists = root
+			has_relation_slave_owner = root
+        }
+        multiply = cse_opinion_multiplier_value
+    }
+	else_if = {
+        limit = {
+            exists = scope:actor
+			has_relation_slave_owner = scope:actor
+        }
+        multiply = cse_opinion_multiplier_actor_value
+    }
+	
+	multiply = cse_slave_prostitute_age_multiplier_value
+	
+	multiply = cse_slave_prostitute_illness_multiplier_value
+	
+	min = 0
+	round = yes
+}
+
+cse_slave_prostitute_xp_gain_value = {
+	value = 0
+
+	add = {
+		add = intrigue
+		multiply = 0.4
+		min = 1
+	}
+	
+	add = {
+		add = diplomacy
+		multiply = 0.2
+		min = 1
+	}
+	
+	add = {
+		add = attraction
+		multiply = 0.1
+		min = 0
+	}
+
+	multiply = { 0.4 0.6 }
+	
+	multiply = cse_slave_prostitute_age_multiplier_value
+	
+	multiply = cse_slave_prostitute_illness_multiplier_value
+
+	min = 1
+	max = 10
+	round = yes
+}
+
+cse_slave_prostitute_xp_gain_prediction_value = {
+	value = 0
+
+	add = {
+		add = intrigue
+		multiply = 0.4
+		min = 1
+	}
+	
+	add = {
+		add = diplomacy
+		multiply = 0.2
+		min = 1
+	}
+	
+	add = {
+		add = attraction
+		multiply = 0.1
+		min = 0
+	}
+
+	multiply = 0.5
+	
+	multiply = cse_slave_prostitute_age_multiplier_value
+	
+	multiply = cse_slave_prostitute_illness_multiplier_value
+
+	min = 1
+	max = 10
+	round = yes
+}
+
+cse_slave_prostitute_worth_value = {
+	value = 0
+	
+	add = {
+		add = cse_slave_prostitute_income_value
+		multiply = 3
+		multiply = 0.1
+		min = 0
+		round = yes
+	}
+	
+	multiply = 10
+	
+	add = {
+		add = cse_slave_prostitute_xp_value
+		multiply = 0.5
+		min = 0
+	}
+
+	min = 0
+	max = 100
+	round = yes
+}
+
+#################### LABOUR SLAVE ############################################################
+
+cse_labour_slave_income_value = {
+	value = 0
+	
+	add = {
+		add = stewardship
+		multiply = 0.4
+		min = 1
+	}
+	
+	add = {
+		add = learning
+		multiply = 0.2
+		min = 1
+	}
+	
+	add = {
+		add = prowess
+		multiply = 0.1
+		min = 0
+	}
+	
+	if = {
+        limit = {
+            exists = root
+			has_relation_slave_owner = root
+        }
+        multiply = cse_opinion_multiplier_value
+    }
+	else_if = {
+        limit = {
+            exists = scope:actor
+			has_relation_slave_owner = scope:actor
+        }
+        multiply = cse_opinion_multiplier_actor_value
+    }
+	
+	multiply = cse_labour_slave_age_multiplier_value
+	
+	min = 0
+	round = yes
+}
+
+cse_labour_slave_health_value = {
+	value = -3
+	
+	add = {
+		add = stewardship
+		add = learning
+		multiply = 0.07
+		min = 0
+		max = 2.75
+	}
+	
+	min = -3
+	max = -0.25
+}
+
+#cse_labour_slave_health_inverted_value = {
+#	value = 0
+#	subtract = cse_labour_slave_health_value
+#}
+
+cse_labour_slave_xp_gain_value = {
+	value = 0
+
+	add = {
+		add = stewardship
+		multiply = 0.4
+		min = 1
+	}
+	
+	add = {
+		add = learning
+		multiply = 0.2
+		min = 1
+	}
+	
+	add = {
+		add = prowess
+		multiply = 0.1
+		min = 0
+	}
+	
+	multiply = { 0.4 0.6 }
+	
+	multiply = cse_labour_slave_age_multiplier_value
+	
+	min = 1
+	max = 10
+	round = yes
+}
+
+cse_labour_slave_xp_gain_prediction_value = {
+	value = 0
+
+	add = {
+		add = stewardship
+		multiply = 0.4
+		min = 1
+	}
+	
+	add = {
+		add = learning
+		multiply = 0.2
+		min = 1
+	}
+	
+	add = {
+		add = prowess
+		multiply = 0.1
+		min = 0
+	}
+	
+	multiply = 0.5
+	
+	multiply = cse_labour_slave_age_multiplier_value
+	
+	min = 1
+	max = 10
+	round = yes
+}
+
+#################### MILITARY SLAVE ############################################################
+
+cse_military_slave_income_value = {
+	value = 0
+	
+	add = {
+		add = martial
+		multiply = 0.4
+		min = 1
+	}
+	
+	add = {
+		add = prowess
+		multiply = 0.2
+		min = 1
+	}
+	
+	if = {
+        limit = {
+            health > 3
+        }
+        add = {
+			add = health
+			multiply = 0.5
+			min = 0
+		}
+    }
+	
+	if = {
+        limit = {
+            exists = root
+			has_relation_slave_owner = root
+        }
+        multiply = cse_opinion_multiplier_value
+    }
+	else_if = {
+        limit = {
+            exists = scope:actor
+			has_relation_slave_owner = scope:actor
+        }
+        multiply = cse_opinion_multiplier_actor_value
+    }
+	
+	multiply = cse_military_slave_age_multiplier_value
+	
+	min = 0
+	round = yes
+}
+
+cse_military_slave_expense_value = {
+	value = 0
+
+	add = {
+		add = martial
+		multiply = 0.4
+		min = 1
+	}
+	
+	add = {
+		add = prowess
+		multiply = 0.2
+		min = 1
+	}
+
+	multiply = 0.8
+	
+	min = 1
+	round = yes
+}
+
+cse_military_slave_xp_gain_value = {
+	value = 0
+
+	add = {
+		add = martial
+		multiply = 0.4
+		min = 1
+	}
+	
+	add = {
+		add = prowess
+		multiply = 0.2
+		min = 1
+	}
+	
+	if = {
+        limit = {
+            health > 3
+        }
+        add = {
+			add = health
+			multiply = 0.5
+			min = 0
+		}
+    }
+
+	multiply = { 0.4 0.6 }
+	
+	multiply = cse_military_slave_age_multiplier_value
+
+	min = 1
+	max = 10
+	round = yes
+}
+
+cse_military_slave_xp_gain_prediction_value = {
+	value = 0
+
+	add = {
+		add = martial
+		multiply = 0.4
+		min = 1
+	}
+	
+	add = {
+		add = prowess
+		multiply = 0.2
+		min = 1
+	}
+	
+	if = {
+        limit = {
+            health > 3
+        }
+        add = {
+			add = health
+			multiply = 0.5
+			min = 0
+		}
+    }
+
+	multiply = 0.5
+	
+	multiply = cse_military_slave_age_multiplier_value
+
+	min = 1
+	max = 10
+	round = yes
+}
+
+#################### SEX SLAVE ############################################################
+
+cse_sex_slave_income_value = {
+	value = 0
+	
+	add = {
+		add = diplomacy
+		multiply = 0.75
+		min = 1
+	}
+	
+	add = {
+		add = learning
+		multiply = 0.5
+		min = 1
+	}
+	
+	add = {
+		add = attraction
+		multiply = 0.25
+		min = 0
+	}
+	
+	if = {
+        limit = {
+            exists = root
+			has_relation_slave_owner = root
+        }
+        multiply = cse_opinion_multiplier_value
+    }
+	else_if = {
+        limit = {
+            exists = scope:actor
+			has_relation_slave_owner = scope:actor
+        }
+        multiply = cse_opinion_multiplier_actor_value
+    }
+	
+	multiply = cse_sex_slave_age_multiplier_value
+	
+	min = 0
+	round = yes
+}
+
+cse_sex_slave_income_inverted_value = {
+	value = 0
+	subtract = cse_sex_slave_income_value
+}
+
+cse_offer_sex_slave_income_value = {
+	value = 0
+	
+	add = {
+		add = diplomacy
+		multiply = 0.75
+		min = 1
+	}
+	
+	add = {
+		add = learning
+		multiply = 0.5
+		min = 1
+	}
+	
+	add = {
+		add = attraction
+		multiply = 0.25
+		min = 0
+	}
+	
+	if = {
+        limit = {
+            exists = scope:owner
+        }
+        multiply = cse_opinion_multiplier_owner_value
+    }
+	
+	multiply = cse_sex_slave_age_multiplier_value
+	
+	min = 0
+	round = yes
+}
+
+cse_sex_slave_income_report_value = {
+	value = 0
+	
+	add = {
+		add = diplomacy
+		multiply = 0.75
+		min = 1
+	}
+	
+	add = {
+		add = learning
+		multiply = 0.5
+		min = 1
+	}
+	
+	add = {
+		add = attraction
+		multiply = 0.25
+		min = 0
+	}
+	
+	if = {
+        limit = {
+            exists = liege
+        }
+        multiply = cse_opinion_multiplier_liege_value
+    }
+	
+	multiply = cse_sex_slave_age_multiplier_value
+	
+	min = 0
+	round = yes
+}
+
+cse_sex_slave_expense_value = {
+	value = 0
+
+	add = {
+		add = diplomacy
+		multiply = 0.4
+		min = 1
+	}
+	
+	add = {
+		add = learning
+		multiply = 0.2
+		min = 1
+	}
+	
+	multiply = 0.8
+	
+	min = 1
+	round = yes
+}
+
+cse_sex_slave_xp_gain_value = {
+	value = 0
+
+	add = {
+		add = diplomacy
+		multiply = 0.4
+		min = 1
+	}
+	
+	add = {
+		add = learning
+		multiply = 0.2
+		min = 1
+	}
+	
+	add = {
+		add = attraction
+		multiply = 0.25
+		min = 0
+	}
+
+	multiply = { 0.4 0.6 }
+	
+	multiply = cse_sex_slave_age_multiplier_value
+
+	min = 1
+	max = 10
+	round = yes
+}
+
+cse_sex_slave_xp_gain_prediction_value = {
+	value = 0
+
+	add = {
+		add = diplomacy
+		multiply = 0.4
+		min = 1
+	}
+	
+	add = {
+		add = learning
+		multiply = 0.2
+		min = 1
+	}
+	
+	add = {
+		add = attraction
+		multiply = 0.25
+		min = 0
+	}
+
+	multiply = 0.5
+	
+	multiply = cse_sex_slave_age_multiplier_value
+
+	min = 1
+	max = 10
+	round = yes
+}

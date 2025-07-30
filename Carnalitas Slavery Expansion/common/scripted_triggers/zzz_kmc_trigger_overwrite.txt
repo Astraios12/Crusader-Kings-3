@@ -1,0 +1,10 @@
+﻿# kmc overwrite
+kmc_is_lover_trigger = {
+	OR = {
+		has_relation_lover = $ARMY_OWNER$
+		has_relation_soulmate = $ARMY_OWNER$
+		has_secret_relation_lover = $ARMY_OWNER$
+		has_secret_relation_soulmate = $ARMY_OWNER$
+		has_relation_courtesan_owner = $ARMY_OWNER$
+	}
+}

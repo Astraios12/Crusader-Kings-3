@@ -1,0 +1,413 @@
+﻿cse_offer_sex_slave_interaction = {
+	category = interaction_category_friendly
+    #ai_potential = { always = no }
+	#ai_frequency = 0
+	
+    auto_accept = yes
+	use_diplomatic_range = yes
+    common_interaction = yes
+	interface_priority = 60
+	ai_maybe = yes
+	
+	ai_min_reply_days = 1
+	ai_max_reply_days = 1
+	
+	desc = cse_offer_sex_slave_interaction_desc
+	
+	should_use_extra_icon = {
+		scope:actor = { has_usable_hook = scope:recipient }
+	}
+	extra_icon = "gfx/interface/icons/character_interactions/hook_icon.dds"
+
+	send_name = cse_offer_sex_slave_interaction
+
+	is_shown = {
+		scope:actor = {
+			NOT = { this = scope:recipient }
+			any_relation = {
+				type = slave
+				cse_is_working_as_sex_slave_trigger = yes
+			}
+		}
+		scope:recipient = {
+			is_adult = yes
+		}
+	}
+	
+	#cooldown = { months = 12 }
+	
+	is_valid_showing_failures_only = {
+		scope:recipient = {
+			is_imprisoned = no
+			is_busy_in_events_localised = yes
+		}
+	}
+	
+	# actor, recipient ... characters arranging the marriage
+	# secondary_actor, secondary_recipient ... characters that should marry
+	
+	redirect = {
+		scope:recipient = {
+			save_scope_as = recipient
+		}
+	}
+
+	populate_actor_list = {
+		scope:actor = {
+			every_relation = {
+				type = slave
+				limit = {
+					cse_is_working_as_sex_slave_trigger = yes
+					NOT = { this = scope:recipient }
+				}
+				add_to_list = characters
+			}
+		}
+	}
+	
+	prompt = {
+			desc = CSE_SELECT_YOUR_SEX_SLAVE
+	}
+	
+	#Use hook
+	send_option = {
+		is_shown = { NOT = { scope:recipient = { has_relation_slave_owner = scope:actor } }	}
+		is_valid = {
+			exists = scope:recipient
+			scope:actor = {
+				has_usable_hook = scope:recipient
+			}
+		}
+		flag = hook
+		localization = SCHEME_HOOK
+	}
+	
+	send_options_exclusive = no
+	
+	on_accept = {
+		if = {
+			limit = { scope:hook = yes }
+			scope:actor = { use_hook = scope:recipient }
+		}
+		scope:recipient = {
+			# Verify that they could become friend
+			if = {
+				limit = {
+					NAND = {
+						has_relation_friend = scope:actor
+						has_relation_lover = scope:actor
+						has_relation_soulmate = scope:actor
+						has_relation_best_friend = scope:actor
+					}
+				}
+				gifting_leads_towards_friendship_effect = yes
+			}
+		}
+
+		# Warning for multiple gifts
+		if = {
+			limit = {
+				scope:recipient = {
+					has_opinion_modifier = {
+						target = scope:actor
+						modifier = gift_opinion
+					}
+				}
+			}
+			custom_tooltip = ALREADY_SENT_GIFT_WARNING
+		}
+		else = { # Struggle Catalyst
+			limit = {
+				#scope:recipient = {
+				#	is_independent_ruler = yes
+				#}
+				scope:actor = {
+					any_character_struggle = {
+						involvement = involved
+						activate_struggle_catalyst_secondary_character_involvement_involved_trigger = {
+							CATALYST = catalyst_gift_independent_ruler
+							CHAR = scope:recipient
+						}
+					}
+				}
+			}
+			hidden_effect = {
+				scope:actor = {
+					every_character_struggle = {
+						involvement = involved
+						activate_struggle_catalyst = {
+							catalyst = catalyst_gift_independent_ruler
+							character = scope:actor
+						}
+					}
+				}
+			}
+		}
+		
+		scope:actor = {
+			send_interface_message = {
+				type = event_generic_neutral
+				title = gift_interaction_notification
+				right_icon = scope:recipient
+				stress_impact = {
+					greedy = medium_stress_impact_gain
+					generous = medium_stress_impact_loss
+				}
+				
+				scope:secondary_actor = {
+					save_scope_as = carn_sex_partner
+					add_character_flag = {
+						flag = cse_recently_offered_sex_slave
+						years = 1
+					}
+					if = {
+						limit = {
+							is_attracted_to_gender_of = scope:recipient
+							OR = {
+								carn_has_fetish_trigger = {	FETISH = submission	}
+								AND = {
+									has_trait = lustful
+									OR = {
+										opinion = {
+											target = scope:recipient
+											value > 50
+										}
+										scope:recipient = { attraction > 20 }
+									}
+								}
+							}
+						}
+						# No penalty
+					}
+					else = {
+						add_opinion = {
+							target = scope:actor
+							modifier = cse_forced_me_to_have_sex_opinion
+						}
+					}
+					
+					# Undress Chastity Belt
+					if = {
+						limit = {
+							has_character_modifier = bce_wearing_chastity_belt_modifier
+						}
+						remove_character_modifier = bce_wearing_chastity_belt_modifier
+						add_character_flag = bce_was_wearing_chastity_belt
+					}
+				}
+			
+				scope:recipient = {
+					save_scope_as = carn_sex_player
+					
+					if = {
+						limit = { is_attracted_to_gender_of = scope:secondary_actor }
+						add_opinion = {
+							target = scope:actor
+							modifier = gift_opinion
+							opinion = send_gift_opinion
+						}
+						save_scope_as = owner
+						add_stress = {
+							value = 0
+							subtract = scope:secondary_actor.cse_offer_sex_slave_income_value
+						}
+					}
+
+					# Undress Chastity Belt
+					if = {
+						limit = {
+							has_character_modifier = bce_wearing_chastity_belt_modifier
+						}
+						remove_character_modifier = bce_wearing_chastity_belt_modifier
+						add_character_flag = bce_was_wearing_chastity_belt
+					}
+					
+					carn_had_sex_with_effect_v2 = {
+						PARTNER = scope:secondary_actor
+					}
+				}
+			}
+		}		
+	}
+	
+	on_decline = {
+		scope:actor = {
+			trigger_event = char_interaction.0236
+		}
+	}
+	
+	auto_accept = {
+		OR = {
+			scope:hook = yes
+			scope:recipient = { has_relation_slave_owner = scope:actor }
+		}
+	}
+	
+	ai_accept = {
+		base = 50
+
+		modifier = {
+			desc = CSE_ATTRACTION_MODIFIER
+			add = {
+				value = scope:secondary_actor.attraction
+				multiply = 2
+			}
+			scope:recipient = { is_attracted_to_gender_of = scope:secondary_actor }
+			trigger_if = {
+				limit = { scope:secondary_actor = { is_female = yes } }
+				scope:secondary_actor = { effective_age < 50 }
+			}
+			trigger_else = {
+				scope:secondary_actor = { effective_age < 65 }
+			}
+		}
+		
+		modifier = {
+			desc = CSE_EFFECTIVE_AGE_MODIFIER
+			add = {
+				subtract = scope:secondary_actor.effective_age
+				add = 20
+			}
+			scope:secondary_actor = { effective_age > 20 }
+		}
+		
+	#	# Beauty
+	#	modifier = {
+	#		add = 10
+	#		scope:secondary_actor = { has_trait = beauty_good_1 }
+	#	}
+	#	modifier = {
+	#		add = 20
+	#		scope:secondary_actor = { has_trait = beauty_good_2 }
+	#	}
+	#	modifier = {
+	#		add = 30
+	#		scope:secondary_actor = { has_trait = beauty_good_3 }
+	#	}
+	#	
+	#	# Seducer
+	#	modifier = {
+	#		add = 20
+	#		scope:secondary_actor = { has_trait = seducer }
+	#	}
+	#	
+	#	# Age
+	#	modifier = {
+	#		add = 20
+	#		scope:secondary_actor = { effective_age < 25 }
+	#	}
+	#	modifier = {
+	#		add = 20
+	#		scope:secondary_actor = { effective_age < 30 }
+	#	}
+	#	modifier = {
+	#		add = 20
+	#		scope:secondary_actor = { effective_age < 35 }
+	#	}
+	#	modifier = {
+	#		add = 20
+	#		scope:secondary_actor = { effective_age < 40 }
+	#	}
+	#	
+	#	# Prostitute
+	#	modifier = {
+	#		add = 5
+	#		scope:secondary_actor = { has_trait = prostitute_1 }
+	#	}
+	#	modifier = {
+	#		add = 10
+	#		scope:secondary_actor = { has_trait = prostitute_2 }
+	#	}
+	#	modifier = {
+	#		add = 15
+	#		scope:secondary_actor = { has_trait = prostitute_3 }
+	#	}
+
+		# Struggle motive
+		modifier = {
+			desc = AI_STRUGGLE_INTENT
+			scope:recipient = {
+				is_independent_ruler = yes
+				any_character_struggle = {
+					involvement = involved
+				}
+			}
+			add = {
+				value = 0
+				if = {
+					limit = {
+						scope:recipient = {
+							any_character_struggle = {
+								phase_has_catalyst = catalyst_gift_independent_ruler
+							}
+							has_character_flag = agenda_towards_escalation
+						}
+					}
+					add = -100
+				}
+				else_if = {
+					limit = {
+						scope:recipient = {
+							any_character_struggle = {
+								phase_has_catalyst = catalyst_gift_independent_ruler
+							}
+						}
+					}
+					add = 50
+				}
+			}
+		}
+		
+		# Ugly
+		modifier = {
+			factor = 0
+			scope:secondary_actor = { has_trait = beauty_bad }
+		}
+		
+		# Gender
+		modifier = {
+			factor = 0
+			scope:recipient = { NOT = { is_attracted_to_gender_of = scope:secondary_actor } }
+		}
+		
+		# Illness
+		modifier = {
+			desc = CSE_ILLNESS_MODIFIER
+			factor = 0
+			scope:secondary_actor = {
+				OR = {
+					carn_has_sex_blocking_disease_trigger = yes
+					has_trait = great_pox
+				}
+			}
+		}
+		
+		# Incest
+		modifier = {
+			desc = CSE_INCEST_MODIFIER
+			factor = 0
+			scope:recipient = { relation_with_character_is_incestuous_in_my_faith_trigger = { CHARACTER = scope:secondary_actor } }
+		}
+		
+		# Recently Offered
+		modifier = {
+			desc = CSE_RECENTLY_OFFERED_MODIFIER
+			factor = 0
+			scope:secondary_actor = { has_character_flag = cse_recently_offered_sex_slave }
+		}
+		
+		# Drama
+		modifier = {
+			desc = cse_no_drama_trigger_negative_desc
+			factor = 0
+			scope:recipient = { NOT = { cse_no_drama_trigger_slave = { PARTNER = scope:secondary_actor } } }
+		}
+		
+	#	# Use hook
+	#	modifier = {
+	#		add = 100
+	#		scope:hook = yes
+	#		desc = SCHEME_HOOK_USED
+	#	}
+	}
+}

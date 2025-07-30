@@ -1,0 +1,148 @@
+﻿namespace = cse_sex_slave_yearly_sex_event
+
+# 0001. sex slaves approach their masters to have reduce stress
+
+cse_sex_slave_yearly_sex_event.0001 = {
+	type = character_event
+	title = cse_sex_slave_yearly_sex_event.0001.t
+	desc = cse_sex_slave_yearly_sex_event.0001.desc
+	theme = seduction
+	
+	left_portrait = {
+		character = scope:carn_sex_partner
+		animation = flirtation_left
+	}
+	
+	right_portrait = {
+		character = scope:carn_sex_player
+		animation = personality_rational
+	}
+	
+	immediate = {
+		#set_variable = {
+		#	name = cse_slave_owner_earnings_stress
+		#	value = 0
+		#}
+		scope:carn_sex_partner = {
+			#root = {
+			#	change_variable = {
+			#		name = cse_slave_owner_earnings_stress
+			#		subtract = prev.cse_sex_slave_income_value
+			#	}
+			#}
+			
+			#strip her
+			add_character_flag = {
+				flag = is_naked
+				days = 180
+			}
+		}
+	}
+	
+	option = {
+		name = cse_sex_slave_yearly_sex_event.0001.a
+		trigger = {
+			scope:carn_sex_player.effective_age >= 18
+			scope:carn_sex_partner.effective_age >= 18
+			scope:carn_sex_partner = { cse_can_have_sex_trigger = yes }
+			is_ai = no
+		}
+		
+		show_as_tooltip = {
+			scope:carn_sex_partner = {
+				add_trait_xp = {
+					trait = cse_slave
+					track = cse_sex_slave
+					value = cse_sex_slave_xp_gain_prediction_value
+				}
+			}
+			carn_had_sex_with_effect_v2 = {
+				PARTNER = scope:carn_sex_partner
+			}
+		}
+		
+		cse_sex_slave_yearly_sex_event_effect = yes
+		
+		carn_sex_scene_effect_v2 = {
+			PARTNER = scope:carn_sex_partner
+		}
+	}
+	
+	option = {
+		name = cse_sex_slave_yearly_sex_event.0001.b
+		trigger = {
+			scope:carn_sex_player.effective_age >= 16
+			scope:carn_sex_partner.effective_age >= 16
+			scope:carn_sex_partner = { cse_can_have_sex_trigger = yes }
+			is_ai = no
+		}
+		
+		show_as_tooltip = {
+			scope:carn_sex_partner = {
+				add_trait_xp = {
+					trait = cse_slave
+					track = cse_sex_slave
+					value = cse_sex_slave_xp_gain_prediction_value
+				}
+			}
+		}
+		
+		cse_sex_slave_yearly_sex_event_effect = yes
+		
+		carn_had_sex_with_effect_v2 = {
+			PARTNER = scope:carn_sex_partner
+		}
+	}
+	
+	option = {
+		name = cse_sex_slave_yearly_sex_event.0001.c
+		
+		reverse_add_opinion = {
+			target = scope:carn_sex_partner
+			modifier = cse_pleasant_night_spent_opinion
+		}
+		
+		show_as_tooltip = {
+			scope:carn_sex_partner = {
+				add_trait_xp = {
+					trait = cse_slave
+					track = cse_sex_slave
+					value = cse_sex_slave_xp_gain_prediction_value
+				}
+			}
+		}
+		hidden_effect = {
+			scope:carn_sex_partner = {
+				add_trait_xp = {
+					trait = cse_slave
+					track = cse_sex_slave
+					value = cse_sex_slave_xp_gain_value
+				}
+			}
+		}
+		
+		#add_stress = var:cse_slave_owner_earnings_stress
+		scope:carn_sex_partner = {
+			root = {
+				add_stress = {
+					value = 0
+					subtract = prev.cse_sex_slave_income_value
+				}
+			}
+		}
+	}
+	
+#	option = {
+#		name = cse_sex_slave_yearly_sex_event.0001.d
+#	}
+	
+	after = {
+		scope:carn_sex_player = {
+			remove_character_flag = is_naked
+		}
+		scope:carn_sex_partner = {
+			remove_character_flag = is_naked
+		}
+	}
+}
+

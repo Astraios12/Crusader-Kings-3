@@ -1,0 +1,69 @@
+﻿#################### SLAVE PROSTITUTE ############################################################
+
+cse_forced_me_into_slave_prostitution_opinion = {
+	opinion = -25
+	years = 15
+	decaying = yes
+}
+
+cse_forced_me_to_end_my_celibacy_opinion = {
+	opinion = -80
+	years = 40
+	decaying = yes
+}
+
+#################### LABOUR SLAVE ############################################################
+
+cse_forced_me_into_forced_labour_opinion = {
+	opinion = -20
+	years = 15
+	decaying = yes
+}
+
+#################### MILITARY SLAVE ############################################################
+
+cse_forced_me_into_slave_military_opinion = {
+	opinion = -15
+	years = 15
+	decaying = yes
+}
+
+#################### SEX SLAVE ############################################################
+
+cse_forced_me_into_sex_slavery_opinion = {
+	opinion = -25
+	years = 15
+	decaying = yes
+}
+
+cse_forced_me_to_have_sex_opinion = {
+	opinion = -15
+	years = 15
+	decaying = yes
+	stacking = yes 
+}
+
+cse_pleasant_night_spent_opinion = {
+	opinion = 5
+	years = 1
+	#decaying = yes
+	stacking = yes 
+}
+
+cse_adopted_my_child_opinion = {
+	opinion = 20
+	decaying = yes
+	years = 20
+}
+
+cse_adopted_me_opinion = {
+	opinion = 25
+	decaying = yes
+	years = 50
+}
+
+cse_revealed_father_opinion = {
+	opinion = 5
+	decaying = yes
+	years = 1
+}

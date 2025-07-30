@@ -1,0 +1,79 @@
+﻿l_german:
+
+ #################### SLAVE ############################################################
+ 
+ cse_abdicate_interaction: "Abdanken"
+ cse_abdicate_interaction_desc: "Es ist an der Zeit, dass Euer Erbe Euren Platz einnimmt - mit seinen Eltern in beratender Funktion."
+ cse_abdicate_interaction_claims_tooltip: "Alle [claims|E] gegen eure [titles|E] werden [pressed|E]."
+ cse_abdicate_interaction_slaves_tooltip: "Sklaven und Kurtisanen werden auf den Erben übertragen."
+ cse_abdicate_as_house_head_loc: "Abdanken als [house_head|E] und [dynast|E]"
+ cse_get_refugium_loc: "Refugium (Benötigt Burg-[holding|E] - Kein [county_capital|E])"
+ cse_leave_children_loc: "Kinder bleiben mindestens 3 Jahre am Hof des Erben"
+ cse_end_courtesan_lover_relationship_loc: "Entferne [cse_courtesans|E] als [lovers|E] - Betrifft keine [soulmates|E]"
+
+ cse_change_slave_assignment_interaction: "Ändere Sklavenzuordnung"
+ cse_change_slave_assignment_interaction_desc: "Ändert die Aufgabe, für die [recipient.GetShortUINameNoTooltip] an eurem Hof eingeteilt ist."
+ cse_remove_slave_assignment_loc: "Zuordnung aufheben"
+
+# cse_assign_slave_prostitute_interaction: "Sklaven-Prostitution starten"
+# cse_assign_slave_prostitute_interaction_desc: "Zwingt [recipient.GetShortUINameNoTooltip] dazu, als [prostitute|E] zu arbeiten und dabei [gold|E] für euch zu verdienen."
+# 
+# cse_remove_slave_prostitute_interaction: "Sklaven-Prostitution stoppen"
+# cse_remove_slave_prostitute_interaction_desc: "Befreit [recipient.GetShortUINameNoTooltip] davon, als [prostitute|E] zu arbeiten."
+# 
+# cse_assign_labour_slave_interaction: "Zwangsarbeit verrichten lassen"
+# cse_assign_labour_slave_interaction_desc: "Zwingt [recipient.GetShortUINameNoTooltip] dazu, als [cse_labour_slave|E] zu arbeiten und dabei [gold|E] für euch zu verdienen."
+# 
+# cse_remove_labour_slave_interaction: "Von Zwangsarbeit befreien"
+# cse_remove_labour_slave_interaction_desc: "Befreit [recipient.GetShortUINameNoTooltip] davon, als [cse_labour_slave|E] zu arbeiten."
+#
+# cse_assign_military_slave_interaction: "Als Militärsklave ausbilden"
+# cse_assign_military_slave_interaction_desc: "Zwingt [recipient.GetShortUINameNoTooltip] dazu, euch als [cse_military_slave|E] zu dienen, was euch [prestige|E] einbringt."
+# 
+# cse_remove_military_slave_interaction: "Militärsklave entlassen"
+# cse_remove_military_slave_interaction_desc: "Befreit [recipient.GetShortUINameNoTooltip] davon, euch als [cse_military_slave|E] zu dienen." 
+#
+# cse_assign_sex_slave_interaction: "Als Sklaven-Konkubine einstellen"
+# cse_assign_sex_slave_interaction_desc: "Zwingt [recipient.GetShortUINameNoTooltip] dazu, euch als [cse_sex_slave|E] zu dienen."
+# 
+# cse_remove_sex_slave_interaction: "Nicht mehr als Sklaven-Konkubine ansehen"
+# cse_remove_sex_slave_interaction_desc: "Befreit [recipient.GetShortUINameNoTooltip] davon, euch als [cse_sex_slave|E] zu dienen."
+ 
+ cse_sex_slave_yearly_sex_event_effect_not_attracted_to_warning_tt: "#X Ihr fühlt euch nicht von [carn_sex_target.GetShortUINameNoTooltip] angezogen#!"
+ 
+ cse_adopt_interaction: "Adoptiere Kind"
+ cse_adopt_interaction_desc: "Adoptiert [recipient.GetShortUINameNoTooltip] in Eure Familie, da [recipient.GetSheHe] Euer Nachkomme ist."
+ 
+ cse_reveal_interaction: "Offenbare Vater"
+ cse_reveal_interaction_desc: "Beauftragt Eure Agenten, den Vater von [recipient.GetShortUINameNoTooltip] zu offenbaren."
+  
+ cse_offer_sex_slave_interaction: "Biete Sklaven-Konkubine an"
+ cse_offer_sex_slave_interaction_extra_icon: "$hook_extra_icon$"
+ cse_offer_sex_slave_interaction_desc: "Lassen Sie das Ziel Sex mit einer Ihrer Sklaven-Konkubinen haben, um die Meinung zu steigern."
+ actor_secondary_cse_offer_sex_slave_interaction: "Sklaven-Konkubine"
+ CSE_SELECT_YOUR_SEX_SLAVE: "#I Wählt einen [cse_sex_slaves|E] von Eurem [court|E] aus#!"
+ CSE_ATTRACTION_MODIFIER: "$VALUE|=+0$ durch [attraction|E]"
+ CSE_EFFECTIVE_AGE_MODIFIER: "$VALUE|=+0$ durch Alter"
+ CSE_RECENTLY_OFFERED_MODIFIER: "@warning_icon!#X Wurde erst kürzlich angeboten!#!"
+ CSE_INCEST_MODIFIER: "@warning_icon!#X Beziehung wäre inzestuös!#!"
+ CSE_ILLNESS_MODIFIER: "@warning_icon!#X Charakter hat Krankheiten!#!"
+ 
+ cse_slave_report_interaction: "Sklaverei - Finanzbericht"
+ cse_slave_report_interaction_desc: "Zeigt eine Zusammenfassung der Einkünfte eurer Sklaven an."
+ cse_slave_report_interaction_sex_slave_stress_reduction_value: "Verliert @stress_loss_icon![Scope.ScriptValue('cse_sex_slave_income_report_value')|0V] [stress|E] (Grundwert)"
+ 
+ #################### COURT ############################################################
+ 
+ cse_make_my_courtesan_interaction: "Zu meiner Kurtisane machen"
+ cse_make_my_courtesan_interaction_extra_icon: "$hook_extra_icon$"
+ cse_make_my_courtesan_interaction_desc: "Zu meiner [cse_courtesan|E] machen"
+ cse_no_maintenance_loc: "Normale Bezahlung"
+ cse_low_maintenance_loc: "Doppelte Bezahlung"
+ cse_medium_maintenance_loc: "Dreifache Bezahlung"
+ cse_high_maintenance_loc: "Vierfache Bezahlung"
+ cse_gain_courtesan_loc: "[recipient.GetShortUIName|U] wird die [cse_courtesan|E] von [actor.GetShortUIName]"
+ CSE_MAINTENANCE_MODIFIER: "$VALUE|=+0$ durch [gold|E]"
+ CSE_SOULMATE_MODIFIER: "$VALUE|=+0$ durch [soulmates|E] von [recipient.GetShortUIName|U]"
+ 
+ cse_dismiss_courtesan_interaction: "Kurtisane entlassen"
+ cse_dismiss_courtesan_interaction_desc: "[cse_courtesan|E] entlassen"

@@ -1,0 +1,41 @@
+﻿l_russian:
+
+  carn_doctrine_same_slavery_name:0 "Раб Праведного Вероисповидания"
+  carn_doctrine_same_slavery_crime_name:0 "Преступное"
+  carn_doctrine_same_slavery_crime_desc:0 "Порабощение члена [ROOT.Faith.GetReligion.GetAdjectiveNoTooltip] веры - большой грех, ибо так поступать - значит объявлять себя более высоким господином, чем [ROOT.Faith.PantheonTerm]".
+  carn_doctrine_same_slavery_shunned_name:0 "Отверженные"
+  carn_doctrine_same_slavery_shunned_desc:0 "Хотя наши убеждения отличаются, все [ROOT.Faith.GetReligion.GetAdjectiveNoTooltip] верующие - братья и сестры. Глубоко несправедливо, когда к одному из нам подобным относятся как к нелюдям".
+  carn_doctrine_same_slavery_accepted_name:0 "Принятие"
+  carn_doctrine_same_slavery_accepted_desc:0 "Рабство - справедливое и подходящее наказание для [ROOT.Faith.GetAdherentNamePluralNoTooltip], которые ошибаются в своей вере. Пожизненное рабство должно быть их наказанием за их преступления".
+  doctrine_parameter_same_slavery_illegal:0 "Владение [slaves|E] [faith_righteous|E] или [faith_astray|E] [faiths|E] является [crime|E]".
+  doctrine_parameter_same_slavery_shunned:0 "Владение [slaves|E] [faith_righteous|E] или [faith_astray|E] [faiths|E] является [shunned|E]".
+  doctrine_parameter_same_slavery_accepted:0 "Владение [slaves|E] [faith_righteous|E] или [faith_astray|E] [faiths|E] полностью принято"
+
+  carn_doctrine_other_slavery_name:0 "Раб Враждебного Вероисповидания"
+  carn_doctrine_other_slavery_crime_name:0 "Преступное"
+  carn_doctrine_other_slavery_crime_desc:0 "Все люди обладают достоинством, независимо от их вероисповедания. Порабощение человека только потому, что он не верит в [ROOT.Faith.PantheonTerm], является преступлением."
+  carn_doctrine_other_slavery_shunned_name:0 "Отверженные"
+  carn_doctrine_other_slavery_shunned_desc:0 "Жестоко и отвратительно претендовать на жизнь неверного, даже если он ошибается в своих убеждениях".
+  carn_doctrine_other_slavery_accepted_name:0 "Принятие"
+  carn_doctrine_other_slavery_accepted_desc:0 "Все [ROOT.Faith.GetAdherentNamePluralNoTooltip] имеют право спасать тех, кто не принял истинную веру, даже от самих себя".
+  doctrine_parameter_other_slavery_illegal:0 "Владение [slaves|E] [faith_hostile|E] или [faith_evil|E] [faiths|E] является [crime|E]".
+  doctrine_parameter_other_slavery_shunned:0 "Владение [slaves|E] [faith_hostile|E] или [faith_evil|E] [faiths|E] является [shunned|E]".
+  doctrine_parameter_other_slavery_accepted:0 "Владение [slaves|E] [faith_hostile|E] или [faith_evil|E] [faiths|E] полностью принимается".
+
+  carn_doctrine_prostitution_name:0 "Проституция"
+  carn_doctrine_prostitution_crime_name:0 "Преступное"
+  carn_doctrine_prostitution_crime_desc:0 "Покупать и продавать секс - значит портить саму основу нашего общества. Те, кто увековечивает это зло, должны быть наказаны за свои преступления".
+  carn_doctrine_prostitution_shunned_name:0 "Отверженные"
+  carn_doctrine_prostitution_shunned_desc:0 "Хотя проституткам стыдно и унизительно продавать свое тело, в их поведении нет ничего такого, что по своей сути противоречило бы [ROOT.Faith.PantheonTerm]".
+  carn_doctrine_prostitution_accepted_name:0 "Принятие"
+  carn_doctrine_prostitution_accepted_desc:0 "Секс - естественная часть нашего общества, и торговля сексом за деньги - такой же законный бизнес, как и любой другой."
+  doctrine_parameter_carn_prostitution_illegal:0 "Персонажи с любой [prostitute|E] [trait|E] являются [crime|E]".
+  doctrine_parameter_carn_prostitution_shunned:0 "Персонажи с любой [prostitute|E] [trait|E] являются [shunned|E]".
+  doctrine_parameter_carn_prostitution_accepted:0 "Персонажи с любой [prostitute|E] [trait|E] полностью приняты".
+
+  doctrine_parameter_naked_females_active:0 "Женщины, следующие этой религии, обнажены"
+  doctrine_parameter_naked_males_active:0 "Мужчины, следующие этой религии, обнажены"
+
+  carn_dummy_doctrine_name:0 ""
+  carn_we_need_this_to_define_parameters_otherwise_error_log_complains_name:0 ""
+  carn_we_need_this_to_define_parameters_otherwise_error_log_complains_desc:0 ""

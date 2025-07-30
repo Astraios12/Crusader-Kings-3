@@ -1,0 +1,151 @@
+﻿#################### CAN WORK / CAN HAVE SEX TRIGGER ############################################################
+
+cse_can_work_trigger = {
+	is_busy_in_events_localised = yes
+	trigger_if = {
+		limit = { cse_is_working_as_slave_prostitute_trigger = yes }
+		effective_age >= cse_slave_prostitute_age_start_value
+	}
+	trigger_else_if = {
+		limit = { cse_is_working_as_labour_slave_trigger = yes }
+		effective_age >= cse_labour_slave_age_start_value
+	}
+	trigger_else_if = {
+		limit = { cse_is_working_as_military_slave_trigger = yes }
+		effective_age >= cse_military_slave_age_start_value
+	}
+	trigger_else_if = {
+		limit = { cse_is_working_as_sex_slave_trigger = yes }
+		effective_age >= cse_sex_slave_age_start_value
+	}
+	trigger_else_if = {
+		limit = { cse_is_working_as_courtesan_trigger = yes }
+		effective_age >= cse_courtesan_age_start_value
+	}
+	trigger_else = {
+		is_adult = yes
+	}
+	is_alive = yes
+	#is_in_an_activity = no
+	is_imprisoned = no
+	#has_wounds_trigger = no
+	NOT = { has_trait = incapable }
+}
+
+# Only used for cse_change_slave_assignment_interaction
+cse_can_work_ignoring_age_trigger = {
+	is_busy_in_events_localised = yes
+	is_alive = yes
+	#is_in_an_activity = no
+	is_imprisoned = no
+	#has_wounds_trigger = no
+	NOT = { has_trait = incapable }
+}
+
+cse_can_have_sex_trigger = {
+	OR = {
+		custom_description = {
+			text = "carn_can_always_have_sex"
+			OR = {
+				has_trait_with_flag = carn_can_always_have_sex
+				has_character_flag = carn_can_always_have_sex
+			}
+		}
+		AND = {
+			custom_description = {
+				text = "carn_is_busy_in_events_localised"
+            	is_busy_in_events_localised = yes
+			}
+			trigger_if = {
+				limit = { cse_is_working_as_slave_prostitute_trigger = yes }
+				effective_age >= cse_slave_prostitute_age_start_value
+			}
+			trigger_else_if = {
+				limit = { cse_is_working_as_sex_slave_trigger = yes }
+				effective_age >= cse_sex_slave_age_start_value
+			}
+			trigger_else_if = {
+				limit = { cse_is_working_as_courtesan_trigger = yes }
+				effective_age >= cse_courtesan_age_start_value
+			}
+			trigger_else = {
+				is_adult = yes
+			}
+			is_alive = yes
+			#is_in_an_activity = no
+			is_imprisoned = no
+			has_wounds_trigger = no
+			carn_has_sex_blocking_disease_trigger = no
+			NOR = {
+				has_trait = incapable
+				has_trait = celibate
+				custom_description = {
+					text = "carn_cannot_have_sex"
+					has_trait_with_flag = carn_cannot_have_sex
+					has_character_flag = carn_cannot_have_sex
+				}
+			}
+		}
+	}
+}
+
+# Only used for cse_change_slave_assignment_interaction and cse_make_my_courtesan_interaction
+cse_can_have_sex_ignoring_age_trigger = {
+	OR = {
+		custom_description = {
+			text = "carn_can_always_have_sex"
+			OR = {
+				has_trait_with_flag = carn_can_always_have_sex
+				has_character_flag = carn_can_always_have_sex
+			}
+		}
+		AND = {
+			custom_description = {
+				text = "carn_is_busy_in_events_localised"
+            	is_busy_in_events_localised = yes
+			}
+			is_alive = yes
+			#is_in_an_activity = no
+			is_imprisoned = no
+			has_wounds_trigger = no
+			carn_has_sex_blocking_disease_trigger = no
+			NOR = {
+				has_trait = incapable
+				#has_trait = celibate
+				custom_description = {
+					text = "carn_cannot_have_sex"
+					has_trait_with_flag = carn_cannot_have_sex
+					has_character_flag = carn_cannot_have_sex
+				}
+			}
+		}
+	}
+}
+
+#################### SEX / PREGNANCY TRIGGERS ############################################################
+
+#cse_vassal_and_liege_had_sex_trigger = {
+#	OR = {
+#		has_character_flag = cse_had_sex_as_vassal
+#		has_character_flag = cse_had_sex_as_liege
+#	}
+#}
+#
+#cse_vassal_or_liege_pregnant_trigger = {
+#	OR = {
+#		has_character_flag = cse_pregnant_as_vassal
+#		has_character_flag = cse_pregnant_as_liege
+#	}
+#}
+#
+#cse_vassal_pregnant_trigger = {
+#	OR = {
+#		has_character_flag = cse_pregnant_as_vassal
+#	}
+#}
+#
+#cse_liege_pregnant_trigger = {
+#	OR = {
+#		has_character_flag = cse_pregnant_as_liege
+#	}
+#}

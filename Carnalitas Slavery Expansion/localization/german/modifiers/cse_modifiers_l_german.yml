@@ -1,0 +1,50 @@
+﻿l_german:
+
+ cse_slave_prostitute_modifier: "Sklaven-Prostituierte"
+ cse_slave_prostitute_modifier_desc: "Dieser Charakter ist eine Sklaven-Prostituierte."
+ 
+ cse_labour_slave_modifier: "Arbeitssklave"
+ cse_labour_slave_modifier_desc: "Dieser Charakter verrichtet Zwangsarbeiten als Arbeitssklave."
+ 
+ cse_labour_slave_health_modifier: "Arbeitssklave - Gesundheitsmalus"
+ cse_labour_slave_health_modifier_desc: "Je weniger Fähigkeiten der Arbeitssklave hat, desto mehr muss er physische Arbeiten verrichten."
+ 
+ cse_military_slave_modifier: "Militärsklave"
+ cse_military_slave_modifier_desc: "Dieser Charakter dient als Militärsklave."
+ 
+ cse_military_slave_health_modifier: "Militärsklave - Gesundheitsmalus"
+ cse_military_slave_health_modifier_desc: "Das harte Training eines Militärsklaven hat seinen Preis."
+ 
+ cse_sex_slave_modifier: "Sklaven-Konkubine"
+ cse_sex_slave_modifier_desc: "Dieser Charakter verrichtet Liebesdienste als Sklaven-Konkubine."
+ 
+ #################### COURT ############################################################
+ 
+ cse_courtesan_modifier: "Kurtisane"
+ cse_courtesan_modifier_desc: "Dieser Charakter unterstützt die eigenen Gönner als Kurtisane."
+ 
+ cse_courtesan_spouse_modifier: "$game_concept_prestige$-Bonus durch Gönner des Ehepartners"
+ cse_courtesan_spouse_modifier_desc: "Durch die Tätigkeit des Ehepartners als Kurtisane erlangt dieser Charakter Prestige."
+ 
+ cse_courtesan_owner_diplomacy_modifier: "$game_concept_diplomacy$-Bonus durch Eure Kurtisanen"
+ cse_courtesan_owner_diplomacy_modifier_desc: "Durch die Unterstützung der eigenen Kurtisanen werden die Fähigkeiten dieses Charakters verbessert."
+ 
+ cse_courtesan_owner_intrigue_modifier: "$game_concept_intrigue$-Bonus durch Eure Kurtisanen"
+ cse_courtesan_owner_intrigue_modifier_desc: "Durch die Unterstützung der eigenen Kurtisanen werden die Fähigkeiten dieses Charakters verbessert."
+ 
+ cse_courtesan_owner_learning_modifier: "$game_concept_learning$-Bonus durch Eure Kurtisanen"
+ cse_courtesan_owner_learning_modifier_desc: "Durch die Unterstützung der eigenen Kurtisanen werden die Fähigkeiten dieses Charakters verbessert."
+ 
+ cse_courtesan_owner_expenses_modifier: "Unterhalt für Eure Kurtisanen"
+ cse_courtesan_owner_expenses_modifier_desc: "Die Unterhaltung von Kurtisanen zieht am Einkommen dieses Charakters."
+ 
+ cse_courtesan_owner_spouse_modifier: "$game_concept_opinion$ wegen Euren Kurtisanen"
+ cse_courtesan_owner_spouse_modifier_desc: "Die Unterhaltung von Kurtisanen sorgt für Eifersucht bei den Ehepartnern dieses Charakters."
+ 
+ cse_courtesan_owner_base_modifier: "Minimum"
+ 
+ cse_scandalous_royal_mistress_modifier: "Skandal um Mätresse"
+ cse_scandalous_royal_mistress_modifier_desc: "Dieser Charakter ist oder war in einem Skandal um eine Mätresse involviert."
+ 
+ cse_is_scandalous_royal_mistress_modifier: "Skandallöse Mätresse"
+ cse_is_scandalous_royal_mistress_modifier_desc: "Dieser Charakter ist oder war eine skandallöse Mätresse."

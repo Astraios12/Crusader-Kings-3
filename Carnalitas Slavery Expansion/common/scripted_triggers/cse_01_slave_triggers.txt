@@ -1,0 +1,203 @@
+﻿#################### SLAVE PROSTITUTE ############################################################
+
+cse_is_working_as_slave_prostitute_trigger = {
+	has_character_modifier = cse_slave_prostitute_modifier
+	effective_age >= cse_slave_prostitute_age_start_value
+}
+
+cse_is_assigned_as_slave_prostitute_trigger = {
+	has_character_modifier = cse_slave_prostitute_modifier
+}
+
+cse_is_slave_prostitute_trigger = {
+	OR = {
+		has_character_modifier = cse_slave_prostitute_modifier
+		#has_character_flag = cse_is_slave_prostitute
+		#has_trait_with_flag = cse_is_slave_prostitute
+	}
+	effective_age >= cse_slave_prostitute_age_start_value
+}
+
+cse_was_slave_prostitute_trigger = {
+	has_character_flag = cse_was_slave_prostitute
+}
+
+cse_can_be_slave_prostitute_trigger = {
+	#is_adult = yes
+	#effective_age >= cse_slave_prostitute_age_start_value
+	OR = {
+		has_game_rule = carn_prostitution_content_any_gender
+		AND = {
+			is_male = yes
+			has_game_rule = carn_prostitution_content_male_only
+		}
+		AND = {
+			is_female = yes
+			has_game_rule = carn_prostitution_content_female_only
+		}
+	}
+	OR = {
+		carn_legal_prostitution_trigger = yes
+		trigger_if = {
+			limit = {
+				any_relation = {
+					type = slave_owner
+					is_alive = yes
+				}
+			}
+			any_relation = {
+				type = slave_owner
+				carn_legal_prostitution_trigger = yes
+			}
+		}
+	}
+	NOR = {
+		has_character_flag = carn_cannot_be_prostitute
+		has_trait_with_flag = carn_cannot_be_prostitute
+	}
+}
+
+cse_accepts_prostitution_trigger = {
+	OR = {
+#		faith = { has_doctrine = carn_doctrine_prostitution_accepted }
+		faith = { has_doctrine_parameter = carn_slave_prostitution }
+		culture = { has_cultural_parameter = carn_prostitution_accepted }
+	}
+}
+
+
+#################### LABOUR SLAVE ############################################################
+
+cse_is_working_as_labour_slave_trigger = {
+	has_character_modifier = cse_labour_slave_modifier
+	effective_age >= cse_labour_slave_age_start_value
+}
+
+cse_is_assigned_as_labour_slave_trigger = {
+	has_character_modifier = cse_labour_slave_modifier
+}
+
+cse_is_labour_slave_trigger = {
+	OR = {
+		has_character_modifier = cse_labour_slave_modifier
+		#has_character_flag = cse_is_labour_slave
+		#has_trait_with_flag = cse_is_labour_slave
+	}
+	effective_age >= cse_labour_slave_age_start_value
+}
+
+cse_was_labour_slave_trigger = {
+	has_character_flag = cse_was_labour_slave
+}
+
+#################### MILITARY SLAVE ############################################################
+
+cse_is_working_as_military_slave_trigger = {
+	has_character_modifier = cse_military_slave_modifier
+	effective_age >= cse_military_slave_age_start_value
+}
+
+cse_is_assigned_as_military_slave_trigger = {
+	has_character_modifier = cse_military_slave_modifier
+}
+
+cse_is_military_slave_trigger = {
+	OR = {
+		has_character_modifier = cse_military_slave_modifier
+		#has_character_flag = cse_is_military_slave
+		#has_trait_with_flag = cse_is_military_slave
+	}
+	effective_age >= cse_military_slave_age_start_value
+}
+
+cse_was_military_slave_trigger = {
+	has_character_flag = cse_was_military_slave
+}
+
+cse_is_slave_recruit_trigger = {
+	has_character_modifier = cse_military_slave_modifier
+	is_adult = no
+}
+
+cse_is_slave_soldier_trigger = {
+	has_character_modifier = cse_military_slave_modifier
+	has_trait_xp = {
+		trait = cse_slave
+		track = cse_military_slave
+		value < 60
+	}
+	is_adult = yes
+}
+
+cse_is_slave_commander_trigger = {
+	has_character_modifier = cse_military_slave_modifier
+	has_trait_xp = {
+		trait = cse_slave
+		track = cse_military_slave
+		value >= 60
+	}
+	is_adult = yes
+}
+
+cse_is_no_military_slave_trigger = {
+	has_trait = slave
+	NOT = { cse_is_working_as_military_slave_trigger = yes }
+}
+
+#################### SEX SLAVE ############################################################
+
+cse_is_working_as_sex_slave_trigger = {
+	has_character_modifier = cse_sex_slave_modifier
+	effective_age >= cse_sex_slave_age_start_value
+}
+
+cse_is_assigned_as_sex_slave_trigger = {
+	has_character_modifier = cse_sex_slave_modifier
+}
+
+cse_is_sex_slave_trigger = {
+	OR = {
+		has_character_modifier = cse_sex_slave_modifier
+		#has_character_flag = cse_is_sex_slave
+		#has_trait_with_flag = cse_is_sex_slave
+	}
+	effective_age >= cse_sex_slave_age_start_value
+}
+
+cse_was_sex_slave_trigger = {
+	has_character_flag = cse_was_sex_slave
+}
+
+#################### SLAVE REPORT AND ASSIGN INTERACTION TRIGGERS ############################################################
+
+cse_slave_piety_loss_through_prostitution_trigger = {
+	scope:actor.faith = {
+		NOT = { has_doctrine_parameter = carn_slave_prostitution }
+	}
+}
+
+cse_slave_piety_loss_through_faith_trigger = {
+	OR = {
+		scope:actor.faith = {
+			NOT = { has_doctrine = carn_doctrine_same_slavery_accepted }
+			faith_hostility_level = {
+				target = prev.faith
+				value < faith_hostile_level
+			}
+		}
+		scope:actor.faith = {
+			NOT = { has_doctrine = carn_doctrine_other_slavery_accepted }
+			faith_hostility_level = {
+				target = prev.faith
+				value >= faith_hostile_level
+			}
+		}
+	}
+}
+
+cse_slave_piety_on_opinion_trigger = {
+	opinion = {
+		target = scope:actor
+		value >= cse_slave_piety_on_opinion_threshold_value
+	}
+}

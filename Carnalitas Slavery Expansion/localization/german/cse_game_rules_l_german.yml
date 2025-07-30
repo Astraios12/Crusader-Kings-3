@@ -1,0 +1,10 @@
+﻿l_german:
+
+ setting_carn_prostitution_default_religious_doctrine_slave_prostitution: "#high Sklaven-Prostitution#!"
+ setting_carn_prostitution_default_religious_doctrine_slave_prostitution_desc: "Am Anfang des Spiels ist Sklaven-Prostitution standardmäßig akzeptiert."
+ 
+ rule_cse_no_drama_tooltip_visibility: "CSE: Drama Tooltip Sichtbarkeit"
+ setting_cse_no_drama_tooltip_visible: "Tooltip sichtbar"
+ setting_cse_no_drama_tooltip_visible_desc: "Du wirst bei Events und Interaktionen einen Tooltip sehen, der dir anzeigt, ob der Sex mit einem Charakter Konsequenzen haben wird."
+ setting_cse_no_drama_tooltip_hidden: "Tooltip versteckt"
+ setting_cse_no_drama_tooltip_hidden_desc: "Du wirst keinen Tooltip sehen und musst selbst herausfinden, ob der Sex mit einem Charakter Konsequenzen haben wird."

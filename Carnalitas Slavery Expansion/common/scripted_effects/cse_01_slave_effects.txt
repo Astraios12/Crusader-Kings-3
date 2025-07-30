@@ -1,0 +1,317 @@
+﻿#################### CLEAR ALL SLAVE MODIFIERS ############################################################
+
+cse_clear_all_slave_modifiers_effect = {
+	hidden_effect = {
+		if = {
+			limit = {
+				cse_is_assigned_as_slave_prostitute_trigger = yes
+			}
+			cse_stop_working_as_slave_prostitute_effect = yes
+		}
+		if = {
+			limit = {
+				cse_is_assigned_as_labour_slave_trigger = yes
+			}
+			cse_stop_working_as_labour_slave_effect = yes
+		} 
+		if = {
+			limit = {
+				cse_is_assigned_as_military_slave_trigger = yes
+			}
+			cse_stop_working_as_military_slave_effect = yes
+		} 
+		if = {
+			limit = {
+				cse_is_assigned_as_sex_slave_trigger = yes
+			}
+			cse_stop_working_as_sex_slave_effect = yes
+		}
+	}
+}
+
+#################### SLAVE PROSTITUTE ############################################################
+
+cse_start_working_as_slave_prostitute_effect = {
+	cse_clear_all_slave_modifiers_effect = yes
+	if = {
+		limit = {
+			NOT = { has_trait = cse_slave }
+		}
+		add_trait = cse_slave
+	}
+	add_character_modifier = {
+		modifier = cse_slave_prostitute_modifier
+	}
+	trigger_event = { on_action = cse_started_working_as_slave_prostitute_on_action }
+}
+
+cse_stop_working_as_slave_prostitute_effect = {
+	if = {
+		limit = { effective_age >= cse_slave_prostitute_age_start_value }
+		add_character_flag = cse_was_slave_prostitute
+	}
+	remove_character_modifier = cse_slave_prostitute_modifier
+	trigger_event = { on_action = cse_stopped_working_as_slave_prostitute_on_action }
+}
+
+#################### LABOUR SLAVE ############################################################
+
+cse_start_working_as_labour_slave_effect = {
+	cse_clear_all_slave_modifiers_effect = yes
+	if = {
+		limit = {
+			NOT = { has_trait = cse_slave }
+		}
+		add_trait = cse_slave
+	}
+	add_character_modifier = {
+		modifier = cse_labour_slave_modifier
+	}
+	#hidden_effect = {
+		cse_update_health_penalty_for_labour_slave_effect = yes
+	#}
+	trigger_event = { on_action = cse_started_working_as_labour_slave_on_action }
+}
+
+cse_update_health_penalty_for_labour_slave_effect = {
+	if = {
+		limit = { effective_age >= cse_labour_slave_age_start_value }
+		hidden_effect = {
+			remove_all_character_modifier_instances = cse_labour_slave_health_modifier
+		}
+		add_character_modifier = {
+			modifier = cse_labour_slave_health_modifier
+		}
+		if = {
+			limit = {
+				cse_labour_slave_health_value < -0.25
+			}
+			add_character_modifier = {
+				modifier = cse_labour_slave_health_modifier
+			}
+		}
+		if = {
+			limit = {
+				cse_labour_slave_health_value < -0.50
+			}
+			add_character_modifier = {
+				modifier = cse_labour_slave_health_modifier
+			}
+		}
+		if = {
+			limit = {
+				cse_labour_slave_health_value < -0.75
+			}
+			add_character_modifier = {
+				modifier = cse_labour_slave_health_modifier
+			}
+		}
+		if = {
+			limit = {
+				cse_labour_slave_health_value < -1.00
+			}
+			add_character_modifier = {
+				modifier = cse_labour_slave_health_modifier
+			}
+		}
+		if = {
+			limit = {
+				cse_labour_slave_health_value < -1.25
+			}
+			add_character_modifier = {
+				modifier = cse_labour_slave_health_modifier
+			}
+		}
+		if = {
+			limit = {
+				cse_labour_slave_health_value < -1.50
+			}
+			add_character_modifier = {
+				modifier = cse_labour_slave_health_modifier
+			}
+		}
+		if = {
+			limit = {
+				cse_labour_slave_health_value < -1.75
+			}
+			add_character_modifier = {
+				modifier = cse_labour_slave_health_modifier
+			}
+		}
+		if = {
+			limit = {
+				cse_labour_slave_health_value < -2.00
+			}
+			add_character_modifier = {
+				modifier = cse_labour_slave_health_modifier
+			}
+		}
+		if = {
+			limit = {
+				cse_labour_slave_health_value < -2.25
+			}
+			add_character_modifier = {
+				modifier = cse_labour_slave_health_modifier
+			}
+		}
+		if = {
+			limit = {
+				cse_labour_slave_health_value < -2.50
+			}
+			add_character_modifier = {
+				modifier = cse_labour_slave_health_modifier
+			}
+		}
+		if = {
+			limit = {
+				cse_labour_slave_health_value < -2.75
+			}
+			add_character_modifier = {
+				modifier = cse_labour_slave_health_modifier
+			}
+		}
+	}
+}
+
+cse_stop_working_as_labour_slave_effect = {
+	if = {
+		limit = { effective_age >= cse_labour_slave_age_start_value }
+		add_character_flag = cse_was_labour_slave
+	}
+	remove_character_modifier = cse_labour_slave_modifier
+	remove_all_character_modifier_instances = cse_labour_slave_health_modifier
+	trigger_event = { on_action = cse_stopped_working_as_labour_slave_on_action }
+}
+
+#################### MILITARY SLAVE ############################################################
+
+cse_start_working_as_military_slave_effect = {
+	cse_clear_all_slave_modifiers_effect = yes
+	if = {
+		limit = {
+			NOT = { has_trait = cse_slave }
+		}
+		add_trait = cse_slave
+	}
+	add_character_modifier = {
+		modifier = cse_military_slave_modifier
+	}
+	cse_update_health_penalty_for_military_slave_effect = yes
+	trigger_event = { on_action = cse_started_working_as_military_slave_on_action }
+}
+
+cse_update_health_penalty_for_military_slave_effect = {
+	if = {
+		limit = {
+			effective_age >= cse_military_slave_age_start_value
+			NOT = { has_character_modifier = cse_military_slave_health_modifier }
+		}
+		add_character_modifier = {
+			modifier = cse_military_slave_health_modifier
+		}
+	}
+}
+
+cse_stop_working_as_military_slave_effect = {
+	if = {
+		limit = { effective_age >= cse_military_slave_age_start_value }
+		add_character_flag = cse_was_military_slave
+	}
+	remove_character_modifier = cse_military_slave_modifier
+	remove_all_character_modifier_instances = cse_military_slave_health_modifier
+	trigger_event = { on_action = cse_stopped_working_as_military_slave_on_action }
+}
+
+#################### SEX SLAVE ############################################################
+
+cse_start_working_as_sex_slave_effect = {
+	cse_clear_all_slave_modifiers_effect = yes
+	if = {
+		limit = {
+			NOT = { has_trait = cse_slave }
+		}
+		add_trait = cse_slave
+	}
+	add_character_modifier = {
+		modifier = cse_sex_slave_modifier
+	}
+	trigger_event = { on_action = cse_started_working_as_sex_slave_on_action }
+}
+
+cse_stop_working_as_sex_slave_effect = {
+	if = {
+		limit = { effective_age >= cse_sex_slave_age_start_value }
+		add_character_flag = cse_was_sex_slave
+	}
+	remove_character_modifier = cse_sex_slave_modifier
+	trigger_event = { on_action = cse_stopped_working_as_sex_slave_on_action }
+}
+
+#################### SLAVE REPORT AND ASSIGN INTERACTION TRIGGERS ############################################################
+
+cse_slave_xp_gain_prediction_effect = {
+	if = {
+		limit = { cse_is_working_as_slave_prostitute_trigger = yes }
+		add_trait_xp = {
+			trait = cse_slave
+			track = cse_slave_prostitute
+			value = cse_slave_prostitute_xp_gain_prediction_value
+		}
+	}
+	else_if = {
+		limit = { cse_is_working_as_labour_slave_trigger = yes }
+		add_trait_xp = {
+			trait = cse_slave
+			track = cse_labour_slave
+			value = cse_labour_slave_xp_gain_prediction_value
+		}
+	}
+	else_if = {
+		limit = { cse_is_working_as_military_slave_trigger = yes }
+		add_trait_xp = {
+			trait = cse_slave
+			track = cse_military_slave
+			value = cse_military_slave_xp_gain_prediction_value
+		}
+	}
+	else_if = {
+		limit = { cse_is_working_as_sex_slave_trigger = yes }
+		add_trait_xp = {
+			trait = cse_slave
+			track = cse_sex_slave
+			value = cse_sex_slave_xp_gain_prediction_value
+		}
+	}
+}
+
+#################### LEGACY MODIFIERS ############################################################
+
+cse_clear_all_slave_legacy_modifiers_effect = {
+	remove_character_modifier = carn_working_as_prostitute_1_modifier
+	remove_character_modifier = carn_working_as_prostitute_2_modifier
+	remove_character_modifier = carn_working_as_prostitute_3_modifier
+	remove_character_modifier = fl_is_working_as_child_labour_slave_0_modifier
+	remove_character_modifier = fl_is_working_as_child_labour_slave_1_modifier
+	remove_character_modifier = fl_is_working_as_child_labour_slave_2_modifier
+	remove_character_modifier = fl_is_working_as_child_labour_slave_3_modifier
+	remove_character_modifier = fl_is_working_as_labour_slave_0_modifier
+	remove_character_modifier = fl_is_working_as_labour_slave_1_modifier
+	remove_character_modifier = fl_is_working_as_labour_slave_2_modifier
+	remove_character_modifier = fl_is_working_as_labour_slave_3_modifier
+	remove_character_modifier = sso_is_working_as_child_slave_soldier_0_modifier
+	remove_character_modifier = sso_is_working_as_child_slave_soldier_1_modifier
+	remove_character_modifier = sso_is_working_as_child_slave_soldier_2_modifier
+	remove_character_modifier = sso_is_working_as_child_slave_soldier_3_modifier
+	remove_character_modifier = sso_is_working_as_slave_soldier_0_modifier
+	remove_character_modifier = sso_is_working_as_slave_soldier_1_modifier
+	remove_character_modifier = sso_is_working_as_slave_soldier_2_modifier
+	remove_character_modifier = sso_is_working_as_slave_soldier_3_modifier
+	remove_character_modifier = sso_is_working_as_slave_commander_1_modifier
+	remove_character_modifier = sso_is_working_as_slave_commander_2_modifier
+	remove_character_modifier = sso_is_working_as_slave_commander_3_modifier
+	remove_character_modifier = sso_is_working_as_slave_commander_4_modifier
+	remove_character_modifier = ssx_is_working_as_sex_slave_0_modifier
+	remove_character_modifier = ssx_is_working_as_sex_slave_1_modifier
+	remove_character_modifier = ssx_is_working_as_sex_slave_2_modifier
+	remove_character_modifier = ssx_is_working_as_sex_slave_3_modifier
+}

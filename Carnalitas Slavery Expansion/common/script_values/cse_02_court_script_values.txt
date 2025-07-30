@@ -1,0 +1,494 @@
+﻿#################### COURT OWNERSHIP LIMITS ############################################################
+
+cse_courtesan_ownership_limit_value = 20
+
+#################### COURT AGE LIMITS ############################################################
+
+cse_courtesan_age_start_value = 16
+cse_courtesan_age_limit_value = 45
+
+#################### COURT AGE MULTIPLIER ############################################################
+
+cse_courtesan_age_multiplier_value = {
+	value = 1
+	
+	if = {
+        limit = {
+           effective_age < cse_courtesan_age_start_value
+        }
+        multiply = 0
+    }
+	else_if = {
+        limit = {
+            OR = {
+				is_adult = no
+				effective_age > cse_courtesan_age_limit_value
+			}
+        }
+        multiply = 0.5
+    }
+}
+
+#################### COURT XP VALUES ############################################################
+
+cse_courtesan_worth_xp_value = {
+	value = 0
+	
+	if = {
+        limit = {
+            has_trait_xp = {
+				trait = cse_courtesan
+				track = cse_courtesan_worth
+				value >= 100
+			}
+        }
+        add = 100
+    }
+	else_if = {
+        limit = {
+            has_trait_xp = {
+				trait = cse_courtesan
+				track = cse_courtesan_worth
+				value >= 90
+			}
+        }
+        add = 90
+    }
+	else_if = {
+        limit = {
+            has_trait_xp = {
+				trait = cse_courtesan
+				track = cse_courtesan_worth
+				value >= 80
+			}
+        }
+        add = 80
+    }
+	else_if = {
+        limit = {
+            has_trait_xp = {
+				trait = cse_courtesan
+				track = cse_courtesan_worth
+				value >= 70
+			}
+        }
+        add = 70
+    }
+	else_if = {
+        limit = {
+            has_trait_xp = {
+				trait = cse_courtesan
+				track = cse_courtesan_worth
+				value >= 60
+			}
+        }
+        add = 60
+    }
+	else_if = {
+        limit = {
+            has_trait_xp = {
+				trait = cse_courtesan
+				track = cse_courtesan_worth
+				value >= 50
+			}
+        }
+        add = 50
+    }
+	else_if = {
+        limit = {
+            has_trait_xp = {
+				trait = cse_courtesan
+				track = cse_courtesan_worth
+				value >= 40
+			}
+        }
+        add = 40
+    }
+	else_if = {
+        limit = {
+            has_trait_xp = {
+				trait = cse_courtesan
+				track = cse_courtesan_worth
+				value >= 30
+			}
+        }
+        add = 30
+    }
+	else_if = {
+        limit = {
+            has_trait_xp = {
+				trait = cse_courtesan
+				track = cse_courtesan_worth
+				value >= 20
+			}
+        }
+        add = 20
+    }
+	else_if = {
+        limit = {
+            has_trait_xp = {
+				trait = cse_courtesan
+				track = cse_courtesan_worth
+				value >= 10
+			}
+        }
+        add = 10
+    }
+	
+	min = 0
+}
+
+cse_courtesan_experience_xp_value = {
+	value = 0
+	
+	if = {
+        limit = {
+            has_trait_xp = {
+				trait = cse_courtesan
+				track = cse_courtesan_experience
+				value >= 100
+			}
+        }
+        add = 100
+    }
+	else_if = {
+        limit = {
+            has_trait_xp = {
+				trait = cse_courtesan
+				track = cse_courtesan_experience
+				value >= 90
+			}
+        }
+        add = 90
+    }
+	else_if = {
+        limit = {
+            has_trait_xp = {
+				trait = cse_courtesan
+				track = cse_courtesan_experience
+				value >= 80
+			}
+        }
+        add = 80
+    }
+	else_if = {
+        limit = {
+            has_trait_xp = {
+				trait = cse_courtesan
+				track = cse_courtesan_experience
+				value >= 70
+			}
+        }
+        add = 70
+    }
+	else_if = {
+        limit = {
+            has_trait_xp = {
+				trait = cse_courtesan
+				track = cse_courtesan_experience
+				value >= 60
+			}
+        }
+        add = 60
+    }
+	else_if = {
+        limit = {
+            has_trait_xp = {
+				trait = cse_courtesan
+				track = cse_courtesan_experience
+				value >= 50
+			}
+        }
+        add = 50
+    }
+	else_if = {
+        limit = {
+            has_trait_xp = {
+				trait = cse_courtesan
+				track = cse_courtesan_experience
+				value >= 40
+			}
+        }
+        add = 40
+    }
+	else_if = {
+        limit = {
+            has_trait_xp = {
+				trait = cse_courtesan
+				track = cse_courtesan_experience
+				value >= 30
+			}
+        }
+        add = 30
+    }
+	else_if = {
+        limit = {
+            has_trait_xp = {
+				trait = cse_courtesan
+				track = cse_courtesan_experience
+				value >= 20
+			}
+        }
+        add = 20
+    }
+	else_if = {
+        limit = {
+            has_trait_xp = {
+				trait = cse_courtesan
+				track = cse_courtesan_experience
+				value >= 10
+			}
+        }
+        add = 10
+    }
+	
+	min = 0
+}
+
+#################### NEGATIVE TRAIT MULTIPLIER ############################################################
+
+cse_courtesan_illness_multiplier_value = {
+	value = 1
+	
+	if = {
+        limit = {
+            OR = {
+				carn_has_sex_blocking_disease_trigger = yes
+				has_trait = great_pox # Checking for Syphilis, since other illnesses are covered in can_have_sex_trigger
+			}
+        }
+        multiply = 0.5
+    }
+}
+
+#################### COURTESAN ############################################################
+
+cse_courtesan_worth_value = {
+	value = 0
+
+	add = {
+		add = diplomacy
+		add = intrigue
+		add = learning
+		add = {
+			value = attraction
+			multiply = 0.3
+		}
+
+		multiply = 0.1
+		min = 0
+		round = yes
+	}
+	
+	multiply = 10
+	
+	add = {
+		add = cse_courtesan_experience_xp_value
+		multiply = 0.3
+		min = 0
+	}
+	
+	add = cse_highest_held_title_tier_value
+	
+	multiply = cse_courtesan_age_multiplier_value
+	
+	multiply = cse_courtesan_illness_multiplier_value
+
+	min = 0
+	max = 100
+	round = yes
+}
+
+cse_courtesan_expenses_value = {
+	value = cse_courtesan_worth_value
+	
+	multiply = 0.1
+
+	min = 1
+	round = yes
+}
+
+cse_courtesan_xp_gain_value = {
+	value = 0
+
+	add = {
+		add = diplomacy
+		multiply = 0.2
+		min = 1
+	}
+	
+	add = {
+		add = intrigue
+		multiply = 0.2
+		min = 1
+	}
+	
+	add = {
+		add = learning
+		multiply = 0.2
+		min = 1
+	}
+	
+	add = {
+		add = attraction
+		multiply = 0.1
+		min = 0
+	}
+
+	multiply = { 0.5 0.8 }
+	
+	multiply = cse_courtesan_age_multiplier_value
+	
+	multiply = cse_courtesan_illness_multiplier_value
+
+	min = 1
+	max = 15
+	round = yes
+}
+
+#################### COURTESAN SPOUSE ############################################################
+
+cse_courtesan_spouse_expenses_value = {
+	value = 0
+	
+	every_spouse ?= {
+		limit = { cse_is_working_as_courtesan_trigger = yes }
+		add = {
+			value = cse_courtesan_worth_value
+			multiply = 0.05
+			min = 1
+			round = yes
+		}
+	}
+}
+
+#################### COURTESAN OWNER ############################################################
+
+cse_courtesan_owner_diplomacy_bonus_value = {
+	value = 0
+	
+	every_relation ?= {
+		type = courtesan
+		add = {
+			value = diplomacy
+			add = {
+				value = attraction
+				multiply = 0.3
+				min = 0
+			}
+			multiply = 0.1
+			if = {
+				limit = {
+					exists = scope:owner
+					has_relation_courtesan_owner = scope:owner
+				}
+				multiply = cse_opinion_multiplier_owner_value
+			}
+			round = yes
+		}
+	}
+
+	min = 0
+	round = yes
+}
+
+cse_courtesan_owner_intrigue_bonus_value = {
+	value = 0
+	
+	every_relation ?= {
+		type = courtesan
+		add = {
+			value = intrigue
+			add = {
+				value = attraction
+				multiply = 0.3
+				min = 0
+			}
+			multiply = 0.1
+			if = {
+				limit = {
+					exists = scope:owner
+					has_relation_courtesan_owner = scope:owner
+				}
+				multiply = cse_opinion_multiplier_owner_value
+			}
+			round = yes
+		}
+	}
+
+	min = 0
+	round = yes
+}
+
+cse_courtesan_owner_learning_bonus_value = {
+	value = 0
+	
+	every_relation ?= {
+		type = courtesan
+		add = {
+			value = learning
+			add = {
+				value = attraction
+				multiply = 0.3
+				min = 0
+			}
+			multiply = 0.1
+			if = {
+				limit = {
+					exists = scope:owner
+					has_relation_courtesan_owner = scope:owner
+				}
+				multiply = cse_opinion_multiplier_owner_value
+			}
+			round = yes
+		}
+	}
+
+	min = 0
+	round = yes
+}
+
+cse_courtesan_owner_expenses_value = {
+	value = 0
+	
+	every_relation ?= {
+		type = courtesan
+		add = cse_courtesan_expenses_value
+	}
+
+	min = 1
+}
+
+cse_courtesan_owner_spouse_value = {
+	value = 0
+	
+	every_relation ?= {
+		type = courtesan
+		add = 1
+	}
+
+	min = 1
+}
+
+#################### ROYAL MISTRESS ############################################################
+
+# Mistress Court Opinion
+cse_royal_mistress_court_position_opinion = {
+    scope:employee = {
+		if = {
+			limit = { # Lowborn is just happy to be here
+				has_no_particular_noble_roots_trigger = yes
+			}
+			value = 30
+		}
+		else_if = { # Highborn with ambitions is happy with this step
+		    limit  = {
+		        has_trait = ambitious
+		    }
+		    value = 20
+		}
+		else = { # Highborn is content being with you
+			value = 10
+		}
+	}
+}

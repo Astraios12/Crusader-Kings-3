@@ -1,0 +1,341 @@
+﻿bce_gender_birth_control_interaction = {
+	category = interaction_category_friendly
+	#ai_potential = { always = no }
+	#ai_frequency = 0
+	
+	auto_accept = yes
+	use_diplomatic_range = no
+    common_interaction = no
+
+	desc = bce_gender_birth_control_interaction_desc
+
+	is_shown = {
+		scope:recipient = {
+			OR = {
+				scope:recipient = scope:actor
+				primary_spouse = scope:actor
+				is_concubine_of = scope:actor
+				AND = { 
+					is_child_of = scope:actor
+					NOT = { exists = primary_spouse }
+				}
+				AND = {
+					has_relation_lover = scope:actor
+					is_courtier_of = scope:actor
+					NOT = { exists = primary_spouse }
+				}
+				AND = {
+					has_relation_soulmate = scope:actor
+					is_courtier_of = scope:actor
+					NOT = { exists = primary_spouse }
+				}
+				AND = {
+					has_relation_courtesan_owner = scope:actor
+					is_ruler = no
+					NOT = { exists = primary_spouse }
+				}
+				has_relation_slave_owner = scope:actor
+			}
+			is_adult = yes
+#			OR = {
+#				has_game_rule = carn_birth_control_any_gender
+#				AND = {
+#					carn_gender_can_impregnate_trigger = yes
+#					has_game_rule = carn_birth_control_male_only
+#				}
+#				AND = {
+#					is_female = yes
+#					has_game_rule = carn_birth_control_female_only
+#				}
+#			}
+			NOR = {
+				has_character_flag = carn_cannot_use_birth_control
+				has_trait_with_flag = carn_cannot_use_birth_control
+			}
+		}
+	}
+
+	is_valid_showing_failures_only = {
+		scope:actor = {
+			NOT = { faith = { has_doctrine = tenet_natural_primitivism } }
+        }
+        scope:recipient = {
+            carn_can_have_sex_trigger = yes
+			NOT = { faith = { has_doctrine = tenet_natural_primitivism } }
+        }
+    }
+	
+	send_option = {
+		is_valid = {
+			scope:recipient = {
+				NOT = { scope:bce_gender_birth_female = yes }
+			}
+		}
+		flag = bce_gender_birth_male
+		localization = option_bce_gender_birth_male
+		starts_enabled = {
+			scope:recipient = {
+				OR = {
+					has_character_modifier = bce_gender_birth_male
+					has_character_modifier = bce_gender_birth_twins_male
+				}
+			}
+		}
+	}
+	send_option = {
+		is_valid = {
+			scope:recipient = {
+				NOT = { scope:bce_gender_birth_male = yes }
+			}
+		}
+		flag = bce_gender_birth_female
+		localization = option_bce_gender_birth_female
+		starts_enabled = {
+			scope:recipient = {
+				OR = {
+					has_character_modifier = bce_gender_birth_female
+					has_character_modifier = bce_gender_birth_twins_female
+				}
+			}
+		}
+	}
+	send_option = {
+		flag = bce_gender_birth_twins
+		localization = option_bce_gender_birth_twins
+		starts_enabled = {
+			scope:recipient = {
+				OR = {
+					has_character_modifier = bce_gender_birth_twins
+					has_character_modifier = bce_gender_birth_twins_male
+					has_character_modifier = bce_gender_birth_twins_female
+				}
+			}
+		}
+	}	
+	
+	send_options_exclusive = no
+
+	on_accept = {
+		scope:recipient = {			
+			if = {
+				limit = {
+					scope:bce_gender_birth_male = yes
+					scope:bce_gender_birth_female = no
+					scope:bce_gender_birth_twins = no
+				}
+				add_character_flag = bce_gender_birth_control
+				add_character_modifier = bce_gender_birth_male
+				if = {
+					limit = { has_character_modifier = bce_gender_birth_female }
+					remove_character_modifier = bce_gender_birth_female
+				}
+				if = {
+					limit = { has_character_modifier = bce_gender_birth_twins }
+					remove_character_modifier = bce_gender_birth_twins
+				}
+				if = {
+					limit = { has_character_modifier = bce_gender_birth_twins_male }
+					remove_character_modifier = bce_gender_birth_twins_male
+				}
+				if = {
+					limit = { has_character_modifier = bce_gender_birth_twins_female }
+					remove_character_modifier = bce_gender_birth_twins_female
+				}
+				if = {
+					limit = {
+						is_female = yes
+						has_trait = pregnant
+					}
+					set_pregnancy_gender = male
+					save_scope_as = mother
+					scope:actor = {
+						#save_scope_as = real_father
+						send_interface_message = {
+							type = bce_gender_event_good
+							title = cse_msg_gender_birth_control_applied
+							left_icon = scope:mother
+							custom_tooltip = cse_msg_gender_birth_control_mother_applied_desc
+						}
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					scope:bce_gender_birth_male = no
+					scope:bce_gender_birth_female = yes
+					scope:bce_gender_birth_twins = no
+				}
+				add_character_flag = bce_gender_birth_control
+				add_character_modifier = bce_gender_birth_female
+				if = {
+					limit = { has_character_modifier = bce_gender_birth_male }
+					remove_character_modifier = bce_gender_birth_male
+				}
+				if = {
+					limit = { has_character_modifier = bce_gender_birth_twins }
+					remove_character_modifier = bce_gender_birth_twins
+				}
+				if = {
+					limit = { has_character_modifier = bce_gender_birth_twins_male }
+					remove_character_modifier = bce_gender_birth_twins_male
+				}
+				if = {
+					limit = { has_character_modifier = bce_gender_birth_twins_female }
+					remove_character_modifier = bce_gender_birth_twins_female
+				}
+				if = {
+					limit = {
+						is_female = yes
+						has_trait = pregnant
+					}
+					set_pregnancy_gender = female
+					save_scope_as = mother
+					scope:actor = {
+						#save_scope_as = real_father
+						send_interface_message = {
+							type = bce_gender_event_good
+							title = cse_msg_gender_birth_control_applied
+							left_icon = scope:mother
+							custom_tooltip = cse_msg_gender_birth_control_mother_applied_desc
+						}
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					scope:bce_gender_birth_male = no
+					scope:bce_gender_birth_female = no
+					scope:bce_gender_birth_twins = yes
+				}
+				add_character_flag = bce_gender_birth_control
+				add_character_modifier = bce_gender_birth_twins
+				if = {
+					limit = { has_character_modifier = bce_gender_birth_male }
+					remove_character_modifier = bce_gender_birth_male
+				}
+				if = {
+					limit = { has_character_modifier = bce_gender_birth_female }
+					remove_character_modifier = bce_gender_birth_female
+				}
+				if = {
+					limit = { has_character_modifier = bce_gender_birth_twins_male }
+					remove_character_modifier = bce_gender_birth_twins_male
+				}
+				if = {
+					limit = { has_character_modifier = bce_gender_birth_twins_female }
+					remove_character_modifier = bce_gender_birth_twins_female
+				}
+			}
+			else_if = {
+				limit = {
+					scope:bce_gender_birth_male = yes
+					scope:bce_gender_birth_female = no
+					scope:bce_gender_birth_twins = yes
+				}
+				add_character_flag = bce_gender_birth_control
+				add_character_modifier = bce_gender_birth_twins_male
+				if = {
+					limit = { has_character_modifier = bce_gender_birth_male }
+					remove_character_modifier = bce_gender_birth_male
+				}
+				if = {
+					limit = { has_character_modifier = bce_gender_birth_female }
+					remove_character_modifier = bce_gender_birth_female
+				}
+				if = {
+					limit = { has_character_modifier = bce_gender_birth_twins }
+					remove_character_modifier = bce_gender_birth_twins
+				}
+				if = {
+					limit = { has_character_modifier = bce_gender_birth_twins_female }
+					remove_character_modifier = bce_gender_birth_twins_female
+				}
+				if = {
+					limit = {
+						is_female = yes
+						has_trait = pregnant
+					}
+					set_pregnancy_gender = male
+					save_scope_as = mother
+					scope:actor = {
+						#save_scope_as = real_father
+						send_interface_message = {
+							type = bce_gender_event_good
+							title = cse_msg_gender_birth_control_applied
+							left_icon = scope:mother
+							custom_tooltip = cse_msg_gender_birth_control_mother_applied_desc
+						}
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					scope:bce_gender_birth_male = no
+					scope:bce_gender_birth_female = yes
+					scope:bce_gender_birth_twins = yes
+				}
+				add_character_flag = bce_gender_birth_control
+				add_character_modifier = bce_gender_birth_twins_female
+				if = {
+					limit = { has_character_modifier = bce_gender_birth_male }
+					remove_character_modifier = bce_gender_birth_male
+				}
+				if = {
+					limit = { has_character_modifier = bce_gender_birth_female }
+					remove_character_modifier = bce_gender_birth_female
+				}
+				if = {
+					limit = { has_character_modifier = bce_gender_birth_twins }
+					remove_character_modifier = bce_gender_birth_twins
+				}
+				if = {
+					limit = { has_character_modifier = bce_gender_birth_twins_male }
+					remove_character_modifier = bce_gender_birth_twins_male
+				}
+				if = {
+					limit = {
+						is_female = yes
+						has_trait = pregnant
+					}
+					set_pregnancy_gender = female
+					save_scope_as = mother
+					scope:actor = {
+						#save_scope_as = real_father
+						send_interface_message = {
+							type = bce_gender_event_good
+							title = cse_msg_gender_birth_control_applied
+							left_icon = scope:mother
+							custom_tooltip = cse_msg_gender_birth_control_mother_applied_desc
+						}
+					}
+				}
+			}
+			else = {
+				if = {
+					limit = { has_character_flag = bce_gender_birth_control }
+					remove_character_flag = bce_gender_birth_control
+				}
+				if = {
+					limit = { has_character_modifier = bce_gender_birth_male }
+					remove_character_modifier = bce_gender_birth_male
+				}
+				if = {
+					limit = { has_character_modifier = bce_gender_birth_female }
+					remove_character_modifier = bce_gender_birth_female
+				}
+				if = {
+					limit = { has_character_modifier = bce_gender_birth_twins }
+					remove_character_modifier = bce_gender_birth_twins
+				}
+				if = {
+					limit = { has_character_modifier = bce_gender_birth_twins_male }
+					remove_character_modifier = bce_gender_birth_twins_male
+				}
+				if = {
+					limit = { has_character_modifier = bce_gender_birth_twins_female }
+					remove_character_modifier = bce_gender_birth_twins_female
+				}
+			}
+		}
+	}
+}

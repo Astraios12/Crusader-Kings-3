@@ -1,0 +1,52 @@
+﻿l_german:
+
+ bce_start_birth_control_interaction: "Verhütung starten"
+ bce_start_birth_control_interaction_desc: "Indem ich einen Vorrat an Kondomen, Diaphragmas, Silphiumblättern und anderen Hilfsmitteln vorhalte, kann [recipient.GetShortUINameNotMeNoTooltip] sicherstellen, dass [recipient.Custom('DE_PRO_POS_S_3P')][recipient.Custom('DE_END_PRO_P_A')] Tändeleien weniger wahrscheinlich zu unerwünschten Kindern führen."
+ bce_start_mass_birth_control_interaction: "Verhütung für Konsorten und Kinder starten"
+ bce_start_mass_birth_control_interaction_desc: "Indem ich einen Vorrat an Kondomen, Diaphragmas, Silphiumblättern und anderen Hilfsmitteln vorhalte, kann ich sicherstellen, dass ihre Tändeleien weniger wahrscheinlich zu unerwünschten Kindern führen."
+ msg_bce_started_birth_control: "[msg_target.GetFirstName] verhütet"
+ msg_bce_wearing_chastity_belt: "[msg_target.GetFirstName] trägt einen Keuschheitsgürtel"
+
+ bce_stop_birth_control_interaction: "Verhütung beenden"
+ bce_stop_birth_control_interaction_desc: "Diese künstlichen Verhütungsmittel sind im Schlafzimmer zu einer Belastung geworden. [recipient.GetShortUINameNotMeNoTooltip] wird sie beiseite legen und [recipient.Custom('DE_PRO_POS_S_3P')][recipient.Custom('DE_END_PRO_P_D')] Leidenschaften freien Lauf lassen, wie es die Natur vorgesehen hat."
+ bce_stop_mass_birth_control_interaction: "Verhütung für Konsorten und Kinder beenden"
+ bce_stop_mass_birth_control_interaction_desc: "Diese künstlichen Verhütungsmittel sind im Schlafzimmer zu einer Belastung geworden. Ich werde sie beiseite legen und ihren Leidenschaften freien Lauf lassen, wie es die Natur vorgesehen hat."
+ msg_bce_stopped_birth_control: "[msg_target.GetFirstName] verhütet nicht mehr"
+ msg_bce_stopped_wearing_chastity_belt: "[msg_target.GetFirstName] trägt keinen Keuschheitsgürtel mehr"
+ 
+ option_bce_birth_control_only_this: "Erzwinge Verhütung"
+ option_bce_birth_control_every_consort: "Erzwinge Verhütung von deinen Konsorten"
+ option_bce_birth_control_every_child: "Erzwinge Verhütung von deinen Kindern"
+ option_bce_chastity_belt_only_this: "Erzwinge Tragen eines Keuschheitsgürtels"
+ option_bce_chastity_belt_every_consort: "Zwinge Konsorten zum Tragen eines Keuschheitsgürtels"
+ option_bce_chastity_belt_every_child: "Zwinge Kinder zum Tragen eines Keuschheitsgürtels"
+ 
+ option_end_bce_birth_control_only_this: "Beende Verhütung"
+ option_end_bce_birth_control_every_consort: "Beende Verhütung von deinen Konsorten"
+ option_end_bce_birth_control_every_child: "Beende Verhütung von deinen Kindern"
+ option_end_bce_chastity_belt_only_this: "Keuschheitsgürtel ablegen"
+ option_end_bce_chastity_belt_every_consort: "Konsorten ihren Keuschheitsgürtel ablegen lassen"
+ option_end_bce_chastity_belt_every_child: "Kinder ihren Keuschheitsgürtel ablegen lassen"
+ 
+ bce_wearing_chastity_belt_modifier: "Trägt Keuschheitsgürtel"
+ bce_wearing_chastity_belt_modifier_desc: "Dieser Charakter trägt einen Keuschheitsgürtel, um die Wahrscheinlichkeit drastisch zu verringern, ungewollte Kinder zu bekommen."
+ 
+ bce_forced_me_into_using_birth_control_opinion: "Zwang mich zur Verhütung"
+ bce_forced_me_into_wearing_chastity_belt_opinion: "Zwang mich zum Tragen eines Keuschheitsgürtels"
+ 
+ bce_gender_birth_control_interaction: "Setze Kinder-Geschlechterfokus"
+ bce_gender_birth_control_interaction_desc: "Durch eine bestimmte Ernährung und den Verzehr verschiedener Kräuter kann [recipient.GetShortUINameNotMeNoTooltip] das Geschlecht [recipient.Custom('DE_PRO_PER_S_3P_G')] Neugeborenen beeinflussen."
+ option_bce_gender_birth_male: "Fokus auf Jungs"
+ option_bce_gender_birth_female: "Fokus auf Mädchen"
+ option_bce_gender_birth_twins: "Fokus auf Zwillinge"
+ 
+ bce_gender_birth_male: "Fokusiert auf Jungs"
+ bce_gender_birth_male_desc: "Durch eine bestimmte Ernährung und den Verzehr verschiedener Kräuter kann dieser Charakter das Geschlecht seiner Neugeborenen beeinflussen."
+ bce_gender_birth_female: "Fokusiert auf Mädchen"
+ bce_gender_birth_female_desc: "Durch eine bestimmte Ernährung und den Verzehr verschiedener Kräuter kann dieser Charakter das Geschlecht seiner Neugeborenen beeinflussen."
+ bce_gender_birth_twins: "Fokusiert auf Zwillinge"
+ bce_gender_birth_twins_desc: "Durch eine bestimmte Ernährung und den Verzehr verschiedener Kräuter kann dieser Charakter die Anzahl seiner Neugeborenen beeinflussen."
+ bce_gender_birth_twins_male: "Fokusiert auf männliche Zwillinge"
+ bce_gender_birth_twins_male_desc: "Durch eine bestimmte Ernährung und den Verzehr verschiedener Kräuter kann dieser Charakter die Anzahl und das Geschlecht seiner Neugeborenen beeinflussen."
+ bce_gender_birth_twins_female: "Fokusiert auf weibliche Zwillinge"
+ bce_gender_birth_twins_female_desc: "Durch eine bestimmte Ernährung und den Verzehr verschiedener Kräuter kann dieser Charakter die Anzahl und das Geschlecht seiner Neugeborenen beeinflussen."

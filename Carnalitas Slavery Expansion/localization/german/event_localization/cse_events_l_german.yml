@@ -1,0 +1,28 @@
+﻿l_german:
+ 
+ # SLAVE PROSTITUTE
+ cse_slave_prostitute_yearly_sex_event.0002.t: "Angst, etwas zu verpassen?"
+ cse_slave_prostitute_yearly_sex_event.0002.desc: "Der Kalender von [carn_sex_partner.GetTitledFirstName] ist immer öfter ausgebucht. [carn_sex_partner.GetSheHe|U] ist viel gefragt, womit sich die Frage stellt, ob ich auch mal vorbeischauen sollte?\n[carn_sex_partner.GetTitledFirstName] hat sich extra die Zeit genommen, um mir eine Chance auf ein Treffen inklusive Rabatt zu ermöglichen. Ergreife ich die Gelegenheit?"
+ cse_slave_prostitute_yearly_sex_event.0002.a: "Das darf ich mir nicht entgehen lassen! Ich betrete den Raum..."
+ cse_slave_prostitute_yearly_sex_event.0002.b: "Wer bin ich, eine solche Gelegenheit abzulehnen?"
+ cse_slave_prostitute_yearly_sex_event.0002.c: "Ich fürchte, ich muss ablehnen."
+
+ # SEX SLAVE
+ cse_sex_slave_yearly_sex_event.0001.interaction: "[recipient.GetShortUIName|U] betritt eure Gemächer"
+ cse_sex_slave_yearly_sex_event.0001.t: "Sklaven-Konkubine betritt eure Gemächer"
+ cse_sex_slave_yearly_sex_event.0001.desc: "[carn_sex_partner.GetTitledFirstName] ist gekommen und wartet in eurem Gemach. Wie kann [carn_sex_partner.GetSheHe|U] Euch dienen?"
+ cse_sex_slave_yearly_sex_event.0001.a: "Ich begehre diesen Körper und betrete den Raum..."
+ cse_sex_slave_yearly_sex_event.0001.b: "Ich befehle [carn_sex_partner.GetTitledFirstName], meine fleischlichen Gelüste zu stillen!"
+ cse_sex_slave_yearly_sex_event.0001.c: "[carn_sex_partner.GetTitledFirstName] soll mich geistig verwöhnen."
+ cse_sex_slave_yearly_sex_event.0001.d: "Ich bin heute nicht in Stimmung."
+ 
+ #################### COURT ############################################################
+ 
+ # COURTESAN
+ cse_courtesan_yearly_sex_event.0001.interaction: "[recipient.GetShortUIName|U] trifft sich mit euch"
+ cse_courtesan_yearly_sex_event.0001.t: "Kurtisane trifft sich mit euch"
+ cse_courtesan_yearly_sex_event.0001.desc: "Ihr habt euch heute mit [carn_sex_partner.GetTitledFirstName] getroffen und einen angenehmen Tag verbracht. Wie möchtet Ihr den Abend ausklingen lassen?"
+ cse_courtesan_yearly_sex_event.0001.a: "Ich begehre [carn_sex_partner.GetTitledFirstName], wir gehen zusammen in meine Gemächer..."
+ cse_courtesan_yearly_sex_event.0001.b: "Ich möchte es an Ort und Stelle mit [carn_sex_partner.GetTitledFirstName] treiben!"
+ cse_courtesan_yearly_sex_event.0001.c: "[carn_sex_partner.GetTitledFirstName] und ich lassen den Abend entspannt ausklingen."
+ cse_courtesan_yearly_sex_event.0001.d: "Ich bin heute nicht in Stimmung."

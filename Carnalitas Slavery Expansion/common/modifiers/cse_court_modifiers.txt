@@ -1,0 +1,89 @@
+﻿#################### COURTESAN ############################################################
+
+cse_courtesan_modifier = {
+	icon = prostitution_positive
+	monthly_prestige = 0.1
+	monthly_income = 0.1
+	scale = {
+        value = cse_courtesan_expenses_value
+        display_mode = scaled
+    }
+}
+
+cse_courtesan_spouse_modifier = {
+	icon = prostitution_positive
+	monthly_prestige = 0.1
+	scale = {
+        value = cse_courtesan_spouse_expenses_value
+        display_mode = scaled
+    }
+}
+
+cse_courtesan_owner_diplomacy_modifier = {
+	icon = diplomacy_positive
+	diplomacy = 1
+	scale = {
+        value = cse_courtesan_owner_diplomacy_bonus_value
+        display_mode = scaled
+		desc = cse_courtesan_owner_base_modifier
+    }
+}
+
+#icon = martial_positive
+#icon = stewardship_positive
+
+cse_courtesan_owner_intrigue_modifier = {
+	icon = intrigue_positive
+	intrigue = 1
+	scale = {
+        value = cse_courtesan_owner_intrigue_bonus_value
+        display_mode = scaled
+		desc = cse_courtesan_owner_base_modifier
+    }
+}
+
+cse_courtesan_owner_learning_modifier = {
+	icon = learning_positive
+	learning = 1
+	scale = {
+        value = cse_courtesan_owner_learning_bonus_value
+        display_mode = scaled
+		desc = cse_courtesan_owner_base_modifier
+    }
+}
+
+cse_courtesan_owner_expenses_modifier = {
+	icon = economy_negative
+	monthly_income = -0.1
+	scale = {
+        value = cse_courtesan_owner_expenses_value
+        display_mode = scaled
+		desc = cse_courtesan_owner_base_modifier
+    }
+}
+
+cse_courtesan_owner_spouse_modifier = {
+	icon = wedding_negative
+	spouse_opinion = -5
+	scale = {
+        value = cse_courtesan_owner_spouse_value
+        display_mode = scaled
+		desc = cse_courtesan_owner_base_modifier
+    }
+}
+
+#################### ROYAL MISTRESS ############################################################
+
+cse_scandalous_royal_mistress_modifier = {
+   icon = fertility_negative
+   same_faith_opinion = -15
+   spouse_opinion = -15
+   stacking = yes
+}
+
+cse_is_scandalous_royal_mistress_modifier = {
+   icon = fertility_negative
+   same_faith_opinion = -15
+   spouse_opinion = -20
+   stacking = yes
+}

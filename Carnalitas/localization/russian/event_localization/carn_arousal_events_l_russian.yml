@@ -1,0 +1,3 @@
+﻿l_russian:
+carn_msg_arousal:1 "Возбуждение Поднимает Стресс"
+carn_msg_arousal_desc:1 "Отсутствие сексуального удовлетворения вызывает рост [stress_gain_i] [stress|E]."

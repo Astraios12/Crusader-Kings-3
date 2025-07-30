@@ -1,0 +1,87 @@
+﻿sm_setup_slave_category_interaction = {
+    category = interaction_category_prison
+	#ai_potential = { always = no }
+	#ai_frequency = 0
+
+    auto_accept = yes	
+    use_diplomatic_range = no
+	common_interaction = yes
+	interface_priority = 40
+
+	ignores_pending_interaction_block = yes
+	
+    is_shown = {
+        scope:recipient = scope:actor
+		scope:actor = {
+			OR = {
+				any_relation = {
+					type = slave
+					count > 0
+					NOT = { scope:actor = { has_relation_slave_prostitute = PREV } }
+					NOT = { scope:actor = { has_relation_labour_slave = PREV } }
+					NOT = { scope:actor = { has_relation_slave_recruit = PREV } }
+					NOT = { scope:actor = { has_relation_slave_soldier = PREV } }
+					NOT = { scope:actor = { has_relation_slave_commander = PREV } }
+					NOT = { scope:actor = { has_relation_sex_slave = PREV } }
+					NOT = { scope:actor = { has_relation_court_slave = PREV } }
+				}
+				any_relation = {
+					type = slave
+					count > 0
+					OR = {
+						AND = {
+							cse_is_assigned_as_slave_prostitute_trigger = no
+							scope:actor = { has_relation_slave_prostitute = PREV }
+						}
+						AND = {
+							cse_is_assigned_as_labour_slave_trigger = no
+							scope:actor = { has_relation_labour_slave = PREV }
+						}
+						AND = {
+							cse_is_assigned_as_military_slave_trigger = no
+							scope:actor = { has_relation_slave_recruit = PREV }
+						}
+						AND = {
+							cse_is_assigned_as_military_slave_trigger = no
+							scope:actor = { has_relation_slave_soldier = PREV }
+						}
+						AND = {
+							cse_is_assigned_as_military_slave_trigger = no
+							scope:actor = { has_relation_slave_commander = PREV }
+						}
+						AND = {
+							cse_is_assigned_as_sex_slave_trigger = no
+							scope:actor = { has_relation_sex_slave = PREV }
+						}
+					}
+				}
+			}
+		#	any_relation = {
+		#		type = slave_prostitute
+		#		count < 1
+		#	}
+		#	any_relation = {
+		#		type = labour_slave
+		#		count < 1
+		#	}
+		#	any_relation = {
+		#		type = military_slave
+		#		count < 1
+		#	}
+		#	any_relation = {
+		#		type = sex_slave
+		#		count < 1
+		#	}
+		#	any_relation = {
+		#		type = court_slave
+		#		count < 1
+		#	}
+		}
+    }
+
+    on_accept = {
+		scope:recipient = {
+			trigger_event = { on_action = sm_setup_slave_category }
+		}
+	}
+}

@@ -1,0 +1,28 @@
+﻿l_simp_chinese:
+  
+  # SLAVE PROSTITUTE 
+ cse_slave_prostitute_yearly_sex_event.0002.t: "Fear to miss something?"
+ cse_slave_prostitute_yearly_sex_event.0002.desc: "The calendar of [carn_sex_partner.GetTitledFirstName] is almost always fully booked. [carn_sex_partner.GetSheHe|U] is asked for a lot, so the question arises whether I should also stop by? Do I take the opportunity?"
+ cse_slave_prostitute_yearly_sex_event.0002.a: "I can't miss that! I enter the room ..."
+ cse_slave_prostitute_yearly_sex_event.0002.b: "Who am I to reject such an opportunity?"
+ cse_slave_prostitute_yearly_sex_event.0002.c: "I'm afraid I have to reject."
+  
+  # SEX SLAVE 
+ cse_sex_slave_yearly_sex_event.0001.interaction: "[recipient.GetShortUIName|U] enters your chambers"
+ cse_sex_slave_yearly_sex_event.0001.t: "Slave concubine enters your chambers"
+ cse_sex_slave_yearly_sex_event.0001.desc: "[carn_sex_partner.GetTitledFirstName] has arrived and awaits you in your chambers. How can [carn_sex_partner.GetSheHe|U] serve you?"
+ cse_sex_slave_yearly_sex_event.0001.a: "I desire this body and enter the room ..."
+ cse_sex_slave_yearly_sex_event.0001.b: "I command [carn_sex_partner.GetTitledFirstName] to satisfy my carnal desires!"
+ cse_sex_slave_yearly_sex_event.0001.c: "[carn_sex_partner.GetTitledFirstName] should spoil me mentally."
+ cse_sex_slave_yearly_sex_event.0001.d: "I'm not in the mood today."
+  
+  #################### COURT ############################################################ 
+  
+  # COURTESAN 
+ cse_courtesan_yearly_sex_event.0001.interaction: "[recipient.GetShortUIName|U] meets with you"
+ cse_courtesan_yearly_sex_event.0001.t: "Courtesan meets with you"
+ cse_courtesan_yearly_sex_event.0001.desc: "You met with [carn_sex_partner.GetTitledFirstName] and spent a pleasant day together. How do you want let it end ?"
+ cse_courtesan_yearly_sex_event.0001.a: "I desire [carn_sex_partner.GetTitledFirstName], we go together to my chambers ..."
+ cse_courtesan_yearly_sex_event.0001.b: "I want to do it on the spot with [carn_sex_partner.GetTitledFirstName]!"
+ cse_courtesan_yearly_sex_event.0001.c: "[carn_sex_partner.GetTitledFirstName] and I let the evening draw to a relaxed close."
+ cse_courtesan_yearly_sex_event.0001.d: "I'm not in the mood today."

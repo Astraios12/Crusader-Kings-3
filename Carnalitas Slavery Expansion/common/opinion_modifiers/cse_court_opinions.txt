@@ -1,0 +1,37 @@
+﻿#################### COURTESAN ############################################################
+
+cse_courtesan_crime_opinion = {
+	opinion = -10
+	imprisonment_reason = yes
+	revoke_title_reason = yes
+}
+
+cse_courtesan_intolerant_opinion = {
+	opinion = -5
+}
+
+cse_made_me_a_courtesan_opinion = {
+	opinion = 10
+	years = 10
+	decaying = yes
+}
+
+cse_dismissed_me_as_courtesan_opinion = {
+	opinion = -10
+	years = 10
+	decaying = yes
+}
+
+cse_lover_breakup_opinion = {
+	opinion = -15
+	years = 10
+	decaying = yes
+}
+
+# Used for pregnancy logic to prevent pregnancies from ex-courtesans or ex-owners being treated as adultery
+cse_former_courtesan_or_courtesan_owner_opinion = {
+	opinion = 5
+	months = 3
+}
+
+#################### ROYAL MISTRESS ############################################################

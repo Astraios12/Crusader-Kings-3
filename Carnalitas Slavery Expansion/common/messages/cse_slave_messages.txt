@@ -1,0 +1,18 @@
+﻿#@msg_good_soundeffect = "event:/SFX/UI/Notifications/Messages/sfx_ui_message_theme_positive"
+#@msg_bad_soundeffect = "event:/SFX/UI/Notifications/Messages/sfx_ui_message_theme_negative"
+
+cse_slave_random_event_good = {
+	icon = "prostitution"
+	title = event_message_title
+	desc = event_message_effect
+	style = good
+	message_filter_type = generic_interface_message_good
+}
+
+cse_slave_random_event_bad = {
+	icon = "prostitution"
+	title = event_message_title
+	desc = event_message_effect
+	style = bad
+	message_filter_type = generic_interface_message_bad
+}

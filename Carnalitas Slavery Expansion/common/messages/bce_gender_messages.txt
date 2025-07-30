@@ -1,0 +1,18 @@
+﻿#@msg_good_soundeffect = "event:/SFX/UI/Notifications/Messages/sfx_ui_message_theme_positive"
+#@msg_bad_soundeffect = "event:/SFX/UI/Notifications/Messages/sfx_ui_message_theme_negative"
+
+bce_gender_event_good = {
+	icon = "gfx/interface/icons/message_feed/bce_child.dds"
+	title = event_message_title
+	desc = event_message_effect
+	style = good
+	message_filter_type = known_pregnancy
+}
+
+bce_gender_event_bad = {
+	icon = "gfx/interface/icons/message_feed/bce_child.dds"
+	title = event_message_title
+	desc = event_message_effect
+	style = bad
+	message_filter_type = known_pregnancy
+}

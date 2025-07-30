@@ -1,0 +1,257 @@
+﻿namespace = cse_slave_prostitute_yearly_sex_event
+
+scripted_trigger cse_slave_prostitute_yearly_sex_event_client_trigger = {
+	#is_ai = yes
+	carn_can_have_sex_trigger = yes
+	is_busy_in_events_localised = yes
+	possibly_interested_in_character_trigger = { CHARACTER = root }
+	root = { possibly_interested_in_character_trigger = { CHARACTER = prev } }
+	#gold >= minor_gold_value
+	NOR = {
+		this = root
+		is_consort_of = root
+		has_relation_lover = root
+		has_relation_rival = root
+		is_at_war_with = root
+	}
+}
+
+# 0001. Sex with existent ai character
+cse_slave_prostitute_yearly_sex_event.0001 = {
+	hidden = yes
+	
+	immediate = {
+		
+		save_scope_as = prostitute
+		
+		# first, populate a list with various characters
+		if = {
+			limit = { exists = liege }
+			liege = {
+				#add_to_list = potential_clients
+				every_courtier = { add_to_list = potential_clients }
+				every_vassal = {
+					add_to_list = potential_clients
+					every_courtier = { add_to_list = potential_clients }
+				}
+			}
+		}
+
+		# now get one of them to be our client, preferably someone with a personality lewd enough that it makes sense for them to be coming to us
+		random_in_list = {
+			list = potential_clients
+			limit = {
+				cse_slave_prostitute_yearly_sex_event_client_trigger = yes
+			}
+			weight = {
+				base = 30
+				modifier = {
+					add = 10
+					has_trait = lustful
+				}
+				modifier = {
+					add = 10
+					has_trait = seducer
+				}
+				modifier = {
+					add = 10
+					has_trait = rakish
+				}
+				modifier = {
+					add = 10
+					has_trait = deviant
+				}
+				modifier = {
+					add = -10
+					might_cheat_on_every_partner_trigger = no
+				}
+				modifier = {
+					add = -30
+					NOT = { freely_accepts_sodomy_with_trigger = { CHARACTER = root } }
+				}
+				modifier = {
+					add = -30
+					has_trait = chaste
+				}
+				modifier = {
+					add = -30
+					has_trait = chaste
+				}
+				modifier = {
+					factor = 0
+					NOT = { is_attracted_to_gender_of = scope:prostitute }
+				}
+			}
+			save_scope_as = client
+		}
+
+		if = {
+			limit = { exists = scope:client }
+			scope:client = {
+				
+				if = {
+					limit = {
+						is_landed = yes
+					}
+					pay_short_term_gold = {
+						target = scope:prostitute
+						gold = tiny_gold_value
+					}
+				}
+				
+				carn_had_sex_with_effect_v2 = {
+					PARTNER = scope:prostitute
+				}
+				
+				add_opinion = {
+					target = scope:prostitute
+					modifier = impressed_opinion
+					opinion = 10
+				}
+			}
+		}
+	}
+}
+
+# 0002. Sex with existent liege
+cse_slave_prostitute_yearly_sex_event.0002 = {
+	type = character_event
+	title = cse_slave_prostitute_yearly_sex_event.0002.t
+	desc = cse_slave_prostitute_yearly_sex_event.0002.desc
+
+	theme = seduction
+
+	override_background = {
+		reference = bedchamber
+	}
+	
+	left_portrait = {
+		character = scope:carn_sex_partner
+		animation = flirtation_left
+	}
+	
+	right_portrait = {
+		character = scope:carn_sex_player
+		animation = personality_rational
+	}
+	
+	immediate = {
+		#strip her
+		scope:carn_sex_partner = {
+			add_character_flag = {
+				flag = is_naked
+				days = 180
+			}
+		}
+	}
+	
+	option = { # Sex - Sex Scene
+		name = cse_slave_prostitute_yearly_sex_event.0002.a
+		trigger = {
+			scope:carn_sex_player.effective_age >= 18
+			scope:carn_sex_partner.effective_age >= 18
+			is_ai = no
+		}
+
+		pay_short_term_gold = {
+			target = scope:carn_sex_partner
+			gold = {
+				value = scope:carn_sex_partner.cse_slave_prostitute_worth_value
+				multiply = 0.25
+				round = yes
+			}
+		}
+		
+		show_as_tooltip = {
+			scope:carn_sex_partner = {
+				add_trait_xp = {
+					trait = cse_slave
+					track = cse_slave_prostitute
+					value = cse_slave_prostitute_xp_gain_prediction_value
+				}
+			}
+			
+			carn_had_sex_with_effect_v2 = {
+				PARTNER = scope:carn_sex_partner
+			}
+		}
+		
+		hidden_effect = {
+			carn_sex_scene_character_is_giving_player_effect = yes
+			carn_sex_scene_is_consensual_effect = yes
+			carn_sex_scene_is_vaginal_effect = yes
+			carn_sex_scene_is_cum_inside_effect = yes
+			
+			carn_sex_scene_effect_v2 = {
+				PARTNER = scope:carn_sex_partner
+			}
+		}
+		
+		reverse_add_opinion = {
+			target = scope:carn_sex_partner
+			modifier = impressed_opinion
+			opinion = 5
+		}
+	}
+	
+	option = { # Sex - No Sex Scene
+		name = cse_slave_prostitute_yearly_sex_event.0002.b
+		trigger = {
+			scope:carn_sex_player.effective_age >= 16
+			scope:carn_sex_partner.effective_age >= 16
+			is_ai = no
+		}
+		
+		pay_short_term_gold = {
+			target = scope:carn_sex_partner
+			gold = {
+				value = scope:carn_sex_partner.cse_slave_prostitute_worth_value
+				multiply = 0.25
+				round = yes
+			}
+		}
+		
+		show_as_tooltip = {
+			scope:carn_sex_partner = {
+				add_trait_xp = {
+					trait = cse_slave
+					track = cse_slave_prostitute
+					value = cse_slave_prostitute_xp_gain_prediction_value
+				}
+			}
+		}
+		
+		carn_had_sex_with_effect_v2 = {
+			PARTNER = scope:carn_sex_partner
+		}
+		
+		reverse_add_opinion = {
+			target = scope:carn_sex_partner
+			modifier = impressed_opinion
+			opinion = 5
+		}
+	}
+	
+	option = { # Decline
+		name = cse_slave_prostitute_yearly_sex_event.0002.c
+
+		reverse_add_opinion = {
+			target = scope:carn_sex_partner
+			modifier = disappointed_opinion
+			opinion = -5
+		}
+		
+		stress_impact = {
+			lustful = medium_stress_impact_gain
+		}
+	}
+	
+	after = {
+		scope:carn_sex_player = {
+			remove_character_flag = is_naked
+		}
+		scope:carn_sex_partner = {
+			remove_character_flag = is_naked
+		}
+	}
+}

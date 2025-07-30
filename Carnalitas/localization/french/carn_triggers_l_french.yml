@@ -1,0 +1,45 @@
+﻿l_french:
+NOT_IS_ATTRACTED_TO_TRIGGER:1 "N'est pas attiré[CHARACTER.Custom('FR_E')] par [TARGET_CHARACTER.GetShortUIName]"
+
+carn_i_can_be_granted_titles:1 "Vous pouvez vous voir attribuer des titres"
+carn_not_i_can_be_granted_titles:1 "Vous ne pouvez pas vous voir attribuer de titres"
+carn_they_can_be_granted_titles:1 "[CHARACTER.Custom('FR_only_le_GetShortUIName')|U][CHARACTER.GetShortUIName|V] peut se voir attribuer des titres"
+carn_not_they_can_be_granted_titles:1 "[CHARACTER.Custom('FR_only_le_GetShortUIName')|U][CHARACTER.GetShortUIName|V] ne peut pas se voir attribuer de titres"
+carn_can_be_granted_titles:1 "Peut se voir attribuer des titres"
+carn_not_can_be_granted_titles:1 "Ne peut pas se voir attribuer de titres"
+
+carn_can_always_have_sex:1 "Peut toujours avoir des relations sexuelles"
+
+carn_cannot_be_raped:1 "Ne peut pas être violé[CHARACTER.Custom('FR_E')]"
+
+carn_cannot_have_max_number_of_slave_prostitutes:1 "Vous n'avez pas plus de [EmptyScope.ScriptValue('carn_max_slave_prostitutes_per_owner')|0] esclaves travaillant en tant que prostituées"
+
+carn_cannot_have_sex:1 "Ne peut pas avoir de relation sexuelle"
+
+carn_effective_age_under_value_cutoff:1 "L'âge est inférieur à $VALUE|0$"
+
+carn_i_have_a_fetish_trigger:1 "Vous avez un fétiche"
+carn_not_i_have_a_fetish_trigger:1 "Vous n'avez #bold pas#! de fétiche"
+carn_they_have_a_fetish_trigger:1 "[CHARACTER.GetShortUIName|U] a un fétiche"
+carn_not_they_have_a_fetish_trigger:1 "[CHARACTER.GetShortUIName|U] n'a #bold pas#! de fétiche"
+carn_has_any_fetish_trigger:1 "A un fétiche"
+carn_not_has_a_fetish_trigger:1 "N'a #bold pas#! de fétiche"
+
+carn_is_diplomatically_available:1 "Est présentement occupé[CHARACTER.Custom('FR_E')]"
+
+carn_i_am_lactating_trigger:1 "Vous êtes en train d'[lactating|El]"
+carn_not_i_am_lactating_trigger:1 "Vous n'êtes #bold pas#! en train d'[lactating|El]"
+carn_they_are_lactating_trigger:1 "[CHARACTER.GetShortUIName|U] est en train d'[lactating|El]"
+carn_not_they_are_lactating_trigger:1 "[CHARACTER.GetShortUIName|U] n'est #bold pas#! en train d'[lactating|El]"
+carn_is_lactating_trigger:1 "Est en train d'[lactating|El]"
+carn_not_is_lactating_trigger:1 "N'est #bold pas#! en train d'[lactating|El]"
+
+carn_slavery_is_illegal:1 "Votre foi ne vous permet pas d'asservir des [CHARACTER.GetFaith.GetAdherentNamePluralNoTooltip|U]"
+
+# Strings marked as debug in base game so not translated, but being displayed by the use of this mod
+has_game_rule_trigger:1 "Règle du jeu activée : [GAME_RULE.GetName]"
+is_visibly_fertile_trigger:1 "Est visiblement fertile"
+NOT_IS_INCAPABLE_TRIGGER:1 "N’est pas incapable"
+NOT_IS_NIBLING_OF_CHARACTER_TRIGGER:1 "N’est ni le neveu ni la nièce [CHARACTER.Custom('FR_du_Char_U_Pi')][CHARACTER.GetShortUIName]"
+NOT_IS_UNCLE_OR_AUNT_OF_CHARACTER_TRIGGER:1 "N’est ni l’oncle ni la tante [CHARACTER.Custom('FR_du_Char_U_Pi')][CHARACTER.GetShortUIName]"
+#male_dominated_law_name:1 "[GetLaw('male_dominated_law').GetName]"

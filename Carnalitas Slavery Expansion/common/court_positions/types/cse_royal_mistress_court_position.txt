@@ -1,0 +1,442 @@
+﻿cse_royal_mistress_court_position = {
+	sort_order = 9000
+	max_available_positions = 1
+	minimum_rank = kingdom # Only Monarchs may have official mistresses
+	skill = diplomacy
+	#category = court_position_category_royal
+	
+	court_position_asset = {
+		animation = personality_compassionate
+		background = "gfx/interface/illustrations/event_scenes/bedchamber.dds"
+	}
+	
+	opinion = {
+		value = cse_royal_mistress_court_position_opinion
+	}
+	
+	# How high the aptitude has to be to reach the 5 different modifier levels
+	aptitude_level_breakpoints = { 20 40 60 80 }
+
+	# How good is this character in this position? root scope is the holder of the court position
+	aptitude = {
+		value = 0
+		add = {
+			value = cse_courtesan_worth_value
+			#multiply = 0.5
+			#max = 50
+			desc = cse_royal_mistress_position_cse_courtesan_trait
+		}
+		
+		# Positive Personality Traits
+		
+		if = {
+            limit = {
+                has_trait = lustful
+            }
+            add = {
+                value = 5
+                desc = cse_royal_mistress_position_lustful_trait
+            }
+        }
+		if = {
+			limit = {
+				has_trait = honest
+			}
+			add = {
+				value = 5
+				desc = court_position_honest_trait
+			}
+		}
+		if = {
+			limit = {
+				has_trait = gregarious
+			}
+			add = {
+				value = 10
+				desc = court_position_gregarious_trait
+			}
+		}
+		
+		# Negative Personality Traits
+		
+        if = {
+            limit = {
+                has_trait = shy
+            }
+            add = {
+                value = -5
+                desc = court_position_shy_trait
+            }
+        }
+		if = {
+            limit = {
+                has_trait = paranoid
+            }
+            add = {
+                value = -5
+                desc =  court_position_paranoid_trait
+            }
+        }
+		if = {
+            limit = {
+                has_trait = chaste
+            }
+            add = {
+                value = -10
+                desc =  cse_royal_mistress_position_chaste_trait
+            }
+        }
+        if = {
+            limit = {
+                has_trait = reclusive
+            }
+            add = {
+                value = -15
+                desc = court_position_reclusive_trait
+            }
+        }
+		
+		# Social Standing
+	#	if = {
+	#		limit = {
+	#			is_ruler = yes
+	#		}
+	#		add = {
+	#			value = 15
+	#			desc = cse_royal_mistress_position_ruler
+	#		}
+	#	}
+		if = {
+			limit = {
+				is_lowborn = no
+			}
+			add = {
+				value = 10
+				desc = cse_royal_mistress_position_highborn
+			}
+		}
+		
+		add = court_position_aptitude_family_business_value
+		add = court_position_aptitude_low_penalty_value
+	}
+	
+	is_shown = {
+		is_landed_or_landless_administrative = yes
+		#NOT = { government_has_flag = government_is_nomadic }
+		#trigger_if = {
+		#	limit = {
+		#		is_ai = yes
+		#		highest_held_title_tier <= tier_county
+		#	}
+		#	always = no
+		#}
+	}
+
+	valid_position = {
+		highest_held_title_tier >= tier_kingdom
+		OR = {
+            faith = {
+                NAND = {
+                    has_doctrine = doctrine_adultery_women_crime
+                    has_doctrine = doctrine_adultery_men_crime
+                }
+            }
+            has_trait = lustful
+            has_trait = arbitrary
+            has_trait = brave
+            has_trait = adulterer
+            has_trait = fornicator
+		}
+		NOR = {
+		    #has_trait = honest
+		    has_trait = chaste
+		}
+	}
+
+	is_shown_character = {
+		scope:employee = {
+		    has_relation_courtesan_owner = scope:liege
+			cse_is_courtesan_trigger = yes
+			NOT = { is_consort_of = scope:liege }
+			trigger_if = {
+				limit = { scope:liege.faith = { NOT = { has_doctrine_parameter = homosexuality_accepted } } }
+				NOT = { sex_same_as = scope:liege }
+			}
+			trigger_else = {
+				OR = {
+					sex_same_as = scope:liege
+					NOT = { sex_same_as = scope:liege }
+				}
+			}
+		}
+	}
+
+	valid_character = {
+		scope:employee = {
+			has_trait = cse_courtesan
+			is_imprisoned = no
+		}
+	}
+
+	revoke_cost = { # root is the liege, no other scopes are passed here!
+		prestige =  {
+			value = medium_court_position_prestige_revoke_cost
+			# Set to 0 via obligation hook
+			if = {
+				limit = {
+					court_position_obligation_hook_salary_trigger = {
+						POS = lady_in_waiting
+						LIEGE = root
+					}
+				}
+				multiply = 0
+			}
+			# Avoid AI prestige issues
+			if = {
+				limit = {
+					exists = this
+					is_ai = yes
+				}
+				multiply = 0
+			}
+			# Special case for events
+			if = {
+				limit = {
+					exists = this
+					has_character_flag = free_revoke_cost
+				}
+				multiply = 0
+			}
+			#Lowering for LAAMPS, to match Camp Officer revoke cost
+			if = {
+				limit = { 
+					exists = this
+					government_has_flag = government_is_landless_adventurer
+				}
+				value = minor_court_position_prestige_revoke_cost
+			}
+		}
+	}
+
+	#salary = {
+	#	gold = medium_court_position_salary
+	#	round = no
+	#}
+	
+	salary = {
+		round = no
+		gold = {
+			value = tiny_court_position_salary # Update X_salary_tooltip if script_value is changed
+			# Set to 0 with Dynasty Perk Inner Circle
+			if = {
+				limit = { court_position_inner_circle_salary_trigger = { POS = cse_royal_mistress } }
+				multiply = {
+					value = 0
+					desc = inner_circle_salary_mod
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
+			}
+			# Halved with obligation hook
+			else_if = {
+				limit = {
+					court_position_obligation_hook_salary_trigger = {
+						POS = cse_royal_mistress
+						LIEGE = scope:liege
+					}
+				}
+				multiply = {
+					value = 0.5
+					desc = obligation_hook_salary
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
+			}
+			# Halved salary
+			if = {
+				limit = {
+					court_position_halved_salary_trigger = { POS = cse_royal_mistress }
+				}
+				multiply = {
+					value = 0.5
+					desc = court_position_halved_salary
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
+			}
+			# Increased salary
+			if = {
+				limit = {
+					court_position_increased_salary_trigger = { POS = cse_royal_mistress }
+				}
+				multiply = {
+					value = 1.5
+					desc = court_position_increased_salary
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
+			}
+			#You're working with LAAMPS now
+			if = {
+				limit = { 
+					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
+				}
+				multiply = {
+					value = 0
+					desc = court_position_laamps_free
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
+			}
+		}
+		prestige = {
+			value = minor_court_position_prestige_salary # Update X_salary_tooltip if script_value is changed
+			# Set to 0 with Dynasty Perk Inner Circle
+			if = {
+				limit = { court_position_inner_circle_salary_trigger = { POS = cse_royal_mistress } }
+				multiply = {
+					value = 0
+					desc = inner_circle_salary_mod
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
+			}
+			# Halved via obligation hook
+			else_if = {
+				limit = {
+					court_position_obligation_hook_salary_trigger = {
+						POS = cse_royal_mistress
+						LIEGE = scope:liege
+					}
+				}
+				multiply = {
+					value = 0.5
+					desc = obligation_hook_salary
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
+			}
+			# Halved salary
+			if = {
+				limit = {
+					court_position_halved_salary_trigger = { POS = cse_royal_mistress }
+				}
+				multiply = {
+					value = 0.5
+					desc = court_position_halved_salary
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
+			}
+			# Increased salary
+			if = {
+				limit = {
+					court_position_increased_salary_trigger = { POS = cse_royal_mistress }
+				}
+				multiply = {
+					value = 1.5
+					desc = court_position_increased_salary
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
+			}
+			#You're working with LAAMPS now
+			if = {
+				limit = { 
+					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
+				}
+				multiply = {
+					value = 0
+					desc = court_position_laamps_free
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
+			}
+		}
+	}
+
+	is_powerful_agent = yes
+	
+	# Non-scaling modifiers gained by the employer of the court position.
+	base_employer_modifier = {
+		spouse_opinion = -5
+		owned_hostile_scheme_success_chance_add = 5
+	} 
+
+	# Scaling modifiers gained by the employer of the court position as the employee's aptitude level increases.
+	scaling_employer_modifiers = {
+		terrible = {
+			enemy_hostile_scheme_phase_duration_add = 2
+		}
+		poor = {
+			enemy_hostile_scheme_phase_duration_add = 4
+			stress_loss_mult = 0.5
+		}
+		average = {
+			enemy_hostile_scheme_phase_duration_add = 6
+			stress_loss_mult = 0.10
+            monthly_court_grandeur_change_mult = 0.1
+		}
+		good = {
+            enemy_hostile_scheme_phase_duration_add = 8
+			stress_loss_mult = 0.15
+            monthly_court_grandeur_change_mult = 0.15
+			court_grandeur_baseline_add = 3
+		}
+		excellent = {
+            enemy_hostile_scheme_phase_duration_add = 10
+			stress_loss_mult = 0.20
+            monthly_court_grandeur_change_mult = 0.2
+			court_grandeur_baseline_add = 6
+		}
+	}
+	
+	# Non-scaling modifiers gained by all characters in the court. (excluding the court owner aka liege).
+	#base_employer_court_modifier = { }
+	
+	# Scaling modifiers gained by all characters in the court. (excluding the court owner aka liege).
+	#scaling_employer_court_modifiers = {
+	#	aptitude_level_1 = { }
+	#	aptitude_level_2 = { }
+	#	aptitude_level_3 = { }
+	#	aptitude_level_4 = { }
+	#	aptitude_level_5 = { }
+	#}
+
+	# Additional, verbose description of position's effect on the employer. 
+	#custom_employer_modifier_description = cse_royal_mistress_custom_effect_description
+	
+	# Additional, verbose description of position's effect on the employee. 
+	#custom_employee_modifier_description = 
+
+	# Modifiers gained by the holder of the court position.
+	modifier = {
+		spouse_opinion = -5
+		monthly_diplomacy_lifestyle_xp_gain_mult = 0.1
+		owned_hostile_scheme_success_chance_add = 5
+		enemy_hostile_scheme_success_chance_max_add = -10
+		monthly_prestige = 1
+	}
+
+	on_court_position_received = {
+        cse_make_royal_mistress_effect = yes
+    }
+
+    on_court_position_revoked = {
+        if = {
+            limit = {
+                OR = {
+                    has_relation_lover = scope:liege
+                    has_relation_soulmate = scope:liege
+                }
+            }
+            basic_revoked_court_position_effect = yes # Only angry if they're still lovers
+        }
+    }
+
+    on_court_position_invalidated = {
+        basic_invalidated_court_position_effect = yes
+    }
+	
+	on_court_position_vacated = {
+		#court_position_vacated_event_effect = {
+		#	COURT_POSITION_TYPE = lady_in_waiting_court_position
+		#}
+	}
+
+	# Scripted value to determine whether an AI will hire/fire a position or not.
+	# Hires over 0, fires under -50.
+	candidate_score = {
+		value = -100
+	}
+}

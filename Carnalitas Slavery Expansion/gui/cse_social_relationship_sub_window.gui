@@ -1,0 +1,926 @@
+﻿types CharacterWindow
+{
+	type cse_social_relationship_sub_window = window {
+		name = "cse_social_relationship_sub_window"
+		visible = "[GetVariableSystem.Exists( 'cse_show_social_relationship' )]"
+		size = { 0 0 }
+		movable = no
+
+		state = {
+			name = _show
+			position = { 600 5 }
+			using = Animation_FadeIn_Quick
+		}
+		state = {
+			name = _hide
+			position = { 500 5 }
+			using = Animation_FadeOut_Quick
+		}
+
+		using = Window_Background_Subwindow
+
+		using = Animation_Character_Window_Refresh_Short
+
+		vbox = {
+			set_parent_size_to_minimum = yes
+			margin = { 0 5 }
+			
+			hbox = {
+				layoutpolicy_horizontal = expanding
+				margin = { 10 0 }
+				
+				### Secondary Spouses ###
+				vbox = {
+					#visible = "[Or( And( CharacterWindow.GetCharacter.GetPrimarySpouse.IsValid, CharacterWindow.GetCharacter.IsPlayerInteractionShown( 'marry_off_interaction' ) ), GreaterThanOrEqualTo_int32( GetDataModelSize( CharacterWindow.GetSecondarySpouses ), '(int32)1' ) )]"
+					visible = "[And( VariableSystem.Exists( 'cse_show_consorts' ), Or( And( CharacterWindow.GetCharacter.GetPrimarySpouse.IsValid, CharacterWindow.GetCharacter.IsPlayerInteractionShown( 'marry_off_interaction' ) ), GreaterThanOrEqualTo_int32( GetDataModelSize( CharacterWindow.GetSecondarySpouses ), '(int32)1' ) ) )]"
+					margin_bottom = 5
+					layoutpolicy_vertical = expanding
+			
+					dynamicgridbox = {
+						visible = "[Or( VariableSystem.Exists( 'cse_show_all_consorts' ), LessThan_int32( GetDataModelSize( CharacterWindow.GetSecondarySpouses ), '(int32)10' ) )]"
+						datamodel = "[CharacterWindow.GetSecondarySpouses]"
+						datamodel_wrap = 9
+			
+						item = {
+							portrait_head = {
+								blockoverride "portrait_transformation" {
+									portrait_scale = { -1 1 }
+									portrait_offset = { 1 0 }
+								}
+			
+								blockoverride "portrait_button" {
+									using = tooltip_ne
+								}
+								blockoverride "glow_visible" {
+									visible = no
+								}
+			
+								blockoverride "opinion_box" {}
+								
+								cse_portrait_opinion = {}
+			
+								cse_age_and_health = {
+									position = { 5 4 }
+								}
+								
+								cse_marriage_type_icon = {}
+								
+								coa_house_tiny = {
+									parentanchor = top|right
+									position = { 4 -4 }
+									datacontext = "[Character.GetHouse]"
+								}
+							}
+						}
+					}
+					
+					scrollarea = {
+						visible = "[And( Not( VariableSystem.Exists( 'cse_show_all_consorts' ) ), GreaterThanOrEqualTo_int32( GetDataModelSize( CharacterWindow.GetSecondarySpouses ), '(int32)10' ) )]"
+						layoutpolicy_vertical = expanding
+						#layoutpolicy_horizontal = expanding
+						#size = { 130 720 }
+						#size = { 130 840 }
+						size = { 130 1080 }
+
+						scrollbarpolicy_horizontal = always_off
+						scrollbar_vertical = {
+							using = Scrollbar_Vertical
+						}
+						scrollbaralign_vertical = left
+
+						scrollwidget = {
+							vbox = {
+								datamodel = "[CharacterWindow.GetSecondarySpouses]"
+
+								item = {
+									portrait_head = {
+										blockoverride "portrait_transformation" {
+											portrait_scale = { -1 1 }
+											portrait_offset = { 1 0 }
+										}
+					
+										blockoverride "portrait_button" {
+											using = tooltip_ne
+										}
+										blockoverride "glow_visible" {
+											visible = no
+										}
+					
+										blockoverride "opinion_box" {}
+										
+										cse_portrait_opinion = {}
+					
+										cse_age_and_health = {
+											position = { 5 4 }
+										}
+										
+										cse_marriage_type_icon = {}
+										
+										coa_house_tiny = {
+											parentanchor = top|right
+											position = { 4 -4 }
+											datacontext = "[Character.GetHouse]"
+										}
+									}
+								}
+							}
+						}
+					}
+					
+					button_standard_hover = {
+						visible = "[And( CharacterWindow.GetCharacter.IsPlayerInteractionShown( 'marry_off_interaction' ), And( Not( ObjectsEqual( CharacterWindow.GetCharacter, GetPlayer ) ), Not( Character.IsConcubine ) ) )]"
+						layoutpolicy_horizontal = expanding
+						size = { -1 35 }
+						onclick = "[CharacterWindow.GetCharacter.OpenPlayerInteraction( 'marry_off_interaction' )]"
+						
+						icon = {
+							parentanchor = center
+							size = { 40 40 }
+							texture = "gfx/interface/icons/character_interactions/icon_marriage.dds"
+						}
+
+						background = {
+							using = Background_Area_Dark
+
+							modify_texture = {
+								texture = "gfx/interface/component_masks/mask_fade_horizontal_middle.dds"
+								blend_mode = alphamultiply
+							}
+						}
+						widget = {
+							size = { 100% 100% }
+							datacontext = "[CharacterWindow.GetCharacter]"
+							tooltip = "CHARACTER_WINDOW_FIND_SPOUSE"
+						}
+						
+					}
+					
+					button_standard_hover = {
+						visible = "[And( CharacterWindow.GetCharacter.IsPlayerInteractionShown( 'marry_off_interaction' ), ObjectsEqual( CharacterWindow.GetCharacter, GetPlayer ) )]"
+						layoutpolicy_horizontal = expanding
+						size = { -1 35 }
+						onclick = "[CharacterWindow.GetCharacter.OpenPlayerInteraction( 'marry_off_interaction' )]"
+						
+						icon = {
+							parentanchor = center
+							size = { 40 40 }
+							texture = "gfx/interface/icons/character_interactions/icon_marriage.dds"
+						}
+
+						background = {
+							using = Background_Area_Dark
+
+							modify_texture = {
+								texture = "gfx/interface/component_masks/mask_fade_horizontal_middle.dds"
+								blend_mode = alphamultiply
+							}
+						}
+						tooltip = "CHARACTER_WINDOW_FIND_SPOUSE_SELF"
+					}
+					
+					text_single = {
+						max_width = 120
+			
+						text = "SECONDARY_SPOUSES"
+			
+						background = {
+							margin = { 20 2 }
+			
+							texture = "gfx/interface/component_tiles/tile_title_bg_01.dds"
+							spriteType = Corneredtiled
+							spriteborder = { 40 8 }
+							texture_density = 2
+			
+							modify_texture = {
+								name = "mask"
+								texture = "gfx/interface/component_masks/mask_fade_horizontal_middle_thick.dds"
+								spriteType = Corneredstretched
+								spriteborder = { 0 0 }
+								blend_mode = alphamultiply
+							}
+						}
+					}
+					expand = {}
+				}
+				
+				### Concubines ###
+				vbox = {
+					visible = "[And( VariableSystem.Exists( 'cse_show_consorts' ), GreaterThanOrEqualTo_int32( GetDataModelSize( CharacterWindow.GetConcubines ), '(int32)1' ) )]"
+					margin_bottom = 5
+					layoutpolicy_vertical = expanding
+			
+					dynamicgridbox = {
+						visible = "[Or( VariableSystem.Exists( 'cse_show_all_consorts' ), LessThan_int32( GetDataModelSize( CharacterWindow.GetConcubines ), '(int32)10' ) )]"
+						datamodel = "[CharacterWindow.GetConcubines]"
+						datamodel_wrap = 9
+			
+						item = {
+							portrait_head = {
+								blockoverride "portrait_transformation" {
+									portrait_scale = { -1 1 }
+									portrait_offset = { 1 0 }
+								}
+			
+								blockoverride "portrait_button" {
+									using = tooltip_ne
+								}
+								blockoverride "glow_visible" {
+									visible = no
+								}
+			
+								blockoverride "opinion_box" {}
+								
+								cse_portrait_opinion = {}
+			
+								cse_age_and_health = {
+									position = { 5 4 }
+								}
+								
+								coa_house_tiny = {
+									parentanchor = top|right
+									position = { 4 -4 }
+									datacontext = "[Character.GetHouse]"
+								}
+							}
+						}
+					}
+					
+					scrollarea = {
+						visible = "[And( Not( VariableSystem.Exists( 'cse_show_all_consorts' ) ), GreaterThanOrEqualTo_int32( GetDataModelSize( CharacterWindow.GetConcubines ), '(int32)10' ) )]"
+						layoutpolicy_vertical = expanding
+						#layoutpolicy_horizontal = expanding
+						#size = { 130 720 }
+						#size = { 130 840 }
+						size = { 130 1080 }
+
+						scrollbarpolicy_horizontal = always_off
+						scrollbar_vertical = {
+							using = Scrollbar_Vertical
+						}
+						scrollbaralign_vertical = left
+
+						scrollwidget = {
+							vbox = {
+								datamodel = "[CharacterWindow.GetConcubines]"
+
+								item = {
+									portrait_head = {
+										blockoverride "portrait_transformation" {
+											portrait_scale = { -1 1 }
+											portrait_offset = { 1 0 }
+										}
+					
+										blockoverride "portrait_button" {
+											using = tooltip_ne
+										}
+										blockoverride "glow_visible" {
+											visible = no
+										}
+					
+										blockoverride "opinion_box" {}
+										
+										cse_portrait_opinion = {}
+					
+										cse_age_and_health = {
+											position = { 5 4 }
+										}
+										
+										coa_house_tiny = {
+											parentanchor = top|right
+											position = { 4 -4 }
+											datacontext = "[Character.GetHouse]"
+										}
+									}
+								}
+							}
+						}
+					}
+					
+					text_single = {
+						max_width = 120
+			
+						text = "CONCUBINES"
+			
+						background = {
+							margin = { 20 2 }
+			
+							texture = "gfx/interface/component_tiles/tile_title_bg_01.dds"
+							spriteType = Corneredtiled
+							spriteborder = { 40 8 }
+							texture_density = 2
+			
+							modify_texture = {
+								name = "mask"
+								texture = "gfx/interface/component_masks/mask_fade_horizontal_middle_thick.dds"
+								spriteType = Corneredstretched
+								spriteborder = { 0 0 }
+								blend_mode = alphamultiply
+							}
+						}
+					}
+					expand = {}
+				}
+				
+				button_standard_hover = {
+					visible = "[Or( GreaterThanOrEqualTo_int32( GetDataModelSize( CharacterWindow.GetConcubines ), '(int32)1' ), Or( And( CharacterWindow.GetCharacter.GetPrimarySpouse.IsValid, CharacterWindow.GetCharacter.IsPlayerInteractionShown( 'marry_off_interaction' ) ), GreaterThanOrEqualTo_int32( GetDataModelSize( CharacterWindow.GetSecondarySpouses ), '(int32)1' ) ) )]"
+					layoutpolicy_vertical = expanding
+					size = { 7 -1 }
+					onclick = "[GetVariableSystem.Toggle( 'cse_show_consorts' )]"
+			
+					button_icon_highlight = {
+						visible = "[Not( VariableSystem.Exists( 'cse_show_consorts' ) )]"
+						parentanchor = center
+						size = { 20 20 }
+						texture = "gfx/interface/icons/flat_icons/plus.dds"
+					}
+					button_icon_highlight = {
+						visible = "[VariableSystem.Exists( 'cse_show_consorts' )]"
+						parentanchor = center
+						size = { 20 20 }
+						texture = "gfx/interface/icons/flat_icons/minus.dds"
+					}
+					background = {
+						using = Background_Area_Dark
+
+						modify_texture = {
+							texture = "gfx/interface/component_masks/mask_fade_horizontal_middle.dds"
+							blend_mode = alphamultiply
+						}
+					}
+				}
+				
+				### Courtesans ###
+				vbox = {
+					visible = "[GreaterThanOrEqualTo_int32( GetDataModelSize( CharacterWindow.GetRelationsOfType( GetRelation( 'courtesan' ))), '(int32)1' )]"
+					margin_bottom = 5
+					layoutpolicy_vertical = expanding
+			
+					dynamicgridbox = {
+						visible = "[Or( VariableSystem.Exists( 'cse_show_all_consorts' ), LessThan_int32( GetDataModelSize( CharacterWindow.GetRelationsOfType( GetRelation( 'courtesan' ))), '(int32)10' ) )]"
+						datamodel = "[CharacterWindow.GetRelationsOfType( GetRelation( 'courtesan' ) )]"
+						datamodel_wrap = 9
+			
+						item = {
+							portrait_head = {
+								blockoverride "portrait_transformation" {
+									portrait_scale = { -1 1 }
+									portrait_offset = { 1 0 }
+								}
+			
+								blockoverride "portrait_button" {
+									using = tooltip_ne
+								}
+								blockoverride "glow_visible" {
+									visible = no
+								}
+			
+								blockoverride "opinion_box" {}
+								
+								cse_portrait_opinion = {}
+			
+								cse_age_and_health = {
+									position = { 5 4 }
+								}
+								
+								coa_house_tiny = {
+									parentanchor = top|right
+									position = { 4 -4 }
+									datacontext = "[Character.GetHouse]"
+								}
+							}
+						}
+					}
+					
+					scrollarea = {
+						visible = "[And( Not( VariableSystem.Exists( 'cse_show_all_consorts' ) ), GreaterThanOrEqualTo_int32( GetDataModelSize( CharacterWindow.GetRelationsOfType( GetRelation( 'courtesan' ))), '(int32)10' ) )]"
+						layoutpolicy_vertical = expanding
+						#layoutpolicy_horizontal = expanding
+						#size = { 130 720 }
+						#size = { 130 840 }
+						size = { 130 1080 }
+
+						scrollbarpolicy_horizontal = always_off
+						scrollbar_vertical = {
+							using = Scrollbar_Vertical
+						}
+						scrollbaralign_vertical = left
+
+						scrollwidget = {
+							vbox = {
+								datamodel = "[CharacterWindow.GetRelationsOfType( GetRelation( 'courtesan' ) )]"
+
+								item = {
+									portrait_head = {
+										blockoverride "portrait_transformation" {
+											portrait_scale = { -1 1 }
+											portrait_offset = { 1 0 }
+										}
+					
+										blockoverride "portrait_button" {
+											using = tooltip_ne
+										}
+										blockoverride "glow_visible" {
+											visible = no
+										}
+					
+										blockoverride "opinion_box" {}
+										
+										cse_portrait_opinion = {}
+					
+										cse_age_and_health = {
+											position = { 5 4 }
+										}
+										
+										coa_house_tiny = {
+											parentanchor = top|right
+											position = { 4 -4 }
+											datacontext = "[Character.GetHouse]"
+										}
+									}
+								}
+							}
+						}
+					}
+					
+					text_single = {
+						max_width = 120
+			
+						text = "COURTESANS"
+			
+						background = {
+							margin = { 20 2 }
+			
+							texture = "gfx/interface/component_tiles/tile_title_bg_01.dds"
+							spriteType = Corneredtiled
+							spriteborder = { 40 8 }
+							texture_density = 2
+			
+							modify_texture = {
+								name = "mask"
+								texture = "gfx/interface/component_masks/mask_fade_horizontal_middle_thick.dds"
+								spriteType = Corneredstretched
+								spriteborder = { 0 0 }
+								blend_mode = alphamultiply
+							}
+						}
+					}
+					expand = {}
+				}
+				
+				### Courtesan Owners ###
+				vbox = {
+					visible = "[GreaterThanOrEqualTo_int32( GetDataModelSize( CharacterWindow.GetRelationsOfType( GetRelation( 'courtesan_owner' ))), '(int32)1' )]"
+					margin_bottom = 5
+					layoutpolicy_vertical = expanding
+			
+					dynamicgridbox = {
+						visible = "[Or( VariableSystem.Exists( 'cse_show_all_consorts' ), LessThan_int32( GetDataModelSize( CharacterWindow.GetRelationsOfType( GetRelation( 'courtesan_owner' ))), '(int32)10' ) )]"
+						datamodel = "[CharacterWindow.GetRelationsOfType( GetRelation( 'courtesan_owner' ) )]"
+						datamodel_wrap = 9
+			
+						item = {
+							portrait_head = {
+								blockoverride "portrait_transformation" {
+									portrait_scale = { -1 1 }
+									portrait_offset = { 1 0 }
+								}
+			
+								blockoverride "portrait_button" {
+									using = tooltip_ne
+								}
+								blockoverride "glow_visible" {
+									visible = no
+								}
+			
+								blockoverride "opinion_box" {}
+								
+								cse_portrait_opinion = {}
+			
+								cse_age_and_health = {
+									position = { 5 4 }
+								}
+								
+								coa_house_tiny = {
+									parentanchor = top|right
+									position = { 4 -4 }
+									datacontext = "[Character.GetHouse]"
+								}
+							}
+						}
+					}
+					
+					scrollarea = {
+						visible = "[And( Not( VariableSystem.Exists( 'cse_show_all_consorts' ) ), GreaterThanOrEqualTo_int32( GetDataModelSize( CharacterWindow.GetRelationsOfType( GetRelation( 'courtesan_owner' ))), '(int32)10' ) )]"
+						layoutpolicy_vertical = expanding
+						#layoutpolicy_horizontal = expanding
+						#size = { 130 720 }
+						#size = { 130 840 }
+						size = { 130 1080 }
+
+						scrollbarpolicy_horizontal = always_off
+						scrollbar_vertical = {
+							using = Scrollbar_Vertical
+						}
+						scrollbaralign_vertical = left
+
+						scrollwidget = {
+							vbox = {
+								datamodel = "[CharacterWindow.GetRelationsOfType( GetRelation( 'courtesan_owner' ) )]"
+
+								item = {
+									portrait_head = {
+										blockoverride "portrait_transformation" {
+											portrait_scale = { -1 1 }
+											portrait_offset = { 1 0 }
+										}
+					
+										blockoverride "portrait_button" {
+											using = tooltip_ne
+										}
+										blockoverride "glow_visible" {
+											visible = no
+										}
+					
+										blockoverride "opinion_box" {}
+										
+										cse_portrait_opinion = {}
+					
+										cse_age_and_health = {
+											position = { 5 4 }
+										}
+										
+										coa_house_tiny = {
+											parentanchor = top|right
+											position = { 4 -4 }
+											datacontext = "[Character.GetHouse]"
+										}
+									}
+								}
+							}
+						}
+					}
+					
+					text_single = {
+						max_width = 120
+			
+						text = "COURTESAN_OWNERS"
+			
+						background = {
+							margin = { 20 2 }
+			
+							texture = "gfx/interface/component_tiles/tile_title_bg_01.dds"
+							spriteType = Corneredtiled
+							spriteborder = { 40 8 }
+							texture_density = 2
+			
+							modify_texture = {
+								name = "mask"
+								texture = "gfx/interface/component_masks/mask_fade_horizontal_middle_thick.dds"
+								spriteType = Corneredstretched
+								spriteborder = { 0 0 }
+								blend_mode = alphamultiply
+							}
+						}
+					}
+					expand = {}
+				}
+				
+				button_standard_hover = {
+					visible = "[GreaterThanOrEqualTo_int32( GetDataModelSize( CharacterWindow.GetRelationsOfType( GetRelation( 'sex_slave' ))), '(int32)1' )]"
+					layoutpolicy_vertical = expanding
+					size = { 7 -1 }
+					onclick = "[GetVariableSystem.Toggle( 'cse_show_sex_slaves' )]"
+			
+					button_icon_highlight = {
+						visible = "[Not( VariableSystem.Exists( 'cse_show_sex_slaves' ) )]"
+						parentanchor = center
+						size = { 20 20 }
+						texture = "gfx/interface/icons/flat_icons/plus.dds"
+					}
+					button_icon_highlight = {
+						visible = "[VariableSystem.Exists( 'cse_show_sex_slaves' )]"
+						parentanchor = center
+						size = { 20 20 }
+						texture = "gfx/interface/icons/flat_icons/minus.dds"
+					}
+					background = {
+						using = Background_Area_Dark
+
+						modify_texture = {
+							texture = "gfx/interface/component_masks/mask_fade_horizontal_middle.dds"
+							blend_mode = alphamultiply
+						}
+					}
+				}
+				
+				### Sex Slaves ###
+				vbox = {
+					visible = "[And( VariableSystem.Exists( 'cse_show_sex_slaves' ), GreaterThanOrEqualTo_int32( GetDataModelSize( CharacterWindow.GetRelationsOfType( GetRelation( 'sex_slave' ))), '(int32)1' ) )]"
+					margin_bottom = 5
+					layoutpolicy_vertical = expanding
+			
+					dynamicgridbox = {
+						visible = "[Or( VariableSystem.Exists( 'cse_show_all_consorts' ), LessThan_int32( GetDataModelSize( CharacterWindow.GetRelationsOfType( GetRelation( 'sex_slave' ))), '(int32)10' ) )]"
+						datamodel = "[CharacterWindow.GetRelationsOfType( GetRelation( 'sex_slave' ) )]"
+						datamodel_wrap = 9
+			
+						item = {
+							portrait_head = {
+								blockoverride "portrait_transformation" {
+									portrait_scale = { -1 1 }
+									portrait_offset = { 1 0 }
+								}
+			
+								blockoverride "portrait_button" {
+									using = tooltip_ne
+								}
+								blockoverride "glow_visible" {
+									visible = no
+								}
+			
+								blockoverride "opinion_box" {}
+								
+								cse_portrait_opinion = {}
+			
+								cse_age_and_health = {
+									position = { 5 4 }
+								}
+								
+								coa_house_tiny = {
+									parentanchor = top|right
+									position = { 4 -4 }
+									datacontext = "[Character.GetHouse]"
+								}
+							}
+						}
+					}
+					
+					scrollarea = {
+						visible = "[And( Not( VariableSystem.Exists( 'cse_show_all_consorts' ) ), GreaterThanOrEqualTo_int32( GetDataModelSize( CharacterWindow.GetRelationsOfType( GetRelation( 'sex_slave' ))), '(int32)10' ) )]"
+						layoutpolicy_vertical = expanding
+						#layoutpolicy_horizontal = expanding
+						#size = { 130 720 }
+						#size = { 130 840 }
+						size = { 130 1080 }
+
+						scrollbarpolicy_horizontal = always_off
+						scrollbar_vertical = {
+							using = Scrollbar_Vertical
+						}
+						scrollbaralign_vertical = left
+
+						scrollwidget = {
+							vbox = {
+								datamodel = "[CharacterWindow.GetRelationsOfType( GetRelation( 'sex_slave' ) )]"
+
+								item = {
+									portrait_head = {
+										blockoverride "portrait_transformation" {
+											portrait_scale = { -1 1 }
+											portrait_offset = { 1 0 }
+										}
+					
+										blockoverride "portrait_button" {
+											using = tooltip_ne
+										}
+										blockoverride "glow_visible" {
+											visible = no
+										}
+					
+										blockoverride "opinion_box" {}
+										
+										cse_portrait_opinion = {}
+					
+										cse_age_and_health = {
+											position = { 5 4 }
+										}
+										
+										coa_house_tiny = {
+											parentanchor = top|right
+											position = { 4 -4 }
+											datacontext = "[Character.GetHouse]"
+										}
+									}
+								}
+							}
+						}
+					}
+					
+					text_single = {
+						max_width = 120
+			
+						text = "SEX_SLAVES"
+			
+						background = {
+							margin = { 20 2 }
+			
+							texture = "gfx/interface/component_tiles/tile_title_bg_01.dds"
+							spriteType = Corneredtiled
+							spriteborder = { 40 8 }
+							texture_density = 2
+			
+							modify_texture = {
+								name = "mask"
+								texture = "gfx/interface/component_masks/mask_fade_horizontal_middle_thick.dds"
+								spriteType = Corneredstretched
+								spriteborder = { 0 0 }
+								blend_mode = alphamultiply
+							}
+						}
+					}
+					expand = {}
+				}
+				expand = {}
+			}
+			
+			button_standard_hover = {
+				visible = "[Or( Or( Or( GreaterThanOrEqualTo_int32( GetDataModelSize( CharacterWindow.GetSecondarySpouses ), '(int32)10' ), GreaterThanOrEqualTo_int32( GetDataModelSize( CharacterWindow.GetConcubines ), '(int32)10' ) ), GreaterThanOrEqualTo_int32( GetDataModelSize( CharacterWindow.GetRelationsOfType( GetRelation( 'courtesan' ))), '(int32)10' ) ), GreaterThanOrEqualTo_int32( GetDataModelSize( CharacterWindow.GetRelationsOfType( GetRelation( 'courtesan_owner' ))), '(int32)10' ) )]"
+				layoutpolicy_horizontal = expanding
+				size = { -1 25 }
+				onclick = "[GetVariableSystem.Toggle( 'cse_show_all_consorts' )]"
+				#onrightclick = "[GetVariableSystem.Toggle( 'cse_show_sex_slaves' )]"
+				#button_ignore = none
+		
+				button_icon_highlight = {
+					visible = "[Not( VariableSystem.Exists( 'cse_show_all_consorts' ) )]"
+					parentanchor = center
+					size = { 20 20 }
+					texture = "gfx/interface/icons/flat_icons/plus.dds"
+				}
+				button_icon_highlight = {
+					visible = "[VariableSystem.Exists( 'cse_show_all_consorts' )]"
+					parentanchor = center
+					size = { 20 20 }
+					texture = "gfx/interface/icons/flat_icons/minus.dds"
+				}
+				background = {
+					using = Background_Area_Dark
+
+					modify_texture = {
+						texture = "gfx/interface/component_masks/mask_fade_horizontal_middle.dds"
+						blend_mode = alphamultiply
+					}
+				}
+			}
+		}
+	}
+
+
+
+	#############
+	### Types ###
+	#############
+	type cse_hide_social_relationship_portrait = widget {
+		size = { 134 145 }
+
+		block "portrait" {
+			portrait_head = {
+				parentanchor = top|hcenter
+
+				using = Animation_Character_Window_Refresh
+
+				blockoverride "portrait_transformation" {
+					portrait_scale = { -1 1 }
+					portrait_offset = { 1 0 }
+				}
+
+				blockoverride "opinion_box" {}
+				blockoverride "status_icons" {}
+
+				cse_age_and_health = {
+					position = { 5 5 }
+				}
+			}
+		}
+
+		block "status_and_opinion" {
+			flowcontainer = {
+				parentanchor = bottom|right
+				position = { -10 -29 }
+				direction = vertical
+	
+				portrait_status_icons_small = {
+					parentanchor = right
+				}
+				portrait_opinion = {
+					parentanchor = right
+				}
+	
+				block "liege_and_host_opinion" {}
+			}
+		}
+
+		block "social_relation_icon" {}
+
+		flowcontainer = {
+			parentanchor = top|hcenter
+			position = { 0 115 }
+			direction = vertical
+			ignoreinvisible = yes
+
+			text_single = {
+				block "social_relation_label_1_visible" {}
+				max_width = 120
+
+				background = {
+					margin = { 20 2 }
+
+					texture = "gfx/interface/component_tiles/tile_title_bg_01.dds"
+					spriteType = Corneredtiled
+					spriteborder = { 40 8 }
+					texture_density = 2
+
+					modify_texture = {
+						name = "mask"
+						texture = "gfx/interface/component_masks/mask_fade_horizontal_middle_thick.dds"
+						spriteType = Corneredstretched
+						spriteborder = { 0 0 }
+						blend_mode = alphamultiply
+					}
+				}
+
+				block "social_relation_label" {
+					text = ""
+				}
+			}
+
+			text_single = {
+				block "social_relation_label_2_visible" {
+					visible = no
+				}
+				max_width = 120
+
+				background = {
+					margin = { 20 2 }
+
+					texture = "gfx/interface/component_tiles/tile_title_bg_01.dds"
+					spriteType = Corneredtiled
+					spriteborder = { 40 8 }
+					texture_density = 2
+
+					modify_texture = {
+						name = "mask"
+						texture = "gfx/interface/component_masks/mask_fade_horizontal_middle_thick.dds"
+						spriteType = Corneredstretched
+						spriteborder = { 0 0 }
+						blend_mode = alphamultiply
+					}
+				}
+
+				block "social_relation_label_2" {
+					text = ""
+				}
+			}
+		}
+	}
+	
+	type cse_age_and_health = flowcontainer {
+		parentanchor = top|left
+		position = { -1 3 }
+		spacing = -3
+		direction = vertical
+		ignoreinvisible = yes
+
+		background = {
+			using = Background_Area_Dark
+			margin = { 1 1 }
+		}
+
+		text_single = {
+			parentanchor = hcenter
+			raw_text = "[Character.GetAge]"
+			fontsize = 16
+			align = nobaseline
+
+			tooltip = "[Character.GetDeathOrBirthDateInfo]"
+		}
+
+		icon = {
+			visible = "[Not( Character.IsDeadAndValid )]"
+			parentanchor = hcenter
+			size = { 20 20 }
+			framesize = { 60 60 }
+			frame = "[Character.GetHealthIconFrame]"
+			texture = "gfx/interface/icons/character_status/icon_health.dds"
+			tooltip = "[Character.GetHealthInfo]"
+		}
+		icon = {
+			visible = "[Character.IsDeadAndValid]"
+			parentanchor = hcenter
+			size = { 20 20 }
+			texture = "gfx/interface/icons/character_status/icon_dead.dds"
+			tooltip = "CHARACTER_DEAD_TOOLTIP"
+		}
+	}
+	
+	type cse_portrait_opinion = portrait_opinion {
+		parentanchor = top|hcenter
+		position = { -4 6 }
+		scale = 0.9
+	}
+	
+	type cse_marriage_type_icon = flowcontainer {
+		parentanchor = vcenter|left
+		position = { 3 -6 }
+	}
+}

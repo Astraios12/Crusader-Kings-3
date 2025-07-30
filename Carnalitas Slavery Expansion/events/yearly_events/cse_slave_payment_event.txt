@@ -1,0 +1,266 @@
+﻿namespace = cse_slave_payment_event
+
+# 0001. Owners get earnings from their slaves
+
+cse_slave_payment_event.0001 = {
+	hidden = yes
+
+	trigger = {
+		any_relation = {
+			type = slave
+			OR = {
+				cse_is_working_as_slave_prostitute_trigger = yes
+				cse_is_working_as_labour_slave_trigger = yes
+				cse_is_working_as_military_slave_trigger = yes
+				cse_is_working_as_sex_slave_trigger = yes
+			}
+		}
+	}
+
+	immediate = {
+		set_variable = {
+			name = cse_slave_owner_earnings_gold
+			value = 0
+		}
+		set_variable = {
+			name = cse_slave_owner_earnings_prestige
+			value = 0
+		}
+		set_variable = {
+			name = cse_slave_owner_earnings_piety
+			value = 0
+		}
+		
+		set_variable = {
+			name = cse_slave_owner_expenses_gold
+			value = 0
+		}
+		set_variable = {
+			name = cse_slave_owner_expenses_piety
+			value = 0
+		}
+		
+		#################### SLAVE PROSTITUTE ############################################################
+		
+		if = {
+			limit = {
+				any_relation = {
+					type = slave
+					cse_is_working_as_slave_prostitute_trigger = yes
+				}
+			}
+			every_relation = {
+				type = slave
+				limit = { cse_is_working_as_slave_prostitute_trigger = yes }
+				hidden_effect = {
+					# unlanded characters don't actually earn money, so we have to generate money out of nothing in script
+					root = {
+						change_variable = {
+							name = cse_slave_owner_earnings_gold
+							add = prev.cse_slave_prostitute_income_value
+						}
+					}
+					if = {
+						limit = {
+							root.faith = {
+								NOT = { has_doctrine_parameter = carn_slave_prostitution }
+							}
+						}
+						root = {
+							change_variable = {
+								name = cse_slave_owner_expenses_piety
+								add = cse_slave_piety_loss_through_prostitution_amount_value
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		#################### LABOUR SLAVE ############################################################
+
+		if = {
+			limit = {
+				any_relation = {
+					type = slave
+					cse_is_working_as_labour_slave_trigger = yes
+				}
+			}
+			every_relation = {
+				type = slave
+				limit = { cse_is_working_as_labour_slave_trigger = yes }
+				hidden_effect = {
+					root = {
+						change_variable = {
+							name = cse_slave_owner_earnings_gold
+							add = prev.cse_labour_slave_income_value
+						}
+					}
+				}
+			}
+		}
+		
+		#################### MILITARY SLAVE ############################################################
+
+		if = {
+			limit = {
+				any_relation = {
+					type = slave
+					cse_is_working_as_military_slave_trigger = yes
+				}
+			}
+			every_relation = {
+				type = slave
+				limit = { cse_is_working_as_military_slave_trigger = yes }
+				hidden_effect = {
+					root = {
+						change_variable = {
+							name = cse_slave_owner_earnings_prestige
+							add = prev.cse_military_slave_income_value
+						}
+						change_variable = {
+							name = cse_slave_owner_expenses_gold
+							add = prev.cse_military_slave_expense_value
+						}
+					}
+					set_variable = {
+						name = cse_military_slave_earnings_gold
+						value = 0
+					}
+					change_variable = {
+						name = cse_military_slave_earnings_gold
+						add = cse_military_slave_expense_value
+					}
+					add_gold = var:cse_military_slave_earnings_gold
+				}
+			}
+		}
+		
+		#################### SEX SLAVE ############################################################
+		
+		if = {
+			limit = {
+				any_relation = {
+					type = slave
+					cse_is_working_as_sex_slave_trigger = yes
+				}
+			}
+			every_relation = {
+				type = slave
+				limit = { cse_is_working_as_sex_slave_trigger = yes }
+				hidden_effect = {
+					root = {
+						change_variable = {
+							name = cse_slave_owner_expenses_gold
+							add = prev.cse_sex_slave_expense_value
+						}
+					}
+				}
+			}
+		}
+		
+		#################### PIETY COST ############################################################
+		
+		every_relation = {
+			type = slave
+			hidden_effect = {
+				if = {
+					limit = {
+						OR = {
+							root.faith = {
+								NOT = { has_doctrine = carn_doctrine_same_slavery_accepted }
+								faith_hostility_level = {
+									target = prev.faith
+									value < faith_hostile_level
+								}
+							}
+							root.faith = {
+								NOT = { has_doctrine = carn_doctrine_other_slavery_accepted }
+								faith_hostility_level = {
+									target = prev.faith
+									value >= faith_hostile_level
+								}
+							}
+						}
+					}
+					root = {
+						change_variable = {
+							name = cse_slave_owner_expenses_piety
+							add = cse_slave_piety_loss_through_faith_amount_value
+						}
+					}
+				}
+				else_if = {
+					limit = {
+						opinion = {
+							target = root
+							value >= cse_slave_piety_on_opinion_threshold_value
+						}
+					}
+					root = {
+						change_variable = {
+							name = cse_slave_owner_earnings_piety
+							add = cse_slave_piety_on_opinion_amount_value
+						}
+					}
+				}
+			}
+		}
+		
+		#################### RESULT ############################################################
+		
+		send_interface_message = {
+			type = cse_slave_random_event_good
+			title = cse_slave_payment_event.0001.notification
+			if = {
+				limit = {
+					OR = {
+						var:cse_slave_owner_earnings_gold > 0
+						var:cse_slave_owner_earnings_gold < 0
+					}
+				}
+				add_gold = var:cse_slave_owner_earnings_gold
+			}
+			if = {
+				limit = {
+					OR = {
+						var:cse_slave_owner_expenses_gold > 0
+						var:cse_slave_owner_expenses_gold < 0
+					}
+				}
+				remove_short_term_gold = var:cse_slave_owner_expenses_gold
+			}
+			if = {
+				limit = {
+					OR = {
+						var:cse_slave_owner_earnings_prestige > 0
+						var:cse_slave_owner_earnings_prestige < 0
+					}
+				}
+				add_prestige = var:cse_slave_owner_earnings_prestige
+			}
+			if = {
+				limit = {
+					OR = {
+						var:cse_slave_owner_earnings_piety > 0
+						var:cse_slave_owner_earnings_piety < 0
+					}
+				}
+				add_piety = var:cse_slave_owner_earnings_piety
+			}
+			if = {
+				limit = {
+					OR = {
+						var:cse_slave_owner_expenses_piety > 0
+						var:cse_slave_owner_expenses_piety < 0
+					}
+				}
+				add_piety = var:cse_slave_owner_expenses_piety
+				stress_impact = {
+					generous = medium_stress_impact_gain
+					compassionate = major_stress_impact_gain
+				}
+			}
+		}
+	}
+}

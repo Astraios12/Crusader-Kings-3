@@ -1,0 +1,383 @@
+﻿#################### CLEAR ALL COURT MODIFIERS ############################################################
+
+cse_clear_all_courtesan_modifiers_effect = {
+	hidden_effect = {
+		if = {
+			limit = {
+				cse_is_assigned_as_courtesan_trigger = yes
+			}
+			cse_stop_working_as_courtesan_effect = yes
+		}
+	}
+}
+
+#################### COURTESAN ############################################################
+
+cse_start_working_as_courtesan_effect = {
+	
+	# Stop being a courtesan for anyone else
+	cse_clear_all_courtesan_modifiers_effect = yes
+	
+	# Stop being a slave (requires the scope "courtesan_owner" to work)
+	if = {
+		limit = {
+			has_trait = slave
+		}
+		save_scope_as = slave
+		cse_clear_all_slave_modifiers_effect = yes
+		carn_free_slave_effect = yes
+		if = {
+			limit = { scope:hook = yes }
+			add_opinion = {
+				modifier = carn_freed_me_from_slavery_opinion
+				opinion = 25
+				target = scope:courtesan_owner
+			}
+			scope:courtesan_owner = {
+				if = {
+					limit = {
+						faith = {
+							NOR = {
+								AND = {
+									faith_hostility_level = {
+										target = scope:slave.faith
+										value < faith_hostile_level
+									}
+									has_doctrine = carn_doctrine_same_slavery_accepted
+								}
+								AND = {
+									faith_hostility_level = {
+										target = scope:slave.faith
+										value >= faith_hostile_level
+									}
+									has_doctrine = carn_doctrine_other_slavery_accepted
+								}
+							}
+						}
+					}
+					add_piety = minor_piety_gain
+				}
+				stress_impact = {
+					sadistic = medium_stress_impact_gain
+					callous = minor_stress_impact_gain
+				}
+			}
+		}
+		else = {
+			add_opinion = {
+				modifier = carn_freed_me_from_slavery_opinion
+				target = scope:courtesan_owner
+			}
+			scope:courtesan_owner = {
+				add_dread = minor_dread_loss
+				if = {
+					limit = {
+						faith = {
+							NOR = {
+								AND = {
+									faith_hostility_level = {
+										target = scope:slave.faith
+										value < faith_hostile_level
+									}
+									has_doctrine = carn_doctrine_same_slavery_accepted
+								}
+								AND = {
+									faith_hostility_level = {
+										target = scope:slave.faith
+										value >= faith_hostile_level
+									}
+									has_doctrine = carn_doctrine_other_slavery_accepted
+								}
+							}
+						}
+					}
+					add_piety = medium_piety_gain
+					stress_impact = {
+						zealous = minor_stress_impact_loss
+					}
+				}
+				stress_impact = {
+					compassionate = medium_stress_impact_loss
+					sadistic = medium_stress_impact_gain
+					callous = minor_stress_impact_gain
+				}
+			}
+		}
+		scope:courtesan_owner = {
+			hidden_effect = {
+				send_interface_message = {
+					type = event_generic_neutral
+					title = carn_msg_slave_freed
+					right_icon = scope:slave
+					custom_tooltip = carn_msg_scope_slave_is_no_longer_your_slave_desc
+				}
+			}
+		}
+	}
+	
+	# Dismiss any courtesans the character has
+	every_relation = {
+		type = courtesan
+		remove_relation_courtesan_owner = prev
+	}
+
+	# Add trait if not already there
+	if = {
+		limit = {
+			NOT = { has_trait = cse_courtesan }
+		}
+		add_trait = cse_courtesan
+	}
+		
+	# Add modifier
+	add_character_modifier = {
+		modifier = cse_courtesan_modifier
+	}
+	
+	# Prevent courtier from leaving while having this relationship (requires the scope "courtesan_owner" to work)
+	if = {
+		limit = { is_courtier_of = scope:courtesan_owner }
+		add_character_flag = carn_blocked_from_leaving
+	}
+	
+	# Set relation (requires the scope "courtesan_owner" to work)
+	scope:courtesan_owner ?= { set_relation_courtesan = prev }
+	
+	# Update the worth xp track on the character
+	cse_update_courtesan_worth_effect = yes
+	
+	trigger_event = { on_action = cse_started_working_as_courtesan_on_action }
+}
+
+cse_update_courtesan_spouse_prestige_bonus_effect = {
+	hidden_effect = {
+		if = {
+			limit = { has_character_modifier = cse_courtesan_spouse_modifier }
+			remove_character_modifier = cse_courtesan_spouse_modifier
+		}
+	}
+	if = {
+		limit = { any_spouse = { cse_is_working_as_courtesan_trigger = yes } }
+		add_character_modifier = {
+			modifier = cse_courtesan_spouse_modifier
+		}
+	}
+}
+
+cse_update_courtesan_skill_bonus_as_courtesan_effect = {
+	every_relation ?= {
+		type = courtesan_owner
+		cse_update_courtesan_skill_bonus_as_owner_effect = yes
+	}
+}
+
+cse_update_courtesan_skill_bonus_as_owner_effect = {
+	hidden_effect = {
+		if = {
+			limit = { has_character_modifier = cse_courtesan_owner_diplomacy_modifier }
+			remove_character_modifier = cse_courtesan_owner_diplomacy_modifier
+		}
+		if = {
+			limit = { has_character_modifier = cse_courtesan_owner_intrigue_modifier }
+			remove_character_modifier = cse_courtesan_owner_intrigue_modifier
+		}
+		if = {
+			limit = { has_character_modifier = cse_courtesan_owner_learning_modifier }
+			remove_character_modifier = cse_courtesan_owner_learning_modifier
+		}
+		if = {
+			limit = { has_character_modifier = cse_courtesan_owner_expenses_modifier }
+			remove_character_modifier = cse_courtesan_owner_expenses_modifier
+		}
+		if = {
+			limit = { has_character_modifier = cse_courtesan_owner_spouse_modifier }
+			remove_character_modifier = cse_courtesan_owner_spouse_modifier
+		}
+	}
+	if = {
+		limit = {
+			any_relation = {
+				type = courtesan
+				cse_is_working_as_courtesan_trigger = yes
+			}
+		}
+		save_scope_as = owner
+		add_character_modifier = {
+			modifier = cse_courtesan_owner_diplomacy_modifier
+		}
+		add_character_modifier = {
+			modifier = cse_courtesan_owner_intrigue_modifier
+		}
+		add_character_modifier = {
+			modifier = cse_courtesan_owner_learning_modifier
+		}
+		add_character_modifier = {
+			modifier = cse_courtesan_owner_expenses_modifier
+		}
+		add_character_modifier = {
+			modifier = cse_courtesan_owner_spouse_modifier
+		}
+	}
+}
+
+cse_update_courtesan_worth_effect = {
+	hidden_effect = {
+		if = {
+			limit = {
+				has_trait_xp = {
+					trait = cse_courtesan
+					track = cse_courtesan_worth
+					value >= 1
+				}
+			}
+			add_trait_xp = {
+				trait = cse_courtesan
+				track = cse_courtesan_worth
+				value = -100
+			}
+		}
+	}
+	add_trait_xp = {
+		trait = cse_courtesan
+		track = cse_courtesan_worth
+		value = cse_courtesan_worth_value
+	}
+	every_spouse ?= { cse_update_courtesan_spouse_prestige_bonus_effect = yes }
+}
+
+cse_stop_working_as_courtesan_effect = {
+	save_scope_as = courtesan
+	
+	add_character_flag = cse_was_courtesan
+	remove_character_modifier = cse_courtesan_modifier
+	remove_character_flag = carn_blocked_from_leaving
+
+	every_relation = {
+		type = courtesan_owner
+		remove_relation_courtesan = scope:courtesan
+		if = {
+			limit = {
+				scope:courtesan = {
+					is_female = yes
+					is_pregnant = no
+				}
+			}
+			# No flag needed
+		}
+		else = {
+			# Used for pregnancy logic to prevent pregnancies from ex-courtesans or ex-owners being treated as adultery
+			hidden_effect = {
+				add_opinion = {
+					target = scope:courtesan
+					modifier = cse_former_courtesan_or_courtesan_owner_opinion
+				}
+				reverse_add_opinion = {
+					target = scope:courtesan
+					modifier = cse_former_courtesan_or_courtesan_owner_opinion
+				}
+			}
+		}
+	}
+	hidden_effect = {
+		every_spouse ?= { cse_update_courtesan_spouse_prestige_bonus_effect = yes }
+	}
+	
+	trigger_event = { on_action = cse_stopped_working_as_courtesan_on_action }
+}
+
+#################### ROYAL MISTRESS ############################################################
+
+cse_make_royal_mistress_effect = {
+    scope:employee = {
+		every_spouse = {
+			if = {
+				limit = {
+					NOR = {
+						has_relation_rival = scope:liege
+						has_relation_potential_rival = scope:liege
+					}
+					scope:liege = { is_alive = yes }
+				}
+				set_relation_potential_rival = scope:liege
+			}
+		}
+		
+        every_secret = {
+            limit = {
+                secret_type = secret_lover
+                secret_target = scope:liege
+            }
+            remove_secret = yes
+        }
+
+        # If both female and male adultery are illegal then this is scandalous by default
+        if = {
+            limit = {
+                scope:liege = {
+                    faith = {
+                        OR = {
+                            has_doctrine_parameter = adultery_female_crime
+                            has_doctrine_parameter = adultery_male_crime
+                        }
+                    }
+                }
+            }
+			scope:liege = { cse_royal_mistress_add_scandalous_opinion_effect = yes }
+			scope:employee = { cse_is_royal_mistress_add_scandalous_opinion_effect = yes }
+        }
+    }
+
+    scope:liege = {
+        every_secret = {
+            limit = {
+                secret_type = secret_lover
+                secret_target = scope:employee
+            }
+            remove_secret = yes
+        }
+    }
+}
+
+cse_royal_mistress_add_scandalous_opinion_effect = {
+	if = {
+		limit = {
+			OR = {
+				AND = {
+					is_female = yes
+					scope:liege = { faith = { has_doctrine_parameter = adultery_female_crime } }
+				}
+				AND = {
+					is_female = no
+					scope:liege = { faith = { has_doctrine_parameter = adultery_male_crime } }
+				}
+			}
+		}
+		add_character_modifier = {
+			modifier = cse_scandalous_royal_mistress_modifier
+			years = 10
+		}
+		add_piety = medium_piety_loss
+	}
+}
+
+cse_is_royal_mistress_add_scandalous_opinion_effect = {
+	if = {
+		limit = {
+			OR = {
+				AND = {
+					is_female = yes
+					scope:liege = { faith = { has_doctrine_parameter = adultery_female_crime } }
+				}
+				AND = {
+					is_female = no
+					scope:liege = { faith = { has_doctrine_parameter = adultery_male_crime } }
+				}
+			}
+		}
+		add_character_modifier = {
+			modifier = cse_is_scandalous_royal_mistress_modifier
+			years = 10
+		}
+		add_piety = medium_piety_loss
+	}
+}

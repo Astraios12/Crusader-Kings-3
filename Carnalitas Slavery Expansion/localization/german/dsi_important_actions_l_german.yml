@@ -1,0 +1,6 @@
+﻿l_german:
+
+ dsi_demand_sex_important_interaction: "Ihr könnt $dsi_demand_sex_interaction$"
+ dsi_demand_sex_important_interaction_label: "$dsi_demand_sex_important_interaction$"
+ dsi_demand_sex_important_interaction_desc: "Ihr könnt $dsi_demand_sex_interaction$ [character_interaction|E] nutzen, um [stress|E] zu reduzieren oder ein Kind zu zeugen, neben anderen Effekten."
+ dsi_demand_sex_important_interaction_click: "#I Klicken für $dsi_demand_sex_interaction$#!"

@@ -1,0 +1,43 @@
+﻿l_german:
+
+ trait_cse_slave: "Erfahrung als Sklave"
+ trait_cse_slave_slave_prostitute: "Erfahrung als $trait_track_cse_slave_prostitute$"
+ trait_cse_slave_labour_slave: "Erfahrung als $trait_track_cse_labour_slave$"
+ trait_cse_slave_military_slave: "Erfahrung als $trait_track_cse_military_slave$"
+ trait_cse_slave_sex_slave: "Erfahrung als $trait_track_cse_sex_slave$"
+ 
+ trait_cse_slave_desc: "Sklaven werden in verschiedenen Bereichen eingesetzt und häufen Erfahrung an."
+ trait_cse_slave_character_desc: "Dieser Charakter wurde als Sklave in verschiedenen Bereichen eingesetzt und hat Erfahrung gesammelt."
+ 
+ trait_track_cse_slave_prostitute: "Sklaven-Prostituierte"
+ trait_track_cse_slave_prostitute_desc: "Sklaven-Prostituierte sind im Geschäft, Kunden gegen Geld sexuell zu bedienen.\n\n$cse_slave_prostitute_calculation$"
+ cse_slave_prostitute_calculation: "Verdient: [gold|E] / Kostet: [illness|E]\nEinkommen: 40% [intrigue|E] + 20% [diplomacy|E] + 10% [attraction|E]\n- Erhöht, wenn [opinion|E] positiv\n- Halbiert, wenn Charakter zu jung (<16) oder zu alt (>[EmptyScope.ScriptValue('cse_slave_prostitute_age_limit_value')|0])\n- Kein Einkommen, wenn Charakter jünger als [EmptyScope.ScriptValue('cse_slave_prostitute_age_start_value')|0]\n- Verringertes Einkommen, wenn Charakter [GetTrait('great_pox').GetName( GetNullCharacter )] hat\n- Bringt jährlich [EmptyScope.ScriptValue('cse_slave_piety_on_opinion_amount_value')|0] [faith|E] wenn [opinion|E] über [EmptyScope.ScriptValue('cse_slave_piety_on_opinion_threshold_value')|0]\n- XP: Jährlich & beim Sex"
+
+ trait_track_cse_labour_slave: "Arbeitssklave"
+ trait_track_cse_labour_slave_desc: "Arbeitssklaven verrichten Zwangsarbeiten als Arbeitssklave.\n\n$cse_labour_slave_calculation$"
+ cse_labour_slave_calculation: "Verdient: [gold|E] / Kostet: [health|E]\nEinkommen: 40% [stewardship|E] + 20% [learning|E] + 10% [prowess|E]\n- Erhöht, wenn [opinion|E] positiv\n- Halbiert, wenn Charakter zu jung (<16) oder zu alt (>[EmptyScope.ScriptValue('cse_labour_slave_age_limit_value')|0])\n- Kein Einkommen, wenn Charakter jünger als [EmptyScope.ScriptValue('cse_labour_slave_age_start_value')|0]\n- Bringt jährlich [EmptyScope.ScriptValue('cse_slave_piety_on_opinion_amount_value')|0] [faith|E] wenn [opinion|E] über [EmptyScope.ScriptValue('cse_slave_piety_on_opinion_threshold_value')|0]\n- XP: Jährlich"
+
+ trait_track_cse_military_slave: "Militärsklave"
+ trait_track_cse_military_slave_desc: "Militärsklaven kämpfen für ihren Besitzer für Ruhm und Ehre.\n\n$cse_military_slave_calculation$"
+ cse_military_slave_calculation: "Verdient: [prestige|E] / Kostet: [gold|E]\nEinkommen: 40% [martial|E] + 20% [prowess|E] + 50% [health|E]\n- Erhöht, wenn [opinion|E] positiv\n- Halbiert, wenn Charakter zu jung (<16) oder zu alt (>[EmptyScope.ScriptValue('cse_military_slave_age_limit_value')|0])\n- Kein Einkommen, wenn Charakter jünger als [EmptyScope.ScriptValue('cse_military_slave_age_start_value')|0]\n- Bringt jährlich [EmptyScope.ScriptValue('cse_slave_piety_on_opinion_amount_value')|0] [faith|E] wenn [opinion|E] über [EmptyScope.ScriptValue('cse_slave_piety_on_opinion_threshold_value')|0]\n- XP: Jährlich"
+ 
+ trait_track_cse_sex_slave: "Sklaven-Konkubine"
+ trait_track_cse_sex_slave_desc: "Sklaven-Konkubinen stellen sowohl Körper und Geist zur Verfügung, um ihre Herren zu befriedigen.\n\n$cse_sex_slave_calculation$"
+ cse_sex_slave_calculation: "Verdient: [stress|E] / Kostet: [gold|E]\nEinkommen: 75% [diplomacy|E] + 50% [learning|E] + 25% [attraction|E]\n- Erhöht, wenn [opinion|E] positiv\n- Halbiert, wenn Charakter zu jung (<16) oder zu alt (>[EmptyScope.ScriptValue('cse_sex_slave_age_limit_value')|0])\n- Kein Einkommen, wenn Charakter jünger als [EmptyScope.ScriptValue('cse_sex_slave_age_start_value')|0]\n- Bringt jährlich [EmptyScope.ScriptValue('cse_slave_piety_on_opinion_amount_value')|0] [faith|E] wenn [opinion|E] über [EmptyScope.ScriptValue('cse_slave_piety_on_opinion_threshold_value')|0]\n- XP: Jährlich & beim Sex"
+ 
+ 
+ trait_cse_courtesan: "Kurtisane"
+ trait_cse_courtesan_t1: "Cortigiana di Lume"
+ trait_cse_courtesan_t2: "Cortigiana Onesta"
+ 
+ trait_cse_courtesan_desc: "[cse_courtesans|E] werden als Geliebte eines adeligen Gönners unterhalten.\n\n$cse_courtesan_calculation$"
+ trait_cse_courtesan_t1_desc: "Die Cortigiana di Lume ist eine [cse_courtesan|E] der unteren Klasse. Obwohl man diese immer noch besser als die durchschnittliche Prostituierte wahrnimmt, wird sie immer gegen eine Cortigiana Onesta unterliegen.\n\n$cse_courtesan_calculation$"
+ trait_cse_courtesan_t2_desc: "Die Cortigiana Onesta ist eine [cse_courtesan|E] der oberen Klasse. Sie ist gut gebildet und weltgewandt, manchmal sogar mehr als Frauen der Oberschicht. Oft machen sie gleichzeitig Karriere als Künstlerin oder Darstellerin. Sie begeistert Gönner durch ihre "Aufzucht", sprich diplomatische Fähigkeiten, Intelligenz sowie körperliche Eigenschaften.\n\n$cse_courtesan_calculation$"
+ trait_cse_courtesan_character_desc: "Dieser Charakter wird als Geliebte eines adeligen Gönners unterhalten.\n\n$cse_courtesan_calculation$"
+ cse_courtesan_calculation: "Kostet: [gold|E]\nBonus für [cse_courtesan_owner|E]: 10% [diplomacy|E] / [intrigue|E] / [learning|E]\n- Bonus erhöht abhängig von der [attraction|E] des Charakters\n$trait_track_cse_courtesan_worth$: [learning|E] + [diplomacy|E] + [intrigue|E] + 30% [attraction|E] + 30% $trait_track_cse_courtesan_experience$\n- Wert erhöht abhängig vom gehaltenen [title|E] des Charakters\n- Halbiert, wenn Charakter zu jung (<16) oder zu alt (>[EmptyScope.ScriptValue('cse_courtesan_age_limit_value')|0])\n- Wertlos, wenn Charakter jünger als [EmptyScope.ScriptValue('cse_courtesan_age_start_value')|0]\n- Halbiert, wenn Charakter [GetTrait('great_pox').GetName( GetNullCharacter )] hat\n- XP: Jährlich & beim Sex"
+
+ trait_track_cse_courtesan_worth: "Wert"
+ trait_track_cse_courtesan_worth_desc: "Zeigt den Wert der Kurtisane an. Ist der Wert über 80, wird diese Kurtisane als Cortigiana Onesta wahrgenommen."
+
+ trait_track_cse_courtesan_experience: "Erfahrung"
+ trait_track_cse_courtesan_experience_desc: "Zeigt die Erfahrung der Kurtisane an."

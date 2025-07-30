@@ -1,0 +1,70 @@
+﻿# Old effects preserved for backward compatibility
+# These are DEPRECATED, please use the new effects
+
+######################################################################
+# RAPE EFFECTS
+# by Cheri
+#
+# - `carn_rape_effect`
+# - `carn_rape_opinion_effects_effect`
+# - `carn_rape_victim_stress_effect`
+#
+# These effects are meant for modders to have consistent outcomes for rape.
+#
+# `carn_rape_effect` will apply all relevant consequences, we strongly recommend that you use this effect in any rape event/decision
+# Requires RAPIST (character), VICTIM (character), TRIGGER_SEX_SCENE (boolean)
+# Will trigger a noncon sex scene if TRIGGER_SEX_SCENE is yes
+#
+# `carn_rape_opinion_effects_effect` and `carn_rape_victim_stress_effect` are triggered by `carn_rape_effect`, however they are separate so that they can be shown as tooltips in noncon sub scenes
+######################################################################
+
+# carn_rape_effect
+# requires RAPIST (character), VICTIM (character), TRIGGER_SEX_SCENE (boolean)
+# Will trigger a noncon sex scene if TRIGGER_SEX_SCENE is yes
+
+carn_rape_effect = {
+	$RAPIST$ = { save_scope_as = carn_rape_rapist }
+	$VICTIM$ = { save_scope_as = carn_rape_victim }
+
+	if = {
+		limit = { $TRIGGER_SEX_SCENE$ = yes }
+		show_as_tooltip = {
+			carn_had_sex_with_effect = {
+				CHARACTER_1 = scope:carn_rape_rapist
+				CHARACTER_2 = scope:carn_rape_victim
+				C1_PREGNANCY_CHANCE = pregnancy_chance
+				C2_PREGNANCY_CHANCE = pregnancy_chance
+				STRESS_EFFECTS = no
+				DRAMA = yes
+			}
+		}
+		if = {
+			limit = { scope:carn_rape_rapist = { is_ai = no } }
+			carn_sex_scene_request_noncon = yes
+			carn_sex_scene_request_dom_player = yes
+			carn_sex_scene_effect = {
+				PLAYER = scope:carn_rape_rapist
+				TARGET = scope:carn_rape_victim
+				STRESS_EFFECTS = no
+				DRAMA = yes
+			}
+		}
+		if = {
+			limit = { scope:carn_rape_victim = { is_ai = no } }
+			carn_sex_scene_request_noncon = yes
+			carn_sex_scene_request_sub_player = yes
+			carn_sex_scene_effect = {
+				PLAYER = scope:carn_rape_victim
+				TARGET = scope:carn_rape_rapist
+				STRESS_EFFECTS = no
+				DRAMA = yes
+			}
+		}
+	}
+
+	$RAPIST$ = {
+		carn_rape_effect_v2 = {
+			VICTIM = $VICTIM$
+		}
+	}
+}

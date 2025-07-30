@@ -1,0 +1,27 @@
+﻿bce_gender_birth_male = {
+	icon = bce_gender_birth_male
+	learning = 1
+}
+
+bce_gender_birth_female = {
+	icon = bce_gender_birth_female
+	learning = 1
+}
+
+bce_gender_birth_twins = {
+	icon = bce_gender_birth_twins
+	learning = 2
+	health = miniscule_health_penalty
+}
+
+bce_gender_birth_twins_male = {
+	icon = bce_gender_birth_twins_male
+	learning = 2
+	health = miniscule_health_penalty
+}
+
+bce_gender_birth_twins_female = {
+	icon = bce_gender_birth_twins_female
+	learning = 2
+	health = miniscule_health_penalty
+}

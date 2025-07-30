@@ -1,0 +1,41 @@
+types Fetishes
+{
+    type fetish_breakdown_widget = widget
+    {
+        alwaystransparent = no
+        using = GeneralTooltipSetup
+        widget = {
+            name = "background"
+            using = DefaultTooltipBackground
+            size = { 100% 100% }
+        }
+        vbox = {
+            set_parent_size_to_minimum = yes
+            margin = { 24 20 }
+            margin_top = 11
+            margin_bottom = 5
+
+            text_single = {
+				layoutpolicy_horizontal = growing
+				text = "carn_fetish_gui_title"
+			}
+
+            vbox = {
+                layoutpolicy_horizontal = expanding
+                layoutpolicy_vertical = expanding
+                margin = { 4 4 }
+				margin_top = 0
+				margin_bottom = 10
+                spacing = -1
+
+                text_multi = {
+					layoutpolicy_horizontal = growing
+					datacontext = "[GetScriptedGui( 'carn_fetish_gui_list' )]"
+					visible = "[ScriptedGui.IsShown( GuiScope.SetRoot( Character.MakeScope ).End )]"
+					text = "[ScriptedGui.BuildTooltip( GuiScope.SetRoot( Character.MakeScope ).End ) ]"
+					autoresize = yes
+				}
+            }
+        }
+    }
+}

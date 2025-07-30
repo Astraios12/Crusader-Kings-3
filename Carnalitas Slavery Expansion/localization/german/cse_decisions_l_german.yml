@@ -1,0 +1,13 @@
+﻿l_german:
+
+ cse_no_slave_trait_inheritance_decision: "Befreie Neugeborene, die in Sklaverei geboren werden"
+ cse_no_slave_trait_inheritance_decision_desc: "Neugeborene, die in Sklaverei geboren werden, werden als freie Menschen geboren anstatt Sklaven zu sein."
+ cse_no_slave_trait_inheritance_decision_tooltip: "Neugeborene, die in Sklaverei geboren werden, werden als freie Menschen geboren anstatt Sklaven zu sein."
+ cse_no_slave_trait_inheritance_decision_confirm: "Befreie die Neugeborenen!"
+ cse_no_slave_trait_inheritance_tt: "Schaltet die Vererbung der Sklaveneigenschaft aus."
+ 
+ cse_revert_slave_trait_inheritance_decision: "Versklave Neugeborene, die in Sklaverei geboren werden"
+ cse_revert_slave_trait_inheritance_decision_desc: "Neugeborene, die in Sklaverei geboren werden, werden ebenfalls versklavt."
+ cse_revert_slave_trait_inheritance_decision_tooltip: "Neugeborene, die in Sklaverei geboren werden, werden ebenfalls versklavt."
+ cse_revert_slave_trait_inheritance_decision_confirm: "Versklave die Neugeborenen!"
+ cse_revert_slave_trait_inheritance_tt: "Schaltet die Vererbung der Sklaveneigenschaft an."

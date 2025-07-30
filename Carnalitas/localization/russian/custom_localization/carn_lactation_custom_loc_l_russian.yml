@@ -1,0 +1,15 @@
+﻿l_russian:
+
+  carn_very_low_milk_production_description:0 "маленькая струйка"
+  carn_low_milk_production_description:0 "небольшое количество"
+  carn_average_milk_production_description:0 "большое количество"
+  carn_high_milk_production_description:0 "внушительное количество"
+  carn_very_high_milk_production_description:0 "огромное количество"
+  carn_extreme_milk_production_description:0 "гиганское количество"
+
+  carn_very_low:0 "очень низкое"
+  carn_low:0 "низкое"
+  carn_average:0 "среднее"
+  carn_high:0 "высокое"
+  carn_very_high:0 "очень высокое"
+  carn_extreme:0 "экстремальное"

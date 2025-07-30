@@ -1,0 +1,6 @@
+﻿l_polish:
+  
+ dsi_demand_sex_important_interaction: "You can $dsi_demand_sex_interaction$"
+ dsi_demand_sex_important_interaction_label: "$dsi_demand_sex_important_interaction$"
+ dsi_demand_sex_important_interaction_desc: "You can use $dsi_demand_sex_interaction$ [character_interaction|E] to reduce [stress|E] or to conceive a child, among other effects."
+ dsi_demand_sex_important_interaction_click: "#I Click for $dsi_demand_sex_interaction$#!"

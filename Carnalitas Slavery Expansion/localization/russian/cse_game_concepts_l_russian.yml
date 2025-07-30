@@ -1,0 +1,67 @@
+﻿l_russian:
+
+ game_concept_cse_slave_prostitute: "Slave Prostitute"
+ game_concept_cse_slave_prostitutes: "Slave Prostitute"
+ game_concept_cse_slave_prostitution: "Slave Prostitute"
+ game_concept_cse_slave_prostitute_possessive: "Slave Prostitute's"
+ game_concept_cse_slave_prostitutes_possessive: "Slave Prostitutes'"
+ game_concept_cse_slave_prostitute_desc: "$trait_track_cse_slave_prostitute_desc$"
+ 
+ game_concept_cse_labour_slave: "Labour Slave"
+ game_concept_cse_labour_slaves: "Labour Slaves"
+ game_concept_cse_slave_labour: "Forced Labour"
+ game_concept_cse_labour_slave_possessive: "Labour Slave's"
+ game_concept_cse_labour_slaves_possessive: "Labour Slaves'"
+ game_concept_cse_labour_slave_desc: "$trait_track_cse_labour_slave_desc$"
+
+ game_concept_cse_military_slave: "Military Slave"
+ game_concept_cse_military_slaves: "Military Slaves"
+ game_concept_cse_military_slave_possessive: "Military Slave's"
+ game_concept_cse_military_slaves_possessive: "Military Slaves'"
+  
+ game_concept_cse_recruit: "Recruit"
+ game_concept_cse_recruits: "Recruits"
+ game_concept_cse_slave_recruit: "Slave Recruit"
+ game_concept_cse_slave_recruits: "Slave Recruits"
+ game_concept_cse_slave_recruit_possessive: "Slave Recruit's"
+ game_concept_cse_slave_recruits_possessive: "Slave Recruits'"
+
+ game_concept_cse_soldier: "Soldier"
+ game_concept_cse_soldiers: "Soldiers"
+ game_concept_cse_slave_soldier: "Slave Soldier"
+ game_concept_cse_slave_soldiers: "Slave Soldiers"
+ game_concept_cse_slave_soldier_possessive: "Slave Soldier's"
+ game_concept_cse_slave_soldiers_possessive: "Slave Soldiers'"
+ 
+ game_concept_cse_commander: "Commander"
+ game_concept_cse_commanders: "Commanders"
+ game_concept_cse_slave_commander: "Slave Commander"
+ game_concept_cse_slave_commanders: "Slave Commanders"
+ game_concept_cse_slave_commander_possessive: "Slave Commander's"
+ game_concept_cse_slave_commanders_possessive: "Slave Commanders'"
+
+ game_concept_cse_slave_soldier_desc: "$trait_track_cse_military_slave_desc$"
+
+ game_concept_cse_sex_slave: "Slave Concubine"
+ game_concept_cse_sex_slaves: "Slave Concubines"
+ game_concept_cse_sex_slave_possessive: "Slave Concubine's"
+ game_concept_cse_sex_slaves_possessive: "Slave Concubines'"
+ game_concept_cse_sex_slave_desc: "$trait_track_cse_sex_slave_desc$"
+
+ game_concept_cse_court_slave: "Court Slave"
+ game_concept_cse_court_slaves: "Court Slaves"
+ game_concept_cse_court_slave_possessive: "Court Slave's"
+ game_concept_cse_court_slaves_possessive: "Court Slaves'"
+ game_concept_cse_court_slave_desc: "$game_concept_slave_desc$"
+
+ game_concept_cse_courtesan_owner: "Benefactor"
+ game_concept_cse_courtesan_owners: "Benefactors"
+ game_concept_cse_courtesan_owner_possessive: "Benefactor's"
+ game_concept_cse_courtesan_owners_possessive: "Benefactors'"
+ game_concept_cse_courtesan_owner_desc: "Benefactor of a courtesan."
+
+ game_concept_cse_courtesan: "Courtesan"
+ game_concept_cse_courtesans: "Courtesans"
+ game_concept_cse_courtesan_possessive: "Courtesan's"
+ game_concept_cse_courtesans_possessive: "Courtesans'"
+ game_concept_cse_courtesan_desc: "Like the mistress, the courtesan was also maintained by one or more men of nobility or wealth. However, unlike the mistress, their role was not institutionalised and their relationships were much more varied. On the other hand, they rarely rose to power and fame like royal mistresses of the past.\n\n$cse_courtesan_calculation$"

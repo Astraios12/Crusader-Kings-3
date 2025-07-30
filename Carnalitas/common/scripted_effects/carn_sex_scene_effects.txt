@@ -1,0 +1,558 @@
+﻿#################################################################################
+# carn_sex_scene_effect_v2
+#################################################################################
+#
+# carn_sex_scene_effect_v2 is a general purpose scripted effect to trigger a sex scene event through Carnalitas.
+#
+# First, use the scripted effects to request flags for the sex scene, such as "vaginal", "noncon", or "bdsm".
+# Second, call carn_sex_scene_effect_v2 in the player scope with the following arguments:
+#
+# * PARTNER is the character that PLAYER is having sex with.
+#
+# In addition, you can set the same options as for carn_had_sex_with_effect_v2:
+#
+# carn_sex_scene_no_pregnancy_effect = yes for no pregnancy check, default is to check
+# carn_sex_scene_no_stress_effect = yes for no stress check, default is to check
+# carn_sex_scene_no_drama_effect = yes for no drama check, default is to check
+# carn_sex_scene_no_memory_effect = yes for no memory check, default is to check
+# carn_sex_scene_no_std_effect = yes for no std check, default is to check
+#
+# This effect triggers the carn_sex_scene on_action with a list of random_events. This list can be modified 
+# by mods by adding more events. A single random event from this list is fired if allowed by its trigger.
+#
+# The sex scene events themselves should check in their triggers if the passed sex scene flags
+# are applicable to them, i.e. a consensual lesbian sex event should check that both participants are female 
+# and carn_sex_scene_is_consensual_trigger = yes.
+#
+# If no other event is allowed to fire by its trigger, the default Carnalitas sex scene event will be fired.
+#
+# An example of using carn_sex_scene_effect_v2 to trigger a dominant rape scene without drama or memories:
+#
+# effect = {
+#	carn_sex_scene_no_drama_effect = yes
+#	carn_sex_scene_no_memory_effect = yes
+#	
+#	carn_sex_scene_character_is_giving_player_effect = yes
+#	carn_sex_scene_character_is_dom_player_effect = yes
+#	carn_sex_scene_is_vaginal_effect = yes
+#	carn_sex_scene_is_cum_inside_effect = yes
+#	carn_sex_scene_is_noncon_effect = yes
+#
+# 	carn_sex_scene_effect_v2 = {
+#		PARTNER = scope:partner
+# 	}
+# }
+#
+# Note that you should not clean any of the flags after executing carn_sex_scene_effect_v2, because this will
+# cause them to be cleaned before the event had actually fired. Instead, you should clean them in the 
+# `after` or `option` sections of the sex scene events themselves. 
+#
+
+carn_sex_scene_effect_v2 = {
+	save_scope_as = carn_sex_player
+	$PARTNER$ = {
+		save_scope_as = carn_sex_partner
+		save_scope_as = carn_sex_target
+	}
+
+	# Save additional scope values for backward compatibility
+	if = {
+		limit = { carn_sex_scene_no_stress_trigger = yes }
+		save_scope_value_as = { name = carn_sex_stress_effects value = no }
+	}
+	else = {
+		save_scope_value_as = { name = carn_sex_stress_effects value = yes }
+	}
+	if = {
+		limit = { carn_sex_scene_no_drama_trigger = yes }
+		save_scope_value_as = { name = carn_sex_drama value = no }
+	}
+	else = {
+		save_scope_value_as = { name = carn_sex_drama value = yes }
+	}
+
+	# Set this additional scope value to prevent carn_had_sex_with_effect
+	# from cleaning variables too early
+	save_scope_value_as = { name = carn_sex_scene value = yes }
+
+	# Trigger carn_sex_scene instead of carn_sex_scene_on_action for backward compatibility
+	trigger_event = {
+		on_action = carn_sex_scene
+	}
+}
+
+carn_sex_scene_no_pregnancy_effect = {
+	add_to_variable_list = {
+		name = carn_sex_scene_option_flag_list
+		target = flag:no_pregnancy
+	}
+	save_scope_as = carn_sex_no_pregnancy
+}
+
+carn_sex_scene_no_stress_effect = {
+	add_to_variable_list = {
+		name = carn_sex_scene_option_flag_list
+		target = flag:no_stress
+	}
+	save_scope_as = carn_sex_no_stress
+}
+
+carn_sex_scene_no_drama_effect = {
+	add_to_variable_list = {
+		name = carn_sex_scene_option_flag_list
+		target = flag:no_drama
+	}
+	save_scope_as = carn_sex_no_drama
+}
+
+carn_sex_scene_no_memory_effect = {
+	add_to_variable_list = {
+		name = carn_sex_scene_option_flag_list
+		target = flag:no_memory
+	}
+	save_scope_as = carn_sex_no_memory
+}
+
+carn_sex_scene_no_std_effect = {
+	add_to_variable_list = {
+		name = carn_sex_scene_option_flag_list
+		target = flag:no_std
+	}
+	save_scope_as = carn_sex_no_std
+}
+
+carn_transfer_sex_scene_flag_from_partner = {
+	every_in_list = {
+		variable = $PARTNER$.var:carn_sex_scene_flag_list
+		add_to_variable_list = carn_sex_scene_flag_list
+	}
+	$PARTNER$ = {carn_sex_scene_clean_up_flags_effect = yes}	
+}
+
+# Here is a list of supported sex scene flags.
+# It is possible for mods to add more flags, but these will not be supported and have no guarantee of working with other mods.
+#
+# carn_sex_scene_character_is_giving_player_effect
+# carn_sex_scene_character_is_receiving_player_effect
+# carn_sex_scene_character_is_dom_player_effect
+# carn_sex_scene_character_is_sub_player_effect
+# carn_sex_scene_is_vaginal_effect
+# carn_sex_scene_is_anal_effect
+# carn_sex_scene_is_oral_effect
+# carn_sex_scene_is_handjob_effect
+# carn_sex_scene_is_masturbation_effect
+# carn_sex_scene_is_orgy_effect
+# carn_sex_scene_is_cum_inside_effect
+# carn_sex_scene_is_cum_outside_effect
+# carn_sex_scene_is_consensual_effect
+# carn_sex_scene_is_noncon_effect
+# carn_sex_scene_is_dubcon_effect
+# carn_sex_scene_is_painful_effect
+# carn_sex_scene_is_bdsm_effect
+# carn_sex_scene_is_bestiality_effect
+# carn_sex_scene_is_petplay_effect
+# carn_sex_scene_is_bondage_effect
+# carn_sex_scene_is_toy_effect
+# carn_sex_scene_is_watersports_effect
+# carn_sex_scene_is_scat_effect
+# carn_sex_scene_is_gore_effect
+#
+
+carn_sex_scene_character_is_giving_player_effect = {
+	# can't be giving and receiving at the same time 
+	if = {
+		limit = {
+			carn_sex_scene_character_is_receiving_player_trigger = yes
+		}
+		remove_list_variable = {
+			name = carn_sex_scene_character_flag_list
+			target = flag:receiving_player
+		}
+	}
+	add_to_variable_list = {
+		name = carn_sex_scene_character_flag_list
+		target = flag:giving_player
+	}
+}
+
+carn_sex_scene_character_is_receiving_player_effect = {
+	# can't be giving and receiving at the same time 
+	if = {
+		limit = {
+			carn_sex_scene_character_is_giving_player_trigger = yes
+		}
+		remove_list_variable = {
+			name = carn_sex_scene_character_flag_list
+			target = flag:giving_player
+		}
+	}
+	add_to_variable_list = {
+		name = carn_sex_scene_character_flag_list
+		target = flag:receiving_player
+	}
+}
+
+carn_sex_scene_character_is_dom_player_effect = {
+	# can't be dom and sub at the same time 
+	if = {
+		limit = {
+			carn_sex_scene_character_is_sub_player_trigger = yes
+		}
+		remove_list_variable = {
+			name = carn_sex_scene_character_flag_list
+			target = flag:sub_player
+		}
+	}
+	#dom will always take charge
+	if = {
+		limit = {
+			carn_sex_scene_character_is_receiving_player_trigger = yes
+		}
+		remove_list_variable = {
+			name = carn_sex_scene_character_flag_list
+			target = flag:receiving_player
+		}
+	}
+	add_to_variable_list = {
+		name = carn_sex_scene_character_flag_list
+		target = flag:dom_player
+	}
+	add_to_variable_list = {
+		name = carn_sex_scene_character_flag_list
+		target = flag:giving_player
+	}
+}
+
+carn_sex_scene_character_is_sub_player_effect = {
+	# can't be dom and sub at the same time 
+	if = {
+		limit = {
+			carn_sex_scene_character_is_dom_player_trigger = yes
+		}
+		remove_list_variable = {
+			name = carn_sex_scene_character_flag_list
+			target = flag:dom_player
+		}
+	}
+	# sub can't take charge
+	if = {
+		limit = {
+			carn_sex_scene_character_is_giving_player_trigger = yes
+		}
+		remove_list_variable = {
+			name = carn_sex_scene_character_flag_list
+			target = flag:giving_player
+		}
+	}
+	add_to_variable_list = {
+		name = carn_sex_scene_character_flag_list
+		target = flag:sub_player
+	}
+	add_to_variable_list = {
+		name = carn_sex_scene_character_flag_list
+		target = flag:receiving_player
+	}
+}
+
+carn_sex_scene_is_oral_effect = {
+	add_to_variable_list = {
+		name = carn_sex_scene_flag_list
+		target = flag:oral
+	}
+}
+
+carn_sex_scene_is_vaginal_effect = {
+	add_to_variable_list = {
+		name = carn_sex_scene_flag_list
+		target = flag:vaginal
+	}
+}
+
+carn_sex_scene_is_anal_effect = {
+	if = {
+		limit = { has_game_rule = carn_content_anal_enabled }
+		add_to_variable_list = {
+			name = carn_sex_scene_flag_list
+			target = flag:anal
+		}
+	}
+}
+
+carn_sex_scene_is_handjob_effect = {
+	add_to_variable_list = {
+		name = carn_sex_scene_flag_list
+		target = flag:handjob
+	}
+}
+
+carn_sex_scene_is_masturbation_effect = {
+	add_to_variable_list = {
+		name = carn_sex_scene_flag_list
+		target = flag:masturbation
+	}
+}
+
+carn_sex_scene_is_orgy_effect = {
+	add_to_variable_list = {
+		name = carn_sex_scene_flag_list
+		target = flag:orgy
+	}
+}
+
+carn_sex_scene_is_cum_inside_effect = {
+	if = {
+		limit = {
+			carn_sex_scene_is_cum_outside_trigger = yes
+		}
+		remove_list_variable = {
+			name = carn_sex_scene_flag_list
+			target = flag:cum_outside
+		}
+	}
+	add_to_variable_list = {
+		name = carn_sex_scene_flag_list
+		target = flag:cum_inside
+	}
+}
+
+carn_sex_scene_is_cum_outside_effect = {
+	if = {
+		limit = {
+			carn_sex_scene_is_cum_inside_trigger = yes
+		}
+		remove_list_variable = {
+			name = carn_sex_scene_flag_list
+			target = flag:cum_inside
+		}
+	}
+	add_to_variable_list = {
+		name = carn_sex_scene_flag_list
+		target = flag:cum_outside
+	}
+}
+
+carn_sex_scene_is_consensual_effect = {
+	if = {
+		limit = {
+			carn_sex_scene_is_noncon_trigger = yes
+		}
+		remove_list_variable = {
+			name = carn_sex_scene_flag_list
+			target = flag:noncon
+		}
+	}
+	if = {
+		limit = {
+			carn_sex_scene_is_dubcon_trigger = yes
+		}
+		remove_list_variable = {
+			name = carn_sex_scene_flag_list
+			target = flag:dubcon
+		}
+	}
+	add_to_variable_list = {
+		name = carn_sex_scene_flag_list
+		target = flag:consensual
+	}
+}
+
+carn_sex_scene_is_noncon_effect = {
+	if = {
+		limit = { has_game_rule = carn_content_consent_noncon }
+		if = {
+			limit = {
+				carn_sex_scene_is_consensual_trigger = yes
+			}
+			remove_list_variable = {
+				name = carn_sex_scene_flag_list
+				target = flag:consensual
+			}
+		}
+		if = {
+			limit = {
+				carn_sex_scene_is_dubcon_trigger = yes
+			}
+			remove_list_variable = {
+				name = carn_sex_scene_flag_list
+				target = flag:dubcon
+			}
+		}
+		add_to_variable_list = {
+			name = carn_sex_scene_flag_list
+			target = flag:noncon
+		}
+	}
+}
+
+carn_sex_scene_is_dubcon_effect = {
+	if = {
+		limit = {
+			NOT = { has_game_rule = carn_content_consent_always }
+		}
+		if = {
+			limit = {
+				carn_sex_scene_is_consensual_trigger = yes
+			}
+			remove_list_variable = {
+				name = carn_sex_scene_flag_list
+				target = flag:consensual
+			}
+		}
+		if = {
+			limit = {
+				carn_sex_scene_is_noncon_trigger = yes
+			}
+			remove_list_variable = {
+				name = carn_sex_scene_flag_list
+				target = flag:noncon
+			}
+		}
+		add_to_variable_list = {
+			name = carn_sex_scene_flag_list
+			target = flag:dubcon
+		}
+	}
+}
+
+carn_sex_scene_is_painful_effect = {
+	if = {
+		limit = { has_game_rule = carn_content_painful_enabled }
+		add_to_variable_list = {
+			name = carn_sex_scene_flag_list
+			target = flag:painful
+		}
+	}
+}
+
+carn_sex_scene_is_bdsm_effect = {
+	add_to_variable_list = {
+		name = carn_sex_scene_flag_list
+		target = flag:bdsm
+	}
+}
+
+carn_sex_scene_is_bestiality_effect = {
+	if = {
+		limit = { has_game_rule = carn_content_bestiality_enabled }
+		add_to_variable_list = {
+			name = carn_sex_scene_flag_list
+			target = flag:bestiality
+		}
+	}
+}
+
+carn_sex_scene_is_petplay_effect = {
+	add_to_variable_list = {
+		name = carn_sex_scene_flag_list
+		target = flag:petplay
+	}
+}
+
+carn_sex_scene_is_bondage_effect = {
+	add_to_variable_list = {
+		name = carn_sex_scene_flag_list
+		target = flag:bondage
+	}
+}
+
+carn_sex_scene_is_toy_effect = {
+	add_to_variable_list = {
+		name = carn_sex_scene_flag_list
+		target = flag:toy
+	}
+}
+
+carn_sex_scene_is_watersports_effect = {
+	if = {
+		limit = { has_game_rule = carn_content_watersports_enabled }
+		add_to_variable_list = {
+			name = carn_sex_scene_flag_list
+			target = flag:watersports
+		}
+	}
+}
+
+carn_sex_scene_is_scat_effect = {
+	if = {
+		limit = { has_game_rule = carn_content_scat_enabled }
+		add_to_variable_list = {
+			name = carn_sex_scene_flag_list
+			target = flag:scat
+		}
+	}
+}
+
+carn_sex_scene_is_gore_effect = {
+	if = {
+		limit = { has_game_rule = carn_content_gore_enabled }
+		add_to_variable_list = {
+			name = carn_sex_scene_flag_list
+			target = flag:gore
+		}
+	}
+}
+
+# These effects are meant for streamlining sex events
+carn_undress_character_effect = {
+	if = {
+		limit = {
+			NOT = { has_character_flag = is_naked }
+		}
+		add_character_flag = {
+			flag = is_naked
+			days = 180 # So character won't stay naked forever when something goes wrong
+		}
+	}
+	else = {
+		add_character_flag = {
+			flag = character_was_already_naked
+			days = 1
+		}
+	}
+}
+
+carn_dress_character_effect = {
+	if = {
+		limit = {
+			NOT = { has_character_flag = character_was_already_naked }
+		}
+		remove_character_flag = is_naked
+	}
+	else = {
+		remove_character_flag = character_was_already_naked
+	}
+}
+
+carn_make_root_and_sex_partner_naked_for_this_event_effect = {
+	if = {
+		limit = { is_ai = no }
+		carn_undress_character_effect = yes
+		scope:carn_sex_partner = {
+			carn_undress_character_effect = yes
+		}
+	}
+}
+
+carn_make_root_and_sex_partner_no_longer_naked_effect = {
+	carn_dress_character_effect = yes
+	scope:carn_sex_partner = {
+		carn_dress_character_effect = yes
+	}
+}
+
+carn_sex_scene_clean_up_flags_effect = {
+	clear_variable_list = carn_sex_scene_flag_list
+	clear_variable_list = carn_sex_scene_excluded_flag_list
+	clear_variable_list = carn_sex_scene_option_flag_list
+
+	clear_saved_scope = carn_sex_no_pregnancy
+	clear_saved_scope = carn_sex_no_stress
+	clear_saved_scope = carn_sex_no_drama
+	clear_saved_scope = carn_sex_no_memory
+	clear_saved_scope = carn_sex_no_std
+}
+
+carn_sex_scene_clean_up_character_flags_effect = {
+	clear_variable_list = carn_sex_scene_character_flag_list
+	clear_variable_list = carn_sex_scene_character_excluded_flag_list
+}

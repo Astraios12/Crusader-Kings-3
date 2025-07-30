@@ -1,0 +1,39 @@
+﻿l_german:
+
+ # SLAVE PAYMENT
+ cse_slave_payment_event.0001.notification: "Finanzbericht eurer Sklaven"
+
+ # SLAVE PROSTITUTE
+ cse_msg_started_working_as_slave_prostitute: "[cse_slave_prostitute.GetShortUINameNoTooltip] ist nun Eure Sklaven-Prostituierte"
+ cse_msg_stopped_working_as_slave_prostitute: "[cse_slave_prostitute.GetShortUINameNoTooltip] ist nicht länger Eure Sklaven-Prostituierte"
+ cse_can_no_longer_work_as_slave_prostitute_tooltip: "Eure Sklaven-Prostituierte kann euch nicht länger dienlich sein"
+ 
+ # LABOUR SLAVE
+ cse_msg_started_working_as_labour_slave: "[cse_labour_slave.GetShortUINameNoTooltip] ist nun Euer Arbeitssklave"
+ cse_msg_stopped_working_as_labour_slave: "[cse_labour_slave.GetShortUINameNoTooltip] ist nicht länger Euer Arbeitssklave"
+ cse_can_no_longer_work_as_labour_slave_tooltip: "Euer Arbeitssklave kann nicht länger arbeiten."
+ 
+ # MILITARY SLAVE
+ cse_msg_started_working_as_miliary_slave: "[cse_military_slave.GetShortUINameNoTooltip] dient Euch nun als Militärsklave"
+ cse_msg_stopped_working_as_miliary_slave: "[cse_military_slave.GetShortUINameNoTooltip] dient Euch nicht länger als Militärsklave"
+ cse_can_no_longer_work_as_military_slave_tooltip: "Euer Militärsklave kann Euch nicht länger dienen."
+ 
+ # SEX SLAVE
+ cse_msg_started_working_as_sex_slave: "[cse_sex_slave.GetShortUINameNoTooltip] ist nun Eure Sklaven-Konkubine"
+ cse_msg_stopped_working_as_sex_slave: "[cse_sex_slave.GetShortUINameNoTooltip] ist nicht länger Eure Sklaven-Konkubine"
+ cse_can_no_longer_work_as_sex_slave_tooltip: "Eure Sklaven-Konkubine kann Euch nicht länger dienlich sein"
+ 
+ # GENDER BIRTH CONTROL
+ cse_msg_gender_birth_control_applied: "Geschlechterfokus wirkt"
+ cse_msg_gender_birth_control_mother_applied_desc: "Der Geschlechterfokus von [mother.GetShortUINameNoTooltip] scheint zu wirken!"
+ cse_msg_gender_twins_birth_control_mother_applied_desc: "Der Zwillingsfokus von [mother.GetShortUINameNoTooltip] scheint zu wirken!"
+ cse_msg_gender_birth_control_real_father_applied_desc: "Der Geschlechterfokus von [real_father.GetShortUINameNoTooltip] scheint auf [mother.GetShortUINameNoTooltip] zu wirken!"
+ cse_msg_gender_twins_birth_control_real_father_applied_desc: "Der Zwillingsfokus von [real_father.GetShortUINameNoTooltip] scheint auf [mother.GetShortUINameNoTooltip] zu wirken!"
+
+ #################### COURT ############################################################
+ 
+ # COURTESAN
+ cse_msg_started_working_as_courtesan: "[cse_courtesan.GetShortUINameNoTooltip] ist nun Eure Kurtisane"
+ cse_msg_stopped_working_as_courtesan: "[cse_courtesan.GetShortUINameNoTooltip] ist nicht länger Eure Kurtisane"
+ cse_can_no_longer_work_as_courtesan_tooltip: "Eure Kurtisane kann Euch nicht länger dienlich sein"
+ 

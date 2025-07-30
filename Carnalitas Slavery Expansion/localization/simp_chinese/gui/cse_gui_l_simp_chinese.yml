@@ -1,0 +1,28 @@
+﻿l_simp_chinese:
+
+ SLAVES_TAB_LABEL: "$game_concept_slaves$ #weak ([Add_int32(Add_int32(Add_int32(Add_int32(GetDataModelSize(CharacterWindow.GetRelationsOfType( GetRelation( 'slave_prostitute' ) ) ), GetDataModelSize(CharacterWindow.GetRelationsOfType( GetRelation( 'labour_slave' ) ) ) ), GetDataModelSize(CharacterWindow.GetRelationsOfType( GetRelation( 'military_slave' ) ) ) ), GetDataModelSize(CharacterWindow.GetRelationsOfType( GetRelation( 'sex_slave' ) ) ) ), GetDataModelSize(CharacterWindow.GetRelationsOfType( GetRelation( 'court_slave' ) ) ) )])#!"
+ SLAVES_TAB_NUMBER: "[Add_int32(Add_int32(Add_int32(Add_int32(GetDataModelSize(CharacterWindow.GetRelationsOfType( GetRelation( 'slave_prostitute' ) ) ), GetDataModelSize(CharacterWindow.GetRelationsOfType( GetRelation( 'labour_slave' ) ) ) ), GetDataModelSize(CharacterWindow.GetRelationsOfType( GetRelation( 'military_slave' ) ) ) ), GetDataModelSize(CharacterWindow.GetRelationsOfType( GetRelation( 'sex_slave' ) ) ) ), GetDataModelSize(CharacterWindow.GetRelationsOfType( GetRelation( 'court_slave' ) ) ) )]"
+ 
+ SLAVE_PROSTITUTE_LABEL: "[cse_slave_prostitutes|E] #weak ([GetDataModelSize(CharacterWindow.GetRelationsOfType( GetRelation( 'slave_prostitute' ) ))])#!"
+ SLAVE_PROSTITUTE_NUMBER: "[GetDataModelSize(CharacterWindow.GetRelationsOfType( GetRelation( 'slave_prostitute' ) ))]"
+ 
+ LABOUR_SLAVE_LABEL: "[cse_labour_slaves|E] #weak ([GetDataModelSize(CharacterWindow.GetRelationsOfType( GetRelation( 'labour_slave' ) ))])#!"
+ LABOUR_SLAVE_NUMBER: "[GetDataModelSize(CharacterWindow.GetRelationsOfType( GetRelation( 'labour_slave' ) ))]"
+ 
+ MILITARY_SLAVE_LABEL: "[cse_military_slaves|E] #weak ([GetDataModelSize(CharacterWindow.GetRelationsOfType( GetRelation( 'military_slave' ) ))])#! - ( [cse_recruits|E] #weak ([GetDataModelSize(CharacterWindow.GetRelationsOfType( GetRelation( 'slave_recruit' ) ))])#! / [cse_soldiers|E] #weak ([GetDataModelSize(CharacterWindow.GetRelationsOfType( GetRelation( 'slave_soldier' ) ))])#! / [cse_commanders|E] #weak ([GetDataModelSize(CharacterWindow.GetRelationsOfType( GetRelation( 'slave_commander' ) ))])#! )"
+ MILITARY_SLAVE_NUMBER: "[GetDataModelSize(CharacterWindow.GetRelationsOfType( GetRelation( 'military_slave' ) ))] ([GetDataModelSize(CharacterWindow.GetRelationsOfType( GetRelation( 'slave_recruit' ) ))]/[GetDataModelSize(CharacterWindow.GetRelationsOfType( GetRelation( 'slave_soldier' ) ))]/[GetDataModelSize(CharacterWindow.GetRelationsOfType( GetRelation( 'slave_commander' ) ))])"
+ 
+ SEX_SLAVE_LABEL: "[cse_sex_slaves|E] #weak ([GetDataModelSize(CharacterWindow.GetRelationsOfType( GetRelation( 'sex_slave' ) ))])#!"
+ SEX_SLAVE_NUMBER: "[GetDataModelSize(CharacterWindow.GetRelationsOfType( GetRelation( 'sex_slave' ) ))]"
+ SEX_SLAVES: "[cse_sex_slaves|E]"
+ 
+ COURT_SLAVE_LABEL: "[cse_court_slave|E] #weak ([GetDataModelSize(CharacterWindow.GetRelationsOfType( GetRelation( 'court_slave' ) ))])#!"
+ COURT_SLAVE_NUMBER: "[GetDataModelSize(CharacterWindow.GetRelationsOfType( GetRelation( 'court_slave' ) ))]"
+ 
+ COURTESAN_OWNER_LABEL: "[cse_courtesans|E] #weak ([GetDataModelSize(CharacterWindow.GetRelationsOfType( GetRelation( 'courtesan_owner' ) ))])#!"
+ COURTESAN_OWNER_NUMBER: "[GetDataModelSize(CharacterWindow.GetRelationsOfType( GetRelation( 'courtesan_owner' ) ))]"
+ COURTESAN_OWNERS: "[cse_courtesan_owners|E]"
+ 
+ COURTESAN_LABEL: "[cse_courtesans|E] #weak ([GetDataModelSize(CharacterWindow.GetRelationsOfType( GetRelation( 'courtesan' ) ))])#!"
+ COURTESAN_NUMBER: "[GetDataModelSize(CharacterWindow.GetRelationsOfType( GetRelation( 'courtesan' ) ))]"
+ COURTESANS: "[cse_courtesans|E]"

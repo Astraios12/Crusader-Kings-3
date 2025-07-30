@@ -1,0 +1,180 @@
+﻿cse_adopt_interaction = {
+    category = interaction_category_diplomacy
+    #ai_potential = { always = no }
+	#ai_frequency = 0
+	
+    auto_accept = yes
+	use_diplomatic_range = yes
+    common_interaction = yes
+	
+	desc = cse_adopt_interaction_desc
+
+    is_shown = {		
+        scope:recipient = {
+            is_ai = yes
+			OR = {
+				has_trait = slave
+				has_trait = former_slave
+			}
+			scope:recipient.real_father = scope:actor
+			NOT = {scope:recipient.house = scope:recipient.real_father.house}
+        }
+    }
+	
+	is_valid_showing_failures_only = {
+		scope:actor = {
+			trigger_if = {
+				limit = { scope:recipient = { has_trait = slave } }
+				has_relation_slave = scope:recipient
+			}
+		}
+	}
+
+    on_accept = {
+		scope:recipient = {
+			if = {
+				limit = { has_trait = slave }
+				carn_free_slave_effect = yes
+				add_opinion = {
+					modifier = carn_freed_me_from_slavery_opinion
+					target = scope:actor
+				}
+				scope:actor = {
+					add_dread = minor_dread_loss
+					if = {
+						limit = {
+							faith = {
+								NOR = {
+									AND = {
+										faith_hostility_level = {
+											target = scope:recipient.faith
+											value < faith_hostile_level
+										}
+										has_doctrine = carn_doctrine_same_slavery_accepted
+									}
+									AND = {
+										faith_hostility_level = {
+											target = scope:recipient.faith
+											value >= faith_hostile_level
+										}
+										has_doctrine = carn_doctrine_other_slavery_accepted
+									}
+								}
+							}
+						}
+						add_piety = medium_piety_gain
+						stress_impact = {
+							zealous = minor_stress_impact_loss
+						}
+					}
+					stress_impact = {
+						compassionate = medium_stress_impact_loss
+						sadistic = medium_stress_impact_gain
+						callous = minor_stress_impact_gain
+					}
+				}
+			}
+			
+			if = {
+				limit = { NOT = { scope:recipient.father = scope:recipient.real_father } }
+				if = {
+					limit = { scope:recipient.real_father.faith = { has_doctrine = doctrine_bastardry_none } }
+					add_trait = wild_oat
+				}
+				else = {
+					add_trait = bastard
+				}
+				set_father = real_father
+				add_opinion = {
+					target = scope:actor
+					modifier = cse_revealed_father_opinion
+				}
+			}
+			
+			set_house = real_father.house
+			add_opinion = {
+				target = scope:actor
+				modifier = cse_adopted_me_opinion
+			}
+		}
+		scope:actor = {
+			if = {
+				limit = { scope:recipient.mother = { is_alive = yes } }
+				reverse_add_opinion = {
+					target = scope:recipient.mother 
+					modifier = cse_adopted_my_child_opinion
+				}
+			}
+			add_hook = {
+				target = scope:recipient
+				type = house_head_hook
+			}
+		}
+	}
+	
+	cost = {
+		prestige = {
+			value = {
+				add = 150
+				if = {
+					limit = { NOT = { scope:recipient.father = scope:recipient.real_father } }
+					add = 100
+				}
+			}
+		}
+	}
+}
+
+cse_reveal_interaction = {
+    category = interaction_category_diplomacy
+    #ai_potential = { always = no }
+	#ai_frequency = 0
+	
+    auto_accept = yes
+	use_diplomatic_range = yes
+    common_interaction = yes
+	
+	desc = cse_reveal_interaction_desc
+
+    is_shown = {		
+        scope:recipient = {
+            is_ai = yes
+			OR = {
+				has_trait = slave
+				has_trait = former_slave
+			}
+			#NOT = { exists = scope:recipient.father }
+			#exists = scope:recipient.real_father
+			NOT = {scope:recipient.father = scope:recipient.real_father}
+        }
+    }
+	
+#	is_valid_showing_failures_only = {
+#		scope:actor = {
+#			has_relation_slave = scope:recipient
+#		}
+#	}
+
+    on_accept = {
+		scope:recipient = {
+			if = {
+				limit = { scope:recipient.real_father.faith = { has_doctrine = doctrine_bastardry_none } }
+				add_trait = wild_oat
+			}
+			else = {
+				add_trait = bastard
+			}
+			hidden_effect = {
+				set_father = real_father
+			}
+			add_opinion = {
+				target = scope:actor
+				modifier = cse_revealed_father_opinion
+			}
+		}
+	}
+	
+	cost = {
+		prestige = 100
+	}
+}

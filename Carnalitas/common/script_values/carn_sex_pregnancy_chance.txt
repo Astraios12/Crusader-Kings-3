@@ -1,0 +1,32 @@
+﻿# requires scope:mother and scope:father to be provided
+# not using any of the spouse,concubine, secondary spouse fertility multiplier as define in base game
+# as those are to calculate monthly pregnancy,using in a manual one does not seems right.
+carn_sex_pregnancy_chance = {
+	# get base fertility multiplier	
+	value = 0
+	if = {
+		limit = {
+			NOR = {
+				scope:mother.fertility < 0.1
+				scope:father.fertility < 0.1
+			}
+		}
+		# Use carn_pregnancy_chance if available on the mother for backward compatibility
+		if = {
+			limit = { exists = scope:mother.var:carn_pregnancy_chance }
+			add = scope:mother.var:carn_pregnancy_chance
+		}
+		else = {
+			add = {
+				value = scope:mother.fertility
+			}
+			add = {
+				value = scope:father.fertility
+			}
+			#Scaling to a avg of 30 if both got 0.5 fertility
+			multiply = 30
+		}
+	}
+}
+	
+	

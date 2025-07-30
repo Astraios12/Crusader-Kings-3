@@ -1,0 +1,396 @@
+﻿#not using nested loop as even one new fetish gives rise to too many combination and not half of them will ever be used
+#you can see the pattern in which this is written. 
+#order of the fetishs is the way the appear in effect and trigger list, first comes first.
+#please follow the same parttern, it will be easier for other to follow
+carn_had_sex_memory_effect = {
+	#giving_player vaginal cum_inside consensual 
+	if = {
+		limit = {
+			carn_sex_scene_character_is_giving_player_trigger = yes
+			carn_sex_scene_is_vaginal_trigger = yes
+			carn_sex_scene_is_cum_inside_trigger = yes
+			carn_sex_scene_is_consensual_trigger = yes
+		}
+		create_character_memory = {
+			type = had_sex_giving_player_vaginal_cum_inside_consensual
+			participants = {
+				sex_partner = scope:carn_sex_partner
+			}
+		}
+		scope:carn_sex_partner = {
+			create_character_memory = {
+				type = had_sex_receiving_player_vaginal_cum_inside_consensual
+				participants = {
+					sex_partner = scope:carn_sex_player
+				}
+			}
+		}
+	}
+	#giving_player vaginal cum_outside consensual 
+	else_if = {
+		limit = {
+			carn_sex_scene_character_is_giving_player_trigger = yes
+			carn_sex_scene_is_vaginal_trigger = yes
+			carn_sex_scene_is_cum_outside_trigger = yes
+			carn_sex_scene_is_consensual_trigger = yes
+		}
+		create_character_memory = {
+			type = had_sex_giving_player_vaginal_cum_outside_consensual
+			participants = {
+				sex_partner = scope:carn_sex_partner
+			}
+		}
+		scope:carn_sex_partner = {
+			create_character_memory = {
+				type = had_sex_receiving_player_vaginal_cum_outside_consensual
+				participants = {
+					sex_partner = scope:carn_sex_player
+				}
+			}
+		}
+	}
+	#giving_player anal consensual
+	else_if = {
+		limit = {
+			carn_sex_scene_character_is_giving_player_trigger = yes
+			carn_sex_scene_is_anal_trigger = yes
+			carn_sex_scene_is_consensual_trigger = yes
+		}
+		create_character_memory = {
+			type = had_sex_giving_player_anal_consensual
+			participants = {
+				sex_partner = scope:carn_sex_partner
+			}
+		}
+		scope:carn_sex_partner = {
+			create_character_memory = {
+				type = had_sex_receiving_player_anal_consensual
+				participants = {
+					sex_partner = scope:carn_sex_player
+				}
+			}
+		}
+	}
+	#giving_player oral consensual
+	else_if = {
+		limit = {
+			carn_sex_scene_character_is_giving_player_trigger = yes
+			carn_sex_scene_is_oral_trigger = yes
+			carn_sex_scene_is_consensual_trigger = yes
+		}
+		create_character_memory = {
+			type = had_sex_giving_player_oral_consensual
+			participants = {
+				sex_partner = scope:carn_sex_partner
+			}
+		}
+		scope:carn_sex_partner = {
+			create_character_memory = {
+				type = had_sex_receiving_player_oral_consensual
+				participants = {
+					sex_partner = scope:carn_sex_player
+				}
+			}
+		}
+	}
+	#giving_player dom vaginal cum_inside noncon
+	else_if = {
+		limit = {
+			#dom player is always in charge so no need to check 1st trigger , writting is just for the sake of pattern
+			#carn_sex_scene_character_is_giving_player_trigger = yes
+			carn_sex_scene_character_is_dom_player_trigger = yes
+			carn_sex_scene_is_vaginal_trigger = yes
+			carn_sex_scene_is_cum_inside_trigger = yes
+			carn_sex_scene_is_noncon_trigger = yes
+		}
+		create_character_memory = {
+			type = had_sex_giving_player_dom_vaginal_cum_inside_noncon
+			participants = {
+				sex_partner = scope:carn_sex_partner
+			}
+		}
+		scope:carn_sex_partner = {
+			create_character_memory = {
+				type = had_sex_receiving_player_sub_vaginal_cum_inside_noncon
+				participants = {
+					sex_partner = scope:carn_sex_player
+				}
+			}
+		}
+	}
+	#giving_player dom vaginal cum_outside noncon 
+	else_if = {
+		limit = {
+			#carn_sex_scene_character_is_giving_player_trigger = yes
+			carn_sex_scene_character_is_dom_player_trigger = yes
+			carn_sex_scene_is_vaginal_trigger = yes
+			carn_sex_scene_is_cum_outside_trigger = yes
+			carn_sex_scene_is_noncon_trigger = yes
+		}
+		create_character_memory = {
+			type = had_sex_giving_player_dom_vaginal_cum_outside_noncon
+			participants = {
+				sex_partner = scope:carn_sex_partner
+			}
+		}
+		scope:carn_sex_partner = {
+			create_character_memory = {
+				type = had_sex_receiving_player_sub_vaginal_cum_outside_noncon
+				participants = {
+					sex_partner = scope:carn_sex_player
+				}
+			}
+		}
+	}
+	#giving_player dom anal noncon
+	else_if = {
+		limit = {
+			#carn_sex_scene_character_is_giving_player_trigger = yes
+			carn_sex_scene_character_is_dom_player_trigger = yes
+			carn_sex_scene_is_anal_trigger = yes
+			carn_sex_scene_is_noncon_trigger = yes
+		}
+		create_character_memory = {
+			type = had_sex_giving_player_dom_anal_noncon
+			participants = {
+				sex_partner = scope:carn_sex_partner
+			}
+		}
+		scope:carn_sex_partner = {
+			create_character_memory = {
+				type = had_sex_receiving_player_sub_anal_noncon
+				participants = {
+					sex_partner = scope:carn_sex_player
+				}
+			}
+		}
+	}
+	#giving_player dom oral noncon
+	else_if = {
+		limit = {
+			#carn_sex_scene_character_is_giving_player_trigger = yes
+			carn_sex_scene_character_is_dom_player_trigger = yes
+			carn_sex_scene_is_oral_trigger = yes
+			carn_sex_scene_is_noncon_trigger = yes
+		}
+		create_character_memory = {
+			type = had_sex_giving_player_dom_oral_noncon
+			participants = {
+				sex_partner = scope:carn_sex_partner
+			}
+		}
+		scope:carn_sex_partner = {
+			create_character_memory = {
+				type = had_sex_receiving_player_sub_oral_noncon
+				participants = {
+					sex_partner = scope:carn_sex_player
+				}
+			}
+		}
+	}
+	#giving_player dom vaginal cum_inside dubcon
+	else_if = {
+		limit = {
+			#carn_sex_scene_character_is_giving_player_trigger = yes
+			carn_sex_scene_character_is_dom_player_trigger = yes
+			carn_sex_scene_is_vaginal_trigger = yes
+			carn_sex_scene_is_cum_inside_trigger = yes
+			carn_sex_scene_is_dubcon_trigger = yes
+		}
+		create_character_memory = {
+			type = had_sex_giving_player_dom_vaginal_cum_inside_dubcon
+			participants = {
+				sex_partner = scope:carn_sex_partner
+			}
+		}
+		scope:carn_sex_partner = {
+			create_character_memory = {
+				type = had_sex_receiving_player_sub_vaginal_cum_inside_dubcon
+				participants = {
+					sex_partner = scope:carn_sex_player
+				}
+			}
+		}
+	}
+	#giving_player dom vaginal cum_outside dubcon 
+	else_if = {
+		limit = {
+			#carn_sex_scene_character_is_giving_player_trigger = yes
+			carn_sex_scene_character_is_dom_player_trigger = yes
+			carn_sex_scene_is_vaginal_trigger = yes
+			carn_sex_scene_is_cum_outside_trigger = yes
+			carn_sex_scene_is_dubcon_trigger = yes
+		}
+		create_character_memory = {
+			type = had_sex_giving_player_dom_vaginal_cum_outside_dubcon
+			participants = {
+				sex_partner = scope:carn_sex_partner
+			}
+		}
+		scope:carn_sex_partner = {
+			create_character_memory = {
+				type = had_sex_receiving_player_sub_vaginal_cum_outside_dubcon
+				participants = {
+					sex_partner = scope:carn_sex_player
+				}
+			}
+		}
+	}
+	#giving_player dom anal dubcon
+	else_if = {
+		limit = {
+			#carn_sex_scene_character_is_giving_player_trigger = yes
+			carn_sex_scene_character_is_dom_player_trigger = yes
+			carn_sex_scene_is_anal_trigger = yes
+			carn_sex_scene_is_dubcon_trigger = yes
+		}
+		create_character_memory = {
+			type = had_sex_giving_player_dom_anal_dubcon
+			participants = {
+				sex_partner = scope:carn_sex_partner
+			}
+		}
+		scope:carn_sex_partner = {
+			create_character_memory = {
+				type = had_sex_receiving_player_sub_anal_dubcon
+				participants = {
+					sex_partner = scope:carn_sex_player
+				}
+			}
+		}
+	}
+	#giving_player dom oral dubcon
+	else_if = {
+		limit = {
+			#carn_sex_scene_character_is_giving_player_trigger = yes
+			carn_sex_scene_character_is_dom_player_trigger = yes
+			carn_sex_scene_is_oral_trigger = yes
+			carn_sex_scene_is_dubcon_trigger = yes
+		}
+		create_character_memory = {
+			type = had_sex_giving_player_dom_oral_dubcon
+			participants = {
+				sex_partner = scope:carn_sex_partner
+			}
+		}
+		scope:carn_sex_partner = {
+			create_character_memory = {
+				type = had_sex_receiving_player_sub_oral_dubcon
+				participants = {
+					sex_partner = scope:carn_sex_player
+				}
+			}
+		}
+	}
+	#receiving_player sub vaginal cum_inside noncon
+	else_if = {
+		limit = {
+			#carn_sex_scene_character_is_receiving_player_trigger = yes
+			carn_sex_scene_character_is_sub_player_trigger = yes
+			carn_sex_scene_is_vaginal_trigger = yes
+			carn_sex_scene_is_cum_inside_trigger = yes
+			carn_sex_scene_is_noncon_trigger = yes
+		}
+		create_character_memory = {
+			type = had_sex_receiving_player_sub_vaginal_cum_inside_noncon
+			participants = {
+				sex_partner = scope:carn_sex_partner
+			}
+		}
+		scope:carn_sex_partner = {
+			create_character_memory = {
+				type = had_sex_giving_player_dom_vaginal_cum_inside_noncon
+				participants = {
+					sex_partner = scope:carn_sex_player
+				}
+			}
+		}
+	}
+	#receiving_player sub vaginal cum_outside noncon 
+	else_if = {
+		limit = {
+			#carn_sex_scene_character_is_receiving_player_trigger = yes
+			carn_sex_scene_character_is_sub_player_trigger = yes
+			carn_sex_scene_is_vaginal_trigger = yes
+			carn_sex_scene_is_cum_outside_trigger = yes
+			carn_sex_scene_is_noncon_trigger = yes
+		}
+		create_character_memory = {
+			type = had_sex_receiving_player_sub_vaginal_cum_outside_noncon
+			participants = {
+				sex_partner = scope:carn_sex_partner
+			}
+		}
+		scope:carn_sex_partner = {
+			create_character_memory = {
+				type = had_sex_giving_player_dom_vaginal_cum_outside_noncon
+				participants = {
+					sex_partner = scope:carn_sex_player
+				}
+			}
+		}
+	}
+	#receiving_player sub anal noncon
+	else_if = {
+		limit = {
+			#carn_sex_scene_character_is_receiving_player_trigger = yes
+			carn_sex_scene_character_is_sub_player_trigger = yes
+			carn_sex_scene_is_anal_trigger = yes
+			carn_sex_scene_is_noncon_trigger = yes
+		}
+		create_character_memory = {
+			type = had_sex_receiving_player_sub_anal_noncon
+			participants = {
+				sex_partner = scope:carn_sex_partner
+			}
+		}
+		scope:carn_sex_partner = {
+			create_character_memory = {
+				type = had_sex_giving_player_dom_anal_noncon
+				participants = {
+					sex_partner = scope:carn_sex_player
+				}
+			}
+		}
+	}
+	#receiving_player sub oral noncon
+	else_if = {
+		limit = {
+			#carn_sex_scene_character_is_receiving_player_trigger = yes
+			carn_sex_scene_character_is_sub_player_trigger = yes
+			carn_sex_scene_is_oral_trigger = yes
+			carn_sex_scene_is_noncon_trigger = yes
+		}
+		create_character_memory = {
+			type = had_sex_receiving_player_sub_oral_noncon
+			participants = {
+				sex_partner = scope:carn_sex_partner
+			}
+		}
+		scope:carn_sex_partner = {
+			create_character_memory = {
+				type = had_sex_giving_player_dom_oral_noncon
+				participants = {
+					sex_partner = scope:carn_sex_player
+				}
+			}
+		}
+	}
+	#Fallback 
+	else = {
+		create_character_memory = {
+			type = had_sex
+			participants = {
+				sex_partner = scope:carn_sex_partner
+			}
+		}
+		scope:carn_sex_partner = {
+			create_character_memory = {
+				type = had_sex
+				participants = {
+					sex_partner = scope:carn_sex_player
+				}
+			}
+		}	
+	}
+}

@@ -1,0 +1,10 @@
+﻿l_simp_chinese:
+ carn_sex_scene.0003.t: "玷污"
+ carn_sex_scene.0003.desc_opening: "在我慢慢走近[carn_sex_target.GetHerHim]时，[carn_sex_target.Custom2('MyCharacterIntroduction', ROOT.Char)|U]的眼神充满了恐惧与无助。\n\n我将[carn_sex_target.GetHerHis][carn_sex_target.Custom('GetClothingArticle')]从[carn_sex_target.GetHerHis]身上全部扒下，将[carn_sex_target.GetHerHim]强压在身下。在欲望的驱使下，我完全不顾这可怜人的意愿强奸了我的囚犯。\n\n"
+ carn_sex_scene.0003.desc_ending: "在[carn_sex_target.GetHerHim]身上寻欢作乐以后，我转身离去，再也没有多看[carn_sex_target.GetHerHim]一眼。"
+ carn_sex_scene.0003.a: "这下[carn_sex_target.GetShortUIName]更了解[carn_sex_target.GetHerHis]地位了。"
+ carn_sex_scene.0004.t: "被玷污"
+ carn_sex_scene.0004.desc_opening: "当[carn_sex_target.GetSheHe]走近我时，[carn_sex_target.Custom2('MyCharacterIntroduction', ROOT.Char)|U]用如饥似渴的眼神看着我，[carn_sex_target.GetHerHis]意图呼之欲出。\n\n[carn_sex_target.GetSheHe|U]毫不留情地将我的[carn_sex_player.Custom('GetClothingArticle')]剥下并把[carn_sex_target.GetHerselfHimself]强压在我身上。在欲望的驱使下，[carn_sex_target.GetSheHe]强奸了我，只为了满足[carn_sex_target.GetHerHis]淫欲和[carn_sex_target.GetHerHis]愉悦。\n\n"
+ carn_sex_scene.0004.desc_ending: "在玷污了我之后，[carn_sex_target.GetSheHe]转身离去，再也没有将[carn_sex_target.GetHerHis]目光放在我身上。"
+ carn_sex_scene.0004.a: "感觉好恶心......"
+ carn_sex_scene.0004.a.being_raped_fetish: "感觉......真是太棒了......"

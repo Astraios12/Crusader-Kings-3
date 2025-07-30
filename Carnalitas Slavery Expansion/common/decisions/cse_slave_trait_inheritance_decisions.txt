@@ -1,0 +1,59 @@
+﻿cse_no_slave_trait_inheritance_decision = {
+	ai_check_interval = 0
+
+	picture = {
+		reference = "gfx/interface/illustrations/decisions/decision_prison.dds"
+	}
+	desc = cse_no_slave_trait_inheritance_decision_desc
+	#major = yes
+
+	is_shown = {
+		NOT = {has_character_flag = cse_no_slave_trait_inheritance}
+		any_relation = {
+			type = slave
+		}
+	}
+	
+	is_valid = {
+		is_independent_ruler = yes
+	}
+
+	effect = {
+		add_character_flag = cse_no_slave_trait_inheritance
+		custom_tooltip = cse_no_slave_trait_inheritance_tt
+	}
+	
+	ai_potential = {
+		always = no
+	}
+
+	ai_will_do = {
+		base = 0
+	}
+}
+
+cse_revert_slave_trait_inheritance_decision = {
+	ai_check_interval = 0
+
+	picture = {
+		reference = "gfx/interface/illustrations/decisions/decision_prison.dds"
+	}
+	desc = cse_revert_slave_trait_inheritance_decision_desc
+
+	is_shown = {
+		has_character_flag = cse_no_slave_trait_inheritance
+	}
+
+	effect = {
+		remove_character_flag = cse_no_slave_trait_inheritance
+		custom_tooltip = cse_revert_slave_trait_inheritance_tt
+	}
+	
+	ai_potential = {
+		always = no
+	}
+
+	ai_will_do = {
+		base = 0
+	}
+}

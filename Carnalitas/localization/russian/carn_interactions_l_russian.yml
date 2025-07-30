@@ -1,0 +1,86 @@
+﻿l_russian:
+carn_sex_interaction:0 "Переспать с любовни[Select_CString(recipient.IsFemale, 'цей', 'ком' )]"
+carn_sex_interaction_desc:0 "Провести вреия в кровати с [recipient.GetShortUINameNoTooltip]."
+carn_sex_interaction_effect_cd_tt:0 "#weak Никаких эффектов от занятий любовью не будет так как вы уже использовали это действие менее [EmptyScope.ScriptValue('carn_sex_interaction_cooldown_base')|0] месяцев назад!"
+carn_sex_interaction_not_attracted_to_warning_tt:0 "#X Вас не привлекает [recipient.GetShortUINameNoTooltip]#!"
+
+carn_enslave_interaction:0 "Порабощение"
+carn_enslave_interaction_desc:0 "Сделайте из [recipient.GetShortUINameNoTooltip] своего нового [slave|E]"
+carn_enslave_actor_diplomacy:0 "Ваша [diplomacy_skill|E]: $VALUE|=+0$"
+carn_enslave_recipient_is_your_prisoner:0 "[recipient.GetShortUIName|U] хочет покинуть [prison|E]: $VALUE|=+0$"
+carn_enslave_recipient_is_contrite:0 "[recipient.GetShortUIName|U] is [GetTrait('contrite').GetName( GetPlayer )]: $VALUE|=+0$"
+carn_enslave_recipient_is_humble:0 "[recipient.GetShortUIName|U] is [GetTrait('humble').GetName( GetPlayer )]: $VALUE|=+0$"
+carn_enslave_recipient_is_arrogant:0 "[recipient.GetShortUIName|U] is [GetTrait('arrogant').GetName( GetPlayer )]: $VALUE|=+0$"
+carn_enslave_recipient_is_fickle:0 "[recipient.GetShortUIName|U] is [GetTrait('fickle').GetName( GetPlayer )]: $VALUE|=+0$"
+carn_enslave_recipient_is_noble:0 "[recipient.GetShortUIName|U] is a [noble|E]: $VALUE|=+0$"
+carn_enslave_recipient_would_lose_titles:0 "[recipient.GetShortUIName|U] потерял [titles|E]: $VALUE|=+0$"
+carn_enslave_shunned_in_recipient_faith:0 "$carn_doctrine_same_slavery_name$ является [shunned|E] в [recipient.GetFaith.GetAdherentNamePluralNoTooltip|U]: $VALUE|=+0$"
+carn_enslave_crime_in_recipient_faith:0 "$carn_doctrine_same_slavery_name$ является [criminal|E] в [recipient.GetShortUIName|U]'s [faith|E]: $VALUE|=+0$"
+carn_enslave_you_have_no_reason:0 "У вас нет [execute_reason|E]: $VALUE|=+0$"
+carn_is_allowed_to_enslave_desc:0 "[recipient.GetShortUIName|U] является известным [criminal|E] #weak ([recipient.GetExecuteReasons( actor.Self )])#!, что позволяет мне поработить [recipient.GetHerHim], не считаясь [tyrant|E]".
+carn_is_allowed_to_enslave_hostile_religion_desc:0 "[recipient.GetShortUINamePossessive|U] вера [recipient.GetFaith.GetName], считается либо #V Враждебной#! либо #V Злой#! для моей веры, что позволяет мне поработить [recipient.GetHerHim], не считаясь [tyrant|E]".
+
+carn_mass_enslave_interaction:0 "Массовое Порабощение"
+carn_mass_enslave_interaction_tooltip_1:0 "Поработить всех подходящих персонажей в ваших подземельях, которых принято порабощать в вашей [faith|E]".
+carn_mass_enslave_interaction_tooltip_2:0 "Это расстроит семью и королевство порабощенных персонажей."
+
+carn_free_slave_interaction:0 "Освободить Раба"
+carn_free_slave_interaction_desc:0 "Освободить [recipient.GetShortUINameNoTooltip] от [slavery|E]"
+carn_free_slave_offer:0 "В знак признания вашей службы я освобождаю вас от ваших цепей"
+carn_free_slave_offer_conditional:0 "Я готов освободить вас от рабства, но не безоговорочно...".
+
+carn_slave_negotiate_freedom_interaction:0 "Просить о Свободе"
+carn_slave_negotiate_freedom_interaction_desc:0 "Попросите [recipient.GetShortUINameNoTooltip] освободить вас от [slavery|E]"
+carn_slave_negotiate_freedom_offer:0 "Я знаю, что вы прощающий господин. Не освободите ли вы меня от рабства на этих условиях?"
+carn_slave_negotiate_freedom_convert_faith:0 "Обратиться в [recipient.GetFaith.GetName]"
+carn_slave_negotiate_freedom_renounce_claims:0 "[actor.GetShortUIName|U] теряет все [claims|E] на титулы в [recipient.GetShortUINamePossessive] Королевстве"
+
+carn_demand_free_illegal_slaves_interaction:0 "Требовать Манумиссии"
+carn_demand_free_slaves_interaction_desc:0 "Требовать, чтобы [recipient.GetShortUINameNoTooltip] освободил [illegal|E] [slaves|E], которыми владеет".
+carn_demand_free_illegal_slaves_is_crime:0 "\nОтказ освободить незаконных рабов является [crime|E]"
+carn_demanded_manumission:0 "Требуемая Манумиссия"
+carn_refused_free_illegal_slaves_opinion:0 "Отказано в Требованной Манумиссии"
+
+carn_seize_slave_interaction:0 "Захватить Раба"
+carn_seize_slave_interaction_desc:0 "Взять [recipient.GetShortUINameNoTooltip] как своего собственного [slave|E]"
+carn_wants_to_be_liege_slave:0 "Хочет, чтобы их текущий владелец: $VALUE|=+0$"
+carn_wants_to_be_your_slave:0 "Хочет, чтобы вы были их владельцем: $VALUE|=+0$".
+
+carn_buy_slave_directly_interaction:0 "Купить Раба"
+carn_buy_slave_directly_interaction_desc:0 "Купить [slave|E] за [gold|E]"
+recipient_secondary_carn_buy_slave_directly_interaction:0 "Раб"
+
+carn_buy_slave_on_market_interaction:0 "Просмотреть Рынок Рабов"
+carn_buy_slave_on_market_interaction_desc:0 "Просмотреть всех доступных [slaves|E] для продажи на [slave_market|E]"
+actor_secondary_carn_buy_slave_on_market_interaction:0 "Покупатель"
+
+carn_sell_slave_interaction:0 "Продать Раба"
+carn_sell_slave_interaction_desc:0 "Продать [recipient.GetShortUINameNoTooltip] на [slave_market|E] за #high [gold_i][SCOPE.ScriptValue('carn_scope_recipient_carn_slave_price_value')|0]#!".
+recipient_secondary_carn_sell_slave_interaction:0 "Покупатель"
+carn_buyer_not_enough_gold_for_slave_price_tooltip:0 "Заплатить #high [gold_i][SCOPE.ScriptValue('carn_scope_buyer_current_gold_value')|0]#! за [seller.GetShortUINameNoTooltip] #weak (не может позволить себе полную цену [gold_i][SCOPE.ScriptValue('carn_scope_slave_price_value')|0])#!"
+
+carn_secondary_recipient_is_my_knight_reason:0 "[secondary_recipient.GetShortUIName|U] мой [recipient.Custom('KnightCulture')]: $VALUE|=+0$"
+carn_secondary_recipient_is_my_councillor_reason:0 "[secondary_recipient.GetShortUIName|U] мой [councillor|E]: $VALUE|=+0$"
+carn_secondary_recipient_is_my_friend_reason:0 "[secondary_recipient.GetShortUIName|U] мой [friend|E]: $VALUE|=+0$"
+carn_secondary_recipient_is_my_lover_reason:0 "[secondary_recipient.GetShortUIName|U] мой [lover|E]: $VALUE|=+0$"
+carn_secondary_recipient_is_my_crush_reason:0 "[secondary_recipient.GetShortUIName|U] мой [crush|E]: $VALUE|=+0$"
+carn_secondary_recipient_is_my_soulmate_reason:0 "[secondary_recipient.GetShortUIName|U] мой [soulmate|E]: $VALUE|=+0$"
+
+carn_msg_enslave:0 "Раб Взят"
+carn_msg_slave_sold:0 "Раб Продан"
+carn_msg_slave_freed:0 "Раб Освобожден"
+carn_msg_scope_recipient_becomes_your_slave_desc:0 "[recipient.GetTitledFirstName] становиться вашим [slave|E]"
+carn_msg_scope_slave_becomes_your_slave_desc:0 "[slave.GetTitledFirstName] становиться вашим [slave|E]"
+carn_msg_scope_new_slave_becomes_your_slave_desc:0 "[new_slave.GetTitledFirstName] становиться вашим [slave|E]"
+carn_msg_prev_becomes_your_slave_desc:0 "[PREV.Char.GetTitledFirstName] становиться вашим [slave|E]"
+carn_msg_scope_slave_is_no_longer_your_slave_desc:0 "[slave.GetTitledFirstName] больше не является вашим [slave|E]".
+
+carn_force_start_prostitution_interaction:0 "Начать Заниматься Проституцией"
+carn_force_start_prostitution_interaction_desc:0 "Заставьте [recipient.GetShortUINameNoTooltip] заработать [gold|E] для вас в качестве [prostitute|E]".
+
+carn_force_stop_prostitution_interaction:0 "Остановить проституцию"
+carn_force_stop_prostitution_interaction_desc:0 "Остановить [recipient.GetShortUINameNoTooltip] от работы [prostitute|E]"
+
+carn_rape_interaction:0 "Изнасилование"
+carn_rape_interaction_desc:0 "Взять силой [recipient.GetShortUINameNoTooltip]"
+carn_rape_effect_not_attracted_to_warning_tt:0 "#X Вас не привлекает [carn_rape_victim.GetShortUINameNoTooltip]#!"

@@ -1,0 +1,8 @@
+﻿l_simp_chinese:
+  
+ carn_doctrine_slave_prostitution_name: "Slave Prostitution"
+ carn_doctrine_slave_prostitution_desc: "While it is shameful and degrading for prostitutes to sell their bodies, there is nothing inherently wrong with [ROOT.Faith.PantheonTerm] in their behaviour, especially when it comes to lower beings like slaves."
+ doctrine_parameter_carn_slave_prostitution: "Slave owners who force their [slaves|E] to work as [prostitutes|E] do not lose any [piety|E]."
+  
+ REQUIRED_DOCTRINE_SLAVERY_ACCEPTED_TRIGGER: "Requires a [doctrine|E] that allows slavery."
+ NOT_REQUIRED_DOCTRINE_SLAVERY_ACCEPTED_TRIGGER: "Requires a [doctrine|E] that allows slavery."

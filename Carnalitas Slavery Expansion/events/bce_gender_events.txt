@@ -1,0 +1,283 @@
+﻿namespace = bce_gender_event
+
+bce_gender_event.0001 = {
+	hidden = yes
+
+	trigger = {
+		OR = {
+			has_character_flag = bce_gender_birth_control
+			scope:real_father = { has_character_flag = bce_gender_birth_control }
+		}
+	}
+	
+	immediate = {
+		trigger_event = {
+			id = bce_gender_event.0002
+			months = 7
+		}
+	}
+}
+
+bce_gender_event.0002 = {
+	hidden = yes
+
+	trigger = {
+		is_pregnant = yes
+	}
+
+	immediate = {
+		
+		#################### QUANTITY ############################################################
+		
+		if = {
+			limit = {
+				OR = {
+					has_character_modifier = bce_gender_birth_twins
+					has_character_modifier = bce_gender_birth_twins_male
+					has_character_modifier = bce_gender_birth_twins_female
+				}
+			}
+			random_list = {        
+				31 = {
+					# No twins
+				}
+				69 = {
+					set_num_pregnancy_children = 2
+					add_character_flag = bce_gender_twins_birth_control_mother_success
+					add_character_flag = {
+						flag = bce_gender_twins
+						days = 32
+					}
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				scope:real_father = {
+					OR = {
+						has_character_modifier = bce_gender_birth_twins
+						has_character_modifier = bce_gender_birth_twins_male
+						has_character_modifier = bce_gender_birth_twins_female
+					}
+				}
+			}
+			random_list = {        
+				31 = {
+					# No twins
+				}
+				69 = {
+					set_num_pregnancy_children = 2
+					add_character_flag = bce_gender_twins_birth_control_real_father_success
+					add_character_flag = {
+						flag = bce_gender_twins
+						days = 32
+					}
+				}
+			}
+		}
+		
+		#################### GENDER ############################################################
+		
+		if = {
+			limit = {
+				OR = {
+					has_character_modifier = bce_gender_birth_male
+					has_character_modifier = bce_gender_birth_twins_male
+				}
+			}
+			set_pregnancy_gender = male
+			add_character_flag = bce_gender_birth_control_mother_success
+			add_character_flag = {
+				flag = bce_gender_male
+				days = 32
+			}
+		}
+		else_if = {
+			limit = {
+				OR = {
+					has_character_modifier = bce_gender_birth_female
+					has_character_modifier = bce_gender_birth_twins_female
+				}
+			}
+			set_pregnancy_gender = female
+			add_character_flag = bce_gender_birth_control_mother_success
+			add_character_flag = {
+				flag = bce_gender_female
+				days = 32
+			}
+		}
+		else_if = {
+			limit = {
+				scope:real_father = {
+					OR = {
+						has_character_modifier = bce_gender_birth_male
+						has_character_modifier = bce_gender_birth_twins_male
+					}
+				}
+			}
+			set_pregnancy_gender = male
+			add_character_flag = bce_gender_birth_control_real_father_success
+			add_character_flag = {
+				flag = bce_gender_male
+				days = 32
+			}
+		}
+		else_if = {
+			limit = {
+				scope:real_father = {
+					OR = {
+						has_character_modifier = bce_gender_birth_female
+						has_character_modifier = bce_gender_birth_twins_female
+					}
+				}
+			}
+			set_pregnancy_gender = female
+			add_character_flag = bce_gender_birth_control_real_father_success
+			add_character_flag = {
+				flag = bce_gender_female
+				days = 32
+			}
+		}
+		
+		scope:real_father = {
+			send_interface_message = {
+				type = bce_gender_event_good
+				title = cse_msg_gender_birth_control_applied
+				left_icon = scope:mother
+				if = {
+					limit = { scope:mother = { has_character_flag = bce_gender_birth_control_mother_success } }
+					custom_tooltip = cse_msg_gender_birth_control_mother_applied_desc
+				}
+				if = {
+					limit = { scope:mother = { has_character_flag = bce_gender_birth_control_real_father_success } }
+					custom_tooltip = cse_msg_gender_birth_control_real_father_applied_desc
+				}
+				if = {
+					limit = { scope:mother = { has_character_flag = bce_gender_twins_birth_control_mother_success } }
+					custom_tooltip = cse_msg_gender_twins_birth_control_mother_applied_desc
+				}
+				if = {
+					limit = { scope:mother = { has_character_flag = bce_gender_twins_birth_control_real_father_success } }
+					custom_tooltip = cse_msg_gender_twins_birth_control_real_father_applied_desc
+				}
+			}
+		}
+		scope:mother = {
+			send_interface_message = {
+				type = bce_gender_event_good
+				title = cse_msg_gender_birth_control_applied
+				left_icon = scope:mother
+				if = {
+					limit = { scope:mother = { has_character_flag = bce_gender_birth_control_mother_success } }
+					custom_tooltip = cse_msg_gender_birth_control_mother_applied_desc
+					remove_character_flag = bce_gender_birth_control_mother_success
+				}
+				if = {
+					limit = { scope:mother = { has_character_flag = bce_gender_birth_control_real_father_success } }
+					custom_tooltip = cse_msg_gender_birth_control_real_father_applied_desc
+					remove_character_flag = bce_gender_birth_control_real_father_success
+				}
+				if = {
+					limit = { scope:mother = { has_character_flag = bce_gender_twins_birth_control_mother_success } }
+					custom_tooltip = cse_msg_gender_twins_birth_control_mother_applied_desc
+					remove_character_flag = bce_gender_twins_birth_control_mother_success
+				}
+				if = {
+					limit = { scope:mother = { has_character_flag = bce_gender_twins_birth_control_real_father_success } }
+					custom_tooltip = cse_msg_gender_twins_birth_control_real_father_applied_desc
+					remove_character_flag = bce_gender_twins_birth_control_real_father_success
+				}
+			}
+		}
+
+		trigger_event = {
+			id = bce_gender_event.0003
+			days = 2
+		}
+		trigger_event = {
+			id = bce_gender_event.0003
+			days = 4
+		}
+		trigger_event = {
+			id = bce_gender_event.0003
+			days = 6
+		}
+		trigger_event = {
+			id = bce_gender_event.0003
+			days = 8
+		}
+		trigger_event = {
+			id = bce_gender_event.0003
+			days = 10
+		}
+		trigger_event = {
+			id = bce_gender_event.0003
+			days = 12
+		}
+		trigger_event = {
+			id = bce_gender_event.0003
+			days = 14
+		}
+		trigger_event = {
+			id = bce_gender_event.0003
+			days = 16
+		}
+		trigger_event = {
+			id = bce_gender_event.0003
+			days = 18
+		}
+		trigger_event = {
+			id = bce_gender_event.0003
+			days = 20
+		}
+		trigger_event = {
+			id = bce_gender_event.0003
+			days = 22
+		}
+		trigger_event = {
+			id = bce_gender_event.0003
+			days = 24
+		}
+		trigger_event = {
+			id = bce_gender_event.0003
+			days = 26
+		}
+		trigger_event = {
+			id = bce_gender_event.0003
+			days = 28
+		}
+		trigger_event = {
+			id = bce_gender_event.0003
+			days = 30
+		}
+	}
+}
+
+bce_gender_event.0003 = {
+	hidden = yes
+
+	trigger = {
+		is_pregnant = yes
+	}
+
+	immediate = {
+		
+		#################### QUANTITY ############################################################
+		
+		if = {
+			limit = { has_character_flag = bce_gender_twins	}
+			set_num_pregnancy_children = 2
+		}
+		
+		#################### GENDER ############################################################
+		
+		if = {
+			limit = { has_character_flag = bce_gender_male }
+			set_pregnancy_gender = male
+		}
+		else_if = {
+			limit = { has_character_flag = bce_gender_female }
+			set_pregnancy_gender = female
+		}
+	}
+}

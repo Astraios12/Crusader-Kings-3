@@ -1,0 +1,19 @@
+﻿carn_prostitution_default_religious_doctrine = {
+	categories = {
+		faith
+	}
+	default = carn_prostitution_default_religious_doctrine_slave_prostitution
+	carn_prostitution_default_religious_doctrine_slave_prostitution = {}
+	carn_prostitution_default_religious_doctrine_shunned = {}
+	carn_prostitution_default_religious_doctrine_accepted = {}
+	carn_prostitution_default_religious_doctrine_criminal = {}
+}
+
+cse_no_drama_tooltip_visibility = {
+	categories = {
+		tweaks flavor difficulty
+	}
+	default = cse_no_drama_tooltip_visible
+	cse_no_drama_tooltip_visible = { flag = GG_can_change_rule }
+	cse_no_drama_tooltip_hidden = { flag = GG_can_change_rule }
+}

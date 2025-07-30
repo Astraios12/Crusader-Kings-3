@@ -1,0 +1,20 @@
+# Find the BOTTOM AREA section and replace the family and relations buttons with
+
+using = sm_slaves_button_lite
+
+# Find the RELATIONS TAB section and add before it
+
+####################################
+############ SLAVES TAB ############
+####################################
+
+using = sm_slaves_tab
+
+# Edit the widget visibility of the relations tab to look like this
+
+visible = "[And(CharacterWindow.IsTabShown('relations'), GetVariableSystem.HasValue( 'character_window_tab', 'relations' ))]"
+
+# Add the courtesan window either between state and the main vbox or the main vbox and window_character_filter
+# Do not put this entry inside state, the main vbox or window_character_filter!
+
+cse_social_relationship_sub_window = {}

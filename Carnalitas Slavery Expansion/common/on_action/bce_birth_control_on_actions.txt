@@ -1,0 +1,210 @@
+﻿carn_before_sex = {
+	on_actions = {
+		bce_before_sex
+	}
+}
+
+bce_before_sex = {
+	trigger = {
+		has_character_modifier = bce_wearing_chastity_belt_modifier
+		trigger_if = {
+			limit = { this = scope:carn_sex_player }
+			OR = {
+				is_ai = no
+				has_opinion_modifier = {
+					target = scope:carn_sex_partner
+					modifier = bce_forced_me_into_wearing_chastity_belt_opinion
+				}
+			}
+			
+		}
+		trigger_else = {
+			OR = {
+				is_ai = no
+				has_opinion_modifier = {
+					target = scope:carn_sex_player
+					modifier = bce_forced_me_into_wearing_chastity_belt_opinion
+				}
+			}
+		}
+	}
+	
+	effect = {
+		remove_character_modifier = bce_wearing_chastity_belt_modifier
+		add_character_flag = bce_was_wearing_chastity_belt
+	}
+}
+
+###################################################################################
+
+carn_on_sex = {
+	on_actions = {
+		bce_after_sex
+	}
+}
+
+bce_after_sex = {
+	trigger = {
+		has_character_flag = bce_was_wearing_chastity_belt
+	}
+	
+	effect = {
+		remove_character_flag = bce_was_wearing_chastity_belt
+		add_character_modifier = bce_wearing_chastity_belt_modifier
+	}
+}
+
+###################################################################################
+
+on_birthday = {
+	on_actions = {
+		bce_birth_control_update
+		bce_chastity_belt_update
+	}
+}
+
+bce_birth_control_update = {
+	trigger = {
+		trigger_if = {
+			limit = {
+				has_character_modifier = carn_using_birth_control_modifier
+				is_ai = yes
+			}
+			trigger_if = {
+				limit = { exists = concubinist }
+				concubinist = { is_ai = yes	}
+			}
+			trigger_else_if = {
+				limit = { exists = primary_spouse }
+				primary_spouse = { is_ai = yes }
+			}
+			trigger_else_if = {
+				limit = {
+					any_relation = {
+						type = slave_owner
+						count > 0
+					}
+				}
+				any_relation = {
+					type = slave_owner
+					is_ai = yes
+				}
+			}
+			trigger_else_if = {
+				limit = {
+					exists = liege
+				}
+				trigger_if = {
+					limit = {
+						is_ruler = no
+						OR = {
+							has_relation_lover = liege
+							has_relation_soulmate = liege
+						}
+					}
+					liege = { is_ai = yes }
+				}
+				trigger_else_if = {
+					limit = {
+						any_parent = {
+							count > 0
+						}
+					}
+					any_parent = {
+						count = all
+						is_ai = yes
+					}
+				}
+				trigger_else = {}
+			}
+			trigger_else = {}
+		}
+		trigger_else = {
+			has_character_modifier = carn_using_birth_control_modifier
+			is_ai = yes
+		}
+	}
+	
+	effect = {
+		remove_character_modifier = carn_using_birth_control_modifier
+		random_player = {save_scope_as = target}
+		remove_opinion = {
+			target = scope:target
+			modifier = bce_forced_me_into_using_birth_control_opinion
+		}
+		trigger_event = { on_action = carn_on_stop_birth_control }
+	}
+}
+
+bce_chastity_belt_update = {
+	trigger = {
+		trigger_if = {
+			limit = {
+				has_character_modifier = bce_wearing_chastity_belt_modifier
+				is_ai = yes
+			}
+			trigger_if = {
+				limit = { exists = concubinist }
+				concubinist = { is_ai = yes	}
+			}
+			trigger_else_if = {
+				limit = { exists = primary_spouse }
+				primary_spouse = { is_ai = yes }
+			}
+			trigger_else_if = {
+				limit = {
+					any_relation = {
+						type = slave_owner
+						count > 0
+					}
+				}
+				any_relation = {
+					type = slave_owner
+					is_ai = yes
+				}
+			}
+			trigger_else_if = {
+				limit = {
+					exists = liege
+				}
+				trigger_if = {
+					limit = {
+						is_ruler = no
+						OR = {
+							has_relation_lover = liege
+							has_relation_soulmate = liege
+						}
+					}
+					liege = { is_ai = yes }
+				}
+				trigger_else_if = {
+					limit = {
+						any_parent = {
+							count > 0
+						}
+					}
+					any_parent = {
+						count = all
+						is_ai = yes
+					}
+				}
+				trigger_else = {}
+			}
+			trigger_else = {}
+		}
+		trigger_else = {
+			has_character_modifier = bce_wearing_chastity_belt_modifier
+			is_ai = yes
+		}
+	}
+	
+	effect = {
+		remove_character_modifier = bce_wearing_chastity_belt_modifier
+		random_player = {save_scope_as = target}
+		remove_opinion = {
+			target = scope:target
+			modifier = bce_forced_me_into_wearing_chastity_belt_opinion
+		}
+		trigger_event = { on_action = carn_on_stop_birth_control }
+	}
+}

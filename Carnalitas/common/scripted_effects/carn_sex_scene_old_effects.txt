@@ -1,0 +1,484 @@
+﻿# Old effects preserved for backward compatibility
+# These are DEPRECATED, please use the new effects
+
+#################################################################################
+# carn_sex_scene_effect
+# Written by Cheri, it that likes warm drinks, Ernie Collins
+#################################################################################
+#
+# carn_sex_scene_effect is the general purpose scripted effect to trigger a sex scene event through Carnalitas.
+#
+# First, use the scripted effects to request flags for the sex scene, such as "vaginal", "noncon", or "bdsm".
+#
+# Second, call carn_sex_scene_effect with the following arguments:
+#
+# PLAYER is the character who the event will be shown to.
+#
+# TARGET is the character that PLAYER is having sex with.
+#
+# STRESS_EFFECTS is yes or no, whether you want the sex scene to affect stress.
+#
+# DRAMA is yes or no, whether you want the sex scene to trigger adultery and peasant affair storylines. (Note: This doesn't stop a relationship from being adulterous, or a child from being born a bastard. It just affects whether the story cycles will happen.)
+#
+# (Cheri recommends setting STRESS_EFFECTS = yes and DRAMA = yes unless you have a really good reason.)
+#
+# The sex scene generator triggers an on_action with a list of random_events that match all of the requested tags.
+#
+# The sex scene events themselves will define the triggers for those events to be shown, i.e. a consensual lesbian sex event should check that both participants are female and carn_sex_scene_is_consensual = yes
+#
+# If no event is eligible to be shown, the default paradox sex scene generator will be used.
+#
+# An example of using carn_sex_scene_effect to trigger a dominant rape scene:
+#
+# effect = {
+# 	carn_sex_scene_request_giving_player = yes
+# 	carn_sex_scene_request_dom_player = yes
+# 	carn_sex_scene_request_vaginal = yes
+# 	carn_sex_scene_request_cum_inside = yes
+# 	carn_sex_scene_request_noncon = yes
+# 	carn_sex_scene_effect = {
+# 		PLAYER = root
+#		TARGET = scope:target
+#		STRESS_EFFECTS = yes
+#		DRAMA = yes
+# 	}
+# }
+#
+# You can also exclude certain flags with the syntax `carn_sex_scene_exclude_*` where `*` is the name of the flag.
+
+carn_sex_scene_effect = {
+	$PLAYER$ = {
+		# Set stress and drama
+		if = {
+			limit = { $STRESS_EFFECTS$ = no }
+			carn_sex_scene_no_stress_effect = yes
+		}
+		if = {
+			limit = { $DRAMA$ = no }
+			carn_sex_scene_no_drama_effect = yes
+		}
+
+		# Execute the new effect
+		carn_sex_scene_effect_v2 = {
+			PARTNER = $TARGET$
+		}
+
+		# Cleanup sex scene flags
+		# This must happen in a delayed event after the sex scene had already fired
+		trigger_event = {
+			id = carn_sex_scene_cleanup.0001
+			delayed = yes
+		}
+	}
+}
+
+# Use these to REQUEST a sex scene with the appropriate flag.
+
+carn_sex_scene_request_giving_player = {
+	carn_sex_scene_character_request_flag = { FLAG = giving_player }
+}
+
+carn_sex_scene_request_receiving_player = {
+	carn_sex_scene_character_request_flag = { FLAG = receiving_player }
+}
+
+carn_sex_scene_request_dom_player = {
+	carn_sex_scene_character_request_flag = { FLAG = dom_player }
+}
+
+carn_sex_scene_request_sub_player = {
+	carn_sex_scene_character_request_flag = { FLAG = sub_player }
+}
+
+carn_sex_scene_request_oral = {
+	carn_sex_scene_request_flag = { FLAG = oral }
+}
+
+carn_sex_scene_request_vaginal = {
+	carn_sex_scene_request_flag = { FLAG = vaginal }
+}
+
+carn_sex_scene_request_anal = {
+	if = {
+		limit = { has_game_rule = carn_content_anal_enabled }
+		carn_sex_scene_request_flag = { FLAG = anal }
+	}
+}
+
+carn_sex_scene_request_handjob = {
+	carn_sex_scene_request_flag = { FLAG = handjob }
+}
+
+carn_sex_scene_request_masturbation = {
+	carn_sex_scene_request_flag = { FLAG = masturbation }
+}
+
+carn_sex_scene_request_orgy = {
+	carn_sex_scene_request_flag = { FLAG = orgy }
+}
+
+carn_sex_scene_request_cum_inside = {
+	carn_sex_scene_request_flag = { FLAG = cum_inside }
+}
+
+carn_sex_scene_request_cum_outside = {
+	carn_sex_scene_request_flag = { FLAG = cum_outside }
+}
+
+carn_sex_scene_request_consensual = {
+	carn_sex_scene_request_flag = { FLAG = consensual }
+}
+
+carn_sex_scene_request_noncon = {
+	if = {
+		limit = { has_game_rule = carn_content_consent_noncon }
+		carn_sex_scene_request_flag = { FLAG = noncon }
+	}
+	else_if = {
+		limit = { has_game_rule = carn_content_consent_dubcon }
+		carn_sex_scene_request_flag = { FLAG = dubcon }
+	}
+}
+
+carn_sex_scene_request_dubcon = {
+	if = {
+		limit = { NOT = { has_game_rule = carn_content_consent_always } }
+		carn_sex_scene_request_flag = { FLAG = dubcon }
+	}
+}
+
+carn_sex_scene_request_painful = {
+	if = {
+		limit = { has_game_rule = carn_content_painful_enabled }
+		carn_sex_scene_request_flag = { FLAG = painful }
+	}
+}
+
+carn_sex_scene_request_bdsm = {
+	carn_sex_scene_request_flag = { FLAG = bdsm }
+}
+
+carn_sex_scene_request_bestiality = {
+	if = {
+		limit = { has_game_rule = carn_content_bestiality_enabled }
+		carn_sex_scene_request_flag = { FLAG = bestiality }
+	}
+}
+
+carn_sex_scene_request_petplay = {
+	carn_sex_scene_request_flag = { FLAG = petplay }
+}
+
+carn_sex_scene_request_bondage = {
+	carn_sex_scene_request_flag = { FLAG = bondage }
+}
+
+carn_sex_scene_request_toy = {
+	carn_sex_scene_request_flag = { FLAG = toy }
+}
+
+carn_sex_scene_request_watersports = {
+	if = {
+		limit = { has_game_rule = carn_content_watersports_enabled }
+		carn_sex_scene_request_flag = { FLAG = watersports }
+	}
+}
+
+carn_sex_scene_request_scat = {
+	if = {
+		limit = { has_game_rule = carn_content_scat_enabled }
+		carn_sex_scene_request_flag = { FLAG = scat }
+	}
+}
+
+carn_sex_scene_request_gore = {
+	if = {
+		limit = { has_game_rule = carn_content_gore_enabled }
+		carn_sex_scene_request_flag = { FLAG = gore }
+	}
+}
+
+# Use these to exclude a specific flag when requesting a sex scene.
+
+carn_sex_scene_exclude_giving_player = {
+	carn_sex_scene_character_exclude_flag = { FLAG = giving_player }
+}
+
+carn_sex_scene_exclude_receiving_player = {
+	carn_sex_scene_character_exclude_flag = { FLAG = receiving_player }
+}
+
+carn_sex_scene_exclude_dom_player = {
+	carn_sex_scene_character_exclude_flag = { FLAG = dom_player }
+}
+
+carn_sex_scene_exclude_sub_player = {
+	carn_sex_scene_character_exclude_flag = { FLAG = sub_player }
+}
+
+carn_sex_scene_exclude_oral = {
+	carn_sex_scene_exclude_flag = { FLAG = oral }
+}
+
+carn_sex_scene_exclude_vaginal = {
+	carn_sex_scene_exclude_flag = { FLAG = vaginal }
+}
+
+carn_sex_scene_exclude_anal = {
+	if = {
+		limit = { has_game_rule = carn_content_anal_enabled }
+		carn_sex_scene_exclude_flag = { FLAG = anal }
+	}
+}
+
+carn_sex_scene_exclude_handjob = {
+	carn_sex_scene_exclude_flag = { FLAG = handjob }
+}
+
+carn_sex_scene_exclude_masturbation = {
+	carn_sex_scene_exclude_flag = { FLAG = masturbation }
+}
+
+carn_sex_scene_exclude_orgy = {
+	carn_sex_scene_exclude_flag = { FLAG = orgy }
+}
+
+carn_sex_scene_exclude_cum_inside = {
+	carn_sex_scene_exclude_flag = { FLAG = cum_inside }
+}
+
+carn_sex_scene_exclude_cum_outside = {
+	carn_sex_scene_exclude_flag = { FLAG = cum_outside }
+}
+
+carn_sex_scene_exclude_consensual = {
+	carn_sex_scene_exclude_flag = { FLAG = consensual }
+}
+
+carn_sex_scene_exclude_noncon = {
+	if = {
+		limit = { has_game_rule = carn_content_consent_noncon }
+		carn_sex_scene_exclude_flag = { FLAG = noncon }
+	}
+	else_if = {
+		limit = { has_game_rule = carn_content_consent_dubcon }
+		carn_sex_scene_exclude_flag = { FLAG = dubcon }
+	}
+}
+
+carn_sex_scene_exclude_dubcon = {
+	if = {
+		limit = { NOT = { has_game_rule = carn_content_consent_always } }
+		carn_sex_scene_exclude_flag = { FLAG = dubcon }
+	}
+}
+
+carn_sex_scene_exclude_painful = {
+	if = {
+		limit = { has_game_rule = carn_content_painful_enabled }
+		carn_sex_scene_exclude_flag = { FLAG = painful }
+	}
+}
+
+carn_sex_scene_exclude_bdsm = {
+	carn_sex_scene_exclude_flag = { FLAG = bdsm }
+}
+
+carn_sex_scene_exclude_bestiality = {
+	if = {
+		limit = { has_game_rule = carn_content_bestiality_enabled }
+		carn_sex_scene_exclude_flag = { FLAG = bestiality }
+	}
+}
+
+carn_sex_scene_exclude_petplay = {
+	carn_sex_scene_exclude_flag = { FLAG = petplay }
+}
+
+carn_sex_scene_exclude_bondage = {
+	carn_sex_scene_exclude_flag = { FLAG = bondage }
+}
+
+carn_sex_scene_exclude_toy = {
+	carn_sex_scene_exclude_flag = { FLAG = toy }
+}
+
+carn_sex_scene_exclude_watersports = {
+	if = {
+		limit = { has_game_rule = carn_content_watersports_enabled }
+		carn_sex_scene_exclude_flag = { FLAG = watersports }
+	}
+}
+
+carn_sex_scene_exclude_scat = {
+	if = {
+		limit = { has_game_rule = carn_content_scat_enabled }
+		carn_sex_scene_exclude_flag = { FLAG = scat }
+	}
+}
+
+carn_sex_scene_exclude_gore = {
+	if = {
+		limit = { has_game_rule = carn_content_gore_enabled }
+		carn_sex_scene_exclude_flag = { FLAG = gore }
+	}
+}
+
+# Use these to DEFINE a sex scene event in the immediate block, so that events triggering from carn_on_sex will know what flags the event has.
+
+carn_sex_scene_is_giving_player = {
+	carn_sex_scene_character_is_flag = { FLAG = giving_player }
+}
+
+carn_sex_scene_is_receiving_player = {
+	carn_sex_scene_character_is_flag = { FLAG = receiving_player }
+}
+
+carn_sex_scene_is_dom_player = {
+	carn_sex_scene_character_is_flag = { FLAG = dom_player }
+}
+
+carn_sex_scene_is_sub_player = {
+	carn_sex_scene_character_is_flag = { FLAG = sub_player }
+}
+
+carn_sex_scene_is_oral = {
+	carn_sex_scene_is_flag = { FLAG = oral }
+}
+
+carn_sex_scene_is_vaginal = {
+	carn_sex_scene_is_flag = { FLAG = vaginal }
+}
+
+carn_sex_scene_is_anal = {
+	carn_sex_scene_is_flag = { FLAG = anal }
+}
+
+carn_sex_scene_is_handjob = {
+	carn_sex_scene_is_flag = { FLAG = handjob }
+}
+
+carn_sex_scene_is_masturbation = {
+	carn_sex_scene_is_flag = { FLAG = masturbation }
+}
+
+carn_sex_scene_is_orgy = {
+	carn_sex_scene_is_flag = { FLAG = orgy }
+}
+
+carn_sex_scene_is_cum_inside = {
+	carn_sex_scene_is_flag = { FLAG = cum_inside }
+}
+
+carn_sex_scene_is_cum_outside = {
+	carn_sex_scene_is_flag = { FLAG = cum_outside }
+}
+
+carn_sex_scene_is_consensual = {
+	carn_sex_scene_is_flag = { FLAG = consensual }
+}
+
+carn_sex_scene_is_noncon = {
+	carn_sex_scene_is_flag = { FLAG = noncon }
+}
+
+carn_sex_scene_is_dubcon = {
+	carn_sex_scene_is_flag = { FLAG = dubcon }
+}
+
+carn_sex_scene_is_painful = {
+	carn_sex_scene_is_flag = { FLAG = painful }
+}
+
+carn_sex_scene_is_bdsm = {
+	carn_sex_scene_is_flag = { FLAG = bdsm }
+}
+
+carn_sex_scene_is_bestiality = {
+	carn_sex_scene_is_flag = { FLAG = bestiality }
+}
+
+carn_sex_scene_is_petplay = {
+	carn_sex_scene_is_flag = { FLAG = petplay }
+}
+
+carn_sex_scene_is_bondage = {
+	carn_sex_scene_is_flag = { FLAG = bondage }
+}
+
+carn_sex_scene_is_toy = {
+	carn_sex_scene_is_flag = { FLAG = toy }
+}
+
+carn_sex_scene_is_watersports = {
+	carn_sex_scene_is_flag = { FLAG = watersports }
+}
+
+carn_sex_scene_is_scat = {
+	carn_sex_scene_is_flag = { FLAG = scat }
+}
+
+carn_sex_scene_is_gore = {
+	carn_sex_scene_is_flag = { FLAG = gore }
+}
+
+# Internal effects
+
+carn_sex_scene_character_request_flag = {
+	add_to_variable_list = {
+		name = carn_sex_scene_character_flag_list
+		target = flag:$FLAG$
+	}
+}
+
+carn_sex_scene_request_flag = {
+	add_to_variable_list = {
+		name = carn_sex_scene_flag_list
+		target = flag:$FLAG$
+	}
+}
+
+carn_sex_scene_character_exclude_flag = {
+	add_to_variable_list = {
+		name = carn_sex_scene_character_excluded_flag_list
+		target = flag:$FLAG$
+	}
+}
+
+carn_sex_scene_exclude_flag = {
+	add_to_variable_list = {
+		name = carn_sex_scene_excluded_flag_list
+		target = flag:$FLAG$
+	}
+}
+
+carn_sex_scene_character_is_flag = {
+	add_to_variable_list = {
+		name = carn_sex_scene_character_flag_list
+		target = flag:$FLAG$
+	}
+}
+
+carn_sex_scene_is_flag = {
+	add_to_variable_list = {
+		name = carn_sex_scene_flag_list
+		target = flag:$FLAG$
+	}
+}
+
+carn_clear_sex_scene_flags_effect = {
+	scope:carn_sex_player = {
+		carn_sex_scene_clean_up_flags_effect = yes
+		carn_sex_scene_clean_up_character_flags_effect = yes
+	}
+	scope:carn_sex_partner = {
+		carn_sex_scene_clean_up_character_flags_effect = yes
+	}
+}
+
+carn_set_sex_scene = {
+	carn_sex_scene_is_$SEXSCENE$ = yes
+}
+
+carn_clean_up_player_variables = {
+}

@@ -1,0 +1,55 @@
+﻿l_russian:
+  
+  #################### SLAVE ############################################################ 
+  
+ cse_abdicate_interaction: "Abdicate"
+ cse_abdicate_interaction_desc: "It is time for your heir to take your place - with me in an advisory role."
+ cse_abdicate_interaction_claims_tooltip: "All [claims|E] against your [titles|E] become [pressed|E]."
+ cse_abdicate_interaction_slaves_tooltip: "Slaves and Courtesans are transferred to the heir."
+ cse_abdicate_as_house_head_loc: "Abdicate as [house_head|E] and [dynast|E]"
+ cse_get_refugium_loc: "Refuge (requires castle-[holding|E] - no [county_capital|E])"
+ cse_leave_children_loc: "Children stay at the heir's court for at least 3 years"
+ cse_end_courtesan_lover_relationship_loc: "Dismiss [cse_courtesans|E] as [lovers|E] - does not affect [soulmates|E]"
+  
+ cse_change_slave_assignment_interaction: "Change Slave Assignment"
+ cse_change_slave_assignment_interaction_desc: "Changes the task for which [recipient.GetShortUINameNoTooltip] is assigned to at your court."
+ cse_remove_slave_assignment_loc: "Remove assignment"
+
+ cse_sex_slave_yearly_sex_event_effect_not_attracted_to_warning_tt: "#X You don't feel attracted to [carn_sex_target.GetShortUINameNoTooltip]#!"
+  
+ cse_adopt_interaction: "Adopt child"
+ cse_adopt_interaction_desc: "Welcome [recipient.GetShortUINameNoTooltip] to your family, since [recipient.GetSheHe] is your descendant."
+  
+ cse_reveal_interaction: "Reveal father"
+ cse_reveal_interaction_desc: "Commission your agents to reveal the father of [recipient.GetShortUINameNoTooltip]."
+  
+ cse_offer_sex_slave_interaction: "Offer Slave Concubine"
+ cse_offer_sex_slave_interaction_extra_icon: "$hook_extra_icon$"
+ cse_offer_sex_slave_interaction_desc: "Have the target have sex with one of your Slave Concubines to increase their opinion of you."
+ actor_secondary_cse_offer_sex_slave_interaction: "Slave Concubine"
+ CSE_SELECT_YOUR_SEX_SLAVE: "#I Select a [cse_sex_slaves|E] of your [court|E] #!"
+ CSE_ATTRACTION_MODIFIER: "$VALUE|=+0$ through [attraction|E]"
+ CSE_EFFECTIVE_AGE_MODIFIER: "$VALUE|=+0$ through Age" 
+ CSE_RECENTLY_OFFERED_MODIFIER: "@warning_icon!#X Was only recently offered!#!"
+ CSE_INCEST_MODIFIER: "@warning_icon!#X Relationship would be incestuous!#!"
+ CSE_ILLNESS_MODIFIER: "@warning_icon!#X Character has diseases!#!"
+  
+ cse_slave_report_interaction: "Slavery - Financial Report"
+ cse_slave_report_interaction_desc: "Displays a summary of the income of your slaves."
+ cse_slave_report_interaction_sex_slave_stress_reduction_value: "Loses @stress_loss_icon![Scope.ScriptValue('cse_sex_slave_income_report_value')|0V] [stress|E] (Base value)"
+  
+  #################### COURT ############################################################ 
+  
+ cse_make_my_courtesan_interaction: "Aquire as your Courtesan"
+ cse_make_my_courtesan_interaction_extra_icon: "$hook_extra_icon$"
+ cse_make_my_courtesan_interaction_desc: "Aquire as your [cse_courtesan|E]"
+ cse_no_maintenance_loc: "Normal payment"
+ cse_low_maintenance_loc: "Double payment"
+ cse_medium_maintenance_loc: "Triple payment"
+ cse_high_maintenance_loc: "Quadruple payment"
+ cse_gain_courtesan_loc: "[recipient.GetShortUIName|U] will become the [cse_courtesan|E] of [actor.GetShortUIName]"
+ CSE_MAINTENANCE_MODIFIER: "$VALUE|=+0$ through [gold|E]"
+ CSE_SOULMATE_MODIFIER: "$VALUE|=+0$ through [soulmates|E] of [recipient.GetShortUIName|U]"
+  
+ cse_dismiss_courtesan_interaction: "Dismiss Courtesan"
+ cse_dismiss_courtesan_interaction_desc: "Dismiss [cse_courtesan|E]"

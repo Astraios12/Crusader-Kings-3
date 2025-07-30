@@ -1,0 +1,150 @@
+﻿cse_sex_slave_yearly_sex_event_effect = {	
+	scope:carn_sex_player = {
+		### STRESS ###
+		if = {
+			limit = {
+				is_attracted_to_gender_of = scope:carn_sex_partner
+			}
+			stress_impact = {
+				base = minor_stress_impact_loss
+				chaste = medium_stress_impact_gain
+				shy = medium_stress_impact_gain
+				paranoid = medium_stress_impact_gain
+				sadistic = medium_stress_impact_loss
+			}
+		}
+		else = {
+			custom_tooltip = cse_sex_slave_yearly_sex_event_effect_not_attracted_to_warning_tt
+			stress_impact = {
+				base = major_stress_impact_gain
+			}
+		}
+
+		# request the sex scene
+		# lovers and soulmates always consensual
+		if = {
+			limit = {
+				scope:carn_sex_player = {
+					OR = {
+						has_relation_lover = scope:carn_sex_partner
+						has_relation_soulmate = scope:carn_sex_partner
+						has_relation_courtesan = scope:carn_sex_partner
+						has_relation_courtesan_owner = scope:carn_sex_partner
+					}
+				}
+			}
+			carn_sex_scene_is_consensual_effect = yes
+		}
+		# for slaves and concubines, get scenes ranging from consensual to noncon
+		else_if = {
+			limit = {
+				scope:carn_sex_player = {
+					OR = {
+						is_concubine_of = scope:carn_sex_partner
+						has_relation_slave_owner = scope:carn_sex_partner
+					}
+				}
+			}
+			# Consensual: I'm into you, and I either like you or you're super hot
+			if = {
+				limit = {
+					scope:carn_sex_partner = {
+						OR = {
+							opinion = {
+								target = scope:carn_sex_player
+								value >= 50
+							}
+							scope:carn_sex_player = { attraction >= 20 } # if you're hot enough they'll happily hatefuck you
+						}
+						is_attracted_to_gender_of = scope:carn_sex_player
+					}
+				}
+				carn_sex_scene_is_consensual_effect = yes
+			}
+			# dubcon: Either I'm into you but not that into you, or I don't swing that way but I like you enough to humor you
+			else_if = {
+				limit = {
+					scope:carn_sex_partner = {
+						OR = {
+							AND = {
+								is_attracted_to_gender_of = scope:carn_sex_player
+								OR = {
+									opinion = {
+										target = scope:carn_sex_player
+										value > 0
+									}
+									scope:carn_sex_player = { attraction >= 10 } # if you're hot enough they'll be kinda ok with it
+								}
+							}
+							AND = {
+								NOT = { is_attracted_to_gender_of = scope:carn_sex_player }
+								opinion = {
+									target = scope:carn_sex_player
+									value >= 75
+								}
+							}
+						}
+					}
+				}
+				carn_sex_scene_is_dubcon_effect = yes
+				carn_sex_scene_character_is_dom_player_effect = yes
+				reverse_add_opinion = {
+					target = scope:carn_sex_partner
+					modifier = cse_forced_me_to_have_sex_opinion
+				}
+			}
+			# Noncon: I either hate you or I don't swing this way, get me outta here
+			else = {
+				carn_sex_scene_is_noncon_effect = yes
+				carn_sex_scene_character_is_dom_player_effect = yes
+				reverse_add_opinion = {
+					target = scope:carn_sex_partner
+					modifier = cse_forced_me_to_have_sex_opinion
+				}
+			}
+		}
+		# get dubcon for characters that dislike you / are not attracted to you (but accept sex with you for some reason, like being a prostitute)
+		else_if = {
+			limit = {
+				scope:carn_sex_partner = {
+					OR = {
+						opinion = {
+							target = scope:carn_sex_player
+							value < 0
+						}
+						NOT = { is_attracted_to_gender_of = scope:carn_sex_player }
+					}
+				}
+			}
+			carn_sex_scene_is_dubcon_effect = yes
+			carn_sex_scene_character_is_dom_player_effect = yes
+			reverse_add_opinion = {
+				target = scope:carn_sex_partner
+				modifier = cse_forced_me_to_have_sex_opinion
+			}
+		}
+		# fallback to consensual scene
+		else = {
+			carn_sex_scene_is_consensual_effect = yes
+		}
+		hidden_effect = {
+			random_list = {
+				60 = {
+					carn_sex_scene_is_vaginal_effect = yes
+					carn_sex_scene_is_cum_inside_effect = yes
+				}
+				20 = {
+					carn_sex_scene_is_vaginal_effect = yes
+					carn_sex_scene_is_cum_outside_effect = yes
+				}
+				10 = {
+					carn_sex_scene_is_anal_effect = yes
+				}
+				10 = {
+					carn_sex_scene_is_oral_effect = yes
+				}
+			}
+			carn_sex_scene_character_is_giving_player_effect = yes
+		}
+	}
+}

@@ -1,0 +1,39 @@
+﻿l_russian:
+  
+  # SLAVE PAYMENT 
+ cse_slave_payment_event.0001.notification: "Financial report of your slaves"
+  
+  # SLAVE PROSTITUTE 
+ cse_msg_started_working_as_slave_prostitute: "[cse_slave_prostitute.GetShortUINameNoTooltip] is now your Slave Prostitute"
+ cse_msg_stopped_working_as_slave_prostitute: "[cse_slave_prostitute.GetShortUINameNoTooltip] is no longer your Slave Prostitute"
+ cse_can_no_longer_work_as_slave_prostitute_tooltip: "Your Slave Prostitute can no longer be of service to you"
+  
+  # LABOUR SLAVE 
+ cse_msg_started_working_as_labour_slave: "[cse_labour_slave.GetShortUINameNoTooltip] is now your Labour Slave"
+ cse_msg_stopped_working_as_labour_slave: "[cse_labour_slave.GetShortUINameNoTooltip] is no longer your Labour Slave"
+ cse_can_no_longer_work_as_labour_slave_tooltip: "Your Labour Slave can no longer work."
+  
+  # MILITARY SLAVE 
+ cse_msg_started_working_as_miliary_slave: "[cse_military_slave.GetShortUINameNoTooltip] now serves as a Military Slave"
+ cse_msg_stopped_working_as_miliary_slave: "[cse_military_slave.GetShortUINameNoTooltip] no longer serves as a Military Slave"
+ cse_can_no_longer_work_as_military_slave_tooltip: "Your Military Slave can no longer serve you."
+  
+  # SEX SLAVE 
+ cse_msg_started_working_as_sex_slave: "[cse_sex_slave.GetShortUINameNoTooltip] is now your Slave Concubine"
+ cse_msg_stopped_working_as_sex_slave: "[cse_sex_slave.GetShortUINameNoTooltip] is no longer your Slave Concubine"
+ cse_can_no_longer_work_as_sex_slave_tooltip: "Your Slave Concubine can no longer be of service to you"
+  
+  # GENDER BIRTH CONTROL 
+ cse_msg_gender_birth_control_applied: "Gender focus works"
+ cse_msg_gender_birth_control_mother_applied_desc: "The gender focus of [mother.GetShortUINameNoTooltip] seems to work!"
+ cse_msg_gender_twins_birth_control_mother_applied_desc: "The twin focus of [mother.GetShortUINameNoTooltip] seems to work!"
+ cse_msg_gender_birth_control_real_father_applied_desc: "The gender focus of [real_father.GetShortUINameNoTooltip] seems to affect [mother.GetShortUINameNoTooltip]!"
+ cse_msg_gender_twins_birth_control_real_father_applied_desc: "The twin focus of [real_father.GetShortUINameNoTooltip] seems to affect [mother.GetShortUINameNoTooltip]!"
+  
+  #################### COURT ############################################################ 
+  
+  # COURTESAN 
+ cse_msg_started_working_as_courtesan: "[cse_courtesan.GetShortUINameNoTooltip] is now your Courtesan"
+ cse_msg_stopped_working_as_courtesan: "[cse_courtesan.GetShortUINameNoTooltip] is no longer your Courtesan"
+ cse_can_no_longer_work_as_courtesan_tooltip: "Your Courtesan can no longer be of service to you"
+  

@@ -1,0 +1,8 @@
+﻿l_german:
+
+ carn_doctrine_slave_prostitution_name: "Sklaven-Prostitution"
+ carn_doctrine_slave_prostitution_desc: "Während es für Prostituierte beschämend und erniedrigend ist, ihre Körper zu verkaufen, gibt es nichts an ihrem Verhalten, das grundsätzlich gegen [ROOT.Faith.PantheonTerm] ist, vor allem wenn es sich um niedere Wesen wie Sklaven handelt."
+ doctrine_parameter_carn_slave_prostitution: "Sklavenbesitzer, die ihre [slaves|E] dazu zwingen, als [prostitute|E] zu arbeiten, verlieren keine [piety|E]."
+
+ REQUIRED_DOCTRINE_SLAVERY_ACCEPTED_TRIGGER: "Benötigt eine [doctrine|E], die Sklaverei erlaubt."
+ NOT_REQUIRED_DOCTRINE_SLAVERY_ACCEPTED_TRIGGER: "Benötigt eine [doctrine|E], die Sklaverei erlaubt."

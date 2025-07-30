@@ -1,0 +1,62 @@
+﻿#################### COURTESAN ############################################################
+
+cse_is_working_as_courtesan_trigger = {
+	has_character_modifier = cse_courtesan_modifier
+	effective_age >= cse_courtesan_age_start_value
+}
+
+cse_is_assigned_as_courtesan_trigger = {
+	has_character_modifier = cse_courtesan_modifier
+}
+
+cse_is_courtesan_trigger = {
+	OR = {
+		has_character_modifier = cse_courtesan_modifier
+		#has_character_flag = cse_is_slave_prostitute
+		#has_trait_with_flag = cse_is_slave_prostitute
+	}
+	effective_age >= cse_courtesan_age_start_value
+}
+
+cse_was_courtesan_trigger = {
+	has_character_flag = cse_was_courtesan
+}
+
+cse_is_courtesan_t1_trigger = {
+	cse_is_working_as_courtesan_trigger = yes
+	has_trait_xp = {
+		trait = cse_courtesan
+		track = cse_courtesan_worth
+		value < 80
+	}
+}
+
+cse_is_courtesan_t2_trigger = {
+	cse_is_working_as_courtesan_trigger = yes
+	has_trait_xp = {
+		trait = cse_courtesan
+		track = cse_courtesan_worth
+		value >= 80
+	}
+}
+
+cse_is_former_courtesan_or_courtesan_owner_trigger = {
+	OR = {
+		has_opinion_modifier = {
+			target = scope:real_father
+			modifier = cse_former_courtesan_or_courtesan_owner_opinion
+		}
+		scope:real_father = {
+			has_opinion_modifier = {
+				target = scope:mother
+				modifier = cse_former_courtesan_or_courtesan_owner_opinion
+			}
+		}
+	}
+}
+
+#################### ROYAL MISTRESS ############################################################
+
+cse_is_employed_as_royal_mistress_trigger = {
+	has_court_position = cse_royal_mistress_court_position
+}

@@ -1,0 +1,30 @@
+﻿# Demand Sex Interaction: Takes slaves out of this trigger, so they don't get two sex interactions
+# Added Courtesans
+# used in carn_sex_interaction
+# requires PARTNER
+carn_relationship_allows_free_sex_trigger = {
+	OR = {
+		is_consort_of = $PARTNER$
+		has_relation_lover = $PARTNER$
+		has_relation_soulmate = $PARTNER$
+		AND = {
+			OR = {
+				has_relation_courtesan = $PARTNER$
+				has_relation_courtesan_owner = $PARTNER$
+			}
+			NOT = {
+				relation_with_character_is_incestuous_in_my_faith_trigger = {
+					CHARACTER = $PARTNER$
+				}
+			}
+		}		
+#		AND = {
+#			has_relation_slave = $PARTNER$
+#			NOT = {
+#				relation_with_character_is_incestuous_in_my_faith_trigger = {
+#					CHARACTER = $PARTNER$
+#				}
+#			}
+#		}
+	}
+}

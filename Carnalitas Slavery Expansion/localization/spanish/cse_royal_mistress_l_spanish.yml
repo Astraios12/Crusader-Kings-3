@@ -1,0 +1,11 @@
+﻿l_spanish:
+  
+  # general 
+ cse_royal_mistress_court_position: "Royal Mistress"
+ cse_royal_mistress_court_position_desc: "The $cse_royal_mistress_court_position$ is the recognised lover of her liege, and her splendour is a reflection of the court."
+
+  # aptitude desc 
+ cse_royal_mistress_position_cse_courtesan_trait: "[GetTrait('cse_courtesan').GetName( ROOT.Char )]"
+ cse_royal_mistress_position_chaste_trait: "[GetTrait('chaste').GetName( ROOT.Char )]"
+ cse_royal_mistress_position_lustful_trait: "[GetTrait('lustful').GetName( ROOT.Char )]"
+ cse_royal_mistress_position_highborn: "$game_concept_noble$"

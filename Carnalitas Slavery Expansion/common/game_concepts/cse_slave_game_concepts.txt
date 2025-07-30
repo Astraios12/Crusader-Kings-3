@@ -1,0 +1,63 @@
+﻿cse_slave_prostitute = {
+	texture = "gfx/interface/icons/trait_level_tracks/cse_slave_prostitute.dds"
+	alias = { cse_slave_prostitutes cse_slave_prostitution cse_slave_prostitute_possessive cse_slave_prostitutes_possessive }
+	#parent = relation
+}
+
+cse_labour_slave = {
+	texture = "gfx/interface/icons/trait_level_tracks/cse_labour_slave.dds"
+	alias = { cse_labour_slaves cse_slave_labour cse_labour_slave_possessive cse_labour_slaves_possessive }
+	#parent = relation
+}
+
+cse_slave_soldier = {
+	texture = "gfx/interface/icons/trait_level_tracks/cse_military_slave.dds"
+	alias = {
+		cse_soldier
+		cse_soldiers
+		cse_slave_soldiers
+		cse_slave_soldier_possessive
+		cse_slave_soldiers_possessive
+		cse_commander
+		cse_commanders
+		cse_slave_commander
+		cse_slave_commanders
+		cse_slave_commander_possessive
+		cse_slave_commanders_possessive
+		cse_recruit
+		cse_recruits
+		cse_slave_recruit
+		cse_slave_recruits
+		cse_slave_recruit_possessive
+		cse_slave_recruits_possessive
+		cse_military_slave
+		cse_military_slaves
+		cse_military_slave_possessive
+		cse_military_slaves_possessive
+	}
+	#parent = relation
+}
+
+cse_sex_slave = {
+	texture = "gfx/interface/icons/trait_level_tracks/cse_sex_slave.dds"
+	alias = { cse_sex_slaves cse_sex_slave_possessive cse_sex_slaves_possessive }
+	#parent = relation
+}
+
+cse_court_slave = {
+	texture = "gfx/interface/icons/traits/slave.dds"
+	alias = { cse_court_slaves cse_court_slave_possessive cse_court_slaves_possessive }
+	#parent = relation
+}
+
+cse_courtesan_owner = {
+	texture = "gfx/interface/icons/traits/cse_courtesan.dds"
+	alias = { cse_courtesan_owners cse_courtesan_owner_possessive cse_courtesan_owners_possessive }
+	#parent = relation
+}
+
+cse_courtesan = {
+	texture = "gfx/interface/icons/traits/cse_courtesan.dds"
+	alias = { cse_courtesans cse_courtesan_possessive cse_courtesans_possessive }
+	#parent = relation
+}

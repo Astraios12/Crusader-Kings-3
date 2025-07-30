@@ -1,0 +1,30 @@
+﻿l_german:
+
+ # general
+ cse_royal_mistress_court_position: "Königliche Mätresse"
+ cse_royal_mistress_court_position_desc: "Die $cse_royal_mistress_court_position$ ist die anerkannte Geliebte ihres Lehnsherrn, und ihre Pracht ist ein Spiegelbild des Hofes."
+ #cse_royal_mistress_custom_effect_description: "Possibility to increase court grandeur, and reduce [stress|E]. May decrease piety and same faith opinion depending on tolerance towards paramours."
+ 
+ # aptitude desc
+ cse_royal_mistress_position_cse_courtesan_trait: "[GetTrait('cse_courtesan').GetName( ROOT.Char )]"
+ #cse_royal_mistress_position_beauty_good_3_trait: "[GetTrait('beauty_good_3').GetName( ROOT.Char )]"
+ #cse_royal_mistress_position_beauty_good_2_trait: "[GetTrait('beauty_good_2').GetName( ROOT.Char )]"
+ #cse_royal_mistress_position_beauty_good_1_trait: "[GetTrait('beauty_good_1').GetName( ROOT.Char )]"
+ cse_royal_mistress_position_chaste_trait: "[GetTrait('chaste').GetName( ROOT.Char )]"
+ cse_royal_mistress_position_lustful_trait: "[GetTrait('lustful').GetName( ROOT.Char )]"
+ #cse_royal_mistress_position_ruler: "$game_concept_ruler$"
+ cse_royal_mistress_position_highborn: "$game_concept_noble$"
+ #cse_royal_mistress_position_lowborn: "$game_concept_commoner$"
+ 
+ ## Opinions
+ #took_mistress_opinion:0 "Fooling Around With A Paramour"
+ #spouses_mistress_opinion:0 "Spouse's Paramour"
+ #took_scandalous_mistress_opinion:0 "Outraged With Paramour"
+ #spouses_scandalous_mistress_opinion:0 "Spouse's Scandalous Paramour"
+ # #made_mistress_opinion:0 "Made Me the Royal Mistress"
+ #took_my_spouse_as_mistress_opinion:0 "Took my spouse as a Paramour"
+ #spouses_becomes_mistress_opinion:0 "Spouse became my liege's Paramour"
+ #cuckolded_by_liege_without_benefit:0 "[TARGET_CHARACTER.GetShortUIName] did not compensate [CHARACTER.GetShortUIName|U] for having your spouse as a paramour."
+ 
+ #cse_imperial_mistress_court_position: "Imperiale Mätresse"
+ #cse_imperial_mistress_court_position_desc: "Die $cse_imperial_mistress_court_position$ ist die anerkannte Geliebte ihres Lehnsherrn, und ihre Pracht ist ein Spiegelbild des Hofes."

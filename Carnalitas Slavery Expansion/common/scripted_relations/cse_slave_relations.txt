@@ -1,0 +1,69 @@
+﻿slave = {
+	corresponding = slave_owner
+	hidden = yes
+	#special_guest = yes
+}
+
+slave_prostitute = {
+	#corresponding = slave_owner
+	#hidden = yes
+	#special_guest = yes
+	relation_aliases = { slave }
+}
+
+labour_slave = {
+	#corresponding = slave_owner
+	#hidden = yes
+	#special_guest = yes
+	relation_aliases = { slave }
+}
+
+military_slave = {
+	#corresponding = slave_owner
+	#hidden = yes
+	#special_guest = yes
+	relation_aliases = { slave }
+}
+
+slave_recruit = {
+	#corresponding = slave_owner
+	#hidden = yes
+	#special_guest = yes
+	relation_aliases = { military_slave }
+}
+
+slave_soldier = {
+	#corresponding = slave_owner
+	#hidden = yes
+	#special_guest = yes
+	relation_aliases = { military_slave }
+}
+
+slave_commander = {
+	#corresponding = slave_owner
+	#hidden = yes
+	#special_guest = yes
+	relation_aliases = { military_slave }
+}
+
+sex_slave = {
+	#corresponding = slave_owner
+	#hidden = yes
+	#special_guest = yes
+	relation_aliases = { slave }
+}
+
+court_slave = {
+	#corresponding = slave_owner
+	#hidden = yes
+	#special_guest = yes
+	relation_aliases = { slave }
+}
+
+courtesan_owner = {
+  corresponding = courtesan
+}
+
+courtesan = {
+	corresponding = courtesan_owner
+}

@@ -1,0 +1,43 @@
+﻿l_polish:
+  
+ trait_cse_slave: "Experience as a Slave"
+ trait_cse_slave_slave_prostitute: "Experience as $trait_track_cse_slave_prostitute$"
+ trait_cse_slave_labour_slave: "Experience as $trait_track_cse_labour_slave$"
+ trait_cse_slave_military_slave: "Experience as $trait_track_cse_military_slave$"
+ trait_cse_slave_sex_slave: "Experience as $trait_track_cse_sex_slave$"
+  
+ trait_cse_slave_desc: "Slaves are used in various areas and accumulate experience."
+ trait_cse_slave_character_desc: "This character has been used as a slave in various areas and has gained experience."
+  
+ trait_track_cse_slave_prostitute: "Slave Prostitute"
+ trait_track_cse_slave_prostitute_desc: "Slave Prostitutes are in the business of sexually servicing clients for money.\n\n$cse_slave_prostitute_calculation$"
+ cse_slave_prostitute_calculation: "Earns: [gold|E] / Costs: [illness|E]\nIncome: 40% [intrigue|E] + 20% [diplomacy|E] + 10% [attraction|E]\n- Increased if [opinion|E] positive\n- Halved if character is too young (<16) or too old (>[EmptyScope.ScriptValue('cse_slave_prostitute_age_limit_value')|0])\n- No income if character is younger than [EmptyScope.ScriptValue('cse_slave_prostitute_age_start_value')|0]\n- Reduced income if character has [GetTrait('great_pox').GetName( GetNullCharacter )]\n- Brings annual [EmptyScope.ScriptValue('cse_slave_piety_on_opinion_amount_value')|0] [faith|E] if [opinion|E] above [EmptyScope.ScriptValue('cse_slave_piety_on_opinion_threshold_value')|0]\n- XP: Yearly & during sex"
+  
+ trait_track_cse_labour_slave: "Labour Slave"
+ trait_track_cse_labour_slave_desc: "Labour Slaves perform forced labour as work slaves.\n\n$cse_labour_slave_calculation$"
+ cse_labour_slave_calculation: "Earns: [gold|E] / Costs: [health|E]\nIncome: 40% [stewardship|E] + 20% [learning|E] + 10% [prowess|E]\n- Increased if [opinion|E] positive\n- Halved if character is too young (<16) or too old (>[EmptyScope.ScriptValue('cse_labour_slave_age_limit_value')|0])\n- No income if character is younger than [EmptyScope.ScriptValue('cse_labour_slave_age_start_value')|0]\n- Brings [EmptyScope.ScriptValue('cse_slave_piety_on_opinion_amount_value')|0] [faith|E] if [opinion|E] above [EmptyScope.ScriptValue('cse_slave_piety_on_opinion_threshold_value')|0]\n- XP: Yearly"
+  
+ trait_track_cse_military_slave: "Military Slave"
+ trait_track_cse_military_slave_desc: "Military Slaves fight for their owner for fame and honour.\n\n$cse_military_slave_calculation$"
+ cse_military_slave_calculation: "Earns: [prestige|E] / Costs: [gold|E]\nIncome: 40% [martial|E] + 20% [prowess|E] + 50% [health|E]\n- Increased if [opinion|E] positive\n- Halved if character is too young (<16) or too old (>[EmptyScope.ScriptValue('cse_military_slave_age_limit_value')|0])\n- No income if character is younger than [EmptyScope.ScriptValue('cse_military_slave_age_start_value')|0]\n- Brings [EmptyScope.ScriptValue('cse_slave_piety_on_opinion_amount_value')|0] [faith|E] if [opinion|E] above [EmptyScope.ScriptValue('cse_slave_piety_on_opinion_threshold_value')|0]\n- XP: Yearly"
+  
+ trait_track_cse_sex_slave: "Slave Concubine"
+ trait_track_cse_sex_slave_desc: "Slave Concubines provide both body and mind to satisfy their masters.\n\n$cse_sex_slave_calculation$"
+ cse_sex_slave_calculation: "Earns: [stress|E] / Costs: [gold|E]\nIncome: 75% [diplomacy|E] + 50% [learning|E] + 25% [attraction|E]\n- Increased if [opinion|E] positive\n- Halved if character is too young (<16) or too old (>[EmptyScope.ScriptValue('cse_sex_slave_age_limit_value')|0])\n- No income if character is younger than [EmptyScope.ScriptValue('cse_sex_slave_age_start_value')|0]\n- Brings annual [EmptyScope.ScriptValue('cse_slave_piety_on_opinion_amount_value')|0] [faith|E] if [opinion|E] above [EmptyScope.ScriptValue('cse_slave_piety_on_opinion_threshold_value')|0]\n- XP: Yearly & during sex"
+  
+  
+ trait_cse_courtesan: "Courtesan"
+ trait_cse_courtesan_t1: "Cortigiana di Lume"
+ trait_cse_courtesan_t2: "Cortigiana Onesta"
+  
+ trait_cse_courtesan_desc: "[cse_courtesans|E] are maintained as the lovers of a noble benefactor.\n\n$cse_courtesan_calculation$"
+ trait_cse_courtesan_t1_desc: "The Cortigiana di Lume is a [cse_courtesan|E] of the lower class. Although she is still perceived to be better than the average prostitute, she will always lose out to a Cortigiana Onesta.\n\n$cse_courtesan_calculation$"
+ trait_cse_courtesan_t2_desc: "The Cortigiana Onesta is a [cse_courtesan|E] of the upper class. She is well educated and worldly, sometimes even more so than upper-class women. They often make a career as an artist or actress at the same time. She impresses her benefactors with her 'breeding', i.e. her diplomatic skills, intelligence and physical attributes.\n\n$cse_courtesan_calculation$"
+ trait_cse_courtesan_character_desc: "This character is being maintained as the lover of a noble benefactor.\n\n$cse_courtesan_calculation$"
+ cse_courtesan_calculation: "Costs: [gold|E]\nBonus for [cse_courtesan_owner|E]: 10% [diplomacy|E] / [intrigue|E] / [learning|E]\n- Bonus increases depending on the [attraction|E] of the character\n$trait_track_cse_courtesan_worth$: [learning|E] + [diplomacy|E] + [intrigue|E] + 30% [attraction|E] + 30% $trait_track_cse_courtesan_experience$\n- Value increased depending on the [title|E] held by the character\n- Halved if character is too young (<16) or too old (>[EmptyScope.ScriptValue('cse_courtesan_age_limit_value')|0])\n- Worthless if character is younger than [EmptyScope.ScriptValue('cse_courtesan_age_start_value')|0]\n- Halved if character has [GetTrait('great_pox').GetName( GetNullCharacter )]\n- XP: Yearly & on sex"
+  
+ trait_track_cse_courtesan_worth: "Value"
+ trait_track_cse_courtesan_worth_desc: "Indicates the value of the courtesan. If the value is above 80, this courtesan is perceived as a Cortigiana Onesta."
+  
+ trait_track_cse_courtesan_experience: "Experience"
+ trait_track_cse_courtesan_experience_desc: "Displays the experience of the Courtesan."

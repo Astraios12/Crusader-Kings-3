@@ -1,0 +1,25 @@
+﻿l_russian:
+
+carn_work_as_prostitute_decision:0 "Проститутка в Лунном Свете"
+carn_work_as_prostitute_decision_desc:0 "Если мне нужны деньги -- или повод переспать -- я могу сообщить всем, что предлагаю свои сексуальные услуги тому, кто больше заплатит".
+carn_work_as_prostitute_decision_tooltip:0 "Начать работать проституткой, обменяв свой [prestige|E] и целомудрие на [gold|E]".
+carn_work_as_prostitute_decision_confirm:0 "Расставить благовония и свечи..."
+msg_carn_started_working_as_prostitute:0 "Начать заниматься проституцией"
+
+carn_stop_work_as_prostitute_decision:0 "Прекратить Подрабатывать Проституткой"
+carn_stop_work_as_prostitute_decision_desc:0 "Мое путешествие в качестве проститутки закончилось, и пришло время сосредоточиться на моих обязанностях перед королевством."
+carn_stop_work_as_prostitute_decision_tooltip:0 "Прекратите работать проституткой, уменьшив свой [income|E], но повысив свой [prestige|E]".
+carn_stop_work_as_prostitute_decision_confirm:0 "Прекратите работать проституткой_как_проститутка_решение_подтвердить:0 "Убрать благовония и свечи"
+msg_carn_stopped_working_as_prostitute:0 "Проституция закончена"
+
+carn_start_birth_control_decision:0 "Контролировать Рождаемость"
+carn_start_birth_control_decision_desc:0 "Поддерживая запас презервативов, диафрагм, листьев сильфии и других материалов, я могу гарантировать, что мои увлечения с меньшей вероятностью приведут к нежелательным детям."
+carn_start_birth_control_decision_tooltip:0 "Уменьшите свою [fertility|E] ценой некоторого [income|E] и [piety|E]".
+carn_start_birth_control_decision_confirm:0 "Мое тело готово"
+msg_carn_started_birth_control:0 "Начат контроль за рождаемостью"
+
+carn_stop_birth_control_decision:0 "Прекратить Контролировать Рождаемость"
+carn_stop_birth_control_decision_desc:0 "Эти искусственные препятствия стали слишком большой обузой в спальне. Я отложу их в сторону и позволю моим страстям бродить свободно и дико, как и задумано природой."
+carn_stop_birth_control_decision_tooltip:0 "Прекратите снижать свою [fertility|E] ценой [income|E] и [piety|E]".
+carn_stop_birth_control_decision_confirm:0 "Мое тело готово"
+msg_carn_stopped_birth_control:0 "Завершен контроль за рождаемостью"

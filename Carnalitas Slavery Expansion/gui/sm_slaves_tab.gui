@@ -1,0 +1,428 @@
+template sm_slaves_tab
+{
+	widget = {
+		name = "slaves_tab"
+		visible = "[And(CharacterWindow.IsTabShown('relations'), GetVariableSystem.HasValue( 'character_window_tab', 'slaves_tab' ))]"
+		size = { 100% 100% }
+
+		using = Animation_Tab_Switch
+
+		vbox = {
+			name = "slaves_main_view"
+			visible = "[Not( Or( Or( Or( Or( CharacterWindow.IsRelationExpanded( 'slave_prostitutes' ), CharacterWindow.IsRelationExpanded( 'labour_slaves' ) ), CharacterWindow.IsRelationExpanded( 'military_slaves' ) ), CharacterWindow.IsRelationExpanded( 'sex_slaves' ) ), CharacterWindow.IsRelationExpanded( 'court_slaves' ) ) )]"
+
+			scrollbox = {
+				layoutpolicy_vertical = expanding
+				layoutpolicy_horizontal = expanding
+
+				blockoverride "scrollbox_margins" {}
+
+				blockoverride "scrollbox_content" {
+					widget = {
+						name = "first_row"
+						visible = "[GreaterThan_int32( GetDataModelSize(CharacterWindow.GetRelationsOfType( GetRelation( 'slave_prostitute' ) )), '(int32)0' )]"
+						layoutpolicy_horizontal = expanding
+						layoutpolicy_vertical = expanding
+						minimumsize = { -1 110 }
+						maximumsize = { -1 110 }
+						scissor = yes
+
+						hbox = {
+							layoutpolicy_horizontal = expanding
+
+							vbox_character_row_item = {
+								name = "slave_prostitutes"
+								visible = "[GreaterThan_int32( GetDataModelSize(CharacterWindow.GetRelationsOfType( GetRelation( 'slave_prostitute' ) )), '(int32)0' )]"
+								layoutpolicy_vertical = expanding
+								layoutpolicy_horizontal = expanding
+
+								blockoverride "portrait_datamodel" {
+									datamodel = "[CharacterWindow.GetRelationsOfType( GetRelation( 'slave_prostitute' ) )]"
+								}
+
+								blockoverride "header_text"
+								{
+									text = "SLAVE_PROSTITUTE_LABEL"
+								}
+
+								blockoverride "remaining_items"
+								{
+									visible = "[GreaterThan_int32( GetDataModelSize(CharacterWindow.GetRelationsOfType( GetRelation( 'slave_prostitute' ) )), '(int32)7' )]"
+									text = "[GetNumberAbove_int32( GetDataModelSize(CharacterWindow.GetRelationsOfType( GetRelation( 'slave_prostitute' ) )), '(int32)7' )|=]"
+								}
+
+								blockoverride "expand_button_inside" {
+									visible = "[GreaterThan_int32( GetDataModelSize(CharacterWindow.GetRelationsOfType( GetRelation( 'slave_prostitute' ) )), '(int32)7' )]"
+									onclick = "[CharacterWindow.ToggleExpandedRelation( 'slave_prostitutes' )]"
+								}
+							}
+						}
+					}
+					widget = {
+						name = "second_row"
+						visible = "[GreaterThan_int32( GetDataModelSize(CharacterWindow.GetRelationsOfType( GetRelation( 'labour_slave' ) )), '(int32)0' )]"
+						layoutpolicy_horizontal = expanding
+						layoutpolicy_vertical = expanding
+						minimumsize = { -1 110 }
+						maximumsize = { -1 110 }
+						scissor = yes
+
+						hbox = {
+							layoutpolicy_horizontal = expanding
+
+							vbox_character_row_item = {
+								name = "labour_slaves"
+								visible = "[GreaterThan_int32( GetDataModelSize(CharacterWindow.GetRelationsOfType( GetRelation( 'labour_slave' ) )), '(int32)0' )]"
+								layoutpolicy_vertical = expanding
+								layoutpolicy_horizontal = expanding
+
+								blockoverride "portrait_datamodel" {
+									datamodel = "[CharacterWindow.GetRelationsOfType( GetRelation( 'labour_slave' ) )]"
+								}
+
+								blockoverride "header_text"
+								{
+									text = "LABOUR_SLAVE_LABEL"
+								}
+
+								blockoverride "remaining_items"
+								{
+									visible = "[GreaterThan_int32( GetDataModelSize(CharacterWindow.GetRelationsOfType( GetRelation( 'labour_slave' ) )), '(int32)7' )]"
+									text = "[GetNumberAbove_int32( GetDataModelSize(CharacterWindow.GetRelationsOfType( GetRelation( 'labour_slave' ) )), '(int32)7' )|=]"
+								}
+
+								blockoverride "expand_button_inside" {
+									visible = "[GreaterThan_int32( GetDataModelSize(CharacterWindow.GetRelationsOfType( GetRelation( 'labour_slave' ) )), '(int32)7' )]"
+									onclick = "[CharacterWindow.ToggleExpandedRelation( 'labour_slaves' )]"
+								}
+							}
+						}
+					}
+					widget = {
+						name = "third_row"
+						visible = "[GreaterThan_int32( GetDataModelSize(CharacterWindow.GetRelationsOfType( GetRelation( 'military_slave' ) )), '(int32)0' )]"
+						layoutpolicy_horizontal = expanding
+						layoutpolicy_vertical = expanding
+						minimumsize = { -1 110 }
+						maximumsize = { -1 110 }
+						scissor = yes
+
+						hbox = {
+							layoutpolicy_horizontal = expanding
+
+							vbox_character_row_item = {
+								name = "military_slaves"
+								visible = "[GreaterThan_int32( GetDataModelSize(CharacterWindow.GetRelationsOfType( GetRelation( 'military_slave' ) )), '(int32)0' )]"
+								layoutpolicy_vertical = expanding
+								layoutpolicy_horizontal = expanding
+
+								blockoverride "portrait_datamodel" {
+									datamodel = "[CharacterWindow.GetRelationsOfType( GetRelation( 'military_slave' ) )]"
+								}
+
+								blockoverride "header_text"
+								{
+									text = "MILITARY_SLAVE_LABEL"
+								}
+
+								blockoverride "remaining_items"
+								{
+									visible = "[GreaterThan_int32( GetDataModelSize(CharacterWindow.GetRelationsOfType( GetRelation( 'military_slave' ) )), '(int32)7' )]"
+									text = "[GetNumberAbove_int32( GetDataModelSize(CharacterWindow.GetRelationsOfType( GetRelation( 'military_slave' ) )), '(int32)7' )|=]"
+								}
+
+								blockoverride "expand_button_inside" {
+									visible = "[GreaterThan_int32( GetDataModelSize(CharacterWindow.GetRelationsOfType( GetRelation( 'military_slave' ) )), '(int32)7' )]"
+									onclick = "[CharacterWindow.ToggleExpandedRelation( 'military_slaves' )]"
+								}
+							}
+						}
+					}
+					widget = {
+						name = "fourth_row"
+						visible = "[GreaterThan_int32( GetDataModelSize(CharacterWindow.GetRelationsOfType( GetRelation( 'sex_slave' ) )), '(int32)0' )]"
+						layoutpolicy_horizontal = expanding
+						layoutpolicy_vertical = expanding
+						minimumsize = { -1 110 }
+						maximumsize = { -1 110 }
+						scissor = yes
+
+						hbox = {
+							layoutpolicy_horizontal = expanding
+
+							vbox_character_row_item = {
+								name = "sex_slaves"
+								visible = "[GreaterThan_int32( GetDataModelSize(CharacterWindow.GetRelationsOfType( GetRelation( 'sex_slave' ) )), '(int32)0' )]"
+								layoutpolicy_vertical = expanding
+								layoutpolicy_horizontal = expanding
+
+								blockoverride "portrait_datamodel" {
+									datamodel = "[CharacterWindow.GetRelationsOfType( GetRelation( 'sex_slave' ) )]"
+								}
+
+								blockoverride "header_text"
+								{
+									text = "SEX_SLAVE_LABEL"
+								}
+
+								blockoverride "remaining_items"
+								{
+									visible = "[GreaterThan_int32( GetDataModelSize(CharacterWindow.GetRelationsOfType( GetRelation( 'sex_slave' ) )), '(int32)7' )]"
+									text = "[GetNumberAbove_int32( GetDataModelSize(CharacterWindow.GetRelationsOfType( GetRelation( 'sex_slave' ) )), '(int32)7' )|=]"
+								}
+
+								blockoverride "expand_button_inside" {
+									visible = "[GreaterThan_int32( GetDataModelSize(CharacterWindow.GetRelationsOfType( GetRelation( 'sex_slave' ) )), '(int32)7' )]"
+									onclick = "[CharacterWindow.ToggleExpandedRelation( 'sex_slaves' )]"
+								}
+							}
+						}
+					}
+					widget = {
+						name = "fifth_row"
+						visible = "[And(GreaterThan_int32( GetDataModelSize(CharacterWindow.GetRelationsOfType( GetRelation( 'court_slave' ) )), '(int32)0' ), Or(Or(Or(GreaterThan_int32( GetDataModelSize(CharacterWindow.GetRelationsOfType( GetRelation( 'slave_prostitute' ) )), '(int32)0' ), GreaterThan_int32( GetDataModelSize(CharacterWindow.GetRelationsOfType( GetRelation( 'labour_slave' ) )), '(int32)0' )), GreaterThan_int32( GetDataModelSize(CharacterWindow.GetRelationsOfType( GetRelation( 'military_slave' ) )), '(int32)0' )), GreaterThan_int32( GetDataModelSize(CharacterWindow.GetRelationsOfType( GetRelation( 'sex_slave' ) )), '(int32)0' )))]"
+						layoutpolicy_horizontal = expanding
+						layoutpolicy_vertical = expanding
+						minimumsize = { -1 110 }
+						maximumsize = { -1 110 }
+						scissor = yes
+
+						hbox = {
+							layoutpolicy_horizontal = expanding
+
+							vbox_character_row_item = {
+								name = "court_slaves"
+								visible = "[GreaterThan_int32( GetDataModelSize(CharacterWindow.GetRelationsOfType( GetRelation( 'court_slave' ) )), '(int32)0' )]"
+								layoutpolicy_vertical = expanding
+								layoutpolicy_horizontal = expanding
+
+								blockoverride "portrait_datamodel" {
+									datamodel = "[CharacterWindow.GetRelationsOfType( GetRelation( 'court_slave' ) )]"
+								}
+
+								blockoverride "header_text"
+								{
+									text = "COURT_SLAVE_LABEL"
+								}
+
+								blockoverride "remaining_items"
+								{
+									visible = "[GreaterThan_int32( GetDataModelSize(CharacterWindow.GetRelationsOfType( GetRelation( 'court_slave' ) )), '(int32)7' )]"
+									text = "[GetNumberAbove_int32( GetDataModelSize(CharacterWindow.GetRelationsOfType( GetRelation( 'court_slave' ) )), '(int32)7' )|=]"
+								}
+
+								blockoverride "expand_button_inside" {
+									visible = "[GreaterThan_int32( GetDataModelSize(CharacterWindow.GetRelationsOfType( GetRelation( 'court_slave' ) )), '(int32)7' )]"
+									onclick = "[CharacterWindow.ToggleExpandedRelation( 'court_slaves' )]"
+								}
+							}
+						}
+					}
+				}
+			}
+
+			expand = {}
+		}
+
+		### SLAVE PROSTITUTE EXPANDED
+		scrollbox = {
+			name = "slave_prostitutes_expanded"
+			visible = "[CharacterWindow.IsRelationExpanded( 'slave_prostitutes' )]"
+			size = { 100% 100% }
+
+			blockoverride "scrollbox_replace_vbox" {
+				vbox_character_row_item = {
+					name = "slave_prostitutes"
+					margin_top = 10
+					spacing = 5
+
+
+					blockoverride "portrait_datamodel" {
+						datamodel = "[CharacterWindow.GetRelationsOfType( GetRelation( 'slave_prostitute' ) )]"
+					}
+
+					blockoverride "header_text"
+					{
+						text = "game_concept_prostitutes"
+					}
+
+					blockoverride "expand_button_inside" {
+						onclick = "[CharacterWindow.ToggleExpandedRelation( 'slave_prostitutes' )]"
+						down = "[CharacterWindow.IsRelationExpanded( 'slave_prostitutes' )]"
+					}
+
+					blockoverride "gridbox_slots" {}
+				}
+			}
+
+			expand = {}
+		}
+		
+		### LABOUR SLAVE EXPANDED
+		scrollbox = {
+			name = "labour_slaves_expanded"
+			visible = "[CharacterWindow.IsRelationExpanded( 'labour_slaves' )]"
+			size = { 100% 100% }
+
+			blockoverride "scrollbox_replace_vbox" {
+				vbox_character_row_item = {
+					name = "labour_slaves"
+					margin_top = 10
+					spacing = 5
+
+
+					blockoverride "portrait_datamodel" {
+						datamodel = "[CharacterWindow.GetRelationsOfType( GetRelation( 'labour_slave' ) )]"
+					}
+
+					blockoverride "header_text"
+					{
+						text = "game_concept_cse_labour_slaves"
+					}
+
+					blockoverride "expand_button_inside" {
+						onclick = "[CharacterWindow.ToggleExpandedRelation( 'labour_slaves' )]"
+						down = "[CharacterWindow.IsRelationExpanded( 'labour_slaves' )]"
+					}
+
+					blockoverride "gridbox_slots" {}
+				}
+			}
+
+			expand = {}
+		}
+		
+		### SLAVE SOLDIER EXPANDED
+		scrollbox = {
+			name = "military_slaves_expanded"
+			visible = "[CharacterWindow.IsRelationExpanded( 'military_slaves' )]"
+			size = { 100% 100% }
+
+			blockoverride "scrollbox_replace_vbox" {
+				vbox_character_row_item = {
+					name = "military_slaves"
+					margin_top = 10
+					spacing = 5
+
+
+					blockoverride "portrait_datamodel" {
+						datamodel = "[CharacterWindow.GetRelationsOfType( GetRelation( 'military_slave' ) )]"
+					}
+
+					blockoverride "header_text"
+					{
+						text = "MILITARY_SLAVE_LABEL"
+					}
+
+					blockoverride "expand_button_inside" {
+						onclick = "[CharacterWindow.ToggleExpandedRelation( 'military_slaves' )]"
+						down = "[CharacterWindow.IsRelationExpanded( 'military_slaves' )]"
+					}
+
+					blockoverride "gridbox_slots" {}
+				}
+			}
+
+			expand = {}
+		}
+		
+		### SEX SLAVE EXPANDED
+		scrollbox = {
+			name = "sex_slaves_expanded"
+			visible = "[CharacterWindow.IsRelationExpanded( 'sex_slaves' )]"
+			size = { 100% 100% }
+
+			blockoverride "scrollbox_replace_vbox" {
+				vbox_character_row_item = {
+					name = "sex_slaves"
+					margin_top = 10
+					spacing = 5
+
+
+					blockoverride "portrait_datamodel" {
+						datamodel = "[CharacterWindow.GetRelationsOfType( GetRelation( 'sex_slave' ) )]"
+					}
+
+					blockoverride "header_text"
+					{
+						text = "SEX_SLAVE_LABEL"
+					}
+
+					blockoverride "expand_button_inside" {
+						onclick = "[CharacterWindow.ToggleExpandedRelation( 'sex_slaves' )]"
+						down = "[CharacterWindow.IsRelationExpanded( 'sex_slaves' )]"
+					}
+
+					blockoverride "gridbox_slots" {}
+				}
+			}
+
+			expand = {}
+		}
+		
+		### COURT SLAVE EXPANDED
+		scrollbox = {
+			name = "court_slaves_expanded"
+			visible = "[CharacterWindow.IsRelationExpanded( 'court_slaves' )]"
+			size = { 100% 100% }
+
+			blockoverride "scrollbox_replace_vbox" {
+				vbox_character_row_item = {
+					name = "court_slaves"
+					margin_top = 10
+					spacing = 5
+
+
+					blockoverride "portrait_datamodel" {
+						datamodel = "[CharacterWindow.GetRelationsOfType( GetRelation( 'court_slave' ) )]"
+					}
+
+					blockoverride "header_text"
+					{
+						text = "COURT_SLAVE_LABEL"
+					}
+
+					blockoverride "expand_button_inside" {
+						onclick = "[CharacterWindow.ToggleExpandedRelation( 'court_slaves' )]"
+						down = "[CharacterWindow.IsRelationExpanded( 'court_slaves' )]"
+					}
+
+					blockoverride "gridbox_slots" {}
+				}
+			}
+
+			expand = {}
+		}
+		
+		### COURT SLAVE DEFAULT
+		scrollbox = {
+			name = "court_slaves_default"
+			visible = "[And(And(And(EqualTo_int32( GetDataModelSize(CharacterWindow.GetRelationsOfType( GetRelation( 'slave_prostitute' ) )), '(int32)0' ), EqualTo_int32( GetDataModelSize(CharacterWindow.GetRelationsOfType( GetRelation( 'labour_slave' ) )), '(int32)0' )), EqualTo_int32( GetDataModelSize(CharacterWindow.GetRelationsOfType( GetRelation( 'military_slave' ) )), '(int32)0' )),EqualTo_int32( GetDataModelSize(CharacterWindow.GetRelationsOfType( GetRelation( 'sex_slave' ) )), '(int32)0' ))]"
+			size = { 100% 100% }
+
+			blockoverride "scrollbox_replace_vbox" {
+				vbox_character_row_item = {
+					name = "court_slaves"
+					margin_top = 10
+					spacing = 5
+
+
+					blockoverride "portrait_datamodel" {
+						datamodel = "[CharacterWindow.GetRelationsOfType( GetRelation( 'court_slave' ) )]"
+					}
+
+					blockoverride "header_text"
+					{
+						text = "COURT_SLAVE_LABEL"
+					}
+
+					blockoverride "gridbox_slots" {}
+				}
+			}
+
+			expand = {}
+		}
+
+		expand = {}
+	}
+}

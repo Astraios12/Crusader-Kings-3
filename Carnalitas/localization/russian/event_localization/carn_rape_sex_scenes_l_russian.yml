@@ -1,0 +1,12 @@
+﻿l_russian:
+  
+  carn_sex_scene.0003.t:0 "Растление"
+  carn_sex_scene.0003.desc_opening:0 "[carn_sex_target.Custom2('MyCharacterIntroduction', ROOT.Char)|U] смотрит на меня со страхом и ужасом, когда я подхожу к [carn_sex_target.GetHerHim]. \n\nЯ срываю [carn_sex_target.GetHerHis] [carn_sex_target.Custom('GetClothingArticle')] с тела [carn_sex_target.GetHerHis] и набрасываюсь на [carn_sex_target.GetHerHim]. Движимый похотью, я овладеваю своей пленницей, не заботясь ни о чем, кроме собственного удовольствия.\n\n"
+  carn_sex_scene.0003.desc_ending:0 "Получив удовольствие от [carn_sex_target.GetHerHim], я ухожу, не обращая больше внимания на [carn_sex_target.GetHerHim]."
+  carn_sex_scene.0003.a:0 "Теперь [carn_sex_target.GetShortUIName] знает [carn_sex_target.GetHerHis] свое место".
+
+  carn_sex_scene.0004.t:0 "Изнасилование"
+  carn_sex_scene.0004.desc_opening:0 "[carn_sex_target.Custom2('MyCharacterIntroduction', ROOT.Char)|U] голодно смотрит на меня, пока [carn_sex_target.GetSheHe] приближается ко мне, [carn_sex_target.GetHerHis] намерения ясны.\n\n[carn_sex_target.GetSheHe|U] срывает мою [carn_sex_player.Custom('GetClothingArticle')] с моего тела и набрасывает [carn_sex_target.GetHerselfHimself] на меня. Движимый похотью, [carn_sex_target.GetSheHe] овладевает [carn_sex_target.GetHerHis], не заботясь ни о чем, кроме [carn_sex_target.GetHerHis] собственного удовольствия.\n\n"
+  carn_sex_scene.0004.desc_ending:0 "Осквернив меня, [carn_sex_target.GetSheHe] уходит [carn_sex_target.GetHerHis], не обращая больше внимания на меня."
+  carn_sex_scene.0004.a:0 "Я чувствую себя неважно..."
+  carn_sex_scene.0004.a.being_raped_fetish:0 "Это было... приятно..."

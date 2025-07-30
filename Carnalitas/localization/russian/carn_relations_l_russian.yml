@@ -1,0 +1,17 @@
+﻿l_russian:
+
+dominant:1 "[dominant|E]"
+relation_dominant:0 "доминант"
+relation_dominant_possessive:0 "доминант"
+
+submissive:1 "[submissive|E]"
+relation_submissive:0 "субмиссив"
+relation_submissive_possessive:0 "субмиссив"
+
+slave:0 "[slave|E]"
+relation_slave:0 "раб"
+relation_slave_possessive:0 "раб"
+
+slave_owner:0 "[slave_owner|E]"
+relation_slave_owner:0 "владлец"
+relation_slave_owner_possessive:0 "владлец"

@@ -1,0 +1,75 @@
+﻿carn_doctrine_prostitution = {
+	group = "crimes"
+
+	is_available_on_create = {
+		NOT = { has_game_rule = carn_prostitution_content_disabled }
+	}
+
+	carn_doctrine_prostitution_crime = {
+		piety_cost = {
+			value = faith_doctrine_cost_mid
+			if = {
+				limit = { has_doctrine = carn_doctrine_prostitution_crime }
+				multiply = 0
+			}
+			else_if = {
+				limit = { has_doctrine = carn_doctrine_prostitution_accepted }
+				multiply = faith_changed_doctrine_cost_mult_two_step
+			}
+		}
+		parameters = {
+			carn_prostitution_illegal = yes
+		}
+	}
+	carn_doctrine_prostitution_shunned = {
+		piety_cost = {
+			value = faith_doctrine_cost_mid
+			if = {
+				limit = { has_doctrine = carn_doctrine_prostitution_shunned }
+				multiply = 0
+			}
+		}
+		parameters = {
+			carn_prostitution_shunned = yes
+		}
+	}
+	carn_doctrine_slave_prostitution = {
+		can_pick = {
+			custom_description = {
+				text = required_doctrine_slavery_accepted_trigger
+				OR = {
+					doctrine:carn_doctrine_same_slavery_accepted = { is_in_list = selected_doctrines }
+					doctrine:carn_doctrine_other_slavery_accepted = { is_in_list = selected_doctrines }
+				}
+			}
+		}
+		piety_cost = {
+			value = faith_doctrine_cost_mid
+			if = {
+				limit = { has_doctrine = carn_doctrine_slave_prostitution }
+				multiply = 0
+			}
+		}
+		parameters = {
+			carn_prostitution_shunned = yes
+			carn_slave_prostitution = yes
+		}
+	}
+	carn_doctrine_prostitution_accepted = {
+		piety_cost = {
+			value = faith_doctrine_cost_mid
+			if = {
+				limit = { has_doctrine = carn_doctrine_prostitution_accepted }
+				multiply = 0
+			}
+			else_if = {
+				limit = { has_doctrine = carn_doctrine_prostitution_crime }
+				multiply = faith_changed_doctrine_cost_mult_two_step
+			}
+		}
+		parameters = {
+			carn_prostitution_accepted = yes
+			carn_slave_prostitution = yes
+		}
+	}
+}

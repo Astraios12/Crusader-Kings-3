@@ -1,0 +1,38 @@
+﻿l_russian:
+
+ NOT_IS_ATTRACTED_TO_TRIGGER:0 "Вас не привлекает [TARGET_CHARACTER.GetShortUIName]"
+
+ carn_i_can_be_granted_titles:0 "Вы можете получить [titles|E]"
+ carn_not_i_can_be_granted_titles:0 "Вы не можете получить [titles|E]"
+ carn_they_can_be_granted_titles:0 "[CHARACTER.GetShortUIName|U] может получить [titles|E]"
+ carn_not_they_can_be_granted_titles:0 "[CHARACTER.GetShortUIName|U] не может получить [titles|E]"
+ carn_can_be_granted_titles:0 "Можно передать [titles|E]"
+ carn_not_can_be_granted_titles:0 "Нельзя присвоить [titles|E]"
+
+ carn_can_always_have_sex:0 "Всегда может заниматься сексом"
+
+ carn_cannot_be_raped:0 "Нельзя изнасиловать"
+
+ carn_cannot_have_max_number_of_slave_prostitutes:0 "У вас не может быть более [EmptyScope.ScriptValue('carn_max_slave_prostitutes_per_owner')|0] рабов, работающих проститутками"
+
+ carn_cannot_have_sex:0 "Не может заняться сексом"
+
+ carn_effective_age_under_value_cutoff:0 "Возраст менее $VALUE|0$"
+
+ carn_i_have_a_fetish_trigger:0 "У вас есть фетиш [fetish|E]"
+ carn_not_i_have_a_fetish_trigger:0 "Вы #bold не#! имеете [fetish|E]"
+ carn_they_have_a_fetish_trigger:0 "[CHARACTER.GetShortUIName|U] имеет фетиш [fetish|E]"
+ carn_not_they_have_a_fetish_trigger:0 "[CHARACTER.GetShortUIName|U] #bold не#! имеет [fetish|E]"
+ carn_has_any_fetish_trigger:0 "Есть фетиш [fetish|E]"
+ carn_not_has_a_fetish_trigger:0 "#bold Не#! имеет [fetish|E]"
+
+ carn_is_diplomatically_available:0 "В настоящее время занято"
+
+carn_i_am_lactating_trigger:0 "Вы [lactating|E]"
+carn_not_i_am_lactating_trigger:0 "Вы #bold не#! [lactating|E]"
+carn_they_are_lactating_trigger:0 "[CHARACTER.GetShortUIName|U] [lactating|E]"
+carn_not_they_are_lactating_trigger:0 "[CHARACTER.GetShortUIName|U] #bold не#! [lactating|E]"
+carn_is_lactating_trigger:0 "[lactating|E]"
+carn_not_is_lactating_trigger:0 "#bold Не#! [lactating|E]"
+
+carn_slavery_is_illegal:0 "Ваша вера не позволяет брать [CHARACTER.GetFaith.GetAdherentNamePluralNoTooltip|U] в рабство"

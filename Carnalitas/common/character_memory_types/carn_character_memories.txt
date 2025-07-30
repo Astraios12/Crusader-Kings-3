@@ -1,0 +1,1393 @@
+﻿had_sex_giving_player_vaginal_cum_inside_consensual = {
+	categories = { positive relationships intimate }
+	icon = "intimate.dds"
+	description = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_male = yes}
+					scope:sex_partner = { is_female = yes}
+					scope:sex_partner = {is_close_or_extended_family_of = scope:owner}
+				}
+				desc = had_sex_giving_player_vaginal_cum_inside_consensual_mf_relative_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_male = yes}
+					scope:sex_partner = { is_female = yes}
+				}
+				desc = had_sex_giving_player_vaginal_cum_inside_consensual_mf_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_female = yes}
+					scope:sex_partner = { is_male = yes}
+					scope:sex_partner = {is_close_or_extended_family_of = scope:owner}
+				}
+				desc = had_sex_giving_player_vaginal_cum_inside_consensual_fm_relative_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_female = yes}
+					scope:sex_partner = { is_male = yes}
+				}
+				desc = had_sex_giving_player_vaginal_cum_inside_consensual_fm_desc
+			}
+			desc = had_sex_giving_player_vaginal_cum_inside_consensual_generic_desc
+		}
+	}
+
+	second_perspective_description = {
+		random_valid = {
+			desc = had_sex_giving_player_vaginal_cum_inside_consensual_desc_second_perspective
+		}
+	}
+
+	third_perspective_description = {
+		random_valid = {
+			desc = had_sex_giving_player_vaginal_cum_inside_consensual_desc_third_perspective
+		}
+	}
+
+	participants = { sex_partner }
+
+	duration = {
+		years = memory_default_duration
+	}
+}
+
+had_sex_receiving_player_vaginal_cum_inside_consensual = {
+	categories = { positive relationships intimate }
+	icon = "intimate.dds"
+	description = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_male = yes}
+					scope:sex_partner = { is_female = yes}
+					scope:sex_partner = {is_close_or_extended_family_of = scope:owner}
+				}
+				desc = had_sex_receiving_player_vaginal_cum_inside_consensual_mf_relative_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_male = yes}
+					scope:sex_partner = { is_female = yes}
+				}
+				desc = had_sex_receiving_player_vaginal_cum_inside_consensual_mf_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_female = yes}
+					scope:sex_partner = { is_male = yes}
+					scope:sex_partner = {is_close_or_extended_family_of = scope:owner}
+				}
+				desc = had_sex_receiving_player_vaginal_cum_inside_consensual_fm_relative_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_female = yes}
+					scope:sex_partner = { is_male = yes}
+				}
+				desc = had_sex_receiving_player_vaginal_cum_inside_consensual_fm_desc
+			}
+			desc = had_sex_receiving_player_vaginal_cum_inside_consensual_generic_desc
+		}
+	}
+
+	second_perspective_description = {
+		random_valid = {
+			desc = had_sex_receiving_player_vaginal_cum_inside_consensual_desc_second_perspective
+		}
+	}
+
+	third_perspective_description = {
+		random_valid = {
+			desc = had_sex_receiving_player_vaginal_cum_inside_consensual_desc_third_perspective
+		}
+	}
+
+	participants = { sex_partner }
+
+	duration = {
+		years = memory_default_duration
+	}
+}
+
+had_sex_giving_player_vaginal_cum_outside_consensual = {
+	categories = { positive relationships intimate }
+	icon = "intimate.dds"
+	description = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_male = yes}
+					scope:sex_partner = { is_female = yes}
+					scope:sex_partner = {is_close_or_extended_family_of = scope:owner}
+				}
+				desc = had_sex_giving_player_vaginal_cum_outside_consensual_mf_relative_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_male = yes}
+					scope:sex_partner = { is_female = yes}
+				}
+				desc = had_sex_giving_player_vaginal_cum_outside_consensual_mf_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_female = yes}
+					scope:sex_partner = { is_male = yes}
+					scope:sex_partner = {is_close_or_extended_family_of = scope:owner}
+				}
+				desc = had_sex_giving_player_vaginal_cum_outside_consensual_fm_relative_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_female = yes}
+					scope:sex_partner = { is_male = yes}
+				}
+				desc = had_sex_giving_player_vaginal_cum_outside_consensual_fm_desc
+			}
+			desc = had_sex_giving_player_vaginal_cum_outside_consensual_generic_desc
+		}
+	}
+
+	second_perspective_description = {
+		random_valid = {
+			desc = had_sex_giving_player_vaginal_cum_outside_consensual_desc_second_perspective
+		}
+	}
+
+	third_perspective_description = {
+		random_valid = {
+			desc = had_sex_giving_player_vaginal_cum_outside_consensual_desc_third_perspective
+		}
+	}
+
+	participants = { sex_partner }
+
+	duration = {
+		years = memory_default_duration
+	}
+}
+
+had_sex_receiving_player_vaginal_cum_outside_consensual = {
+	categories = { positive relationships intimate }
+	icon = "intimate.dds"
+	description = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_male = yes}
+					scope:sex_partner = { is_female = yes}
+					scope:sex_partner = {is_close_or_extended_family_of = scope:owner}
+				}
+				desc = had_sex_receiving_player_vaginal_cum_outside_consensual_mf_relative_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_male = yes}
+					scope:sex_partner = { is_female = yes}
+				}
+				desc = had_sex_receiving_player_vaginal_cum_outside_consensual_mf_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_female = yes}
+					scope:sex_partner = { is_male = yes}
+					scope:sex_partner = {is_close_or_extended_family_of = scope:owner}
+				}
+				desc = had_sex_receiving_player_vaginal_cum_outside_consensual_fm_relative_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_female = yes}
+					scope:sex_partner = { is_male = yes}
+				}
+				desc = had_sex_receiving_player_vaginal_cum_outside_consensual_fm_desc
+			}
+			desc = had_sex_receiving_player_vaginal_cum_outside_consensual_generic_desc
+		}
+	}
+
+	second_perspective_description = {
+		random_valid = {
+			desc = had_sex_receiving_player_vaginal_cum_outside_consensual_desc_second_perspective
+		}
+	}
+
+	third_perspective_description = {
+		random_valid = {
+			desc = had_sex_receiving_player_vaginal_cum_outside_consensual_desc_third_perspective
+		}
+	}
+
+	participants = { sex_partner }
+
+	duration = {
+		years = memory_default_duration
+	}
+}
+
+had_sex_giving_player_anal_consensual = {
+	categories = { positive relationships intimate }
+	icon = "intimate.dds"
+	description = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_male = yes}
+					scope:sex_partner = { is_female = yes}
+					scope:sex_partner = {is_close_or_extended_family_of = scope:owner}
+				}
+				desc = had_sex_giving_player_anal_consensual_mf_relative_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_male = yes}
+					scope:sex_partner = { is_female = yes}
+				}
+				desc = had_sex_giving_player_anal_consensual_mf_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_female = yes}
+					scope:sex_partner = { is_male = yes}
+					scope:sex_partner = {is_close_or_extended_family_of = scope:owner}
+				}
+				desc = had_sex_giving_player_anal_consensual_fm_relative_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_female = yes}
+					scope:sex_partner = { is_male = yes}
+				}
+				desc = had_sex_giving_player_anal_consensual_fm_desc
+			}
+			desc = had_sex_giving_player_anal_consensual_generic_desc
+		}
+	}
+
+	second_perspective_description = {
+		random_valid = {
+			desc = had_sex_giving_player_anal_consensual_desc_second_perspective
+		}
+	}
+
+	third_perspective_description = {
+		random_valid = {
+			desc = had_sex_giving_player_anal_consensual_desc_third_perspective
+		}
+	}
+
+	participants = { sex_partner }
+
+	duration = {
+		years = memory_default_duration
+	}
+}
+
+had_sex_receiving_player_anal_consensual = {
+	categories = { positive relationships intimate }
+	icon = "intimate.dds"
+	description = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_male = yes}
+					scope:sex_partner = { is_female = yes}
+					scope:sex_partner = {is_close_or_extended_family_of = scope:owner}
+				}
+				desc = had_sex_receiving_player_anal_consensual_mf_relative_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_male = yes}
+					scope:sex_partner = { is_female = yes}
+				}
+				desc = had_sex_receiving_player_anal_consensual_mf_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_female = yes}
+					scope:sex_partner = { is_male = yes}
+					scope:sex_partner = {is_close_or_extended_family_of = scope:owner}
+				}
+				desc = had_sex_receiving_player_anal_consensual_fm_relative_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_female = yes}
+					scope:sex_partner = { is_male = yes}
+				}
+				desc = had_sex_receiving_player_anal_consensual_fm_desc
+			}
+			desc = had_sex_receiving_player_anal_consensual_generic_desc
+		}
+	}
+
+	second_perspective_description = {
+		random_valid = {
+			desc = had_sex_receiving_player_anal_consensual_desc_second_perspective
+		}
+	}
+
+	third_perspective_description = {
+		random_valid = {
+			desc = had_sex_receiving_player_anal_consensual_desc_third_perspective
+		}
+	}
+
+	participants = { sex_partner }
+
+	duration = {
+		years = memory_default_duration
+	}
+}
+
+had_sex_giving_player_oral_consensual = {
+	categories = { positive relationships intimate }
+	icon = "intimate.dds"
+	description = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_male = yes}
+					scope:sex_partner = { is_female = yes}
+					scope:sex_partner = {is_close_or_extended_family_of = scope:owner}
+				}
+				desc = had_sex_giving_player_oral_consensual_mf_relative_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_male = yes}
+					scope:sex_partner = { is_female = yes}
+				}
+				desc = had_sex_giving_player_oral_consensual_mf_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_female = yes}
+					scope:sex_partner = { is_male = yes}
+					scope:sex_partner = {is_close_or_extended_family_of = scope:owner}
+				}
+				desc = had_sex_giving_player_oral_consensual_fm_relative_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_female = yes}
+					scope:sex_partner = { is_male = yes}
+				}
+				desc = had_sex_giving_player_oral_consensual_fm_desc
+			}
+			desc = had_sex_giving_player_oral_consensual_generic_desc
+		}
+	}
+
+	second_perspective_description = {
+		random_valid = {
+			desc = had_sex_giving_player_oral_consensual_desc_second_perspective
+		}
+	}
+
+	third_perspective_description = {
+		random_valid = {
+			desc = had_sex_giving_player_oral_consensual_desc_third_perspective
+		}
+	}
+
+	participants = { sex_partner }
+
+	duration = {
+		years = memory_default_duration
+	}
+}
+
+had_sex_receiving_player_oral_consensual = {
+	categories = { positive relationships intimate }
+	icon = "intimate.dds"
+	description = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_male = yes}
+					scope:sex_partner = { is_female = yes}
+					scope:sex_partner = {is_close_or_extended_family_of = scope:owner}
+				}
+				desc = had_sex_receiving_player_oral_consensual_mf_relative_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_male = yes}
+					scope:sex_partner = { is_female = yes}
+				}
+				desc = had_sex_receiving_player_oral_consensual_mf_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_female = yes}
+					scope:sex_partner = { is_male = yes}
+					scope:sex_partner = {is_close_or_extended_family_of = scope:owner}
+				}
+				desc = had_sex_receiving_player_oral_consensual_fm_relative_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_female = yes}
+					scope:sex_partner = { is_male = yes}
+				}
+				desc = had_sex_receiving_player_oral_consensual_fm_desc
+			}
+			desc = had_sex_receiving_player_oral_consensual_generic_desc
+		}
+	}
+
+	second_perspective_description = {
+		random_valid = {
+			desc = had_sex_receiving_player_oral_consensual_desc_second_perspective
+		}
+	}
+
+	third_perspective_description = {
+		random_valid = {
+			desc = had_sex_receiving_player_oral_consensual_desc_third_perspective
+		}
+	}
+
+	participants = { sex_partner }
+
+	duration = {
+		years = memory_default_duration
+	}
+}
+
+had_sex_giving_player_dom_vaginal_cum_inside_noncon = {
+	categories = { negative relationships intimate }
+	icon = "intimate.dds"
+	description = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_male = yes}
+					scope:sex_partner = { is_female = yes}
+					scope:sex_partner = {is_close_or_extended_family_of = scope:owner}
+				}
+				desc = had_sex_giving_player_dom_vaginal_cum_inside_noncon_mf_relative_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_male = yes}
+					scope:sex_partner = { is_female = yes}
+				}
+				desc = had_sex_giving_player_dom_vaginal_cum_inside_noncon_mf_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_female = yes}
+					scope:sex_partner = { is_male = yes}
+					scope:sex_partner = {is_close_or_extended_family_of = scope:owner}
+				}
+				desc = had_sex_giving_player_dom_vaginal_cum_inside_noncon_fm_relative_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_female = yes}
+					scope:sex_partner = { is_male = yes}
+				}
+				desc = had_sex_giving_player_dom_vaginal_cum_inside_noncon_fm_desc
+			}
+			desc = had_sex_giving_player_dom_vaginal_cum_inside_noncon_generic_desc
+		}
+	}
+
+	second_perspective_description = {
+		random_valid = {
+			desc = had_sex_giving_player_dom_vaginal_cum_inside_noncon_desc_second_perspective
+		}
+	}
+
+	third_perspective_description = {
+		random_valid = {
+			desc = had_sex_giving_player_dom_vaginal_cum_inside_noncon_desc_third_perspective
+		}
+	}
+
+	participants = { sex_partner }
+
+	duration = {
+		years = memory_default_duration
+	}
+}
+
+had_sex_receiving_player_sub_vaginal_cum_inside_noncon = {
+	categories = { negative relationships intimate }
+	icon = "intimate.dds"
+	description = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_male = yes}
+					scope:sex_partner = { is_female = yes}
+					scope:sex_partner = {is_close_or_extended_family_of = scope:owner}
+				}
+				desc = had_sex_receiving_player_sub_vaginal_cum_inside_noncon_mf_relative_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_male = yes}
+					scope:sex_partner = { is_female = yes}
+				}
+				desc = had_sex_receiving_player_sub_vaginal_cum_inside_noncon_mf_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_female = yes}
+					scope:sex_partner = { is_male = yes}
+					scope:sex_partner = {is_close_or_extended_family_of = scope:owner}
+				}
+				desc = had_sex_receiving_player_sub_vaginal_cum_inside_noncon_fm_relative_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_female = yes}
+					scope:sex_partner = { is_male = yes}
+				}
+				desc = had_sex_receiving_player_sub_vaginal_cum_inside_noncon_fm_desc
+			}
+			desc = had_sex_receiving_player_sub_vaginal_cum_inside_noncon_generic_desc
+		}
+	}
+
+	second_perspective_description = {
+		random_valid = {
+			desc = had_sex_receiving_player_sub_vaginal_cum_inside_noncon_desc_second_perspective
+		}
+	}
+
+	third_perspective_description = {
+		random_valid = {
+			desc = had_sex_receiving_player_sub_vaginal_cum_inside_noncon_desc_third_perspective
+		}
+	}
+
+	participants = { sex_partner }
+
+	duration = {
+		years = memory_default_duration
+	}
+}
+
+had_sex_giving_player_dom_vaginal_cum_outside_noncon = {
+	categories = { negative relationships intimate }
+	icon = "intimate.dds"
+	description = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_male = yes}
+					scope:sex_partner = { is_female = yes}
+					scope:sex_partner = {is_close_or_extended_family_of = scope:owner}
+				}
+				desc = had_sex_giving_player_dom_vaginal_cum_outside_noncon_mf_relative_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_male = yes}
+					scope:sex_partner = { is_female = yes}
+				}
+				desc = had_sex_giving_player_dom_vaginal_cum_outside_noncon_mf_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_female = yes}
+					scope:sex_partner = { is_male = yes}
+					scope:sex_partner = {is_close_or_extended_family_of = scope:owner}
+				}
+				desc = had_sex_giving_player_dom_vaginal_cum_outside_noncon_fm_relative_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_female = yes}
+					scope:sex_partner = { is_male = yes}
+				}
+				desc = had_sex_giving_player_dom_vaginal_cum_outside_noncon_fm_desc
+			}
+			desc = had_sex_giving_player_dom_vaginal_cum_outside_noncon_generic_desc
+		}
+	}
+
+	second_perspective_description = {
+		random_valid = {
+			desc = had_sex_giving_player_dom_vaginal_cum_outside_noncon_desc_second_perspective
+		}
+	}
+
+	third_perspective_description = {
+		random_valid = {
+			desc = had_sex_giving_player_dom_vaginal_cum_outside_noncon_desc_third_perspective
+		}
+	}
+
+	participants = { sex_partner }
+
+	duration = {
+		years = memory_default_duration
+	}
+}
+
+had_sex_receiving_player_sub_vaginal_cum_outside_noncon = {
+	categories = { negative relationships intimate }
+	icon = "intimate.dds"
+	description = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_male = yes}
+					scope:sex_partner = { is_female = yes}
+					scope:sex_partner = {is_close_or_extended_family_of = scope:owner}
+				}
+				desc = had_sex_receiving_player_sub_vaginal_cum_outside_noncon_mf_relative_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_male = yes}
+					scope:sex_partner = { is_female = yes}
+				}
+				desc = had_sex_receiving_player_sub_vaginal_cum_outside_noncon_mf_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_female = yes}
+					scope:sex_partner = { is_male = yes}
+					scope:sex_partner = {is_close_or_extended_family_of = scope:owner}
+				}
+				desc = had_sex_receiving_player_sub_vaginal_cum_outside_noncon_fm_relative_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_female = yes}
+					scope:sex_partner = { is_male = yes}
+				}
+				desc = had_sex_receiving_player_sub_vaginal_cum_outside_noncon_fm_desc
+			}
+			desc = had_sex_receiving_player_sub_vaginal_cum_outside_noncon_generic_desc
+		}
+	}
+
+	second_perspective_description = {
+		random_valid = {
+			desc = had_sex_receiving_player_sub_vaginal_cum_outside_noncon_desc_second_perspective
+		}
+	}
+
+	third_perspective_description = {
+		random_valid = {
+			desc = had_sex_receiving_player_sub_vaginal_cum_outside_noncon_desc_third_perspective
+		}
+	}
+
+	participants = { sex_partner }
+
+	duration = {
+		years = memory_default_duration
+	}
+}
+
+had_sex_giving_player_dom_anal_noncon = {
+	categories = { negative relationships intimate }
+	icon = "intimate.dds"
+	description = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_male = yes}
+					scope:sex_partner = { is_female = yes}
+					scope:sex_partner = {is_close_or_extended_family_of = scope:owner}
+				}
+				desc = had_sex_giving_player_dom_anal_noncon_mf_relative_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_male = yes}
+					scope:sex_partner = { is_female = yes}
+				}
+				desc = had_sex_giving_player_dom_anal_noncon_mf_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_female = yes}
+					scope:sex_partner = { is_male = yes}
+					scope:sex_partner = {is_close_or_extended_family_of = scope:owner}
+				}
+				desc = had_sex_giving_player_dom_anal_noncon_fm_relative_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_female = yes}
+					scope:sex_partner = { is_male = yes}
+				}
+				desc = had_sex_giving_player_dom_anal_noncon_fm_desc
+			}
+			desc = had_sex_giving_player_dom_anal_noncon_generic_desc
+		}
+	}
+
+	second_perspective_description = {
+		random_valid = {
+			desc = had_sex_giving_player_dom_anal_noncon_desc_second_perspective
+		}
+	}
+
+	third_perspective_description = {
+		random_valid = {
+			desc = had_sex_giving_player_dom_anal_noncon_desc_third_perspective
+		}
+	}
+
+	participants = { sex_partner }
+
+	duration = {
+		years = memory_default_duration
+	}
+}
+
+had_sex_receiving_player_sub_anal_noncon = {
+	categories = { negative relationships intimate }
+	icon = "intimate.dds"
+	description = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_male = yes}
+					scope:sex_partner = { is_female = yes}
+					scope:sex_partner = {is_close_or_extended_family_of = scope:owner}
+				}
+				desc = had_sex_receiving_player_sub_anal_noncon_mf_relative_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_male = yes}
+					scope:sex_partner = { is_female = yes}
+				}
+				desc = had_sex_receiving_player_sub_anal_noncon_mf_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_female = yes}
+					scope:sex_partner = { is_male = yes}
+					scope:sex_partner = {is_close_or_extended_family_of = scope:owner}
+				}
+				desc = had_sex_receiving_player_sub_anal_noncon_fm_relative_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_female = yes}
+					scope:sex_partner = { is_male = yes}
+				}
+				desc = had_sex_receiving_player_sub_anal_noncon_fm_desc
+			}
+			desc = had_sex_receiving_player_sub_anal_noncon_generic_desc
+		}
+	}
+
+	second_perspective_description = {
+		random_valid = {
+			desc = had_sex_receiving_player_sub_anal_noncon_desc_second_perspective
+		}
+	}
+
+	third_perspective_description = {
+		random_valid = {
+			desc = had_sex_receiving_player_sub_anal_noncon_desc_third_perspective
+		}
+	}
+
+	participants = { sex_partner }
+
+	duration = {
+		years = memory_default_duration
+	}
+}
+
+had_sex_giving_player_dom_oral_noncon = {
+	categories = { negative relationships intimate }
+	icon = "intimate.dds"
+	description = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_male = yes}
+					scope:sex_partner = { is_female = yes}
+					scope:sex_partner = {is_close_or_extended_family_of = scope:owner}
+				}
+				desc = had_sex_giving_player_dom_oral_noncon_mf_relative_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_male = yes}
+					scope:sex_partner = { is_female = yes}
+				}
+				desc = had_sex_giving_player_dom_oral_noncon_mf_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_female = yes}
+					scope:sex_partner = { is_male = yes}
+					scope:sex_partner = {is_close_or_extended_family_of = scope:owner}
+				}
+				desc = had_sex_giving_player_dom_oral_noncon_fm_relative_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_female = yes}
+					scope:sex_partner = { is_male = yes}
+				}
+				desc = had_sex_giving_player_dom_oral_noncon_fm_desc
+			}
+			desc = had_sex_giving_player_dom_oral_noncon_generic_desc
+		}
+	}
+
+	second_perspective_description = {
+		random_valid = {
+			desc = had_sex_giving_player_dom_oral_noncon_desc_second_perspective
+		}
+	}
+
+	third_perspective_description = {
+		random_valid = {
+			desc = had_sex_giving_player_dom_oral_noncon_desc_third_perspective
+		}
+	}
+
+	participants = { sex_partner }
+
+	duration = {
+		years = memory_default_duration
+	}
+}
+
+had_sex_receiving_player_sub_oral_noncon = {
+	categories = { negative relationships intimate }
+	icon = "intimate.dds"
+	description = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_male = yes}
+					scope:sex_partner = { is_female = yes}
+					scope:sex_partner = {is_close_or_extended_family_of = scope:owner}
+				}
+				desc = had_sex_receiving_player_sub_oral_noncon_mf_relative_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_male = yes}
+					scope:sex_partner = { is_female = yes}
+				}
+				desc = had_sex_receiving_player_sub_oral_noncon_mf_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_female = yes}
+					scope:sex_partner = { is_male = yes}
+					scope:sex_partner = {is_close_or_extended_family_of = scope:owner}
+				}
+				desc = had_sex_receiving_player_sub_oral_noncon_fm_relative_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_female = yes}
+					scope:sex_partner = { is_male = yes}
+				}
+				desc = had_sex_receiving_player_sub_oral_noncon_fm_desc
+			}
+			desc = had_sex_receiving_player_sub_oral_noncon_generic_desc
+		}
+	}
+
+	second_perspective_description = {
+		random_valid = {
+			desc = had_sex_receiving_player_sub_oral_noncon_desc_second_perspective
+		}
+	}
+
+	third_perspective_description = {
+		random_valid = {
+			desc = had_sex_receiving_player_sub_oral_noncon_desc_third_perspective
+		}
+	}
+
+	participants = { sex_partner }
+
+	duration = {
+		years = memory_default_duration
+	}
+}
+
+had_sex_giving_player_dom_vaginal_cum_inside_dubcon = {
+	categories = { negative relationships intimate }
+	icon = "intimate.dds"
+	description = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_male = yes}
+					scope:sex_partner = { is_female = yes}
+					scope:sex_partner = {is_close_or_extended_family_of = scope:owner}
+				}
+				desc = had_sex_giving_player_dom_vaginal_cum_inside_dubcon_mf_relative_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_male = yes}
+					scope:sex_partner = { is_female = yes}
+				}
+				desc = had_sex_giving_player_dom_vaginal_cum_inside_dubcon_mf_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_female = yes}
+					scope:sex_partner = { is_male = yes}
+					scope:sex_partner = {is_close_or_extended_family_of = scope:owner}
+				}
+				desc = had_sex_giving_player_dom_vaginal_cum_inside_dubcon_fm_relative_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_female = yes}
+					scope:sex_partner = { is_male = yes}
+				}
+				desc = had_sex_giving_player_dom_vaginal_cum_inside_dubcon_fm_desc
+			}
+			desc = had_sex_giving_player_dom_vaginal_cum_inside_dubcon_generic_desc
+		}
+	}
+
+	second_perspective_description = {
+		random_valid = {
+			desc = had_sex_giving_player_dom_vaginal_cum_inside_dubcon_desc_second_perspective
+		}
+	}
+
+	third_perspective_description = {
+		random_valid = {
+			desc = had_sex_giving_player_dom_vaginal_cum_inside_dubcon_desc_third_perspective
+		}
+	}
+
+	participants = { sex_partner }
+
+	duration = {
+		years = memory_default_duration
+	}
+}
+
+had_sex_receiving_player_sub_vaginal_cum_inside_dubcon = {
+	categories = { negative relationships intimate }
+	icon = "intimate.dds"
+	description = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_male = yes}
+					scope:sex_partner = { is_female = yes}
+					scope:sex_partner = {is_close_or_extended_family_of = scope:owner}
+				}
+				desc = had_sex_receiving_player_sub_vaginal_cum_inside_dubcon_mf_relative_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_male = yes}
+					scope:sex_partner = { is_female = yes}
+				}
+				desc = had_sex_receiving_player_sub_vaginal_cum_inside_dubcon_mf_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_female = yes}
+					scope:sex_partner = { is_male = yes}
+					scope:sex_partner = {is_close_or_extended_family_of = scope:owner}
+				}
+				desc = had_sex_receiving_player_sub_vaginal_cum_inside_dubcon_fm_relative_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_female = yes}
+					scope:sex_partner = { is_male = yes}
+				}
+				desc = had_sex_receiving_player_sub_vaginal_cum_inside_dubcon_fm_desc
+			}
+			desc = had_sex_receiving_player_sub_vaginal_cum_inside_dubcon_generic_desc
+		}
+	}
+
+	second_perspective_description = {
+		random_valid = {
+			desc = had_sex_receiving_player_sub_vaginal_cum_inside_dubcon_desc_second_perspective
+		}
+	}
+
+	third_perspective_description = {
+		random_valid = {
+			desc = had_sex_receiving_player_sub_vaginal_cum_inside_dubcon_desc_third_perspective
+		}
+	}
+
+	participants = { sex_partner }
+
+	duration = {
+		years = memory_default_duration
+	}
+}
+
+had_sex_giving_player_dom_vaginal_cum_outside_dubcon = {
+	categories = { negative relationships intimate }
+	icon = "intimate.dds"
+	description = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_male = yes}
+					scope:sex_partner = { is_female = yes}
+					scope:sex_partner = {is_close_or_extended_family_of = scope:owner}
+				}
+				desc = had_sex_giving_player_dom_vaginal_cum_outside_dubcon_mf_relative_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_male = yes}
+					scope:sex_partner = { is_female = yes}
+				}
+				desc = had_sex_giving_player_dom_vaginal_cum_outside_dubcon_mf_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_female = yes}
+					scope:sex_partner = { is_male = yes}
+					scope:sex_partner = {is_close_or_extended_family_of = scope:owner}
+				}
+				desc = had_sex_giving_player_dom_vaginal_cum_outside_dubcon_fm_relative_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_female = yes}
+					scope:sex_partner = { is_male = yes}
+				}
+				desc = had_sex_giving_player_dom_vaginal_cum_outside_dubcon_fm_desc
+			}
+			desc = had_sex_giving_player_dom_vaginal_cum_outside_dubcon_generic_desc
+		}
+	}
+
+	second_perspective_description = {
+		random_valid = {
+			desc = had_sex_giving_player_dom_vaginal_cum_outside_dubcon_desc_second_perspective
+		}
+	}
+
+	third_perspective_description = {
+		random_valid = {
+			desc = had_sex_giving_player_dom_vaginal_cum_outside_dubcon_desc_third_perspective
+		}
+	}
+
+	participants = { sex_partner }
+
+	duration = {
+		years = memory_default_duration
+	}
+}
+
+had_sex_receiving_player_sub_vaginal_cum_outside_dubcon = {
+	categories = { negative relationships intimate }
+	icon = "intimate.dds"
+	description = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_male = yes}
+					scope:sex_partner = { is_female = yes}
+					scope:sex_partner = {is_close_or_extended_family_of = scope:owner}
+				}
+				desc = had_sex_receiving_player_sub_vaginal_cum_outside_dubcon_mf_relative_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_male = yes}
+					scope:sex_partner = { is_female = yes}
+				}
+				desc = had_sex_receiving_player_sub_vaginal_cum_outside_dubcon_mf_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_female = yes}
+					scope:sex_partner = { is_male = yes}
+					scope:sex_partner = {is_close_or_extended_family_of = scope:owner}
+				}
+				desc = had_sex_receiving_player_sub_vaginal_cum_outside_dubcon_fm_relative_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_female = yes}
+					scope:sex_partner = { is_male = yes}
+				}
+				desc = had_sex_receiving_player_sub_vaginal_cum_outside_dubcon_fm_desc
+			}
+			desc = had_sex_receiving_player_sub_vaginal_cum_outside_dubcon_generic_desc
+		}
+	}
+
+	second_perspective_description = {
+		random_valid = {
+			desc = had_sex_receiving_player_sub_vaginal_cum_outside_dubcon_desc_second_perspective
+		}
+	}
+
+	third_perspective_description = {
+		random_valid = {
+			desc = had_sex_receiving_player_sub_vaginal_cum_outside_dubcon_desc_third_perspective
+		}
+	}
+
+	participants = { sex_partner }
+
+	duration = {
+		years = memory_default_duration
+	}
+}
+
+had_sex_giving_player_dom_anal_dubcon = {
+	categories = { negative relationships intimate }
+	icon = "intimate.dds"
+	description = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_male = yes}
+					scope:sex_partner = { is_female = yes}
+					scope:sex_partner = {is_close_or_extended_family_of = scope:owner}
+				}
+				desc = had_sex_giving_player_dom_anal_dubcon_mf_relative_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_male = yes}
+					scope:sex_partner = { is_female = yes}
+				}
+				desc = had_sex_giving_player_dom_anal_dubcon_mf_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_female = yes}
+					scope:sex_partner = { is_male = yes}
+					scope:sex_partner = {is_close_or_extended_family_of = scope:owner}
+				}
+				desc = had_sex_giving_player_dom_anal_dubcon_fm_relative_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_female = yes}
+					scope:sex_partner = { is_male = yes}
+				}
+				desc = had_sex_giving_player_dom_anal_dubcon_fm_desc
+			}
+			desc = had_sex_giving_player_dom_anal_dubcon_generic_desc
+		}
+	}
+
+	second_perspective_description = {
+		random_valid = {
+			desc = had_sex_giving_player_dom_anal_dubcon_desc_second_perspective
+		}
+	}
+
+	third_perspective_description = {
+		random_valid = {
+			desc = had_sex_giving_player_dom_anal_dubcon_desc_third_perspective
+		}
+	}
+
+	participants = { sex_partner }
+
+	duration = {
+		years = memory_default_duration
+	}
+}
+
+had_sex_receiving_player_sub_anal_dubcon = {
+	categories = { negative relationships intimate }
+	icon = "intimate.dds"
+	description = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_male = yes}
+					scope:sex_partner = { is_female = yes}
+					scope:sex_partner = {is_close_or_extended_family_of = scope:owner}
+				}
+				desc = had_sex_receiving_player_sub_anal_dubcon_mf_relative_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_male = yes}
+					scope:sex_partner = { is_female = yes}
+				}
+				desc = had_sex_receiving_player_sub_anal_dubcon_mf_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_female = yes}
+					scope:sex_partner = { is_male = yes}
+					scope:sex_partner = {is_close_or_extended_family_of = scope:owner}
+				}
+				desc = had_sex_receiving_player_sub_anal_dubcon_fm_relative_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_female = yes}
+					scope:sex_partner = { is_male = yes}
+				}
+				desc = had_sex_receiving_player_sub_anal_dubcon_fm_desc
+			}
+			desc = had_sex_receiving_player_sub_anal_dubcon_generic_desc
+		}
+	}
+
+	second_perspective_description = {
+		random_valid = {
+			desc = had_sex_receiving_player_sub_anal_dubcon_desc_second_perspective
+		}
+	}
+
+	third_perspective_description = {
+		random_valid = {
+			desc = had_sex_receiving_player_sub_anal_dubcon_desc_third_perspective
+		}
+	}
+
+	participants = { sex_partner }
+
+	duration = {
+		years = memory_default_duration
+	}
+}
+
+had_sex_giving_player_dom_oral_dubcon = {
+	categories = { negative relationships intimate }
+	icon = "intimate.dds"
+	description = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_male = yes}
+					scope:sex_partner = { is_female = yes}
+					scope:sex_partner = {is_close_or_extended_family_of = scope:owner}
+				}
+				desc = had_sex_giving_player_dom_oral_dubcon_mf_relative_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_male = yes}
+					scope:sex_partner = { is_female = yes}
+				}
+				desc = had_sex_giving_player_dom_oral_dubcon_mf_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_female = yes}
+					scope:sex_partner = { is_male = yes}
+					scope:sex_partner = {is_close_or_extended_family_of = scope:owner}
+				}
+				desc = had_sex_giving_player_dom_oral_dubcon_fm_relative_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_female = yes}
+					scope:sex_partner = { is_male = yes}
+				}
+				desc = had_sex_giving_player_dom_oral_dubcon_fm_desc
+			}
+			desc = had_sex_giving_player_dom_oral_dubcon_generic_desc
+		}
+	}
+
+	second_perspective_description = {
+		random_valid = {
+			desc = had_sex_giving_player_dom_oral_dubcon_desc_second_perspective
+		}
+	}
+
+	third_perspective_description = {
+		random_valid = {
+			desc = had_sex_giving_player_dom_oral_dubcon_desc_third_perspective
+		}
+	}
+
+	participants = { sex_partner }
+
+	duration = {
+		years = memory_default_duration
+	}
+}
+
+had_sex_receiving_player_sub_oral_dubcon = {
+	categories = { negative relationships intimate }
+	icon = "intimate.dds"
+	description = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_male = yes}
+					scope:sex_partner = { is_female = yes}
+					scope:sex_partner = {is_close_or_extended_family_of = scope:owner}
+				}
+				desc = had_sex_receiving_player_sub_oral_dubcon_mf_relative_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_male = yes}
+					scope:sex_partner = { is_female = yes}
+				}
+				desc = had_sex_receiving_player_sub_oral_dubcon_mf_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_female = yes}
+					scope:sex_partner = { is_male = yes}
+					scope:sex_partner = {is_close_or_extended_family_of = scope:owner}
+				}
+				desc = had_sex_receiving_player_sub_oral_dubcon_fm_relative_desc
+			}
+			triggered_desc = {
+				trigger = {
+					scope:owner = {is_female = yes}
+					scope:sex_partner = { is_male = yes}
+				}
+				desc = had_sex_receiving_player_sub_oral_dubcon_fm_desc
+			}
+			desc = had_sex_receiving_player_sub_oral_dubcon_generic_desc
+		}
+	}
+
+	second_perspective_description = {
+		random_valid = {
+			desc = had_sex_receiving_player_sub_oral_dubcon_desc_second_perspective
+		}
+	}
+
+	third_perspective_description = {
+		random_valid = {
+			desc = had_sex_receiving_player_sub_oral_dubcon_desc_third_perspective
+		}
+	}
+
+	participants = { sex_partner }
+
+	duration = {
+		years = memory_default_duration
+	}
+}
+
+

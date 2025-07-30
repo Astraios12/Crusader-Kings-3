@@ -1,0 +1,33 @@
+﻿namespace = cse_abdicate_event
+
+# Children stay at heir's court
+cse_abdicate_event.0001 = {
+	hidden = yes
+	
+	immediate = {
+		scope:predecessor = {
+			every_child = {
+				limit = {
+					NOT = { this = scope:player_heir }
+					is_courtier_of = scope:predecessor
+				}
+				scope:player_heir = {
+					add_courtier = PREV
+				}
+				add_character_flag = {
+					flag = carn_blocked_from_leaving
+					years = 3
+				}
+			}
+		}
+	}
+}
+
+# Abdicate as house and dynasty head
+cse_abdicate_event.0002 = {
+	hidden = yes
+
+	immediate = {
+		scope:predecessor = { set_house = scope:predecessor_house }
+	}
+}

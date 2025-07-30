@@ -1,0 +1,45 @@
+﻿l_polish:
+ 
+ sm_setup_slave_category_interaction: "Create Slave Categories"
+ 
+ slave_prostitute: "[slaves|E]-[prostitute|E]"
+ relation_slave_prostitute: "$game_concept_cse_slave_prostitute$"
+ relation_slave_prostitute_possessive: "$game_concept_cse_slave_prostitute_possessive$"
+ 
+ labour_slave: "[cse_labour_slave|E]"
+ relation_labour_slave: "$game_concept_cse_labour_slave$"
+ relation_labour_slave_possessive: "$game_concept_cse_labour_slave_possessive$"
+ 
+ military_slave: "[cse_military_slave|E]"
+ relation_military_slave: "$game_concept_cse_military_slave$"
+ relation_military_slave_possessive: "$game_concept_cse_military_slave_possessive$"
+ 
+ slave_recruit: "[cse_slave_recruit|E]"
+ relation_slave_recruit: "$game_concept_cse_slave_recruit$"
+ relation_slave_recruit_possessive: "$game_concept_cse_slave_recruit_possessive$" 
+ 
+ slave_soldier: "[cse_slave_soldier|E]"
+ relation_slave_soldier: "$game_concept_cse_slave_soldier$"
+ relation_slave_soldier_possessive: "$game_concept_cse_slave_soldier_possessive$" 
+ 
+ slave_commander: "[cse_slave_commander|E]"
+ relation_slave_commander: "$game_concept_cse_slave_commander$"
+ relation_slave_commander_possessive: "$game_concept_cse_slave_commander_possessive$" 
+ 
+ sex_slave: "[cse_sex_slave|E]"
+ relation_sex_slave: "$game_concept_cse_sex_slave$"
+ relation_sex_slave_possessive: "$game_concept_cse_sex_slave_possessive$"
+ 
+ court_slave: "[cse_court_slave|E]"
+ relation_court_slave: "$game_concept_cse_court_slave$"
+ relation_court_slave_possessive: "$game_concept_cse_court_slave_possessive$"
+ 
+ #################### COURT ############################################################
+ 
+ courtesan_owner: "[cse_courtesan_owner|E]"
+ relation_courtesan_owner: "$game_concept_cse_courtesan_owner$"
+ relation_courtesan_owner_possessive: "$game_concept_cse_courtesan_owner_possessive$"
+ 
+ courtesan: "[cse_courtesan|E]"
+ relation_courtesan: "$game_concept_cse_courtesan$"
+ relation_courtesan_possessive: "$game_concept_cse_courtesan_possessive$"

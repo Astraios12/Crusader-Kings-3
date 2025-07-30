@@ -1,0 +1,151 @@
+﻿# Please check for these triggers in the scope of the character that is going to interact with the PARTNER
+# There will be no drama for:
+
+cse_no_drama_trigger = {
+	OR = {
+		
+		# Sex with your consorts unless you have no consorts
+		any_consort = {
+			count >= 1
+			this = $PARTNER$
+		}
+		
+		# Sex with your courtesan or royal mistress ( even when they are lovers / soulmates ) unless adultery is illegal
+		cse_no_drama_trigger_courtesan = { PARTNER = $PARTNER$ }
+		cse_no_drama_trigger_royal_mistress = { PARTNER = $PARTNER$ }
+		
+		# Sex with slaves and prostitutes unless you are emotionally involved
+		AND = {
+			NOT = { has_relation_lover = $PARTNER$ }
+			NOT = { has_relation_soulmate = $PARTNER$ }
+			OR = {
+				cse_no_drama_trigger_slave_owner = { PARTNER = $PARTNER$ }
+				cse_no_drama_trigger_slave = { PARTNER = $PARTNER$ }
+				cse_no_drama_trigger_slave_prostitute = { PARTNER = $PARTNER$ }
+				cse_no_drama_trigger_prostitute = { PARTNER = $PARTNER$ }
+			}
+		}
+	}
+}
+
+
+
+# Sex with your owner
+cse_no_drama_trigger_slave_owner = {
+	has_relation_slave_owner = $PARTNER$
+}
+
+# Sex with slaves when Slavery is accepted (exclude slave prostitutes since they have their own trigger)
+cse_no_drama_trigger_slave = {
+	cse_is_working_as_slave_prostitute_trigger = no
+	OR = {
+		$PARTNER$ = { has_trait = slave	}
+		has_trait = slave
+	}
+	OR = {
+		faith = {
+			has_doctrine = carn_doctrine_same_slavery_accepted
+			faith_hostility_level = {
+				target = $PARTNER$.faith
+				value < faith_hostile_level
+			}
+		}
+		faith = {
+			has_doctrine = carn_doctrine_other_slavery_accepted
+			faith_hostility_level = {
+				target = $PARTNER$.faith
+				value >= faith_hostile_level
+			}
+		}
+	}
+}
+
+# Sex with Slave Prostitutes when Slave Prostitution is accepted
+cse_no_drama_trigger_slave_prostitute = {
+	OR = {
+		$PARTNER$ = { cse_is_working_as_slave_prostitute_trigger = yes }
+		cse_is_working_as_slave_prostitute_trigger = yes
+	}
+	OR = {
+		faith = {
+			has_doctrine = carn_doctrine_same_slavery_accepted
+			faith_hostility_level = {
+				target = $PARTNER$.faith
+				value < faith_hostile_level
+			}
+		}
+		faith = {
+			has_doctrine = carn_doctrine_other_slavery_accepted
+			faith_hostility_level = {
+				target = $PARTNER$.faith
+				value >= faith_hostile_level
+			}
+		}
+	}
+	cse_accepts_prostitution_trigger = yes
+}
+
+# Sex as or with Prostitutes when Prostitution is accepted unless incestuous
+cse_no_drama_trigger_prostitute = {
+	OR = {
+		$PARTNER$ = { carn_is_working_as_prostitute_trigger = yes }
+		carn_is_working_as_prostitute_trigger = yes
+	}
+	OR = {
+		faith = { has_doctrine_parameter = carn_prostitution_accepted }
+		#culture = { has_cultural_parameter = carn_prostitution_accepted }
+	}
+	NOT = { relation_with_character_is_incestuous_in_my_faith_trigger = { CHARACTER = $PARTNER$	} }
+}
+
+# Sex as or with Courtesans when Adultery is not illegal unless incestuous (exclude royal mistresses since they have their own trigger)
+cse_no_drama_trigger_courtesan = {
+	$PARTNER$ = { NOT = { has_court_position = cse_royal_mistress_court_position } }
+	NOT = { has_court_position = cse_royal_mistress_court_position }
+	OR = {
+		has_relation_courtesan = $PARTNER$
+		has_relation_courtesan_owner = $PARTNER$
+	}
+	trigger_if = {
+		limit = { is_female = yes }
+		faith = { NOT = { has_doctrine_parameter = adultery_female_crime } }
+	}
+	trigger_else = {
+		faith = { NOT = { has_doctrine_parameter = adultery_male_crime } }
+	}
+	NOT = { relation_with_character_is_incestuous_in_my_faith_trigger = { CHARACTER = $PARTNER$	} }
+#	AND = {
+#		faith = { NOT = { has_doctrine_parameter = carn_prostitution_illegal } }
+#		#culture = { NOT = { has_cultural_parameter = carn_prostitution_illegal } }
+#	}	
+}
+
+# Sex as or with your royal mistress when Adultery is not illegal unless incestuous
+cse_no_drama_trigger_royal_mistress = {
+	OR = {
+		AND = {
+			$PARTNER$ = { has_court_position = cse_royal_mistress_court_position }
+			$PARTNER$ = {
+				is_court_position_employer = {
+					court_position = cse_royal_mistress_court_position
+					who = prev
+				}
+			}
+		}
+		AND = {
+			has_court_position = cse_royal_mistress_court_position
+			is_court_position_employer = {
+				court_position = cse_royal_mistress_court_position
+				who = $PARTNER$
+			}
+		}
+	}
+	trigger_if = {
+		limit = { is_female = yes }
+		faith = { NOT = { has_doctrine_parameter = adultery_female_crime } }
+	}
+	trigger_else = {
+		faith = { NOT = { has_doctrine_parameter = adultery_male_crime } }
+	}
+	NOT = { relation_with_character_is_incestuous_in_my_faith_trigger = { CHARACTER = $PARTNER$	} }
+}
