@@ -1,0 +1,556 @@
+﻿advcm_skills_sgui = {
+    scope = character
+    
+    effect = {
+        
+        advcm_set_skill_values_effect = yes
+        
+    }
+}
+
+advcm_remove_1_dip = {
+    scope = character
+    
+    is_valid = {
+        var:advcm_diplomacy_value > 0
+    }
+    
+    effect = {
+        change_variable = {
+            name = advcm_diplomacy_value
+            subtract = 1
+        }
+    }
+
+}
+
+advcm_add_1_dip = {
+    scope = character
+    
+    is_valid = {
+        var:advcm_diplomacy_value < 100
+    }
+    
+    effect = {
+        change_variable = {
+            name = advcm_diplomacy_value
+            add = 1
+        }
+    }
+
+}
+
+advcm_remove_1_mar = {
+    scope = character
+    
+    is_valid = {
+        var:advcm_martial_value > 0
+    }
+    
+    effect = {
+        change_variable = {
+            name = advcm_martial_value
+            subtract = 1
+        }
+    }
+
+}
+
+advcm_add_1_mar = {
+    scope = character
+    
+    is_valid = {
+        var:advcm_martial_value < 100
+    }
+    
+    effect = {
+        change_variable = {
+            name = advcm_martial_value
+            add = 1
+        }
+    }
+
+}
+
+advcm_remove_1_ste = {
+    scope = character
+    
+    is_valid = {
+        var:advcm_stewardship_value > 0
+    }
+    
+    effect = {
+        change_variable = {
+            name = advcm_stewardship_value
+            subtract = 1
+        }
+    }
+
+}
+
+advcm_add_1_ste = {
+    scope = character
+    
+    is_valid = {
+        var:advcm_stewardship_value < 100
+    }
+    
+    effect = {
+        change_variable = {
+            name = advcm_stewardship_value
+            add = 1
+        }
+    }
+
+}
+
+advcm_remove_1_int = {
+    scope = character
+    
+    is_valid = {
+        var:advcm_intrigue_value > 0
+    }
+    
+    effect = {
+        change_variable = {
+            name = advcm_intrigue_value
+            subtract = 1
+        }
+    }
+
+}
+
+advcm_add_1_int = {
+    scope = character
+    
+    is_valid = {
+        var:advcm_intrigue_value < 100
+    }
+    
+    effect = {
+        change_variable = {
+            name = advcm_intrigue_value
+            add = 1
+        }
+    }
+
+}
+
+advcm_remove_1_ler = {
+    scope = character
+    
+    is_valid = {
+        var:advcm_learning_value > 0
+    }
+    
+    effect = {
+        change_variable = {
+            name = advcm_learning_value
+            subtract = 1
+        }
+    }
+
+}
+
+advcm_add_1_ler = {
+    scope = character
+    
+    is_valid = {
+        var:advcm_learning_value < 100
+    }
+    
+    effect = {
+        change_variable = {
+            name = advcm_learning_value
+            add = 1
+        }
+    }
+
+}
+
+advcm_remove_1_pro = {
+    scope = character
+    
+    is_valid = {
+        var:advcm_prowess_value > 0
+    }
+    
+    effect = {
+        change_variable = {
+            name = advcm_prowess_value
+            subtract = 1
+        }
+    }
+
+}
+
+advcm_add_1_pro = {
+    scope = character
+    
+    is_valid = {
+        var:advcm_prowess_value < 100
+    }
+    
+    effect = {
+        change_variable = {
+            name = advcm_prowess_value
+            add = 1
+        }
+    }
+
+}
+
+advcm_add_diplomacy = {
+	scope = character
+	
+	effect = {
+		every_living_character = {
+			limit = { has_character_flag = marked_for_edit }
+
+			hidden_effect = {
+				add_diplomacy_skill = root.var:advcm_diplomacy_value
+			}
+		}
+	}
+}
+
+advcm_remove_diplomacy = {
+	scope = character
+	
+	effect = {
+		every_living_character = {
+			limit = { has_character_flag = marked_for_edit }
+
+			hidden_effect = {
+				add_diplomacy_skill = {
+					value = root.var:advcm_diplomacy_value
+					multiply = -1
+				}
+			}
+		}
+	}
+}
+
+advcm_add_martial = {
+	scope = character
+	
+	effect = {
+		every_living_character = {
+			limit = { has_character_flag = marked_for_edit }
+
+			hidden_effect = {
+				add_martial_skill = root.var:advcm_martial_value
+			}
+		}
+	}
+}
+
+advcm_remove_martial = {
+	scope = character
+	
+	effect = {
+		every_living_character = {
+			limit = { has_character_flag = marked_for_edit }
+
+			hidden_effect = {
+				add_martial_skill = {
+					value = root.var:advcm_martial_value
+					multiply = -1
+				}
+			}
+		}
+	}
+}
+
+advcm_add_stewardship = {
+	scope = character
+	
+	effect = {
+		every_living_character = {
+			limit = { has_character_flag = marked_for_edit }
+
+			hidden_effect = {
+				add_stewardship_skill = root.var:advcm_stewardship_value
+			}
+		}
+	}
+}
+
+advcm_remove_stewardship = {
+	scope = character
+	
+	effect = {
+		every_living_character = {
+			limit = { has_character_flag = marked_for_edit }
+
+			hidden_effect = {
+				add_stewardship_skill = {
+					value = root.var:advcm_stewardship_value
+					multiply = -1
+				}
+			}
+		}
+	}
+}
+
+advcm_add_intrigue = {
+	scope = character
+	
+	effect = {
+		every_living_character = {
+			limit = { has_character_flag = marked_for_edit }
+
+			hidden_effect = {
+				add_intrigue_skill = root.var:advcm_intrigue_value
+			}
+		}
+	}
+}
+
+advcm_remove_intrigue = {
+	scope = character
+	
+	effect = {
+		every_living_character = {
+			limit = { has_character_flag = marked_for_edit }
+
+			hidden_effect = {
+				add_intrigue_skill = {
+					value = root.var:advcm_intrigue_value
+					multiply = -1
+				}
+			}
+		}
+	}
+}
+
+advcm_add_learning = {
+	scope = character
+	
+	effect = {
+		every_living_character = {
+			limit = { has_character_flag = marked_for_edit }
+
+			hidden_effect = {
+				add_learning_skill = root.var:advcm_learning_value
+			}
+		}
+	}
+}
+
+advcm_remove_learning = {
+	scope = character
+	
+	effect = {
+		every_living_character = {
+			limit = { has_character_flag = marked_for_edit }
+
+			hidden_effect = {
+				add_learning_skill = {
+					value = root.var:advcm_learning_value
+					multiply = -1
+				}
+			}
+		}
+	}
+}
+
+advcm_add_prowess = {
+	scope = character
+	
+	effect = {
+		every_living_character = {
+			limit = { has_character_flag = marked_for_edit }
+
+			hidden_effect = {
+				add_prowess_skill = root.var:advcm_prowess_value
+			}
+		}
+	}
+}
+
+advcm_remove_prowess = {
+	scope = character
+	
+	effect = {
+		every_living_character = {
+			limit = { has_character_flag = marked_for_edit }
+
+			hidden_effect = {
+				add_prowess_skill = {
+					value = root.var:advcm_prowess_value
+					multiply = -1
+				}
+			}
+		}
+	}
+}
+
+advcm_add_diplomacy_pp = {
+	scope = character
+	
+	effect = {
+		every_living_character = {
+			limit = { has_character_flag = marked_for_edit }
+
+			hidden_effect = {
+				add_diplomacy_lifestyle_perk_points = 1
+			}
+		}
+	}
+}
+
+advcm_remove_diplomacy_pp = {
+	scope = character
+	
+	effect = {
+		every_living_character = {
+			limit = { has_character_flag = marked_for_edit }
+
+			hidden_effect = {
+				add_diplomacy_lifestyle_perk_points = -1
+			}
+		}
+	}
+}
+
+advcm_add_martial_pp = {
+	scope = character
+	
+	effect = {
+		every_living_character = {
+			limit = { has_character_flag = marked_for_edit }
+
+			hidden_effect = {
+				add_martial_lifestyle_perk_points = 1
+			}
+		}
+	}
+}
+
+advcm_remove_martial_pp = {
+	scope = character
+	
+	effect = {
+		every_living_character = {
+			limit = { has_character_flag = marked_for_edit }
+
+			hidden_effect = {
+				add_martial_lifestyle_perk_points = -1
+			}
+		}
+	}
+}
+
+advcm_add_stewardship_pp = {
+	scope = character
+	
+	effect = {
+		every_living_character = {
+			limit = { has_character_flag = marked_for_edit }
+
+			hidden_effect = {
+				add_stewardship_lifestyle_perk_points = 1
+			}
+		}
+	}
+}
+
+advcm_remove_stewardship_pp = {
+	scope = character
+	
+	effect = {
+		every_living_character = {
+			limit = { has_character_flag = marked_for_edit }
+
+			hidden_effect = {
+				add_stewardship_lifestyle_perk_points = -1
+			}
+		}
+	}
+}
+
+advcm_add_intrigue_pp = {
+	scope = character
+	
+	effect = {
+		every_living_character = {
+			limit = { has_character_flag = marked_for_edit }
+
+			hidden_effect = {
+				add_intrigue_lifestyle_perk_points = 1
+			}
+		}
+	}
+}
+
+advcm_remove_intrigue_pp = {
+	scope = character
+	
+	effect = {
+		every_living_character = {
+			limit = { has_character_flag = marked_for_edit }
+
+			hidden_effect = {
+				add_intrigue_lifestyle_perk_points = -1
+			}
+		}
+	}
+}
+
+advcm_add_learning_pp = {
+	scope = character
+	
+	effect = {
+		every_living_character = {
+			limit = { has_character_flag = marked_for_edit }
+
+			hidden_effect = {
+				add_learning_lifestyle_perk_points = 1
+			}
+		}
+	}
+}
+
+advcm_remove_learning_pp = {
+	scope = character
+	
+	effect = {
+		every_living_character = {
+			limit = { has_character_flag = marked_for_edit }
+
+			hidden_effect = {
+				add_learning_lifestyle_perk_points = -1
+			}
+		}
+	}
+}
+
+advcm_add_wanderer_pp = {
+	scope = character
+	
+	effect = {
+		every_living_character = {
+			limit = { has_character_flag = marked_for_edit }
+
+			hidden_effect = {
+				add_wanderer_lifestyle_perk_points = 1
+			}
+		}
+	}
+}
+
+advcm_remove_wanderer_pp = {
+	scope = character
+	
+	effect = {
+		every_living_character = {
+			limit = { has_character_flag = marked_for_edit }
+
+			hidden_effect = {
+				add_wanderer_lifestyle_perk_points = -1
+			}
+		}
+	}
+}
+

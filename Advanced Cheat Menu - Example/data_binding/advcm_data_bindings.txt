@@ -1,0 +1,95 @@
+﻿macro = {
+	description = "Check for Legitimacy Level"
+	definition = "AdvcmCheckLegitimacy"
+	replace_with = "EqualTo_int32(Add_int32(Character.GetLegitimacyLevel.GetIndex, '(int32)1'), LegitimacyLevel.GetIndex)"
+}
+
+macro = {
+	description = "Check for if Legitimacy Level is 5"
+	definition = "AdvcmCheckLegitimacyIf5"
+	replace_with = "And(GreaterThanOrEqualTo_int32(LegitimacyLevel.GetIndex, '(int32)5'),GreaterThanOrEqualTo_CFixedPoint(Character.GetLegitimacy, LegitimacyLevel.GetThreshold(Character.Self)))"
+}
+
+macro = {
+	description = "Advcm Other Traits Category Check"
+	definition = "AdvcmOtherTraitCatCheck"
+	replace_with = "Or(EqualTo_string(Trait.GetTraitCategoryLabel, Localize('TRAIT_CATEGORY_COURT_TYPE')),Or(EqualTo_string(Trait.GetTraitCategoryLabel, Localize('TRAIT_CATEGORY_CHILDHOOD')),EqualTo_string(Trait.GetTraitCategoryLabel, Localize('TRAIT_CATEGORY_BASE'))))"
+}
+
+macro = {
+	description = "Advcm Innovation Concatenate Setup"
+	definition = "InnovationConcatenate"
+	replace_with = "Concatenate('innovation', Scope.GetFlagName)"
+}
+
+macro = {
+	description = "Advcm FP3 Check"
+	definition = "CheckFP3"
+	replace_with = "GetScriptedGui('advcm_fp3_check').IsValid(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('inno_flag', MakeScopeFlag(Scope.GetFlagName)).End)"
+}
+
+macro = {
+	description = "Advcm Physical Traits Category Check"
+	definition = "AdvcmPhysicalTraitCatCheck"
+	replace_with = "EqualTo_string(Trait.GetTraitCategoryLabel, Localize('TRAIT_CATEGORY_PHYSICAL'))"
+}
+
+macro = {
+	description = "Advcm Education Traits Category Check"
+	definition = "AdvcmEducationTraitCatCheck"
+	replace_with = "EqualTo_string(Trait.GetTraitCategoryLabel, Localize('TRAIT_CATEGORY_EDUCATION'))"
+}
+
+macro = {
+	description = "Advcm Commander Category Check"
+	definition = "AdvcmCommanderTraitCatCheck"
+	replace_with = "EqualTo_string(Trait.GetTraitCategoryLabel, Localize('TRAIT_CATEGORY_COMMANDER'))"
+}
+
+macro = {
+	description = "Advcm Lifestyle Category Check"
+	definition = "AdvcmLifestyleTraitCatCheck"
+	replace_with = "EqualTo_string(Trait.GetTraitCategoryLabel, Localize('TRAIT_CATEGORY_LIFESTYLE'))"
+}
+
+macro = {
+	description = "Advcm Personality Category Check"
+	definition = "AdvcmPersonalityTraitCatCheck"
+	replace_with = "EqualTo_string(Trait.GetTraitCategoryLabel, Localize('TRAIT_CATEGORY_PERSONALITY'))"
+}
+
+macro = {
+	description = "Advcm Health Category Check"
+	definition = "AdvcmHealthTraitCatCheck"
+	replace_with = "EqualTo_string(Trait.GetTraitCategoryLabel, Localize('TRAIT_CATEGORY_HEALTH'))"
+}
+
+macro = {
+	description = "Advcm Fame Category Check"
+	definition = "AdvcmFameTraitCatCheck"
+	replace_with = "EqualTo_string(Trait.GetTraitCategoryLabel, Localize('TRAIT_CATEGORY_FAME'))"
+}
+
+macro = {
+	description = "Language Pillar Check"
+	definition = "AdvcmLanguagePillar"
+	replace_with = "And(GetVariableSystem.HasValue('advcm_culture_pillar_type', Localize('pillar_type_language')), EqualTo_string(CulturePillar.GetTypeName, Localize('pillar_type_language')))"
+}
+
+macro = {
+	description = "Heritage Pillar Check"
+	definition = "AdvcmHeritagePillar"
+	replace_with = "And(GetVariableSystem.HasValue('advcm_culture_pillar_type', Localize('pillar_type_heritage')), EqualTo_string(CulturePillar.GetTypeName, Localize('pillar_type_heritage')))"
+}
+
+macro = {
+	description = "Ethos Pillar Check"
+	definition = "AdvcmEthosPillar"
+	replace_with = "And(GetVariableSystem.HasValue('advcm_culture_pillar_type', Localize('pillar_type_ethos')), EqualTo_string(CulturePillar.GetTypeName, Localize('pillar_type_ethos')))"
+}
+
+macro = {
+	description = "Martial Pillar Check"
+	definition = "AdvcmMartialPillar"
+	replace_with = "And(GetVariableSystem.HasValue('advcm_culture_pillar_type', Localize('pillar_type_martial_custom')), EqualTo_string(CulturePillar.GetTypeName, Localize('pillar_type_martial_custom')))"
+}

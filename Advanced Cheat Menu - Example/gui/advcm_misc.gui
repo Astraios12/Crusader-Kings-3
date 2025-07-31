@@ -1,0 +1,586 @@
+window = {
+	name = "advcm_title_char_select_list"
+	parentanchor = top|right
+	position = { -600 100 }
+	size = { 150 100 }
+	layer = windows_layer
+	filter_mouse = all
+	allow_outside = yes
+	alwaystransparent = no
+	
+	using = Window_Background
+	using = Window_Decoration
+	movable = yes
+	visible = "[GetVariableSystem.Exists('advcm_title_char_select_list_visible')]"
+	
+	
+	vbox = {
+		using = Window_Margins
+		restrictparent_min = yes
+		
+		header_pattern = {
+			layoutpolicy_horizontal = expanding
+
+			blockoverride "header_text"
+			{
+				text = advcm_select_character_alternate
+			}
+
+			blockoverride "button_close"
+			{
+				onclick = "[GetVariableSystem.Toggle('advcm_title_char_select_list_visible')]"
+			}
+		}
+		
+
+		
+		widget = {
+			size = { 570 650 }
+            vbox = {
+				
+				scrollbox = {
+					name = "title_char_select_list"
+					layoutpolicy_horizontal = expanding
+					layoutpolicy_vertical = expanding
+
+					blockoverride "scrollbox_content" {
+					
+						vbox = {
+							datamodel = "[GetGlobalList('marked_characters')]"
+							layoutpolicy_horizontal = expanding
+
+							spacing = 10
+
+							item = {
+								widget = {
+									layoutpolicy_horizontal = expanding
+									datacontext = [Scope.GetCharacter]
+									size = { 0 100 }
+									visible = "[Character.IsAlive]"
+
+									using = Background_Guest
+
+
+
+									vbox = {
+										layoutpolicy_horizontal = expanding
+										spacing = 7
+										button_standard_hover = {
+											layoutpolicy_horizontal = expanding
+											layoutpolicy_vertical = expanding
+											onclick = "[GetScriptedGui('advcm_title_select_char').Execute(GuiScope.SetRoot(Character.MakeScope).End)]"
+											onclick = "[GetVariableSystem.Toggle('advcm_title_char_select_list_visible')]"
+											onclick = "[PdxGuiTriggerAllAnimations('advcm_title_list_refresh')]"
+											hbox = {
+												layoutpolicy_horizontal = expanding
+												layoutpolicy_vertical = expanding
+												margin_right = 5
+												spacing = 10
+
+												portrait_head_small = {
+												}
+
+
+												vbox = {
+													layoutpolicy_vertical = expanding
+													layoutpolicy_horizontal = expanding
+													spacing = 10
+													margin_top = 15
+
+													hbox = {
+														layoutpolicy_horizontal = expanding
+
+														hbox = {
+															layoutpolicy_horizontal = expanding
+															layoutpolicy_vertical = expanding
+
+
+															vbox = {
+																layoutpolicy_horizontal = expanding
+																layoutpolicy_vertical = expanding
+																
+																
+																	
+																text_single = {
+																	layoutpolicy_horizontal = expanding
+																	text = "[Character.GetUINameNotMeNoTooltip]"
+																	using = Font_Size_Medium
+																	autoresize = no
+																}
+							
+
+																text_single = {
+																	layoutpolicy_horizontal = expanding
+																	text = "[Character.GetRelationToString( GetPlayer )]"
+																	default_format = "#low"
+																	autoresize = no
+																	align = nobaseline
+																}
+
+																expand = {}
+															}
+														}
+
+													}
+
+
+													expand = {}
+												}
+
+
+											}
+										}
+
+										divider = {
+											layoutpolicy_horizontal = expanding
+										}
+										
+									}
+								}
+							}
+						}
+					}
+                }
+            }
+		}
+	}
+}
+
+window = {
+	name = "advcm_artifact_char_select_list"
+	parentanchor = top|right
+	position = { -600 100 }
+	size = { 150 100 }
+	layer = windows_layer
+	filter_mouse = all
+	allow_outside = yes
+	alwaystransparent = no
+	
+	using = Window_Background
+	using = Window_Decoration
+	movable = yes
+	visible = "[GetVariableSystem.Exists('advcm_artifact_char_select_list_visible')]"
+	
+	
+	vbox = {
+		using = Window_Margins
+		restrictparent_min = yes
+		
+		header_pattern = {
+			layoutpolicy_horizontal = expanding
+
+			blockoverride "header_text"
+			{
+				text = advcm_select_character_alternate
+			}
+
+			blockoverride "button_close"
+			{
+				onclick = "[GetVariableSystem.Toggle('advcm_artifact_char_select_list_visible')]"
+			}
+		}
+		
+
+		
+		widget = {
+			size = { 570 650 }
+            vbox = {
+				
+				scrollbox = {
+					name = "title_char_select_list"
+					layoutpolicy_horizontal = expanding
+					layoutpolicy_vertical = expanding
+
+					blockoverride "scrollbox_content" {
+					
+						vbox = {
+							datamodel = "[GetGlobalList('marked_characters')]"
+							layoutpolicy_horizontal = expanding
+
+							spacing = 10
+
+							item = {
+								widget = {
+									layoutpolicy_horizontal = expanding
+									datacontext = [Scope.GetCharacter]
+									size = { 0 100 }
+									visible = "[Character.IsAlive]"
+
+									using = Background_Guest
+
+
+
+									vbox = {
+										layoutpolicy_horizontal = expanding
+										spacing = 7
+										button_standard_hover = {
+											layoutpolicy_horizontal = expanding
+											layoutpolicy_vertical = expanding
+											onclick = "[GetScriptedGui('advcm_artifact_select_char').Execute(GuiScope.SetRoot(Character.MakeScope).End)]"
+											onclick = "[GetVariableSystem.Clear('advcm_artifact_char_select_list_visible')]"
+											
+											hbox = {
+												layoutpolicy_horizontal = expanding
+												layoutpolicy_vertical = expanding
+												margin_right = 5
+												spacing = 10
+
+												portrait_head_small = {
+												}
+
+
+												vbox = {
+													layoutpolicy_vertical = expanding
+													layoutpolicy_horizontal = expanding
+													spacing = 10
+													margin_top = 15
+
+													hbox = {
+														layoutpolicy_horizontal = expanding
+
+														hbox = {
+															layoutpolicy_horizontal = expanding
+															layoutpolicy_vertical = expanding
+
+
+															vbox = {
+																layoutpolicy_horizontal = expanding
+																layoutpolicy_vertical = expanding
+																
+																
+																	
+																text_single = {
+																	layoutpolicy_horizontal = expanding
+																	text = "[Character.GetUINameNotMeNoTooltip]"
+																	using = Font_Size_Medium
+																	autoresize = no
+																}
+							
+
+																text_single = {
+																	layoutpolicy_horizontal = expanding
+																	text = "[Character.GetRelationToString( GetPlayer )]"
+																	default_format = "#low"
+																	autoresize = no
+																	align = nobaseline
+																}
+
+																expand = {}
+															}
+														}
+
+													}
+
+
+													expand = {}
+												}
+
+
+											}
+										}
+
+										divider = {
+											layoutpolicy_horizontal = expanding
+										}
+										
+									}
+								}
+							}
+						}
+					}
+                }
+            }
+		}
+	}
+}
+
+window = {
+	name = "advcm_character_spawner_char_select_list"
+	parentanchor = top|right
+	position = { -600 100 }
+	size = { 150 100 }
+	layer = windows_layer
+	filter_mouse = all
+	allow_outside = yes
+	alwaystransparent = no
+	
+	using = Window_Background
+	using = Window_Decoration
+	movable = yes
+	visible = "[GetVariableSystem.Exists('advcm_character_spawner_char_select_list_visible')]"
+	
+	
+	vbox = {
+		using = Window_Margins
+		restrictparent_min = yes
+		
+		header_pattern = {
+			layoutpolicy_horizontal = expanding
+
+			blockoverride "header_text"
+			{
+				text = advcm_select_character_alternate
+			}
+
+			blockoverride "button_close"
+			{
+				onclick = "[GetVariableSystem.Toggle('advcm_character_spawner_char_select_list_visible')]"
+			}
+		}
+		
+
+		
+		widget = {
+			size = { 570 650 }
+            vbox = {
+				
+				scrollbox = {
+					name = "title_char_select_list"
+					layoutpolicy_horizontal = expanding
+					layoutpolicy_vertical = expanding
+
+					blockoverride "scrollbox_content" {
+					
+						vbox = {
+							datamodel = "[GetGlobalList('marked_characters')]"
+							layoutpolicy_horizontal = expanding
+
+							spacing = 10
+
+							item = {
+								widget = {
+									layoutpolicy_horizontal = expanding
+									datacontext = [Scope.GetCharacter]
+									size = { 0 100 }
+									visible = "[Character.IsAlive]"
+
+									using = Background_Guest
+
+
+
+									vbox = {
+										layoutpolicy_horizontal = expanding
+										spacing = 7
+										button_standard_hover = {
+											layoutpolicy_horizontal = expanding
+											layoutpolicy_vertical = expanding
+											onclick = "[GetScriptedGui('advcm_character_spawner_select_char').Execute(GuiScope.SetRoot(Character.MakeScope).End)]"
+											onclick = "[GetVariableSystem.Clear('advcm_character_spawner_char_select_list_visible')]"
+											hbox = {
+												layoutpolicy_horizontal = expanding
+												layoutpolicy_vertical = expanding
+												margin_right = 5
+												spacing = 10
+
+												portrait_head_small = {
+												}
+
+
+												vbox = {
+													layoutpolicy_vertical = expanding
+													layoutpolicy_horizontal = expanding
+													spacing = 10
+													margin_top = 15
+
+													hbox = {
+														layoutpolicy_horizontal = expanding
+
+														hbox = {
+															layoutpolicy_horizontal = expanding
+															layoutpolicy_vertical = expanding
+
+
+															vbox = {
+																layoutpolicy_horizontal = expanding
+																layoutpolicy_vertical = expanding
+																
+																
+																	
+																text_single = {
+																	layoutpolicy_horizontal = expanding
+																	text = "[Character.GetUINameNotMeNoTooltip]"
+																	using = Font_Size_Medium
+																	autoresize = no
+																}
+							
+
+																text_single = {
+																	layoutpolicy_horizontal = expanding
+																	text = "[Character.GetRelationToString( GetPlayer )]"
+																	default_format = "#low"
+																	autoresize = no
+																	align = nobaseline
+																}
+
+																expand = {}
+															}
+														}
+
+													}
+
+
+													expand = {}
+												}
+
+
+											}
+										}
+
+										divider = {
+											layoutpolicy_horizontal = expanding
+										}
+										
+									}
+								}
+							}
+						}
+					}
+                }
+            }
+		}
+	}
+}
+
+window = {
+	name = "advcm_artifact_title_select_list"
+	parentanchor = top|right
+	position = { -600 100 }
+	size = { 150 100 }
+	layer = windows_layer
+	filter_mouse = all
+	allow_outside = yes
+	alwaystransparent = no
+	
+	using = Window_Background
+	using = Window_Decoration
+	movable = yes
+	visible = "[GetVariableSystem.Exists('advcm_artifact_title_select_list_visible')]"
+	
+	
+	vbox = {
+		using = Window_Margins
+		restrictparent_min = yes
+		
+		header_pattern = {
+			layoutpolicy_horizontal = expanding
+
+			blockoverride "header_text"
+			{
+				text = advcm_select_character_alternate
+			}
+
+			blockoverride "button_close"
+			{
+				onclick = "[GetVariableSystem.Toggle('advcm_artifact_title_select_list_visible')]"
+			}
+		}
+		
+
+		
+		widget = {
+			size = { 570 650 }
+            vbox = {
+				datacontext = "[GetGlobalVariable('advcm_artifact_selected_char').Char]"
+				
+				scrollbox = {
+					name = "title_char_select_list"
+					layoutpolicy_horizontal = expanding
+					layoutpolicy_vertical = expanding
+
+					blockoverride "scrollbox_content" {
+					
+						vbox = {
+							datamodel = "[Character.GetTitles]"
+							layoutpolicy_horizontal = expanding
+
+							spacing = 10
+
+							item = {
+								widget = {
+									layoutpolicy_horizontal = expanding
+									datacontext = [Scope.GetCharacter]
+									size = { 0 100 }
+									visible = "[Not(Title.IsBarony)]"
+
+									using = Background_Guest
+
+
+
+									vbox = {
+										layoutpolicy_horizontal = expanding
+										spacing = 7
+										button_standard_hover = {
+											layoutpolicy_horizontal = expanding
+											layoutpolicy_vertical = expanding
+											onclick = "[GetScriptedGui('advcm_set_inheritance_title').Execute( GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('title', Title.MakeScope).End)]"
+											onclick = "[GetVariableSystem.Clear('advcm_artifact_title_select_list_visible')]"
+											hbox = {
+												layoutpolicy_horizontal = expanding
+												layoutpolicy_vertical = expanding
+												margin_right = 5
+												spacing = 10
+
+												coa_title_small_crown = {
+						
+													using = tooltip_ne
+												}
+
+
+												vbox = {
+													layoutpolicy_vertical = expanding
+													layoutpolicy_horizontal = expanding
+													spacing = 10
+													margin_top = 15
+
+
+													hbox = {
+														layoutpolicy_horizontal = expanding
+
+														hbox = {
+															layoutpolicy_horizontal = expanding
+															layoutpolicy_vertical = expanding
+
+
+															vbox = {
+																layoutpolicy_horizontal = expanding
+																layoutpolicy_vertical = expanding
+																
+																
+																	
+																text_single = {
+																	layoutpolicy_horizontal = expanding
+																	text = "[Title.GetNameNoTooltip]"
+																	using = Font_Size_Medium
+																	autoresize = no
+																}
+							
+
+																expand = {}
+															}
+														}
+
+													}
+
+
+													expand = {}
+												}
+
+
+											}
+										}
+
+										divider = {
+											layoutpolicy_horizontal = expanding
+										}
+										
+									}
+								}
+							}
+						}
+					}
+                }
+            }
+		}
+	}
+}
+

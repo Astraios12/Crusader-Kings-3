@@ -1,0 +1,87 @@
+﻿advcm_get_title_list = {
+
+	scope = character
+	
+	effect = {
+		
+		every_in_global_list = {
+			variable = marked_characters
+			every_held_title = {
+				limit = { this.tier > tier_barony }
+				add_to_global_variable_list = { name = advcm_title_list target = this }
+			}
+		}
+		
+		ordered_in_global_list = {
+			variable = advcm_title_list
+			order_by = tier
+			min = 0
+			max = 500
+			remove_list_global_variable = { name = advcm_title_list target = this }
+			add_to_global_variable_list = { name = advcm_title_list target = this }
+		}
+			
+	}
+			
+			
+
+}
+
+advcm_clear_title_list = {
+	scope = character
+	
+	effect = {
+		clear_global_variable_list = advcm_title_list
+	}
+}
+
+advcm_title_select_char = {
+	scope = character
+	
+	effect = {
+		set_global_variable = {
+			name = advcm_title_selected_char
+			value = this
+		}
+	}
+}
+
+advcm_strong_claim = {
+	scope = character
+	
+	saved_scopes = { claim_title }
+
+	effect = {
+		make_claim_strong = scope:claim_title
+	}
+}
+
+advcm_weak_claim = {
+	scope = character
+	
+	saved_scopes = { claim_title }
+	
+	effect = {
+		make_claim_weak = scope:claim_title
+	}
+}
+
+advcm_get_title = {
+	scope = character
+	
+	saved_scopes = { claim_title }
+	
+	effect = {
+		get_title = scope:claim_title
+	}
+}
+
+advcm_destroy_title = {
+	scope = character
+	
+	saved_scopes = { claim_title }
+	
+	effect = {
+		destroy_title = scope:claim_title
+	}
+}

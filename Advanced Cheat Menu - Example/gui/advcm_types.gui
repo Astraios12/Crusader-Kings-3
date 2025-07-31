@@ -1,0 +1,79 @@
+types AdvcmPortraitTypes 
+{
+
+	type advcm_portrait_shoulders = widget {
+        size = { 125 160 }
+
+        widget = {
+            size = { 100% 100% }
+            block "portrait_glows"
+            {
+                using = Portrait_Background_Glows
+            }
+        }
+
+        portrait_button = {
+            parentanchor = bottom|hcenter
+            size = { 145 175 }
+            using = portrait_base
+            block "portrait_texture"
+            {
+                portrait_texture = "[Character.GetPortrait('environment_shoulders', 'camera_shoulders', 'idle', PdxGetWidgetScreenSize(PdxGuiWidget.Self))]"
+            }
+
+            mask = "gfx/portraits/portrait_mask_shoulders.dds"
+            effectname = "NoHighlight"
+
+            highlight_icon = {
+                name = "prison_bars"
+                visible = "[Character.IsImprisoned]"
+                size = { 100% 100% }
+                effectname = "NoHighlight"
+                texture = "gfx/portraits/portrait_prison_shoulders.dds"
+
+                modify_texture = {
+                    name = "mask"
+                    texture = "gfx/portraits/portrait_mask_shoulders.dds"
+                    spriteType = Corneredstretched
+                    blend_mode = alphamultiply
+                }
+            }
+
+            block "portrait_button" {}
+        }
+
+       
+
+        block "coa" {
+            coa_realm_small_crown = {
+                visible = "[Character.HasLandedTitles]"
+                parentanchor = bottom|left
+                position = { -5 3 }
+            }
+        }
+
+
+        #portrait unknown glow
+        button = {
+            position = { -8 -14 }
+            size = { 141 174 }
+            texture = "gfx/portraits/unknown_portraits/button_unknown_shoulders.dds"
+            framesize = { 471 589 }
+            gfxtype = framedbuttongfx
+            effectname = "NoHighlight"
+            upframe = 1
+            overframe = 2
+
+            block "glow_visible" {
+
+                visible = "[Not(Character.IsValid)]"
+
+            }
+
+            block "glow_flip" {}
+
+            block "onclick" {}
+        }
+    }
+
+}

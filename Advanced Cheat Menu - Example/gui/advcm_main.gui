@@ -1,0 +1,356 @@
+﻿window = {
+	name = "advcm_main_window"
+	parentanchor = top|right
+	position = { -50 100 }
+	size = { 700 100 }
+	layer = windows_layer
+	filter_mouse = all
+	allow_outside = yes
+	alwaystransparent = no
+	
+	using = Window_Background
+	using = Window_Decoration
+	movable = yes
+	visible = "[GetVariableSystem.Exists('advcm_main_visible')]"
+    
+    datacontext = "[GetVariableSystem]"
+	datacontext = "[GetPlayer]"
+	
+	
+	state = {
+		name = _show
+		using = Animation_FadeIn_Quick
+	}
+	
+	state = {
+		name = _hide
+		using = Animation_FadeOut_Quick
+	}
+	
+	vbox = {
+		restrictparent_min = yes
+		using = Window_Margins
+		
+		header_pattern = {
+			layoutpolicy_horizontal = expanding
+
+
+			blockoverride "header_text"
+			{
+				text = "ADVCM_VIEW_TITLE"
+			}
+
+			blockoverride "button_close"
+			{
+				onclick = "[GetVariableSystem.Toggle('advcm_main_visible')]"
+			}
+		}
+		
+		
+		widget = {
+			size = { 640 150 }
+            
+            widget = { 
+                size = { 640 110 }
+                vbox = {
+                    hbox = {
+                        spacing = 5
+                        
+                        button_standard = {
+                            layoutpolicy_horizontal = expanding
+                            size = {76 30 }
+                            text = game_concept_traits
+                            onclick = "[GetVariableSystem.Set('show_traits', 'physical')]"
+                            onclick = "[GetVariableSystem.Toggle('advcm_trait_window_visible')]"
+                            tooltip = "advcm_traits_tt"
+                        }
+                        
+                        button_standard = {
+                            visible = "[Not(GetScriptedGui('advcm_russian_gui_shown').IsShown(GuiScope.End))]"
+                            layoutpolicy_horizontal = expanding
+                            size = {90 30 }
+                            text = game_concept_perks
+                            onclick = "[GetScriptedGui('advcm_resources_sgui').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+                            onclick = "[GetVariableSystem.Toggle('advcm_resource_window_visible')]"
+                            tooltip = "advcm_perkpoints_tt"
+                        }
+
+                        button_standard = {
+                            visible = "[GetScriptedGui('advcm_russian_gui_shown').IsShown(GuiScope.End)]"
+                            layoutpolicy_horizontal = expanding
+                            size = {97 30 }
+                            text = game_concept_perks
+                            onclick = "[GetScriptedGui('advcm_resources_sgui').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+                            onclick = "[GetVariableSystem.Toggle('advcm_resource_window_visible')]"
+                            tooltip = "advcm_perkpoints_tt"
+                        }
+                        
+                        button_standard = {
+                            layoutpolicy_horizontal = expanding
+                            size = { 70 30 }
+                            text = game_concept_skills
+                            onclick = "[GetScriptedGui('advcm_skills_sgui').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+                            onclick = "[GetVariableSystem.Toggle('advcm_skills_window_visible')]"
+                            tooltip = advcm_skills_tt
+                        }
+                        
+                        button_standard = {
+                            layoutpolicy_horizontal = expanding
+                            size = { 73 30 }
+                            text = game_concept_culture
+                            onclick = "[GetVariableSystem.Toggle('advcm_culture_window_visible')]"
+                            tooltip = advcm_culture_tt
+                        }
+                        
+                        button_standard = {
+                            layoutpolicy_horizontal = expanding
+                            size = { 88 30 }
+                            text = game_concept_character
+                            onclick = "[GetVariableSystem.Toggle('advcm_character_window_visible')]"
+                            tooltip = "advcm_character_tt"
+                        }
+                        
+                        button_standard = {
+                            layoutpolicy_horizontal = expanding
+                            size = { 85 30 }
+                            text = game_concept_religion
+                            onclick = "[GetVariableSystem.Toggle('advcm_religion_window_visible')]"
+                            tooltip = advcm_religion_tt
+                            button_ignore = none
+                        }
+                        
+                        button_standard = {
+                            visible = "[Not(GetScriptedGui('advcm_russian_gui_shown').IsShown(GuiScope.End))]"
+                            layoutpolicy_horizontal = expanding
+                            size = { 90 30 }
+                            text = game_concept_modifiers
+                            onclick = "[GetVariableSystem.Toggle('advcm_modifiers_window_visible')]"
+                            tooltip = advcm_modifiers_tt
+                            button_ignore = none
+                        }
+
+                        button_standard = {
+                            visible = "[GetScriptedGui('advcm_russian_gui_shown').IsShown(GuiScope.End)]"
+                            layoutpolicy_horizontal = expanding
+                            size = { 120 30 }
+                            text = game_concept_modifiers
+                            onclick = "[GetVariableSystem.Toggle('advcm_modifiers_window_visible')]"
+                            tooltip = advcm_modifiers_tt
+                            button_ignore = none
+                        }
+                        
+                    }
+					
+					hbox = {
+						spacing = 5
+						
+						button_standard = {
+                            layoutpolicy_horizontal = expanding
+                            size = { 95 30 }
+                            text = sexuality_filter
+                            onclick = "[GetVariableSystem.Toggle('advcm_sexuality_window_visible')]"
+                            tooltip = advcm_sexuality_tt
+                            button_ignore = none
+                        }
+						
+						button_standard = {
+                            visible = "[Not(GetScriptedGui('advcm_russian_gui_shown').IsShown(GuiScope.End))]"
+                            layoutpolicy_horizontal = expanding
+                            size = { 130 30 }
+                            text = advcm_marked_characters
+							onclick = "[GetScriptedGui('advcm_resources_sgui').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+                            onclick = "[GetVariableSystem.Toggle('advcm_marked_characters_window_visible')]"
+                            tooltip = advcm_marked_characters_tt
+                            button_ignore = none
+                        }
+
+                        button_standard = {
+                            visible = "[GetScriptedGui('advcm_russian_gui_shown').IsShown(GuiScope.End)]"
+                            layoutpolicy_horizontal = expanding
+                            size = { 175 30 }
+                            text = advcm_marked_characters
+							onclick = "[GetScriptedGui('advcm_resources_sgui').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+                            onclick = "[GetVariableSystem.Toggle('advcm_marked_characters_window_visible')]"
+                            tooltip = advcm_marked_characters_tt
+                            button_ignore = none
+                        }
+						
+						button_standard = {
+                            layoutpolicy_horizontal = expanding
+                            size = { 107 30 }
+                            text = game_concept_title
+                            onclick = "[GetVariableSystem.Toggle('advcm_title_window_visible')]"
+                            tooltip = advcm_title_tt
+						    button_ignore = none
+                        }
+						
+						button_standard = {
+							layoutpolicy_horizontal = expanding
+							size = { 87 30 }
+							text = INVENTORY_TAB_ARTIFACTS
+							onclick = "[GetVariableSystem.Toggle('advcm_artifact_window_visible')]"
+							tooltip = advcm_artifacts_tt
+							button_ignore = none
+                        }
+						
+					
+					}
+					
+					hbox = {
+						spacing = 5
+						
+						
+						button_standard = {
+                            layoutpolicy_horizontal = expanding
+                            size = { 165 30 }
+                            text = advcm_increase_control
+                            onclick = "[GetScriptedGui('advcm_increase_county_control').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+                            tooltip = advcm_increase_control_tt
+                            button_ignore = none
+                        }
+						
+						button_standard = {
+                            layoutpolicy_horizontal = expanding
+                            size = { 165 30 }
+                            text = advcm_increase_development
+                            onclick = "[GetScriptedGui('advcm_increase_development').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+                            tooltip = advcm_increase_development_tt
+                            button_ignore = none
+                        }
+					
+					}
+					
+                }
+
+            }
+            widget = {
+                position = { 10 110 }
+                size = { 140 40 }
+                hbox = {
+                    button_standard = {
+                        name = "advcm_clear_mark_button"
+                        onclick = "[GetScriptedGui('advcm_clear_all_marks').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+                        tooltip = advcm_clear_marks_tt
+                        using = tooltip_ne
+                        size = { 138 35 }
+                        text = advcm_clear_marks
+                    }
+                
+                }
+            }
+            
+            widget = {
+                position = { 440 110 }
+                size = { 110 40 }
+                hbox = {
+                    button_standard = {
+						layoutpolicy_horizontal = expanding
+						size = { 112 30 }
+						text = advcm_debug_mode
+						onclick = "[ExecuteConsoleCommand('debug_mode')]"
+						tooltip = advcm_debug_mode_tt
+                    }
+                }
+			}
+			
+			widget = {
+                position = { 570 120 }
+                size = { 110 40 }
+                text_single = {
+					visible = "[InDebugMode]"
+
+                    text = "[Localize(GetVariableSystem.Get('colorful_name'))] [GetPlayer.GetHumanName]"
+                    default_format = "#bold;glow_color:{0,0,0,1}"
+
+                    state = {
+                        name = test1
+                        trigger_on_create = yes
+                        duration = 0.25
+                        animation = {
+                            bezier = { 0.68 -0.6 0.32 1.6 }
+                            alpha = 1
+                        }
+                        on_start = "[GetVariableSystem.Set('colorful_name', 'advcm_debug_color_test')]"
+                        next = test2
+                    }
+
+                    state = {
+                        name = test2
+                        duration = 0.25
+                        animation = {
+                            bezier = { 0.68 -0.6 0.32 1.6 }
+                            alpha = 0.25
+                        }
+                        next = test3
+                    }
+
+                    state = {
+                        name = test3
+                        duration = 0.25
+                        animation = {
+                            bezier = { 0.68 -0.6 0.32 1.6 }
+                            alpha = 1
+                        }
+                        on_start = "[GetVariableSystem.Set('colorful_name', 'advcm_red_color_test')]"
+                        next = test4
+                    }
+
+                    state = {
+                        name = test4
+                        duration = 0.25
+                        animation = {
+                            bezier = { 0.68 -0.6 0.32 1.6 }
+                            alpha = 0.25
+                        }
+                        next = test5
+                    }
+
+                    state = {
+                        name = test5
+                        duration = 0.25
+                        animation = {
+                            bezier = { 0.68 -0.6 0.32 1.6 }
+                            alpha = 1
+                        }
+                        on_start = "[GetVariableSystem.Set('colorful_name', 'advcm_yellow_color_test')]"
+                        next = test6
+                    }
+
+                    state = {
+                        name = test6
+                        duration = 0.25
+                        animation = {
+                            bezier = { 0.68 -0.6 0.32 1.6 }
+                            alpha = 0.25
+                        }
+                        next = test7
+                    }
+
+                    state = {
+                        name = test7
+                        duration = 0.25
+                        animation = {
+                            bezier = { 0.68 -0.6 0.32 1.6 }
+                            alpha = 1
+                        }
+                        on_start = "[GetVariableSystem.Set('colorful_name', 'advcm_blue_color_test')]"
+                        next = test8
+                    }
+
+                    state = {
+                        name = test8
+                        duration = 0.25
+                        animation = {
+                            bezier = { 0.68 -0.6 0.32 1.6 }
+                            alpha = 0.25
+                        }
+                        next = test1
+                    }
+                }
+            }
+			
+		}            
+	
+	}
+	
+}

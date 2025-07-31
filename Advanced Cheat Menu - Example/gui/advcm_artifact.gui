@@ -1,0 +1,1260 @@
+window = {
+	name = "advcm_artifact_window"
+	parentanchor = top|right
+	position = { -50 100 }
+	size = { 500 725 }
+	layer = windows_layer
+	filter_mouse = all
+	allow_outside = yes
+	alwaystransparent = no
+	
+	using = Window_Background
+	using = Window_Decoration
+	movable = yes
+	visible = "[GetVariableSystem.Exists('advcm_artifact_window_visible')]"
+    
+    datacontext = "[GetVariableSystem]"
+	datacontext = "[GetPlayer]"
+	
+	
+	state = {
+		name = init
+		trigger_on_create = yes
+		
+		on_start = "[GetVariableSystem.Set('advcm_artifact_category', 'weapons')]"
+		on_start = "[GetScriptedGui('advcm_weapon_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+		on_start = "[GetScriptedGui('advcm_quality_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+		on_start = "[GetScriptedGui('advcm_artifact_init').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+		on_start = "[GetScriptedGui('advcm_set_mod_levels').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+		on_start = "[GetScriptedGui('advcm_modifier_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+		on_start = "[GetVariableSystem.Set('advcm_artifact_type_UI', 'advcm_axe')]"
+	}
+	
+	state = {
+		name = fallback_for_slow_comp
+		
+		trigger_when = "[Not(GetScriptedGui('advcm_artifact_slow_comp_check').IsValid(GuiScope.SetRoot(GetPlayer.MakeScope).End))]"
+		
+		on_start = "[GetVariableSystem.Set('advcm_artifact_category', 'weapons')]"
+		on_start = "[GetScriptedGui('advcm_weapon_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+		on_start = "[GetScriptedGui('advcm_quality_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+		on_start = "[GetScriptedGui('advcm_artifact_init').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+		on_start = "[GetScriptedGui('advcm_set_mod_levels').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+		on_start = "[GetScriptedGui('advcm_modifier_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+		on_start = "[GetVariableSystem.Set('advcm_artifact_type_UI', 'advcm_axe')]"
+	}
+	
+	state = {
+		name = _show
+		using = Animation_FadeIn_Quick
+	}
+	
+	state = {
+		name = _hide
+		using = Animation_FadeOut_Quick
+	}
+	
+	vbox = {
+		restrictparent_min = yes
+		using = Window_Margins
+		ignoreinvisible = yes
+		
+		header_pattern = {
+			layoutpolicy_horizontal = expanding
+
+
+			blockoverride "header_text"
+			{
+				text = INVENTORY_TAB_ARTIFACTS
+			}
+
+			blockoverride "button_close"
+			{
+				onclick = "[GetVariableSystem.Toggle('advcm_artifact_window_visible')]"
+				onclick = "[GetVariableSystem.Clear('advcm_artifact_char_select_list_visible')]"
+				onclick = "[GetVariableSystem.Clear('advcm_artifact_title_select_list_visible')]"
+				onclick = "[GetVariableSystem.Clear('advcm_artifact_list_window_visible')]"
+			}
+		}
+		
+		
+		
+		
+		widget = {
+			size = { 385 165 }
+			datacontext = "[GetGlobalVariable('advcm_artifact_selected_char').Char]"
+			
+			
+			advcm_portrait_shoulders = {
+				visible = "[Character.IsValid]"
+				parentanchor = center
+				
+				blockoverride "portrait_button_template_onclick"
+				{
+					onclick = "[GetVariableSystem.Toggle('advcm_artifact_char_select_list_visible')]"
+				}
+			}
+			
+			advcm_portrait_shoulders = {
+				visible = "[Not(Character.IsValid)]"
+				parentanchor = center
+				
+				text_label_center = {
+						parentanchor = bottom|hcenter
+						position = { 0 -10 }
+						text = advcm_select_character
+						default_format = "#low;italic"
+						max_width = 235
+				}
+				
+				blockoverride "onclick" 
+				{
+					onclick = "[GetVariableSystem.Toggle('advcm_artifact_char_select_list_visible')]"
+				}
+			}
+		}
+		
+		hbox = {
+			margin_top = 10
+			spacing = 5
+			
+			button_standard = {
+				layoutpolicy_horizontal = expanding
+				size = { 85 30 }
+				text = weapon
+				onclick = "[GetScriptedGui('advcm_weapon_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+				onclick = "[GetScriptedGui('advcm_quality_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+				onclick = "[PdxGuiWidget.AccessParent.AccessParent.FindChild('artifact_weapon_dropdown').FindChild('active_artifact_type').TriggerAnimation('set_artifact_type')]"
+				onclick = "[GetVariableSystem.Set('advcm_artifact_category', 'weapons')]"
+			}
+			
+			button_standard = {
+				layoutpolicy_horizontal = expanding
+				size = { 85 30 }
+				text = armor
+				onclick = "[GetScriptedGui('advcm_armor_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+				onclick = "[GetScriptedGui('advcm_quality_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+				onclick = "[PdxGuiWidget.AccessParent.AccessParent.FindChild('artifact_armor_dropdown').FindChild('active_artifact_type').TriggerAnimation('set_artifact_type')]"
+				onclick = "[GetVariableSystem.Set('advcm_artifact_category', 'armors')]"
+			}
+			
+			button_standard = {
+				layoutpolicy_horizontal = expanding
+				size = { 110 30 }
+				text = regalia
+				onclick = "[GetScriptedGui('advcm_regalia_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+				onclick = "[GetScriptedGui('advcm_quality_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+				onclick = "[PdxGuiWidget.AccessParent.AccessParent.FindChild('artifact_regalia_dropdown').FindChild('active_artifact_type').TriggerAnimation('set_artifact_type')]"
+				onclick = "[GetVariableSystem.Set('advcm_artifact_category', 'regalia')]"
+			}
+			
+			button_standard = {
+				layoutpolicy_horizontal = expanding
+				size = { 110 30 }
+				text = game_concept_court
+				onclick = "[GetScriptedGui('advcm_court_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+				onclick = "[GetScriptedGui('advcm_quality_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+				onclick = "[PdxGuiWidget.AccessParent.AccessParent.FindChild('artifact_court_dropdown').FindChild('active_artifact_type').TriggerAnimation('set_artifact_type')]"
+				onclick = "[GetVariableSystem.Set('advcm_artifact_category', 'court')]"
+			}
+			
+			button_standard = {
+				layoutpolicy_horizontal = expanding
+				size = { 85 30 }
+				text = advcm_artifact_list
+				onclick = "[GetVariableSystem.Toggle('advcm_artifact_list_window_visible')]"
+				onclick = "[GetScriptedGui('advcm_get_artifact_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+				tooltip = advcm_artifact_list_tt
+			}
+			
+		}
+		
+		widget = {
+			size = { 100% 100 }
+			
+			hbox = {
+			
+				widget = {
+					size = { 90 90 }
+					icon = {
+						name = "rarity_icon"
+						size = { 90 90 }
+						alwaystransparent = yes
+	
+						texture = "gfx/interface/icons/artifact/artifact_bg.dds"
+						frame = "[FixedPointToInt(GetPlayer.MakeScope.Var('advcm_artifact_quality_frame').GetValue)]"
+						framesize = { 240 240 }
+					}
+					
+					icon = {
+						name = "type_icon_axe"
+						visible = "[GetVariableSystem.HasValue('advcm_artifact_type_UI', 'advcm_axe')]"
+						size = { 90% 90% }
+						alwaystransparent = yes
+						parentanchor = center
+	
+						texture = "gfx/interface/icons/artifact/artifact_axe.dds"
+						frame = "[FixedPointToInt(GetPlayer.MakeScope.Var('advcm_artifact_quality_frame').GetValue)]"
+						framesize = { 240 240 }
+					}
+					
+					icon = {
+						name = "type_icon_dagger"
+						visible = "[GetVariableSystem.HasValue('advcm_artifact_type_UI', 'advcm_dagger')]"
+						size = { 90% 90% }
+						alwaystransparent = yes
+						parentanchor = center
+	
+						texture = "gfx/interface/icons/artifact/artifact_dagger.dds"
+						frame = "[FixedPointToInt(GetPlayer.MakeScope.Var('advcm_artifact_quality_frame').GetValue)]"
+						framesize = { 240 240 }
+					}
+					
+					icon = {
+						name = "type_icon_hammer"
+						visible = "[GetVariableSystem.HasValue('advcm_artifact_type_UI', 'advcm_hammer')]"
+						size = { 90% 90% }
+						alwaystransparent = yes
+						parentanchor = center
+	
+						texture = "gfx/interface/icons/artifact/artifact_hammer.dds"
+						frame = "[FixedPointToInt(GetPlayer.MakeScope.Var('advcm_artifact_quality_frame').GetValue)]"
+						framesize = { 240 240 }
+					}
+					
+					icon = {
+						name = "type_icon_mace"
+						visible = "[GetVariableSystem.HasValue('advcm_artifact_type_UI', 'advcm_mace')]"
+						size = { 90% 90% }
+						alwaystransparent = yes
+						parentanchor = center
+	
+						texture = "gfx/interface/icons/artifact/artifact_mace.dds"
+						frame = "[FixedPointToInt(GetPlayer.MakeScope.Var('advcm_artifact_quality_frame').GetValue)]"
+						framesize = { 240 240 }
+					}
+					
+					
+					icon = {
+						name = "type_icon_spear"
+						visible = "[GetVariableSystem.HasValue('advcm_artifact_type_UI', 'advcm_spear')]"
+						size = { 90% 90% }
+						alwaystransparent = yes
+						parentanchor = center
+	
+						texture = "gfx/interface/icons/artifact/artifact_spear.dds"
+						frame = "[FixedPointToInt(GetPlayer.MakeScope.Var('advcm_artifact_quality_frame').GetValue)]"
+						framesize = { 240 240 }
+					}
+					
+					
+					icon = {
+						name = "type_icon_sword"
+						visible = "[GetVariableSystem.HasValue('advcm_artifact_type_UI', 'advcm_sword')]"
+						size = { 90% 90% }
+						alwaystransparent = yes
+						parentanchor = center
+	
+						texture = "gfx/interface/icons/artifact/artifact_sword.dds"
+						frame = "[FixedPointToInt(GetPlayer.MakeScope.Var('advcm_artifact_quality_frame').GetValue)]"
+						framesize = { 240 240 }
+					}
+
+					icon = {
+						name = "type_icon_longsword"
+						visible = "[GetVariableSystem.HasValue('advcm_artifact_type_UI', 'advcm_longsword')]"
+						size = { 90% 90% }
+						alwaystransparent = yes
+						parentanchor = center
+	
+						texture = "gfx/interface/icons/artifact/artifact_longsword.dds"
+						frame = "[FixedPointToInt(GetPlayer.MakeScope.Var('advcm_artifact_quality_frame').GetValue)]"
+						framesize = { 240 240 }
+					}
+					
+
+					icon = {
+						name = "type_icon_sassanian_sword"
+						visible = "[GetVariableSystem.HasValue('advcm_artifact_type_UI', 'advcm_sassanian_sword')]"
+						size = { 90% 90% }
+						alwaystransparent = yes
+						parentanchor = center
+	
+						texture = "gfx/interface/icons/artifact/artifact_sassanian_sword.dds"
+						frame = "[FixedPointToInt(GetPlayer.MakeScope.Var('advcm_artifact_quality_frame').GetValue)]"
+						framesize = { 240 240 }
+					}
+					
+					icon = {
+						name = "type_icon_bow"
+						visible = "[GetVariableSystem.HasValue('advcm_artifact_type_UI', 'advcm_bow')]"
+						size = { 90% 90% }
+						alwaystransparent = yes
+						parentanchor = center
+	
+						texture = "gfx/interface/icons/artifact/artifact_bow_and_arrow.dds"
+						frame = "[FixedPointToInt(GetPlayer.MakeScope.Var('advcm_artifact_quality_frame').GetValue)]"
+						framesize = { 240 240 }
+					}
+					
+
+					icon = {
+						name = "type_icon_longbow"
+						visible = "[GetVariableSystem.HasValue('advcm_artifact_type_UI', 'advcm_longbow')]"
+						size = { 90% 90% }
+						alwaystransparent = yes
+						parentanchor = center
+	
+						texture = "gfx/interface/icons/artifact/artifact_bow_and_arrow.dds"
+						frame = "[FixedPointToInt(GetPlayer.MakeScope.Var('advcm_artifact_quality_frame').GetValue)]"
+						framesize = { 240 240 }
+					}
+					
+
+					icon = {
+						name = "type_icon_composite_bow"
+						visible = "[GetVariableSystem.HasValue('advcm_artifact_type_UI', 'advcm_composite_bow')]"
+						size = { 90% 90% }
+						alwaystransparent = yes
+						parentanchor = center
+	
+						texture = "gfx/interface/icons/artifact/artifact_bow_and_arrow.dds"
+						frame = "[FixedPointToInt(GetPlayer.MakeScope.Var('advcm_artifact_quality_frame').GetValue)]"
+						framesize = { 240 240 }
+					}
+					
+
+					icon = {
+						name = "type_icon_crossbow"
+						visible = "[GetVariableSystem.HasValue('advcm_artifact_type_UI', 'advcm_crossbow')]"
+						size = { 90% 90% }
+						alwaystransparent = yes
+						parentanchor = center
+	
+						texture = "gfx/interface/icons/artifact/artifact_crossbow_and_bolt.dds"
+						frame = "[FixedPointToInt(GetPlayer.MakeScope.Var('advcm_artifact_quality_frame').GetValue)]"
+						framesize = { 240 240 }
+					}
+					
+					
+					icon = {
+						name = "type_icon_armor"
+						visible = "[GetVariableSystem.HasValue('advcm_artifact_type_UI', 'advcm_armor')]"
+						size = { 90% 90% }
+						alwaystransparent = yes
+						parentanchor = center
+	
+						texture = "gfx/interface/icons/artifact/artifact_armor.dds"
+						frame = "[FixedPointToInt(GetPlayer.MakeScope.Var('advcm_artifact_quality_frame').GetValue)]"
+						framesize = { 240 240 }
+					}
+					
+					
+					icon = {
+						name = "type_icon_crown"
+						visible = "[GetVariableSystem.HasValue('advcm_artifact_type_UI', 'advcm_crown')]"
+						size = { 90% 90% }
+						alwaystransparent = yes
+						parentanchor = center
+	
+						texture = "gfx/interface/icons/artifact/artifact_crown.dds"
+						frame = "[FixedPointToInt(GetPlayer.MakeScope.Var('advcm_artifact_quality_frame').GetValue)]"
+						framesize = { 240 240 }
+					}
+					
+					
+					icon = {
+						name = "type_icon_regalia"
+						visible = "[GetVariableSystem.HasValue('advcm_artifact_type_UI', 'advcm_regalia')]"
+						size = { 90% 90% }
+						alwaystransparent = yes
+						parentanchor = center
+	
+						texture = "gfx/interface/icons/artifact/artifact_regalia.dds"
+						frame = "[FixedPointToInt(GetPlayer.MakeScope.Var('advcm_artifact_quality_frame').GetValue)]"
+						framesize = { 240 240 }
+					}
+					
+					
+					icon = {
+						name = "type_icon_necklace"
+						visible = "[GetVariableSystem.HasValue('advcm_artifact_type_UI', 'advcm_necklace')]"
+						size = { 90% 90% }
+						alwaystransparent = yes
+						parentanchor = center
+	
+						texture = "gfx/interface/icons/artifact/artifact_necklace.dds"
+						frame = "[FixedPointToInt(GetPlayer.MakeScope.Var('advcm_artifact_quality_frame').GetValue)]"
+						framesize = { 240 240 }
+					}
+					
+					
+					icon = {
+						name = "type_icon_brooch"
+						visible = "[GetVariableSystem.HasValue('advcm_artifact_type_UI', 'advcm_brooch')]"
+						size = { 90% 90% }
+						alwaystransparent = yes
+						parentanchor = center
+	
+						texture = "gfx/interface/icons/artifact/artifact_brooch.dds"
+						frame = "[FixedPointToInt(GetPlayer.MakeScope.Var('advcm_artifact_quality_frame').GetValue)]"
+						framesize = { 240 240 }
+					}
+					
+					icon = {
+						name = "type_icon_small_shield"
+						visible = "[GetVariableSystem.HasValue('advcm_artifact_type_UI', 'advcm_small_shield')]"
+						size = { 90% 90% }
+						alwaystransparent = yes
+						parentanchor = center
+	
+						texture = "gfx/interface/icons/artifact/artifact_wall_shield.dds"
+						frame = "[FixedPointToInt(GetPlayer.MakeScope.Var('advcm_artifact_quality_frame').GetValue)]"
+						framesize = { 240 240 }
+					}
+					
+					icon = {
+						name = "type_icon_large_shield"
+						visible = "[GetVariableSystem.HasValue('advcm_artifact_type_UI', 'advcm_large_shield')]"
+						size = { 90% 90% }
+						alwaystransparent = yes
+						parentanchor = center
+	
+						texture = "gfx/interface/icons/artifact/artifact_wall_shield.dds"
+						frame = "[FixedPointToInt(GetPlayer.MakeScope.Var('advcm_artifact_quality_frame').GetValue)]"
+						framesize = { 240 240 }
+					}
+					
+					icon = {
+						name = "type_icon_tapestry"
+						visible = "[GetVariableSystem.HasValue('advcm_artifact_type_UI', 'advcm_tapestry')]"
+						size = { 90% 90% }
+						alwaystransparent = yes
+						parentanchor = center
+	
+						texture = "gfx/interface/icons/artifact/artifact_tapestry.dds"
+						frame = "[FixedPointToInt(GetPlayer.MakeScope.Var('advcm_artifact_quality_frame').GetValue)]"
+						framesize = { 240 240 }
+					}
+					
+					icon = {
+						name = "type_icon_throne"
+						visible = "[GetVariableSystem.HasValue('advcm_artifact_type_UI', 'advcm_throne')]"
+						size = { 90% 90% }
+						alwaystransparent = yes
+						parentanchor = center
+	
+						texture = "gfx/interface/icons/artifact/artifact_throneroom.dds"
+						frame = "[FixedPointToInt(GetPlayer.MakeScope.Var('advcm_artifact_quality_frame').GetValue)]"
+						framesize = { 240 240 }
+					}
+					
+					
+					icon = {
+						name = "type_icon_small_box"
+						visible = "[GetVariableSystem.HasValue('advcm_artifact_type_UI', 'advcm_small_box')]"
+						size = { 90% 90% }
+						alwaystransparent = yes
+						parentanchor = center
+	
+						texture = "gfx/interface/icons/artifact/artifact_small_box.dds"
+						frame = "[FixedPointToInt(GetPlayer.MakeScope.Var('advcm_artifact_quality_frame').GetValue)]"
+						framesize = { 240 240 }
+					}
+					
+					icon = {
+						name = "type_icon_medium_box"
+						visible = "[GetVariableSystem.HasValue('advcm_artifact_type_UI', 'advcm_medium_box')]"
+						size = { 90% 90% }
+						alwaystransparent = yes
+						parentanchor = center
+	
+						texture = "gfx/interface/icons/artifact/artifact_medium_box.dds"
+						frame = "[FixedPointToInt(GetPlayer.MakeScope.Var('advcm_artifact_quality_frame').GetValue)]"
+						framesize = { 240 240 }
+					}
+					
+					icon = {
+						name = "type_icon_goblet"
+						visible = "[GetVariableSystem.HasValue('advcm_artifact_type_UI', 'advcm_goblet')]"
+						size = { 90% 90% }
+						alwaystransparent = yes
+						parentanchor = center
+	
+						texture = "gfx/interface/icons/artifact/artifact_goblet.dds"
+						frame = "[FixedPointToInt(GetPlayer.MakeScope.Var('advcm_artifact_quality_frame').GetValue)]"
+						framesize = { 240 240 }
+					}
+					
+					
+					icon = {
+						name = "type_icon_cabinet"
+						visible = "[GetVariableSystem.HasValue('advcm_artifact_type_UI', 'advcm_cabinet')]"
+						size = { 90% 90% }
+						alwaystransparent = yes
+						parentanchor = center
+	
+						texture = "gfx/interface/icons/artifact/artifact_cabinet.dds"
+						frame = "[FixedPointToInt(GetPlayer.MakeScope.Var('advcm_artifact_quality_frame').GetValue)]"
+						framesize = { 240 240 }
+					}
+					
+					
+					icon = {
+						name = "type_icon_chest"
+						visible = "[GetVariableSystem.HasValue('advcm_artifact_type_UI', 'advcm_chest')]"
+						size = { 90% 90% }
+						alwaystransparent = yes
+						parentanchor = center
+	
+						texture = "gfx/interface/icons/artifact/artifact_chest.dds"
+						frame = "[FixedPointToInt(GetPlayer.MakeScope.Var('advcm_artifact_quality_frame').GetValue)]"
+						framesize = { 240 240 }
+					}
+					
+					icon = {
+						name = "type_icon_divan"
+						visible = "[GetVariableSystem.HasValue('advcm_artifact_type_UI', 'advcm_divan')]"
+						size = { 90% 90% }
+						alwaystransparent = yes
+						parentanchor = center
+	
+						texture = "gfx/interface/icons/artifact/artifact_indian_divan.dds"
+						frame = "[FixedPointToInt(GetPlayer.MakeScope.Var('advcm_artifact_quality_frame').GetValue)]"
+						framesize = { 240 240 }
+					}
+					
+					icon = {
+						name = "type_icon_table"
+						visible = "[GetVariableSystem.HasValue('advcm_artifact_type_UI', 'advcm_table')]"
+						size = { 90% 90% }
+						alwaystransparent = yes
+						parentanchor = center
+	
+						texture = "gfx/interface/icons/artifact/artifact_mena_table.dds"
+						frame = "[FixedPointToInt(GetPlayer.MakeScope.Var('advcm_artifact_quality_frame').GetValue)]"
+						framesize = { 240 240 }
+					}
+					
+				}
+				
+				vbox = {
+				
+					hbox = {
+					
+						text_single = {
+							text = "[Localize('type')]:"
+							margin_right = 10
+						}
+					
+						dropdown_menu_standard = {
+							visible = "[GetVariableSystem.HasValue('advcm_artifact_category', 'weapons')]"
+							
+							name = "artifact_weapon_dropdown"
+
+							blockoverride "dropdown_properties"
+							{
+								datamodel = "[GetGlobalList('weapon_type_list')]"
+								onselectionchanged = "[PdxGuiWidget.FindChild('active_artifact_type').TriggerAnimation('set_artifact_type')]"
+							}
+
+							blockoverride "dropdown_size"
+							{
+								size = { 250 32 }
+							}
+
+							blockoverride "dropdown_list_maxsize"
+							{
+								maximumsize = { 291 250 }
+							}
+							
+							blockoverride "dropdown_active_item_properties"
+							{
+								name = "active_artifact_type"
+								text = "[Localize(Concatenate(Scope.GetFlagName, '_loc'))]"
+								
+								
+								state = {
+									name = "set_artifact_type"
+									on_start = "[GetScriptedGui('advcm_set_artifact_type').Execute( GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('artifact_type', MakeScopeFlag(Scope.GetFlagName) ).End)]"
+									on_start = "[GetVariableSystem.Set('advcm_artifact_type_UI', Scope.GetFlagName)]"
+								}
+							}
+
+							blockoverride "dropdown_item_properties"
+							{
+								text = "[Localize(Concatenate(Scope.GetFlagName, '_loc'))]"
+							}
+						}
+						
+						dropdown_menu_standard = {
+							visible = "[GetVariableSystem.HasValue('advcm_artifact_category', 'armors')]"
+							
+							name = "artifact_armor_dropdown"
+
+							blockoverride "dropdown_properties"
+							{
+								datamodel = "[GetGlobalList('armor_type_list')]"
+								onselectionchanged = "[PdxGuiWidget.FindChild('active_artifact_type').TriggerAnimation('set_artifact_type')]"
+							}
+
+							blockoverride "dropdown_size"
+							{
+								size = { 250 32 }
+							}
+
+							blockoverride "dropdown_list_maxsize"
+							{
+								maximumsize = { 291 250 }
+							}
+							
+							blockoverride "dropdown_active_item_properties"
+							{
+								name = "active_artifact_type"
+								text = "[Localize(Concatenate(Scope.GetFlagName, '_loc'))]"
+								
+								
+								state = {
+									name = "set_artifact_type"
+									on_start = "[GetScriptedGui('advcm_set_artifact_type').Execute( GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('artifact_type', MakeScopeFlag(Scope.GetFlagName) ).End)]"
+									on_start = "[GetVariableSystem.Set('advcm_artifact_type_UI', Scope.GetFlagName)]"
+								}
+							}
+
+							blockoverride "dropdown_item_properties"
+							{
+								text = "[Localize(Concatenate(Scope.GetFlagName, '_loc'))]"
+							}
+						}
+						
+						dropdown_menu_standard = {
+							visible = "[GetVariableSystem.HasValue('advcm_artifact_category', 'regalia')]"
+							
+							name = "artifact_regalia_dropdown"
+
+							blockoverride "dropdown_properties"
+							{
+								datamodel = "[GetGlobalList('regalia_type_list')]"
+								onselectionchanged = "[PdxGuiWidget.FindChild('active_artifact_type').TriggerAnimation('set_artifact_type')]"
+							}
+
+							blockoverride "dropdown_size"
+							{
+								size = { 250 32 }
+							}
+
+							blockoverride "dropdown_list_maxsize"
+							{
+								maximumsize = { 291 250 }
+							}
+							
+							blockoverride "dropdown_active_item_properties"
+							{
+								name = "active_artifact_type"
+								text = "[Localize(Concatenate(Scope.GetFlagName, '_loc'))]"
+								
+								
+								state = {
+									name = "set_artifact_type"
+									on_start = "[GetScriptedGui('advcm_set_artifact_type').Execute( GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('artifact_type', MakeScopeFlag(Scope.GetFlagName) ).End)]"
+									on_start = "[GetVariableSystem.Set('advcm_artifact_type_UI', Scope.GetFlagName)]"
+								}
+							}
+
+							blockoverride "dropdown_item_properties"
+							{
+								text = "[Localize(Concatenate(Scope.GetFlagName, '_loc'))]"
+							}
+						}
+						
+						dropdown_menu_standard = {
+							visible = "[GetVariableSystem.HasValue('advcm_artifact_category', 'court')]"
+							
+							name = "artifact_court_dropdown"
+
+							blockoverride "dropdown_properties"
+							{
+								datamodel = "[GetGlobalList('court_type_list')]"
+								onselectionchanged = "[PdxGuiWidget.FindChild('active_artifact_type').TriggerAnimation('set_artifact_type')]"
+							}
+
+							blockoverride "dropdown_size"
+							{
+								size = { 250 32 }
+							}
+
+							blockoverride "dropdown_list_maxsize"
+							{
+								maximumsize = { 291 250 }
+							}
+							
+							blockoverride "dropdown_active_item_properties"
+							{
+								name = "active_artifact_type"
+								text = "[Localize(Concatenate(Scope.GetFlagName, '_loc'))]"
+								
+								
+								state = {
+									name = "set_artifact_type"
+									on_start = "[GetScriptedGui('advcm_set_artifact_type').Execute( GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('artifact_type', MakeScopeFlag(Scope.GetFlagName) ).End)]"
+									on_start = "[GetVariableSystem.Set('advcm_artifact_type_UI', Scope.GetFlagName)]"
+								}
+							}
+
+							blockoverride "dropdown_item_properties"
+							{
+								text = "[Localize(Concatenate(Scope.GetFlagName, '_loc'))]"
+							}
+						}
+					}
+					
+					hbox = {
+					
+						text_single = {
+							text = "[Localize('rarity')]:"
+							margin_right = 10
+						}
+					
+						dropdown_menu_standard = {
+
+							blockoverride "dropdown_properties"
+							{
+								datamodel = "[GetGlobalList('artifact_quality_list')]"
+								onselectionchanged = "[PdxGuiWidget.FindChild('active_artifact_quality').TriggerAnimation('set_artifact_quality')]"
+							}
+
+							blockoverride "dropdown_size"
+							{
+								size = { 250 32 }
+							}
+
+							blockoverride "dropdown_list_maxsize"
+							{
+								maximumsize = { 291 250 }
+							}
+							
+							blockoverride "dropdown_active_item_properties"
+							{
+								name = "active_artifact_quality"
+								text = "[Localize(Concatenate(Scope.GetFlagName, '_loc'))]"
+								
+								
+								state = {
+									name = "set_artifact_quality"
+									on_start = "[GetScriptedGui('advcm_set_artifact_quality').Execute( GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('artifact_quality', MakeScopeFlag(Scope.GetFlagName) ).End)]"
+								}
+							}
+
+							blockoverride "dropdown_item_properties"
+							{
+								text = "[Localize(Concatenate(Scope.GetFlagName, '_loc'))]"
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		widget = {
+		 size = { 100% 150 }
+		 
+		 vbox = {
+				hbox = {
+				
+					text_single = {
+						text = "advcm_modifier_1_loc"
+						margin_right = 10
+					}
+				
+					dropdown_menu_standard = {
+
+						blockoverride "dropdown_properties"
+						{
+							datamodel = "[GetGlobalList('artifact_modifier_list')]"
+							onselectionchanged = "[PdxGuiWidget.FindChild('active_modifier_1').TriggerAnimation('set_modifier_1')]"
+						}
+
+						blockoverride "dropdown_size"
+						{
+							size = { 350 32 }
+						}
+
+						blockoverride "dropdown_list_maxsize"
+						{
+							maximumsize = { 360 250 }
+						}
+						
+						blockoverride "dropdown_active_item_properties"
+						{
+							name = "active_modifier_1"
+							text = "[Localize(Concatenate(Scope.GetFlagName, '_loc1'))]"
+							
+							
+							state = {
+								name = "set_modifier_1"
+								on_start = "[GetScriptedGui('advcm_set_artifact_modifier_1').Execute( GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('artifact_modifier', MakeScopeFlag(Scope.GetFlagName) ).End)]"
+								on_start = "[GetVariableSystem.Set('advcm_artifact_modifier_1_UI', Scope.GetFlagName)]"
+							}
+						}
+
+						blockoverride "dropdown_item_properties"
+						{
+							text = "[Localize(Concatenate(Scope.GetFlagName, '_loc1'))]"
+						}
+					}
+					
+					button_round = {
+                        size = { 28 28 }
+						button_ignore = none
+						rightclicksound = "event:/SFX/UI/Generic/sfx_ui_generic_icon_select"
+                        onclick = "[GetScriptedGui('advcm_add_1_mod1').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+						onrightclick = "[GetScriptedGui('advcm_remove_1_mod1').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+						text = "advcm_modifier1_level"
+                    }
+				}
+				
+				hbox = {
+				
+					text_single = {
+						text = "advcm_modifier_2_loc"
+						margin_right = 10
+					}
+				
+					dropdown_menu_standard = {
+
+						blockoverride "dropdown_properties"
+						{
+							datamodel = "[GetGlobalList('artifact_modifier_list')]"
+							onselectionchanged = "[PdxGuiWidget.FindChild('active_modifier_2').TriggerAnimation('set_modifier_2')]"
+						}
+
+						blockoverride "dropdown_size"
+						{
+							size = { 350 32 }
+						}
+
+						blockoverride "dropdown_list_maxsize"
+						{
+							maximumsize = { 360 250 }
+						}
+						
+						blockoverride "dropdown_active_item_properties"
+						{
+							name = "active_modifier_2"
+							text = "[Localize(Concatenate(Scope.GetFlagName, '_loc2'))]"
+							
+							
+							state = {
+								name = "set_modifier_2"
+								on_start = "[GetScriptedGui('advcm_set_artifact_modifier_2').Execute( GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('artifact_modifier', MakeScopeFlag(Scope.GetFlagName) ).End)]"
+								on_start = "[GetVariableSystem.Set('advcm_artifact_modifier_2_UI', Scope.GetFlagName)]"
+							}
+						}
+
+						blockoverride "dropdown_item_properties"
+						{
+							text = "[Localize(Concatenate(Scope.GetFlagName, '_loc2'))]"
+						}
+					}
+					
+					button_round = {
+                        size = { 28 28 }
+						button_ignore = none
+						rightclicksound = "event:/SFX/UI/Generic/sfx_ui_generic_icon_select"
+                        onclick = "[GetScriptedGui('advcm_add_1_mod2').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+						onrightclick = "[GetScriptedGui('advcm_remove_1_mod2').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+						text = "advcm_modifier2_level"
+                    }
+				}
+				
+				hbox = {
+				
+					text_single = {
+						text = "advcm_modifier_3_loc"
+						margin_right = 10
+					}
+				
+					dropdown_menu_standard = {
+
+						blockoverride "dropdown_properties"
+						{
+							datamodel = "[GetGlobalList('artifact_modifier_list')]"
+							onselectionchanged = "[PdxGuiWidget.FindChild('active_modifier_3').TriggerAnimation('set_modifier_3')]"
+						}
+
+						blockoverride "dropdown_size"
+						{
+							size = { 350 32 }
+						}
+
+						blockoverride "dropdown_list_maxsize"
+						{
+							maximumsize = { 360 250 }
+						}
+						
+						blockoverride "dropdown_active_item_properties"
+						{
+							name = "active_modifier_3"
+							text = "[Localize(Concatenate(Scope.GetFlagName, '_loc3'))]"
+							
+							
+							state = {
+								name = "set_modifier_3"
+								on_start = "[GetScriptedGui('advcm_set_artifact_modifier_3').Execute( GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('artifact_modifier', MakeScopeFlag(Scope.GetFlagName) ).End)]"
+								on_start = "[GetVariableSystem.Set('advcm_artifact_modifier_3_UI', Scope.GetFlagName)]"
+							}
+						}
+
+						blockoverride "dropdown_item_properties"
+						{
+							text = "[Localize(Concatenate(Scope.GetFlagName, '_loc3'))]"
+						}
+					}
+					
+					button_round = {
+                        size = { 28 28 }
+						button_ignore = none
+						rightclicksound = "event:/SFX/UI/Generic/sfx_ui_generic_icon_select"
+                        onclick = "[GetScriptedGui('advcm_add_1_mod3').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+						onrightclick = "[GetScriptedGui('advcm_remove_1_mod3').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+						text = "advcm_modifier3_level"
+                    }
+				}
+				
+				hbox = {
+				
+					text_single = {
+						text = "advcm_modifier_4_loc"
+						margin_right = 10
+					}
+				
+					dropdown_menu_standard = {
+
+						blockoverride "dropdown_properties"
+						{
+							datamodel = "[GetGlobalList('artifact_modifier_list')]"
+							onselectionchanged = "[PdxGuiWidget.FindChild('active_modifier_4').TriggerAnimation('set_modifier_4')]"
+						}
+
+						blockoverride "dropdown_size"
+						{
+							size = { 350 32 }
+						}
+
+						blockoverride "dropdown_list_maxsize"
+						{
+							maximumsize = { 360 250 }
+						}
+						
+						blockoverride "dropdown_active_item_properties"
+						{
+							name = "active_modifier_4"
+							text = "[Localize(Concatenate(Scope.GetFlagName, '_loc4'))]"
+							
+							
+							state = {
+								name = "set_modifier_4"
+								on_start = "[GetScriptedGui('advcm_set_artifact_modifier_4').Execute( GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('artifact_modifier', MakeScopeFlag(Scope.GetFlagName) ).End)]"
+								on_start = "[GetVariableSystem.Set('advcm_artifact_modifier_4_UI', Scope.GetFlagName)]"
+							}
+						}
+
+						blockoverride "dropdown_item_properties"
+						{
+							text = "[Localize(Concatenate(Scope.GetFlagName, '_loc4'))]"
+						}
+					}
+					
+					button_round = {
+                        size = { 28 28 }
+						button_ignore = none
+						rightclicksound = "event:/SFX/UI/Generic/sfx_ui_generic_icon_select"
+                        onclick = "[GetScriptedGui('advcm_add_1_mod4').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+						onrightclick = "[GetScriptedGui('advcm_remove_1_mod4').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+						text = "advcm_modifier4_level"
+                    }
+					
+					
+				}
+			}
+		}
+			
+			
+		expand = {}
+		
+		button_standard = {
+			size = { 250 65 }
+			text_single = {
+				text = advcm_create_artifact_loc
+				parentanchor = center
+				using = Font_Size_Medium
+				default_format = "#high"
+			}
+			onclick = "[GetScriptedGui('advcm_artifact_create').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+		}
+	}
+}
+
+window = {
+	name = "advcm_artifact_list_window"
+	parentanchor = top|right
+	position = { -50 100 }
+	size = { 600 725 }
+	layer = windows_layer
+	filter_mouse = all
+	allow_outside = yes
+	alwaystransparent = no
+	
+	using = Window_Background
+	using = Window_Decoration
+	movable = yes
+	
+	visible = "[GetVariableSystem.Exists('advcm_artifact_list_window_visible')]"
+    
+    datacontext = "[GetVariableSystem]"
+	datacontext = "[GetPlayer]"
+	
+	
+	state = {
+		name = _show
+		using = Animation_FadeIn_Quick
+	}
+	
+	state = {
+		name = _hide
+		using = Animation_FadeOut_Quick
+	}
+	
+	vbox = {
+		restrictparent_min = yes
+		using = Window_Margins
+		ignoreinvisible = yes
+		
+		header_pattern = {
+			layoutpolicy_horizontal = expanding
+
+
+			blockoverride "header_text"
+			{
+				text = advcm_arifact_list_title
+			}
+
+			blockoverride "button_close"
+			{
+				onclick = "[GetVariableSystem.Toggle('advcm_artifact_list_window_visible')]"
+				onclick = "[GetScriptedGui('advcm_clear_artifact_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+			}
+		}
+		
+		widget = {
+			size = { 600 725 }
+			
+			scrollbox = { # court artifacts
+				name = "court_artifacts"
+				layoutpolicy_horizontal = expanding
+				layoutpolicy_vertical = expanding
+				minimumsize = { 600 725 }
+
+				blockoverride "scrollbox_content" {
+					vbox = {
+						name = "artifacts_list"
+						datamodel = "[GetGlobalList('advcm_artifact_list')]"
+						layoutpolicy_horizontal = expanding
+						spacing = 6
+
+						item = {
+							widget_advcm_artifact_entry = {
+								datacontext = "[Scope.Artifact]"
+								datacontext = "[GetPlayer]"
+
+								blockoverride "background_button_overrides"
+								{
+									alwaystransparent = yes
+									enabled = no
+								}
+
+								blockoverride "portrait" {
+									expand = { minimumsize = { 0 0 } }
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+types AdvcmArtifactMenuTypes
+{
+	
+	type widget_advcm_artifact_entry = widget
+	{
+		# Requires
+		# datacontext = character
+		# datacontext = Inventory
+		# datacontext = InventorySlot
+
+		datacontext = "[GetIllustration( 'artifact_regional_pattern' )]"
+		datacontext= "[Scope.Artifact]"
+		size = { 560 110 }
+		using = tooltip_above
+		
+		visible = "[Artifact.IsValid]"
+
+		button_standard = {
+			size = { 100% 100% }
+
+			framesize = { 249 78 }
+			spriteType = Corneredtiled
+			spriteborder = { 20 20 }
+
+
+			block "button"
+			{
+				enabled = "[Character.IsLocalPlayer]"
+				clicksound = "event:/DLC/EP1/SFX/UI/inventory_artifact_place"
+			}
+
+			block "overlay"
+			{
+				using = default_character_list_overlay
+			}
+
+			block "background_button_overrides" {}
+
+			tooltipwidget = {
+				artifact_tooltip = {}
+			}
+
+			using = tooltip_es
+
+		}
+
+		hbox = {
+			layoutpolicy_horizontal = expanding
+
+			vbox = {
+				name = "icon"
+				layoutpolicy_vertical = expanding
+				margin = { 2 2 }
+
+				icon_artifact = {
+					blockoverride "tooltipwidget" {}
+				}
+			}
+
+			vbox = {
+				name = "text"
+				layoutpolicy_vertical = expanding
+				margin_top = 4
+				margin_bottom = 10
+
+				expand = {}
+
+				text_single = {
+					layoutpolicy_horizontal = expanding
+					text = "[Artifact.GetRarityAndSlotType]"
+					max_width = 300
+					using = Font_Size_Small
+				}
+
+				text_multi = {
+					layoutpolicy_horizontal = expanding
+					text = "[Artifact.GetNameNoTooltip]"
+					autoresize = yes
+					max_width = 350
+					using = Font_Size_Medium
+					default_format = "#high"
+					alwaystransparent = yes
+				}
+
+				spacer = {
+					size = { 0 6 }
+				}
+
+				hbox_artifact_durability = {
+					layoutpolicy_horizontal = expanding
+					# simple tooltip override so that the durability tooltip doesnt show up here
+					tooltip = ""
+				}
+
+				expand = {}
+			}
+
+			expand = {}
+		}
+
+		widget = {
+			parentanchor = center
+			position = { 125 14 }
+			allow_outside = yes
+
+			hbox = {
+				
+				layoutpolicy_horizontal = expanding
+				spacing = 2
+
+				button_round = {
+					name = "steal"
+					size = { 35 35 }
+
+					button_icon_highlight = {
+						parentanchor = center
+						size = { 25 25 }
+						texture = "gfx/interface/icons/flat_icons/scheme.dds"
+					}
+
+					onclick = "[GetScriptedGui('advcm_take_artifact').Execute(GuiScope.SetRoot(GetGlobalVariable('advcm_artifact_selected_char').Char.MakeScope).AddScope('selected_artifact', Artifact.MakeScope).End)]"
+					tooltip = advcm_tt_take_artifact
+				}
+
+				button_round = {
+					name = "destroy_artifact"
+					size = { 35 35 }
+
+					button_icon_highlight = {
+						size = { 25 25 }
+						parentanchor = center
+						texture = "gfx/interface/icons/flat_icons/cancel.dds"
+					}
+
+					onclick = "[GetScriptedGui('advcm_destroy_artifact').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('selected_artifact', Artifact.MakeScope).End)]"
+					tooltip = advcm_destroy_artifact_tt
+				}
+
+				button_round = {
+					name = "edit_desc"
+					size = { 35 35 }
+
+					button_icon_highlight = {
+						parentanchor = center
+						size = { 25 25 }
+						texture = "gfx/interface/icons/flat_icons/edit_text.dds"
+					}
+
+					onclick = "[GetScriptedGui('advcm_edit_artifact_desc').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('selected_artifact', Artifact.MakeScope).End)]"
+					tooltip = advcm_edit_artifact_tt
+				}
+				
+				button_round = {
+					name = "details"
+					size = { 35 35 }
+
+					button_icon_highlight = {
+						parentanchor = center
+						position = { 0 -6 }
+						size = { 25 25 }
+						texture = "gfx/interface/icons/flat_icons/dots.dds"
+					}
+
+					onclick = "[ToggleGameViewData( 'artifact_details', Artifact.GetID )]"
+					tooltip = "ARTIFACT_DETAILS"
+				}
+
+				expand = {}
+			}
+		}
+	}
+	
+}

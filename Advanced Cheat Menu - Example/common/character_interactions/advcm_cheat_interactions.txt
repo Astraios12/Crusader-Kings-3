@@ -1,0 +1,102 @@
+﻿cheat_mark_for_edit_interaction = {
+	interface_priority = 300
+	category = interaction_debug_main
+	use_diplomatic_range = no
+	ignores_pending_interaction_block = yes
+	common_interaction = yes
+	
+
+	is_shown = {
+		scope:actor = {
+			is_ai = no
+		}
+	}
+	
+	send_option = {
+		flag = character
+		localization = advcm_mark_character
+	}
+	send_option = {
+		flag = vassals
+		localization = advcm_mark_vassals
+	}
+	send_option = {
+		flag = courtiers
+		localization = advcm_mark_courtiers
+	}
+	send_option = {
+		flag = councillors
+		localization = advcm_mark_councillors
+	}
+	send_option = {
+		flag = house
+		localization = advcm_mark_house
+	}
+	send_option = {
+		flag = dynasty
+		localization = advcm_mark_dynasty
+	}
+	
+	on_accept = {
+		scope:recipient = {
+			if = {
+				limit = {scope:character = yes}
+				
+				add_character_flag = marked_for_edit
+				add_to_global_variable_list = { name = marked_characters target = this }
+			}
+			
+			if = {
+				limit = {scope:vassals = yes}
+				
+				every_vassal = {
+					add_character_flag = marked_for_edit
+					add_to_global_variable_list = { name = marked_characters target = this }
+				}
+			}
+			
+			if = {
+				limit = {scope:courtiers = yes}
+				
+				every_courtier = {
+					add_character_flag = marked_for_edit
+					add_to_global_variable_list = { name = marked_characters target = this }
+				}
+			}
+			
+			if = {
+				limit = {scope:councillors = yes}
+				
+				every_councillor = {
+					add_character_flag = marked_for_edit
+					add_to_global_variable_list = { name = marked_characters target = this }
+				}
+			}
+			
+			if = {
+				limit = {scope:house = yes}
+				
+				scope:recipient.house = {
+					every_house_member = {
+						add_character_flag = marked_for_edit
+						add_to_global_variable_list = { name = marked_characters target = this }
+					}
+				}
+			}
+			
+			if = {
+				limit = {scope:dynasty = yes}
+				
+				scope:recipient.dynasty = {
+					every_dynasty_member = {
+						add_character_flag = marked_for_edit
+						add_to_global_variable_list = { name = marked_characters target = this }
+					}
+				}
+			}
+			
+		}
+	}
+	
+	auto_accept = yes
+}

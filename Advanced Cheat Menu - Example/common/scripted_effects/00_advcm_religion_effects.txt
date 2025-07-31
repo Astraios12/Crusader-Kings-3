@@ -1,0 +1,50 @@
+﻿change_myreligion_effect = {
+
+    every_in_global_list = {
+		variable = marked_characters
+        
+
+		hidden_effect = {
+			set_character_faith = root.faith
+		}
+	}
+}
+
+change_myreligion_county_effect = {
+
+	every_in_global_list = {
+		variable = marked_characters
+		
+		every_sub_realm_county = {
+			set_county_faith = root.faith
+		}
+
+		every_vassal_or_below = {
+			set_character_faith_with_conversion = root.faith
+		}
+		
+		set_character_faith = root.faith
+	}
+}
+
+change_otherreligion_county_effect = {
+	every_in_global_list = {
+		variable = marked_characters
+		
+		every_sub_realm_county = {
+			set_county_faith = prev.faith
+		}
+
+		every_vassal_or_below = {
+			set_character_faith_with_conversion = prev.faith
+		}
+		
+	}
+}
+
+advcm_religions_list_effect = {
+	every_religion_global = {
+		add_to_global_variable_list = { name = religion_list target = this }
+	}
+}
+

@@ -1,0 +1,1663 @@
+window = {
+	name = "advcm_character_window"
+	parentanchor = top|right
+	position = { -50 115 }
+	size = { 500 725 }
+	layer = windows_layer
+	filter_mouse = all
+	allow_outside = yes
+	alwaystransparent = no
+	
+	using = Window_Background
+	using = Window_Decoration
+	movable = yes
+	visible = "[GetVariableSystem.Exists('advcm_character_window_visible')]"
+    
+    datacontext = "[GetVariableSystem]"
+	datacontext = "[GetPlayer]"
+	
+	
+	state = {
+			name = init
+			trigger_on_create = yes
+			on_start = "[GetScriptedGui('advcm_character_spawner_init').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+			
+	}
+
+	state = {
+		name = fallback_for_slow_comp
+		
+		trigger_when = "[Not(GetScriptedGui('advcm_character_spawner_slow_comp_check').IsValid(GuiScope.SetRoot(GetPlayer.MakeScope).End))]"
+		
+		on_start = "[GetScriptedGui('advcm_character_spawner_init').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+	}
+	
+	
+	state = {
+		name = _show
+		using = Animation_FadeIn_Quick
+	}
+	
+	state = {
+		name = _hide
+		using = Animation_FadeOut_Quick
+	}
+	
+	vbox = {
+		restrictparent_min = yes
+		using = Window_Margins
+		
+		header_pattern = {
+			layoutpolicy_horizontal = expanding
+
+
+			blockoverride "header_text"
+			{
+				text = advcm_character_spawner_title
+			}
+
+			blockoverride "button_close"
+			{
+				onclick = "[GetVariableSystem.Toggle('advcm_character_window_visible')]"
+			}
+		}
+
+		widget = {
+			size = { 385 165 }
+			datacontext = "[GetGlobalVariable('advcm_character_spawner_selected_char').Char]"
+			
+			
+			advcm_portrait_shoulders = {
+				visible = "[Character.IsValid]"
+				parentanchor = center
+				
+				blockoverride "portrait_button_template_onclick"
+				{
+					onclick = "[GetVariableSystem.Toggle('advcm_character_spawner_char_select_list_visible')]"
+				}
+
+				text_label_center = {
+					parentanchor = bottom|hcenter
+					position = { 0 20 }
+					text = game_concept_liege
+				}
+			}
+			
+			advcm_portrait_shoulders = {
+				visible = "[Not(Character.IsValid)]"
+				parentanchor = center
+				
+				text_label_center = {
+						parentanchor = bottom|hcenter
+						position = { 0 -10 }
+						text = advcm_select_character
+						default_format = "#low;italic"
+						max_width = 235
+				}
+				
+				blockoverride "onclick" 
+				{
+					onclick = "[GetVariableSystem.Toggle('advcm_character_spawner_char_select_list_visible')]"
+				}
+			}
+		}
+
+		hbox = {
+			size = { 150 660 }
+			button_standard = {
+				size = { 100 35 }
+
+				text = advcm_presets
+
+				onclick = "[GetVariableSystem.Toggle('advcm_character_spawner_presets_visible')]"
+				onclick = "[GetScriptedGui('advcm_character_spawner_init').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+			}
+			margin_bottom = 10
+			margin_top = 30
+		}
+		
+		widget = {
+			size = { 370 660 }
+
+
+			vbox = {
+
+				text_label_center = {
+					text = advcm_character_spawner_stats
+					layoutpolicy_horizontal = expanding
+				}
+
+				spacing = 10
+
+				hbox = {
+
+
+					vbox = {
+
+						advcm_button_arrow_up = {
+							onclick = "[GetScriptedGui('advcm_character_spawner_diplomacy_add').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+							enabled = "[GetScriptedGui('advcm_character_spawner_diplomacy_add').IsValid(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+						}
+
+						vbox = {
+							margin_top = 2
+							margin_bottom = 5
+
+							spacing = -3
+
+							icon = {
+								name = "skill_icon"
+								size = { 32 32 }
+								framesize = { 60 60 }
+								frame = "1"
+								texture = "gfx/interface/icons/icon_skills.dds"
+							}
+
+							text_single = {
+								name = "skill_value"
+								text = "[GetPlayer.MakeScope.Var('advcm_character_spawner_diplomacy').GetValue|0]"
+								default_format = "#high"
+								align = nobaseline
+
+								background = {
+									name = "skill_icon_bg"
+									texture = "gfx/interface/window_character/character_view_skills_bg.dds"
+									frame = "1"
+									framesize = { 70 26 }
+									margin = { 10 0 }
+								}
+							}
+						}
+
+						advcm_button_arrow_down = {
+							onclick = "[GetScriptedGui('advcm_character_spawner_diplomacy_sub').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+							enabled = "[GetScriptedGui('advcm_character_spawner_diplomacy_sub').IsValid(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+						}
+					}
+
+					vbox = {
+
+						advcm_button_arrow_up = {
+							onclick = "[GetScriptedGui('advcm_character_spawner_martial_add').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+							enabled = "[GetScriptedGui('advcm_character_spawner_martial_add').IsValid(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+						}
+
+						vbox = {
+							margin_top = 2
+							margin_bottom = 5
+
+							spacing = -3
+
+							icon = {
+								name = "skill_icon"
+								size = { 32 32 }
+								framesize = { 60 60 }
+								frame = "2"
+								texture = "gfx/interface/icons/icon_skills.dds"
+							}
+
+							text_single = {
+								name = "skill_value"
+								text = "[GetPlayer.MakeScope.Var('advcm_character_spawner_martial').GetValue|0]"
+								default_format = "#high"
+								align = nobaseline
+
+								background = {
+									name = "skill_icon_bg"
+									texture = "gfx/interface/window_character/character_view_skills_bg.dds"
+									frame = "2"
+									framesize = { 70 26 }
+									margin = { 10 0 }
+								}
+							}
+						}
+
+						advcm_button_arrow_down = {
+
+							onclick = "[GetScriptedGui('advcm_character_spawner_martial_sub').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+							enabled = "[GetScriptedGui('advcm_character_spawner_martial_sub').IsValid(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+
+						}
+					}
+
+					vbox = {
+
+						advcm_button_arrow_up = {
+							onclick = "[GetScriptedGui('advcm_character_spawner_stewardship_add').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+							enabled = "[GetScriptedGui('advcm_character_spawner_stewardship_add').IsValid(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+						}
+
+						vbox = {
+							margin_top = 2
+							margin_bottom = 5
+
+							spacing = -3
+
+							icon = {
+								name = "skill_icon"
+								size = { 32 32 }
+								framesize = { 60 60 }
+								frame = "3"
+								texture = "gfx/interface/icons/icon_skills.dds"
+							}
+
+							text_single = {
+								name = "skill_value"
+								text = "[GetPlayer.MakeScope.Var('advcm_character_spawner_stewardship').GetValue|0]"
+								default_format = "#high"
+								align = nobaseline
+
+								background = {
+									name = "skill_icon_bg"
+									texture = "gfx/interface/window_character/character_view_skills_bg.dds"
+									frame = "3"
+									framesize = { 70 26 }
+									margin = { 10 0 }
+								}
+							}
+						}
+
+						advcm_button_arrow_down = {
+							onclick = "[GetScriptedGui('advcm_character_spawner_stewardship_sub').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+							enabled = "[GetScriptedGui('advcm_character_spawner_stewardship_sub').IsValid(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+						}
+					}
+
+					vbox = {
+
+						advcm_button_arrow_up = {
+							onclick = "[GetScriptedGui('advcm_character_spawner_intrigue_add').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+							enabled = "[GetScriptedGui('advcm_character_spawner_intrigue_add').IsValid(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+						}
+
+						vbox = {
+							margin_top = 2
+							margin_bottom = 5
+
+							spacing = -3
+
+							icon = {
+								name = "skill_icon"
+								size = { 32 32 }
+								framesize = { 60 60 }
+								frame = "4"
+								texture = "gfx/interface/icons/icon_skills.dds"
+							}
+
+							text_single = {
+								name = "skill_value"
+								text = "[GetPlayer.MakeScope.Var('advcm_character_spawner_intrigue').GetValue|0]"
+								default_format = "#high"
+								align = nobaseline
+
+								background = {
+									name = "skill_icon_bg"
+									texture = "gfx/interface/window_character/character_view_skills_bg.dds"
+									frame = "4"
+									framesize = { 70 26 }
+									margin = { 10 0 }
+								}
+							}
+						}
+
+						advcm_button_arrow_down = {
+							onclick = "[GetScriptedGui('advcm_character_spawner_intrigue_sub').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+							enabled = "[GetScriptedGui('advcm_character_spawner_intrigue_sub').IsValid(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+
+						}
+					}
+
+					vbox = {
+
+						advcm_button_arrow_up = {
+							onclick = "[GetScriptedGui('advcm_character_spawner_learning_add').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+							enabled = "[GetScriptedGui('advcm_character_spawner_learning_add').IsValid(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+
+						}
+
+						vbox = {
+							margin_top = 2
+							margin_bottom = 5
+
+							spacing = -3
+
+							icon = {
+								name = "skill_icon"
+								size = { 32 32 }
+								framesize = { 60 60 }
+								frame = "5"
+								texture = "gfx/interface/icons/icon_skills.dds"
+							}
+
+							text_single = {
+								name = "skill_value"
+								text = "[GetPlayer.MakeScope.Var('advcm_character_spawner_learning').GetValue|0]"
+								default_format = "#high"
+								align = nobaseline
+
+								background = {
+									name = "skill_icon_bg"
+									texture = "gfx/interface/window_character/character_view_skills_bg.dds"
+									frame = "5"
+									framesize = { 70 26 }
+									margin = { 10 0 }
+								}
+							}
+						}
+
+						advcm_button_arrow_down = {
+							onclick = "[GetScriptedGui('advcm_character_spawner_learning_sub').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+							enabled = "[GetScriptedGui('advcm_character_spawner_learning_sub').IsValid(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+
+						}
+
+					}
+
+					vbox = {
+
+						advcm_button_arrow_up = {
+							onclick = "[GetScriptedGui('advcm_character_spawner_prowess_add').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+							enabled = "[GetScriptedGui('advcm_character_spawner_prowess_add').IsValid(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+
+						}
+
+						vbox = {
+							margin_top = 2
+							margin_bottom = 5
+
+							spacing = -3
+
+							icon = {
+								name = "skill_icon"
+								size = { 32 32 }
+								framesize = { 60 60 }
+								frame = "6"
+								texture = "gfx/interface/icons/icon_skills.dds"
+							}
+
+							text_single = {
+								name = "skill_value"
+								text = "[GetPlayer.MakeScope.Var('advcm_character_spawner_prowess').GetValue|0]"
+								default_format = "#high"
+								align = nobaseline
+
+								background = {
+									name = "skill_icon_bg"
+									texture = "gfx/interface/window_character/character_view_skills_bg.dds"
+									frame = "5"
+									framesize = { 70 26 }
+									margin = { 10 0 }
+								}
+							}
+						}
+
+						advcm_button_arrow_down = {
+							onclick = "[GetScriptedGui('advcm_character_spawner_prowess_sub').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+							enabled = "[GetScriptedGui('advcm_character_spawner_prowess_sub').IsValid(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+
+						}
+					}
+				}
+
+				hbox = {
+
+					advcm_button_arrow_left = {
+
+						onclick = "[GetScriptedGui('advcm_character_spawner_age_sub').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+						enabled = "[GetScriptedGui('advcm_character_spawner_age_sub').IsValid(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+					}
+
+					text_single = {
+						visible = "[Not(GetScriptedGui('advcm_russian_gui_shown').IsShown(GuiScope.End))]"
+						size = { 60 30 }
+						text = "[Localize('appointment_investment_cap_age')]: [GetPlayer.MakeScope.Var('advcm_character_spawner_age').GetValue|0]"
+						default_format = "#high"
+						autoresize = no
+						align = center	
+					}
+
+					text_single = {
+						visible = "[GetScriptedGui('advcm_russian_gui_shown').IsShown(GuiScope.End)]"
+						size = { 75 30 }
+						text = "[Localize('appointment_investment_cap_age')]: [GetPlayer.MakeScope.Var('advcm_character_spawner_age').GetValue|0]"
+						default_format = "#high"
+						autoresize = no
+						align = center
+						fontsize = 13
+					}
+
+
+					advcm_button_arrow_right = {
+
+						onclick = "[GetScriptedGui('advcm_character_spawner_age_add').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+						enabled = "[GetScriptedGui('advcm_character_spawner_age_add').IsValid(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+					}
+
+					advcm_button_arrow_left = {
+						onclick = "[GetScriptedGui('advcm_character_spawner_health_sub').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+						enabled = "[GetScriptedGui('advcm_character_spawner_health_sub').IsValid(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+					}
+
+					text_single = {
+						visible = "[Not(GetScriptedGui('advcm_russian_gui_shown').IsShown(GuiScope.End))]"
+						size = { 70 30 }
+						text = "[Localize('game_concept_health')]: [GetPlayer.MakeScope.Var('advcm_character_spawner_health').GetValue|0]"
+						default_format = "#high"
+						autoresize = no
+						align = center	
+					}
+
+					text_single = {
+						visible = "[GetScriptedGui('advcm_russian_gui_shown').IsShown(GuiScope.End)]"
+						size = { 85 30 }
+						text = "[Localize('game_concept_health')]: [GetPlayer.MakeScope.Var('advcm_character_spawner_health').GetValue|0]"
+						default_format = "#high"
+						autoresize = no
+						align = center
+						fontsize = 13	
+					}
+
+					advcm_button_arrow_right = {
+
+						onclick = "[GetScriptedGui('advcm_character_spawner_health_add').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+						enabled = "[GetScriptedGui('advcm_character_spawner_health_add').IsValid(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+					}
+
+					advcm_button_arrow_left = {
+
+						onclick = "[GetScriptedGui('advcm_character_spawner_fertility_sub').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+						enabled = "[GetScriptedGui('advcm_character_spawner_fertility_sub').IsValid(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+					}
+
+					text_single = {
+						visible = "[Not(GetScriptedGui('advcm_russian_gui_shown').IsShown(GuiScope.End))]"
+						size = { 95 30 }
+						text = "[Localize('game_concept_fertility')]: [GetPlayer.MakeScope.Var('advcm_character_spawner_fertility').GetValue|2]"
+						default_format = "#high"
+						autoresize = no
+						align = center	
+					}
+
+					text_single = {
+						visible = "[GetScriptedGui('advcm_russian_gui_shown').IsShown(GuiScope.End)]"
+						size = { 125 30 }
+						text = "[Localize('game_concept_fertility')]: [GetPlayer.MakeScope.Var('advcm_character_spawner_fertility').GetValue|2]"
+						default_format = "#high"
+						autoresize = no
+						align = center
+						fontsize = 12	
+					}
+
+					advcm_button_arrow_right = {
+						onclick = "[GetScriptedGui('advcm_character_spawner_fertility_add').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+						enabled = "[GetScriptedGui('advcm_character_spawner_fertility_add').IsValid(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+					}
+
+				}
+
+				text_label_center = {
+					text = "[Localize('game_concept_culture')] & [Localize('game_concept_faith')]"
+					layoutpolicy_horizontal = expanding
+				}
+
+				hbox = {
+
+					spacing = 10
+					button_standard = {
+						size = { 100 35 }
+
+						text = "[GetPlayer.MakeScope.Var('advcm_character_spawner_culture').Culture.GetNameNoTooltip]"
+
+						onclick = "[GetVariableSystem.Toggle('advcm_character_spawner_culture_select_window')]"
+					}
+
+					button_standard = {
+						size = { 100 35 }
+						
+						text = "[GetPlayer.MakeScope.Var('advcm_character_spawner_religion').Faith.GetNameNoTooltip]"
+			
+						onclick = "[GetVariableSystem.Toggle('advcm_character_spawner_religion_select_window_visible')]"
+					}
+				}
+
+				text_label_center = {
+					text = RULER_DESIGNER_TRAITS_LABEL
+					layoutpolicy_horizontal = expanding
+				}
+
+				advcm_hbox_trait_slot = {
+					name = "other_traits"
+					layoutpolicy_horizontal = expanding
+
+					blockoverride "plus_onclick"
+					{
+						onclick = "[GetVariableSystem.Set('show_traits', 'physical')]"
+						onclick = "[GetVariableSystem.Toggle('advcm_character_spawner_trait_window_visible')]"
+					}
+				}
+
+				text_label_center = {
+					text = "[Localize('game_concept_dynasty')] & [Localize('gender_filter')]"
+					layoutpolicy_horizontal = expanding
+				}
+
+				hbox = {
+					spacing = 5
+
+					button_checkbox_label = {
+						max_width = 150
+						
+						layoutpolicy_horizontal = expanding
+						onclick = "[GetScriptedGui('advcm_character_spawner_check_child').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+						
+						
+						blockoverride "checkbox" 
+						{
+							checked = "[GetScriptedGui('advcm_character_spawner_check_child_checked').IsValid(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+						}
+						
+						blockoverride "text"
+						{
+							text = game_concept_child
+						}
+						tooltip = "advcm_character_spawner_child_tt"
+					}
+
+					advcm_button_arrow_left = {
+						onclick = "[GetScriptedGui('advcm_character_spawner_select_dynasty').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+					}
+
+					text_single = {
+						visible = "[Not(GetScriptedGui('advcm_russian_gui_shown').IsShown(GuiScope.End))]"
+						size = { 70 30 }
+						text = "[SelectLocalization( GetScriptedGui('advcm_character_spawner_select_dynasty_loc').IsValid(GuiScope.SetRoot(GetPlayer.MakeScope).End), 'advcm_dynasty_generated', 'LOWBORN' )]"
+						default_format = "#high"
+						autoresize = no
+						align = center	
+					}
+
+					text_single = {
+						visible = "[GetScriptedGui('advcm_russian_gui_shown').IsShown(GuiScope.End)]"
+						size = { 85 30 }
+						text = "[SelectLocalization( GetScriptedGui('advcm_character_spawner_select_dynasty_loc').IsValid(GuiScope.SetRoot(GetPlayer.MakeScope).End), 'advcm_dynasty_generated', 'LOWBORN' )]"
+						default_format = "#high"
+						autoresize = no
+						align = center	
+					}
+
+					advcm_button_arrow_right = {
+						onclick = "[GetScriptedGui('advcm_character_spawner_select_dynasty').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+					}
+
+					advcm_button_arrow_left = {
+						onclick = "[GetScriptedGui('advcm_character_spawner_select_gender').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+					}
+
+
+					text_single = {
+						size = { 60 30 }
+						text = "[SelectLocalization( GetScriptedGui('advcm_character_spawner_select_gender_loc').IsValid(GuiScope.SetRoot(GetPlayer.MakeScope).End), 'SEX_MALE', 'SEX_FEMALE' )]"
+						default_format = "#high"
+						autoresize = no
+						align = center	
+					}
+
+					advcm_button_arrow_right = {
+
+						onclick = "[GetScriptedGui('advcm_character_spawner_select_gender').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+					}
+
+
+				}
+
+
+				expand = {}
+
+				button_standard = {
+					size = { 250 65 }
+					text_single = {
+						text = advcm_create_character_loc
+						parentanchor = center
+						using = Font_Size_Medium
+						default_format = "#high"
+					}
+					onclick = "[GetScriptedGui('advcm_create_character').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+				}
+			}
+
+		}
+		
+    }
+}
+
+window = {
+	name = "advcm_character_spawner_culture_select_window"
+	parentanchor = top|right
+	position = { -600 200 }
+	size = { 500 700 }
+	layer = windows_layer
+	filter_mouse = all
+	allow_outside = yes
+	alwaystransparent = no
+	
+	using = Window_Background
+	using = Window_Decoration
+	movable = yes
+    
+    datacontext = "[GetVariableSystem]"
+	datacontext = "[GetPlayer]"
+	
+	visible = "[GetVariableSystem.Exists('advcm_character_spawner_culture_select_window')]"
+	
+	state = {
+			name = init
+			trigger_on_create = yes
+			
+			on_start = "[GetScriptedGui('advcm_culture_list_load').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+	}
+	
+	
+	state = {
+		name = _show
+		using = Animation_FadeIn_Quick
+	}
+	
+	state = {
+		name = _hide
+		using = Animation_FadeOut_Quick
+	}
+	
+	vbox = {
+		restrictparent_min = yes
+		using = Window_Margins
+		
+		header_pattern = {
+			layoutpolicy_horizontal = expanding
+
+
+			blockoverride "header_text"
+			{
+				text = game_concept_culture
+			}
+
+			blockoverride "button_close"
+			{
+				onclick = "[GetVariableSystem.Toggle('advcm_character_spawner_culture_select_window')]"
+                
+			}
+		}
+    
+
+		scrollbox = {
+			layoutpolicy_vertical = expanding
+			layoutpolicy_horizontal = expanding
+			minimumsize = { 400 100% }
+
+
+			blockoverride "scrollbox_content"
+			{
+				vbox = {
+					name = "cultures"
+					layoutpolicy_horizontal = expanding
+					datamodel = "[GetGlobalList('advcm_heritage_list')]"
+
+					item = {
+						vbox = {
+							name = "culture_group"
+							layoutpolicy_horizontal = expanding
+
+							datacontext = "[Scope.Culture.GetHeritage]"
+
+							button_standard_hover = {
+								layoutpolicy_horizontal = expanding
+
+								size = { 0 40 }
+								onclick = "[GetVariableSystem.Toggle(ConcatIfNeitherEmpty(CulturePillar.GetNameNoTooltip,'children_visible'))]"
+								tooltip = RULER_DESIGNER_LIST_CULTURE_ENTRY_TOOLTIP
+
+								hbox = {
+									margin = { 5 0 }
+									spacing = 10
+
+									button_list_expand = {
+										checked = "[GetVariableSystem.Exists(ConcatIfNeitherEmpty(CulturePillar.GetNameNoTooltip,'children_visible'))]"
+										onclick = "[GetVariableSystem.Toggle(ConcatIfNeitherEmpty(CulturePillar.GetNameNoTooltip,'children_visible'))]"
+									}
+
+									text_single = {
+										layoutpolicy_horizontal = expanding
+										text = "[CulturePillar.GetNameNoTooltip]"
+										default_format = "#clickable"
+										autoresize = no
+									}
+								}
+							}
+
+
+							vbox = {
+								name = "cultures"
+								layoutpolicy_horizontal = expanding
+								datamodel = "[CulturePillar.GetCulturesWithPillar]"
+								visible = "[GetVariableSystem.Exists(ConcatIfNeitherEmpty(CulturePillar.GetNameNoTooltip,'children_visible'))]"
+
+								item = {
+									hbox = {
+										layoutpolicy_horizontal = expanding
+										datacontext = "[Culture.GetTemplate]"
+
+										button_standard_hover = {
+											name = "culture_item"
+											layoutpolicy_horizontal = expanding
+											size = { 0 35 }
+											tooltipwidget = {
+												ruler_designer_culture_tooltip = {}
+											}
+											using = Button_Select_Culture
+											onclick = "[GetVariableSystem.Toggle('advcm_character_spawner_culture_select_window')]"
+											onclick = "[GetScriptedGui('advcm_character_spawner_culture_select').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('selected_culture', Culture.MakeScope).End)]"
+
+											hbox = {
+												margin_left = 50
+
+												text_single = {
+													margin = { 5 0 }
+													text = "[Culture.GetNameNoTooltip]"
+													default_format = "#clickable"
+													align = nobaseline
+												}
+
+												expand = {}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}     
+    }
+}
+
+window = {
+	name = "advcm_character_spawner_religion_select_window"
+	parentanchor = top|right
+	position = { -600 100 }
+	size = { 500 700 }
+	layer = windows_layer
+	filter_mouse = all
+	allow_outside = yes
+	alwaystransparent = no
+	
+	using = Window_Background
+	using = Window_Decoration
+	movable = yes
+    
+    datacontext = "[GetVariableSystem]"
+	
+	visible = "[GetVariableSystem.Exists('advcm_character_spawner_religion_select_window_visible')]"
+	
+	state = {
+		name = init
+		trigger_on_create = yes
+		
+		on_start = "[GetScriptedGui('advcm_religion_list_load').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+	}
+	
+	
+	
+	state = {
+		name = _show
+		using = Animation_FadeIn_Quick
+	}
+	
+	state = {
+		name = _hide
+		using = Animation_FadeOut_Quick
+	}
+	
+	vbox = {
+		restrictparent_min = yes
+		using = Window_Margins
+		
+		header_pattern = {
+			layoutpolicy_horizontal = expanding
+
+
+			blockoverride "header_text"
+			{
+				text = game_concept_religion
+			}
+
+			blockoverride "button_close"
+			{
+				onclick = "[GetVariableSystem.Toggle('advcm_character_spawner_religion_select_window_visible')]"
+                
+			}
+		}
+		
+		scrollbox = {
+			layoutpolicy_vertical = expanding
+			layoutpolicy_horizontal = expanding
+			minimumsize = { 350 0 }
+
+			blockoverride "scrollbox_content"
+			{
+				vbox = {
+					datamodel = "[GetGlobalList('religion_list')]"
+					layoutpolicy_horizontal = expanding
+
+					item = {
+						vbox = {
+							name = "religion"
+							datacontext = "[Scope.Religion]"
+							layoutpolicy_horizontal = expanding
+
+							hbox = {
+								layoutpolicy_horizontal = expanding
+								tooltip = "RULER_DESIGNER_LIST_FAITH_ENTRY_TOOLTIP"
+
+								button_standard_hover = {
+									layoutpolicy_horizontal = expanding
+									onclick = "[VariableSystem.Toggle(ConcatIfNeitherEmpty(Religion.GetNameNoTooltip, '_children_visible'))]"
+
+									hbox = {
+										margin = { 5 0 }
+										spacing = 10
+
+										button_list_expand = {
+											checked = "[GetVariableSystem.Exists(ConcatIfNeitherEmpty(Religion.GetNameNoTooltip, '_children_visible'))]"
+											onclick = "[VariableSystem.Toggle(ConcatIfNeitherEmpty(Religion.GetNameNoTooltip, '_children_visible'))]"
+										}
+
+										text_single = {
+											layoutpolicy_horizontal = expanding
+											text = "[Religion.GetNameNoTooltip]"
+											size = { 0 40 }
+											align = nobaseline
+											default_format = "#clickable"
+											autoresize = no
+										}
+									}
+								}
+							}
+
+							vbox = {
+								name = "faiths"
+								datamodel = "[Religion.GetFaiths]"
+								visible = "[GetVariableSystem.Exists(ConcatIfNeitherEmpty(Religion.GetNameNoTooltip, '_children_visible'))]"
+								layoutpolicy_horizontal = expanding
+
+								item = {
+									hbox = {
+										layoutpolicy_horizontal = expanding
+
+										button_standard_hover = {
+											name = "faith_item"
+											layoutpolicy_horizontal = expanding
+											size = { 0 55 }
+											using = Button_Select_Faith
+											onclick = "[GetVariableSystem.Toggle('advcm_character_spawner_religion_select_window_visible')]"
+											onclick = "[GetScriptedGui('advcm_character_spawner_religion_select').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('selected_faith', Faith.MakeScope).End)]"
+
+											hbox = {
+												margin = { 5 0 }
+												margin_left = 30
+												spacing = 10
+
+												button_religion_icon_ruler_designer = {
+													name = "faith_icon"
+													size = { 50 50 }
+													using = Button_Select_Faith
+													onclick = "[GetVariableSystem.Toggle('advcm_character_spawner_religion_select_window_visible')]"
+													onclick = "[GetScriptedGui('advcm_character_spawner_religion_select').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('selected_faith', Faith.MakeScope).End)]"
+												}
+
+												text_single = {
+													layoutpolicy_horizontal = expanding
+													text = "[Faith.GetNameNoTooltip]"
+													default_format = "#clickable"
+													autoresize = no
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+    }
+    
+}
+
+window = {
+	name = "advcm_character_spawner_trait_window"
+	parentanchor = top|right
+	position = { -50 100 }
+	size = { 425 0 }
+	layer = windows_layer
+	filter_mouse = all
+	allow_outside = yes
+	using = Window_Background
+	using = Window_Decoration
+	alwaystransparent = no
+	
+	movable = yes
+	
+	visible = "[GetVariableSystem.Exists('advcm_character_spawner_trait_window_visible')]"
+
+	
+	state = {
+		name = _show
+		using = Animation_FadeIn_Quick
+	}
+	
+	state = {
+		name = _hide
+		using = Animation_FadeOut_Quick
+	}
+	
+	
+	
+	vbox = {
+		margin_left = 40
+		margin_right = 40
+		margin_top = 20
+		margin_bottom = 20
+		ignoreinvisible = yes
+		restrictparent_min = yes
+		header_pattern = {
+			layoutpolicy_horizontal = expanding
+
+			button_clear = {
+				name = trait_list_clean
+				onclick = "[GetScriptedGui('advcm_trait_list_cleanup').Execute(GuiScope.End)]"
+				onclick = "[PdxGuiTriggerAllAnimations('advcm_build_traits_list')]"
+				tooltip = advcm_trait_cleanup_tt
+			}
+			
+			blockoverride "header_text"
+			{
+				text = game_concept_traits
+			}
+			
+			blockoverride "button_close"
+			{
+				onclick = "[GetVariableSystem.Toggle('advcm_character_spawner_trait_window_visible')]"
+				onclick = "[GetVariableSystem.Clear('show_traits')]"
+
+			}
+		}
+		
+		
+        widget = {
+        
+            size = { 425 85 }
+			
+				
+			widget = {
+				size = { 425 85 }
+				position = { 0 0 }
+				
+				vbox = {
+					spacing = 3
+					hbox = {
+						spacing = 5
+						
+						ignoreinvisible = yes
+						
+						button_standard = {
+							visible = "[Not(GetScriptedGui('advcm_russian_gui_shown').IsShown(GuiScope.End))]"
+							layoutpolicy_horizontal = expanding
+							size = { 107 30 }
+							onclick = "[GetVariableSystem.Set('show_traits', 'physical')]"
+							button_ignore = none
+							text = game_concept_physical_traits
+							tooltip = advcm_physical_traits_tt
+							using = tooltip_ne
+						}
+
+						button_standard = {
+							visible = "[GetScriptedGui('advcm_russian_gui_shown').IsShown(GuiScope.End)]"
+							layoutpolicy_horizontal = expanding
+							size = { 152 30 }
+							onclick = "[GetVariableSystem.Set('show_traits', 'physical')]"
+							button_ignore = none
+							text = game_concept_physical_traits
+							tooltip = advcm_physical_traits_tt
+							using = tooltip_ne
+						}
+						
+						
+						button_standard = {
+							visible = "[Not(GetScriptedGui('advcm_russian_gui_shown').IsShown(GuiScope.End))]"
+							layoutpolicy_horizontal = expanding
+							size = { 100 30 }
+							onclick = "[GetVariableSystem.Set('show_traits', 'education')]"
+							button_ignore = none
+							text = game_concept_education
+							tooltip = advcm_education_traits_tt
+							using = tooltip_ne
+						
+						}
+
+						button_standard = {
+							visible = "[GetScriptedGui('advcm_russian_gui_shown').IsShown(GuiScope.End)]"
+							layoutpolicy_horizontal = expanding
+							size = { 60 30 }
+							onclick = "[GetVariableSystem.Set('show_traits', 'education')]"
+							button_ignore = none
+							text = game_concept_education
+							tooltip = advcm_education_traits_tt
+							using = tooltip_ne
+						
+						}
+						button_standard = {
+							visible = "[Not(GetScriptedGui('advcm_russian_gui_shown').IsShown(GuiScope.End))]"
+							layoutpolicy_horizontal = expanding
+							size = { 108 30 }
+							onclick = "[GetVariableSystem.Set('show_traits', 'commander')]"
+							button_ignore = none
+							text = game_concept_commander
+							tooltip = advcm_commander_traits_tt
+							using = tooltip_ne
+						
+						}
+
+						button_standard = {
+							visible = "[GetScriptedGui('advcm_russian_gui_shown').IsShown(GuiScope.End)]"
+							layoutpolicy_horizontal = expanding
+							size = { 80 30 }
+							onclick = "[GetVariableSystem.Set('show_traits', 'commander')]"
+							button_ignore = none
+							text = game_concept_commander
+							tooltip = advcm_commander_traits_tt
+							using = tooltip_ne
+						
+						}
+						
+						button_standard = {
+							visible = "[Not(GetScriptedGui('advcm_russian_gui_shown').IsShown(GuiScope.End))]"
+							layoutpolicy_horizontal = expanding
+							size = { 75 30 }
+							onclick = "[GetVariableSystem.Set('show_traits', 'lifestyle')]"
+							button_ignore = none
+							text = game_concept_lifestyle
+							tooltip = advcm_lifestyle_traits_tt
+							using = tooltip_ne
+						
+						}
+
+						button_standard = {
+							visible = "[GetScriptedGui('advcm_russian_gui_shown').IsShown(GuiScope.End)]"
+							layoutpolicy_horizontal = expanding
+							size = { 99 30 }
+							onclick = "[GetVariableSystem.Set('show_traits', 'lifestyle')]"
+							button_ignore = none
+							text = game_concept_lifestyle
+							tooltip = advcm_lifestyle_traits_tt
+							using = tooltip_ne
+						
+						}
+					}
+					
+					hbox = {
+					
+						spacing = 5
+						
+						button_standard = {
+							name = "personality_traits_button"
+							layoutpolicy_horizontal = expanding
+							size = { 97 30 }
+							onclick = "[GetVariableSystem.Set('show_traits', 'personality')]"
+							
+							button_ignore = none
+							text = game_concept_personality
+							tooltip = advcm_personality_traits_tt
+							using = tooltip_ne
+						
+						}
+
+						button_standard = {
+							visible = "[Not(GetScriptedGui('advcm_russian_gui_shown').IsShown(GuiScope.End))]"
+							layoutpolicy_horizontal = expanding
+							size = { 65 30 }
+							onclick = "[GetVariableSystem.Set('show_traits', 'health')]"
+							
+							button_ignore = none
+							text = game_concept_health
+							tooltip = advcm_health_traits_tt
+							using = tooltip_ne
+						
+						}
+						
+						button_standard = {
+							visible = "[GetScriptedGui('advcm_russian_gui_shown').IsShown(GuiScope.End)]"
+							layoutpolicy_horizontal = expanding
+							size = { 76 30 }
+							onclick = "[GetVariableSystem.Set('show_traits', 'health')]"
+							
+							button_ignore = none
+							text = game_concept_health
+							tooltip = advcm_health_traits_tt
+							using = tooltip_ne
+						
+						}
+
+						button_standard = {
+							visible = "[Not(GetScriptedGui('advcm_russian_gui_shown').IsShown(GuiScope.End))]"
+							layoutpolicy_horizontal = expanding
+							size = { 55 30 }
+							onclick = "[GetVariableSystem.Set('show_traits', 'fame')]"
+							
+							button_ignore = none
+							text = game_concept_prestige_experience
+							tooltip = advcm_fame_traits_tt
+							using = tooltip_ne
+						
+						}
+						
+						button_standard = {
+							visible = "[GetScriptedGui('advcm_russian_gui_shown').IsShown(GuiScope.End)]"
+							layoutpolicy_horizontal = expanding
+							size = { 83 30 }
+							onclick = "[GetVariableSystem.Set('show_traits', 'fame')]"
+							
+							button_ignore = none
+							text = game_concept_prestige_experience
+							tooltip = advcm_fame_traits_tt
+							using = tooltip_ne
+						
+						}
+						
+						button_standard = {
+							layoutpolicy_horizontal = expanding
+							size = { 64 30 }
+							onclick = "[GetVariableSystem.Set('show_traits', 'other')]"
+							
+							button_ignore = none
+							text = activity_invite_rule_other_witches
+							tooltip = advcm_other_traits_tt
+							using = tooltip_ne
+						
+						}
+						
+					}
+				}
+			}
+			
+        }
+        
+        widget = {
+        
+            size = { 425 800 }
+            layoutpolicy_vertical = expanding
+            
+            
+            
+            
+           vbox = {
+				name = "trait_selection_panel"
+				layoutpolicy_vertical = expanding
+
+				
+				scrollbox = {
+					name = "physical_trait_selection_list"
+					layoutpolicy_vertical = expanding
+					layoutpolicy_horizontal = expanding
+					minimumsize = { 405 100% }
+					scissor = yes
+
+					visible = "[GetVariableSystem.HasValue( 'show_traits', 'physical' )]"
+					using =  Animation_Tab_Switch
+
+					blockoverride "scrollbox_content"
+					{
+						vbox_advcm_trait_selection_content_character_spawner = {
+							layoutpolicy_horizontal = expanding
+							datamodel = "[GetGlobalList('advcm_physical_traits_list')]"
+							
+						}
+					}
+				}
+
+
+				scrollbox = {
+					name = "education_trait_selection_list"
+					layoutpolicy_vertical = expanding
+					layoutpolicy_horizontal = expanding
+					minimumsize = { 375 100% }
+
+					visible = "[GetVariableSystem.HasValue( 'show_traits', 'education' )]"
+					using =  Animation_Tab_Switch
+
+					blockoverride "scrollbox_content"
+					{
+						vbox_advcm_trait_selection_content_character_spawner = {
+							layoutpolicy_horizontal = expanding
+							datamodel = "[GetEducationTraits]"
+						}
+					}
+				}
+				
+				scrollbox = {
+					name = "commander_trait_selection_list"
+					layoutpolicy_vertical = expanding
+					layoutpolicy_horizontal = expanding
+					minimumsize = { 375 100% }
+
+					visible = "[GetVariableSystem.HasValue( 'show_traits', 'commander' )]"
+					using =  Animation_Tab_Switch
+
+					blockoverride "scrollbox_content"
+					{
+						vbox_advcm_trait_selection_content_character_spawner = {
+							layoutpolicy_horizontal = expanding
+							datamodel = "[GetGlobalList('advcm_commander_traits_list')]"
+
+						}
+					}
+				}
+
+				scrollbox = {
+					name = "personality_trait_selection_list"
+					layoutpolicy_vertical = expanding
+					layoutpolicy_horizontal = expanding
+					minimumsize = { 375 100% }
+
+					visible = "[GetVariableSystem.HasValue( 'show_traits', 'personality' )]"
+					using =  Animation_Tab_Switch
+
+					blockoverride "scrollbox_content"
+					{
+						vbox_advcm_trait_selection_content_character_spawner = {
+							layoutpolicy_horizontal = expanding
+							datamodel = "[GetPersonalityTraits]"
+						}
+					}
+				}
+				
+				scrollbox = {
+					name = "health_trait_selection_list"
+					layoutpolicy_vertical = expanding
+					layoutpolicy_horizontal = expanding
+					minimumsize = { 375 100% }
+
+					visible = "[GetVariableSystem.HasValue( 'show_traits', 'health' )]"
+					using =  Animation_Tab_Switch
+
+					blockoverride "scrollbox_content"
+					{
+						vbox_advcm_trait_selection_content_character_spawner = {
+							layoutpolicy_horizontal = expanding
+							datamodel = "[GetGlobalList('advcm_health_traits_list')]"
+
+						}
+					}
+				}
+				
+				scrollbox = {
+					name = "fame_trait_selection_list"
+					layoutpolicy_vertical = expanding
+					layoutpolicy_horizontal = expanding
+					minimumsize = { 375 100% }
+
+					visible = "[GetVariableSystem.HasValue( 'show_traits', 'fame' )]"
+					using =  Animation_Tab_Switch
+
+					blockoverride "scrollbox_content"
+					{
+						vbox_advcm_trait_selection_content_character_spawner = {
+							layoutpolicy_horizontal = expanding
+							datamodel = "[GetGlobalList('advcm_fame_traits_list')]"
+
+						}
+					}
+				}
+
+				scrollbox = {
+					name = "other_trait_selection_list"
+					layoutpolicy_vertical = expanding
+					layoutpolicy_horizontal = expanding
+					minimumsize = { 375 100% }
+
+					visible = "[GetVariableSystem.HasValue( 'show_traits', 'other' )]"
+					using =  Animation_Tab_Switch
+
+					blockoverride "scrollbox_content"
+					{
+						vbox_advcm_trait_selection_content_character_spawner = {
+							layoutpolicy_horizontal = expanding
+							datamodel = "[GetGlobalList('advcm_other_traits_list')]"
+
+						}
+					}
+				}
+				
+				scrollbox = {
+					name = "lifestyle_trait_selection_list"
+					layoutpolicy_vertical = expanding
+					layoutpolicy_horizontal = expanding
+					minimumsize = { 375 100% }
+
+					visible = "[GetVariableSystem.HasValue( 'show_traits', 'lifestyle' )]"
+					using =  Animation_Tab_Switch
+					
+
+					blockoverride "scrollbox_content"
+					{
+						vbox_advcm_trait_selection_content_character_spawner = {
+							layoutpolicy_horizontal = expanding
+							datamodel = "[GetGlobalList('advcm_lifestyle_traits_list')]"
+							
+						}
+					}
+				}
+
+			}
+        }
+	}
+}
+
+
+window = {
+	name = "advcm_character_spawner_presets"
+	parentanchor = top|right
+	position = { -600 200 }
+	size = { 200 500 }
+	layer = windows_layer
+	filter_mouse = all
+	allow_outside = yes
+	alwaystransparent = no
+	
+	using = Window_Background
+	using = Window_Decoration
+	movable = yes
+    
+    datacontext = "[GetVariableSystem]"
+	datacontext = "[GetPlayer]"
+	
+	visible = "[GetVariableSystem.Exists('advcm_character_spawner_presets_visible')]"
+	
+	state = {
+		name = _show
+		using = Animation_FadeIn_Quick
+	}
+	
+	state = {
+		name = _hide
+		using = Animation_FadeOut_Quick
+	}
+	
+	vbox = {
+		restrictparent_min = yes
+		using = Window_Margins
+		
+		header_pattern = {
+			layoutpolicy_horizontal = expanding
+
+
+			blockoverride "header_text"
+			{
+				text = advcm_presets
+			}
+
+			blockoverride "button_close"
+			{
+				onclick = "[GetVariableSystem.Toggle('advcm_character_spawner_presets_visible')]"
+                
+			}
+		}
+    
+
+		scrollbox = {
+			layoutpolicy_vertical = expanding
+			layoutpolicy_horizontal = expanding
+			minimumsize = { 200 100% }
+
+
+			blockoverride "scrollbox_content"
+			{
+				vbox = {
+					name = "presets"
+					layoutpolicy_horizontal = expanding
+					datamodel = "[GetGlobalList('advcm_character_spawner_preset_list')]"
+
+					item = {
+						vbox = {
+							name = "culture_group"
+							layoutpolicy_horizontal = expanding
+
+							datacontext = "[Scope]"
+
+							button_standard_hover = {
+								layoutpolicy_horizontal = expanding
+
+								size = { 0 40 }
+								onclick = "[GetScriptedGui(Concatenate(Scope.GetFlagName, '_sgui')).Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+
+								hbox = {
+									margin = { 5 0 }
+									spacing = 10
+
+									text_single = {
+										layoutpolicy_horizontal = expanding
+										text = "[Localize(Concatenate(Scope.GetFlagName, '_loc'))]"
+										default_format = "#clickable"
+										autoresize = no
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}     
+    }
+}
+
+
+
+types AdvcmCharacterWindowButtonTypes
+{
+
+	type advcm_button_arrow_right = button_icon {
+        size = { 15 15 }
+        texture = "gfx/interface/icons/advcm_arrow_right_icon.dds"
+    }
+
+	type advcm_button_arrow_left = button_icon {
+        size = { 15 15 }
+        texture = "gfx/interface/icons/advcm_arrow_left_icon.dds"
+    }
+
+	type advcm_button_arrow_up = button_icon {
+        size = { 15 15 }
+        texture = "gfx/interface/icons/advcm_arrow_up_icon.dds"
+    }
+
+	type advcm_button_arrow_down = button_icon {
+        size = { 15 15 }
+        texture = "gfx/interface/icons/advcm_arrow_down_icon.dds"
+    }
+
+
+	type advcm_button_trait_slot_entry = button_trait
+	{
+		datacontext = "[TraitSlot.GetTrait]"
+
+		blockoverride "faith_context"
+		{
+			datacontext = "[GetNullCharacter.GetFaith]"
+		}
+
+		block "button_trait_onclick"
+		{
+		}
+
+		state = {
+			name = "_mouse_enter"
+			on_start = "[PdxGuiWidget.FindChild('remove_icon').TriggerAnimation('show')]"
+		}
+
+		state = {
+			name = "_mouse_leave"
+			on_start = "[PdxGuiWidget.FindChild('remove_icon').TriggerAnimation('hide')]"
+		}
+
+		button_close = {
+			name = "remove_icon"
+			parentanchor = center
+			alwaystransparent = yes
+			alpha = 0
+
+			state = {
+				name = "show"
+				using = Animation_FadeIn_Quick
+				duration = 0.05
+			}
+
+			state = {
+				name = "hide"
+				alpha = 0
+				using = Animation_FadeOut_Quick
+			}
+
+			background = {
+				texture = "gfx/interface/component_masks/mask_fade_circle.dds"
+				color = { 0.18 0.18 0.18 0.8 }
+				margin = {20 20}
+			}
+		}
+
+		onclick = "[GetScriptedGui('advcm_character_spawner_trait_list_remove').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('trait', Trait.MakeScope).End)]"
+		button_ignore = none
+	}
+
+	type advcm_hbox_trait_slot = hbox
+	{
+		hbox = {
+			block "trait_list"
+			{
+				hbox = {
+					name = "current_traits_less_than_equal_6"
+					layoutpolicy_horizontal = expanding
+
+					size = { 300 50 }
+
+					datamodel = "[GetPlayer.MakeScope.GetList('advcm_character_spawner_traits_list')]"
+					visible = "[And( DataModelHasItems( GetPlayer.MakeScope.GetList('advcm_character_spawner_traits_list') ), LessThanOrEqualTo_int32( GetDataModelSize( GetPlayer.MakeScope.GetList('advcm_character_spawner_traits_list') ), '(int32)6' ) )]"
+
+					
+
+					item = {
+						container = {
+							datacontext = "[Scope.Trait]"
+							advcm_button_trait_slot_entry = {}
+						}
+					}
+				}
+				overlappingitembox = {
+					name = "current_traits_more_than_6"
+					layoutpolicy_horizontal = expanding
+
+					size = { 300 50 }
+
+					datamodel = "[GetPlayer.MakeScope.GetList('advcm_character_spawner_traits_list')]"
+					visible = "[And( DataModelHasItems( GetPlayer.MakeScope.GetList('advcm_character_spawner_traits_list') ), GreaterThan_int32( GetDataModelSize( GetPlayer.MakeScope.GetList('advcm_character_spawner_traits_list') ), '(int32)6' ) )]"
+
+
+					item = {
+						container = {
+							datacontext = "[Scope.Trait]"
+							advcm_button_trait_slot_entry = {}
+						}
+					}
+				}
+			}
+
+			block "plus_button"
+			{
+				widget = {
+					size = { 50 50 }
+					name = "add_trait_slot"
+
+					button_plus = {
+						name = "add_trait_button"
+						parentanchor = center
+
+						tooltip = "RULER_DESIGNER_ADD_TRAIT_SLOT_TOOLTIP"
+
+						#onclick = "[TraitSlotArray.StartEditing]"
+
+						block "plus_onclick"
+						{
+							onclick = "[VariableSystem.Set( 'trait_select_window_open', 'true' )]"
+						}
+					}
+				}
+			}
+		}
+
+		expand = {}
+	}
+
+	type vbox_advcm_trait_selection_content_character_spawner = fixedgridbox
+	{
+		datacontext = "[GetPlayer]"
+		datacontext = "[Scope.Trait]"
+		layoutpolicy_horizontal = expanding
+		addcolumn = 425
+		addrow = 53
+
+		item = {
+			widget = {
+				datacontext = "[Scope.Trait]"
+				layoutpolicy_horizontal = expanding
+				size = { 390 53 }
+				block "test_visible"
+				{
+					visible = yes
+				}
+				button_standard_hover = {
+					name = "trait_item"
+					layoutpolicy_horizontal = expanding
+					layoutpolicy_vertical = expanding
+					size = { 100% 50 }
+					onclick = "[GetScriptedGui('advcm_character_spawner_trait_list_add').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('trait', Trait.MakeScope).End)]"
+					button_ignore = none
+					tooltip = advcm_trait_button_tt
+
+					hbox = {
+						margin = { 5 0 }
+						margin_right = 10
+						spacing = 10
+
+						advcm_icon_trait = {
+							blockoverride "faith_context"
+							{
+								datacontext = "[GetPlayer.GetFaith]"
+							}
+							blockoverride "tooltip_placement"
+							{
+								using = tooltip_ws
+							}
+						}
+
+						text_single = {
+							layoutpolicy_horizontal = expanding
+							text = "[Trait.GetNameNoTooltip( Character.Self )]"
+							default_format = "#clickable"
+						}
+					}
+				}
+			}
+		}
+	}
+
+	
+}

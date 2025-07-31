@@ -1,0 +1,68 @@
+﻿advcm_build_speed_modifier = {
+	icon = county_modifier_development_positive
+	build_speed = -0.10
+	stacking = yes
+}
+
+advcm_build_cost_modifier = {
+	icon = county_modifier_development_positive
+	build_gold_cost = -0.10
+	build_piety_cost = -0.10
+	build_prestige_cost = -0.10
+	stacking = yes
+	
+}
+
+advcm_knight_limit_modifier = {
+	icon = prowess_positive
+	knight_limit = 1
+	stacking = yes
+}
+
+advcm_knight_effectiveness_modifier = {
+	icon = prowess_positive
+	knight_effectiveness_mult = 0.10
+	stacking = yes
+}
+
+advcm_max_personal_schemes_modifier = {
+	icon = intrigue_positive
+	max_personal_schemes_add = 1
+	stacking = yes
+}
+
+advcm_max_hostile_schemes_modifier = {
+	icon = intrigue_positive
+	max_hostile_schemes_add = 1
+	stacking = yes
+}
+
+advcm_domain_limit_modifier = {
+	icon = stewardship_positive
+	domain_limit = 1
+	stacking = yes
+}
+
+advcm_vassal_limit_modifier = {
+	icon = stewardship_positive
+	vassal_limit = 1
+	stacking = yes
+}
+
+advcm_men_at_arms_cap_modifier = {
+	icon = martial_positive
+	men_at_arms_cap = 1
+	stacking = yes
+}
+
+advcm_men_at_arms_limit_modifier = {
+	icon = martial_positive
+	men_at_arms_limit = 1
+	stacking = yes
+}
+
+advcm_diplomatic_range_modifier = {
+	icon = compass_positive
+	diplomatic_range_mult = 1
+	stacking = yes
+}

@@ -1,0 +1,217 @@
+﻿advcm_create_character_effect = {
+
+	global_var:advcm_character_spawner_selected_char = {
+		save_scope_as = selected_char
+	}
+
+	create_character = {
+		age = var:advcm_character_spawner_age
+		gender = $GENDER$
+		health = var:advcm_character_spawner_health
+		fertility = var:advcm_character_spawner_fertility
+		employer = scope:selected_char
+		faith = var:advcm_character_spawner_religion
+		culture = var:advcm_character_spawner_culture
+		dynasty = $DYNASTY$
+		martial = var:advcm_character_spawner_martial
+		prowess = var:advcm_character_spawner_prowess
+		diplomacy = var:advcm_character_spawner_diplomacy
+		stewardship = var:advcm_character_spawner_stewardship
+		intrigue = var:advcm_character_spawner_intrigue
+		learning = var:advcm_character_spawner_learning
+		random_traits = no 
+
+		after_creation = {
+			save_scope_as = created_character
+
+			prev = {
+				every_in_list = {
+					variable = advcm_character_spawner_traits_list
+
+					scope:created_character = {
+						add_trait = prev
+					}
+				}
+				if = {
+					limit = {has_variable = advcm_character_spawner_executioner}
+					scope:selected_char = {
+						add_hook_no_toast = { type = loyalty_hook target = scope:created_character}
+					}
+					remove_variable = advcm_character_spawner_executioner
+				}
+				if = {
+					limit = {has_variable = advcm_character_spawner_court_artificer}
+					scope:created_character = {
+						create_inspiration = { type = weapon_inspiration }
+					}
+					remove_variable = advcm_character_spawner_court_artificer
+				}
+			}
+		}
+	}
+}
+
+advcm_create_child_character_effect = {
+
+	global_var:advcm_character_spawner_selected_char = {
+		save_scope_as = selected_char
+	}
+
+	if = {
+		limit = { scope:selected_char = {is_female = no } }
+
+		create_character = {
+			age = var:advcm_character_spawner_age
+			gender = $GENDER$
+			health = var:advcm_character_spawner_health
+			fertility = var:advcm_character_spawner_fertility
+			employer = scope:selected_char
+			faith = var:advcm_character_spawner_religion
+			culture = var:advcm_character_spawner_culture
+			dynasty_house = scope:selected_char.house
+			father = scope:selected_char
+			mother = scope:selected_char.primary_spouse
+			martial = var:advcm_character_spawner_martial
+			prowess = var:advcm_character_spawner_prowess
+			diplomacy = var:advcm_character_spawner_diplomacy
+			stewardship = var:advcm_character_spawner_stewardship
+			intrigue = var:advcm_character_spawner_intrigue
+			learning = var:advcm_character_spawner_learning
+			random_traits = no 
+
+			after_creation = {
+				save_scope_as = created_character
+
+				prev = {
+					every_in_list = {
+						variable = advcm_character_spawner_traits_list
+
+						scope:created_character = {
+							add_trait = prev
+						}
+					}
+				}
+			}
+		}
+	}
+
+	else = {
+		create_character = {
+			age = var:advcm_character_spawner_age
+			gender = $GENDER$
+			health = var:advcm_character_spawner_health
+			fertility = var:advcm_character_spawner_fertility
+			employer = scope:selected_char
+			faith = var:advcm_character_spawner_religion
+			culture = var:advcm_character_spawner_culture
+			dynasty_house = scope:selected_char.house
+			father = scope:selected_char.primary_spouse
+			mother = scope:selected_char
+			martial = var:advcm_character_spawner_martial
+			prowess = var:advcm_character_spawner_prowess
+			diplomacy = var:advcm_character_spawner_diplomacy
+			stewardship = var:advcm_character_spawner_stewardship
+			intrigue = var:advcm_character_spawner_intrigue
+			learning = var:advcm_character_spawner_learning
+			random_traits = no 
+
+			after_creation = {
+				save_scope_as = created_character
+
+				prev = {
+					every_in_list = {
+						variable = advcm_character_spawner_traits_list
+
+						scope:created_character = {
+							add_trait = prev
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+advcm_character_spawner_presets_effect = {
+	add_to_global_variable_list = { name = advcm_character_spawner_preset_list target = flag:advcm_cc_OP}
+	add_to_global_variable_list = { name = advcm_character_spawner_preset_list target = flag:advcm_cc_court_physician}
+	add_to_global_variable_list = { name = advcm_character_spawner_preset_list target = flag:advcm_cc_cultural_emissary}
+	add_to_global_variable_list = { name = advcm_character_spawner_preset_list target = flag:advcm_cc_keeper_of_swans}
+	add_to_global_variable_list = { name = advcm_character_spawner_preset_list target = flag:advcm_cc_chief_qadi}
+	add_to_global_variable_list = { name = advcm_character_spawner_preset_list target = flag:advcm_cc_garuda}
+	add_to_global_variable_list = { name = advcm_character_spawner_preset_list target = flag:advcm_cc_court_gardener}
+	add_to_global_variable_list = { name = advcm_character_spawner_preset_list target = flag:advcm_cc_lady_in_waiting}
+	add_to_global_variable_list = { name = advcm_character_spawner_preset_list target = flag:advcm_cc_antiquarian}
+	add_to_global_variable_list = { name = advcm_character_spawner_preset_list target = flag:advcm_cc_caravan_master}
+	add_to_global_variable_list = { name = advcm_character_spawner_preset_list target = flag:advcm_cc_wet_nurse}
+	add_to_global_variable_list = { name = advcm_character_spawner_preset_list target = flag:advcm_cc_court_tutor}
+	add_to_global_variable_list = { name = advcm_character_spawner_preset_list target = flag:advcm_cc_food_taster}
+	add_to_global_variable_list = { name = advcm_character_spawner_preset_list target = flag:advcm_cc_master_of_horse}
+	add_to_global_variable_list = { name = advcm_character_spawner_preset_list target = flag:advcm_cc_master_of_hunt}
+	add_to_global_variable_list = { name = advcm_character_spawner_preset_list target = flag:advcm_cc_royal_architect}
+	add_to_global_variable_list = { name = advcm_character_spawner_preset_list target = flag:advcm_cc_high_almoner}
+	add_to_global_variable_list = { name = advcm_character_spawner_preset_list target = flag:advcm_cc_seneschal}
+	add_to_global_variable_list = { name = advcm_character_spawner_preset_list target = flag:advcm_cc_cupbearer}
+	add_to_global_variable_list = { name = advcm_character_spawner_preset_list target = flag:advcm_cc_chief_eunuch}
+	add_to_global_variable_list = { name = advcm_character_spawner_preset_list target = flag:advcm_cc_court_jester}
+	add_to_global_variable_list = { name = advcm_character_spawner_preset_list target = flag:advcm_cc_court_poet}
+	add_to_global_variable_list = { name = advcm_character_spawner_preset_list target = flag:advcm_cc_court_musician}
+	add_to_global_variable_list = { name = advcm_character_spawner_preset_list target = flag:advcm_cc_bodyguard}
+	add_to_global_variable_list = { name = advcm_character_spawner_preset_list target = flag:advcm_cc_champion}
+	add_to_global_variable_list = { name = advcm_character_spawner_preset_list target = flag:advcm_cc_executioner}
+	add_to_global_variable_list = { name = advcm_character_spawner_preset_list target = flag:advcm_cc_court_artificer}
+	add_to_global_variable_list = { name = advcm_character_spawner_preset_list target = flag:advcm_cc_master_assassin}
+	add_to_global_variable_list = { name = advcm_character_spawner_preset_list target = flag:advcm_cc_chronicler}
+	add_to_global_variable_list = { name = advcm_character_spawner_preset_list target = flag:advcm_cc_court_scholar}
+	add_to_global_variable_list = { name = advcm_character_spawner_preset_list target = flag:advcm_cc_charioteer}
+	add_to_global_variable_list = { name = advcm_character_spawner_preset_list target = flag:advcm_cc_bookmaker}
+	add_to_global_variable_list = { name = advcm_character_spawner_preset_list target = flag:advcm_cc_akolouthos}
+
+}
+
+advcm_cc_reset_skill_effect = {
+	set_variable = {
+		name = advcm_character_spawner_diplomacy
+		value = 10
+	}
+
+	set_variable = {
+		name = advcm_character_spawner_martial
+		value = 10
+	}
+
+	set_variable = {
+		name = advcm_character_spawner_stewardship
+		value = 10
+	}
+
+	set_variable = {
+		name = advcm_character_spawner_intrigue
+		value = 10
+	}
+
+	set_variable = {
+		name = advcm_character_spawner_learning
+		value = 10
+	}
+
+	set_variable = {
+		name = advcm_character_spawner_learning
+		value = 10
+	}
+
+	set_variable = {
+		name = advcm_character_spawner_prowess
+		value = 10
+	}
+
+	if = {
+		limit = {has_variable = advcm_character_spawner_executioner}
+		remove_variable = advcm_character_spawner_executioner
+	}
+
+	if = {
+		limit = {has_variable = advcm_character_spawner_court_artificer}
+		remove_variable = advcm_character_spawner_court_artificer
+	}
+}

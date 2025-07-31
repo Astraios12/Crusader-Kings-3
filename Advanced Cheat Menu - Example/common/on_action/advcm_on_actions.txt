@@ -1,0 +1,57 @@
+﻿on_game_start_after_lobby = {
+	on_actions = {
+		on_advcm_list_generation
+		on_advcm_enabled
+	}
+}
+
+on_game_start = {
+	on_actions = {
+		on_advcm_list_generation
+		on_advcm_enabled
+	}
+}
+
+on_death = {
+	on_actions = {
+		on_death_advcm
+	}
+}
+
+on_advcm_list_generation = {
+	effect = {
+		advcm_religions_list_effect = yes
+		advcm_heritages_list_effect = yes
+	}
+}
+
+yearly_global_pulse = {
+	on_actions = {
+		on_advcm_enabled
+	}
+}
+
+on_advcm_enabled = {
+	effect = {
+		advcm_enabled = yes
+	}
+}
+
+on_advcm_character_creator_presets_load = {
+
+	on_actions = {
+		on_advcm_load_original_presets
+	}
+}
+
+on_advcm_load_original_presets = {
+	effect = {
+		advcm_character_spawner_presets_effect = yes 
+	}
+}
+
+on_death_advcm = {
+	effect = {
+		remove_list_global_variable = { name = marked_characters target = this}
+	}
+}

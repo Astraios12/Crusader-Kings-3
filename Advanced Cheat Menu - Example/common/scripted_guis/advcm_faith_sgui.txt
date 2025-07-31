@@ -1,0 +1,48 @@
+﻿advcm_religion_change = {
+	scope = character
+	
+	saved_scopes = { selected_faith }
+	
+	effect = {
+		every_in_global_list = {
+			variable = marked_characters
+
+			hidden_effect = {
+				set_character_faith = scope:selected_faith
+			}
+		}
+	}
+}
+
+advcm_religion_list_load = {
+	scope = character
+	
+	effect = {
+		advcm_religions_list_effect = yes
+	}
+}
+
+advcm_change_myreligion = {
+	scope = character
+	
+	effect = {
+		change_myreligion_effect = yes
+	}
+}
+
+advcm_change_myreligion_county = {
+	scope = character
+	
+	effect = {
+		change_myreligion_county_effect = yes
+	}
+}
+
+advcm_change_otherreligion_county = {
+	scope = character
+	
+	effect = {
+		change_otherreligion_county_effect = yes
+	}
+}
+

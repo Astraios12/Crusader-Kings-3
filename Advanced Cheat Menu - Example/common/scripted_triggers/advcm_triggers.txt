@@ -1,0 +1,28 @@
+﻿is_english = {
+    global_var:game_language = flag:english
+}
+
+is_french = {
+    global_var:game_language = flag:french
+}
+
+is_german = {
+    global_var:game_language = flag:german
+}
+
+is_spanish = {
+    global_var:game_language = flag:spanish
+}
+
+is_korean = {
+    global_var:game_language = flag:korean
+}
+
+is_russian = {
+    global_var:game_language = flag:russian
+}
+
+is_simp_chinese = {
+    global_var:game_language = flag:simp_chinese
+}
+

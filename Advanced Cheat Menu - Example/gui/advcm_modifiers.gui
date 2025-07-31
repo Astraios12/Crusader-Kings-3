@@ -1,0 +1,345 @@
+window = {
+	name = "advcm_modifiers_window"
+	parentanchor = top|right
+	position = { -50 100 }
+	size = { 500 0 }
+	layer = windows_layer
+	filter_mouse = all
+	allow_outside = yes
+	using = Window_Background
+	using = Window_Decoration
+	alwaystransparent = no
+	
+	movable = yes
+	
+	visible = "[GetVariableSystem.Exists('advcm_modifiers_window_visible')]"
+	
+	state = {
+		name = _show
+		using = Animation_FadeIn_Quick
+	}
+	
+	state = {
+		name = _hide
+		using = Animation_FadeOut_Quick
+	}
+	
+	
+	
+	vbox = {
+		margin_left = 40
+		margin_right = 40
+		margin_top = 20
+		margin_bottom = 20
+		ignoreinvisible = yes
+		restrictparent_min = yes
+		header_pattern = {
+			layoutpolicy_horizontal = expanding
+			
+			blockoverride "header_text"
+			{
+				text = game_concept_modifiers
+			}
+			
+			blockoverride "button_close"
+			{
+				onclick = "[GetVariableSystem.Toggle('advcm_modifiers_window_visible')]"
+			}
+		}
+		
+		widget = {
+        
+            size = { 450 60 }
+            layoutpolicy_vertical = expanding
+			
+			vbox = { 
+                
+                layoutpolicy_vertical = growing
+                vbox = {
+                    spacing = 5
+                    flowcontainer = {
+                        spacing = 5
+                        margin_bottom = 0
+                        ignoreinvisible = yes
+                        datacontext = [GetPlayer]
+                        
+                        dockable_button = {
+                            name = "advcm_build_speed_button"
+                            onclick = "[GetScriptedGui('advcm_add_modifier_build_speed').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+                            onrightclick = "[GetScriptedGui('advcm_remove_modifier_build_speed').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+                            button_ignore = none
+                            using = tooltip_ne 
+                            
+                            icon = {
+                                    datacontext = "[GetPlayer]"
+                                    datacontext = "[GetModifier('advcm_build_speed_modifier')]"
+                                    datacontext = "[GetPlayer.GetFaith]"
+                                    parentanchor = center
+                                    position = { 0 1 }
+                                    size = { 30 30 }
+                                    texture = "[StaticModifier.GetIcon]"
+                                    tooltipwidget = {
+                                        using = modifier_advcm_tooltip
+                                    }
+                                    
+                                }
+                        }
+						
+						dockable_button = {
+                            name = "advcm_build_cost_button"
+                            onclick = "[GetScriptedGui('advcm_add_modifier_build_cost').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+                            onrightclick = "[GetScriptedGui('advcm_remove_modifier_build_cost').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+                            button_ignore = none
+                            using = tooltip_ne 
+                            
+                            icon = {
+                                    datacontext = "[GetPlayer]"
+                                    datacontext = "[GetModifier('advcm_build_cost_modifier')]"
+                                    datacontext = "[GetPlayer.GetFaith]"
+                                    parentanchor = center
+                                    position = { 0 1 }
+                                    size = { 30 30 }
+                                    texture = "[StaticModifier.GetIcon]"
+                                    tooltipwidget = {
+                                        using = modifier_advcm_tooltip
+                                    }
+                                    
+                                }
+                        }
+						
+						dockable_button = {
+                            name = "advcm_knight_limit_button"
+                            onclick = "[GetScriptedGui('advcm_add_modifier_knight_limit').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+                            onrightclick = "[GetScriptedGui('advcm_remove_modifier_knight_limit').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+                            button_ignore = none
+                            using = tooltip_ne 
+                            
+                            icon = {
+                                    datacontext = "[GetPlayer]"
+                                    datacontext = "[GetModifier('advcm_knight_limit_modifier')]"
+                                    datacontext = "[GetPlayer.GetFaith]"
+                                    parentanchor = center
+                                    position = { 0 1 }
+                                    size = { 30 30 }
+                                    texture = "[StaticModifier.GetIcon]"
+                                    tooltipwidget = {
+                                        using = modifier_advcm_tooltip
+                                    }
+                                    
+                                }
+                        }
+						
+						dockable_button = {
+                            name = "advcm_knight_effectiveness_button"
+                            onclick = "[GetScriptedGui('advcm_add_modifier_knight_effectiveness').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+                            onrightclick = "[GetScriptedGui('advcm_remove_modifier_knight_effectiveness').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+                            button_ignore = none
+                            using = tooltip_ne 
+                            
+                            icon = {
+                                    datacontext = "[GetPlayer]"
+                                    datacontext = "[GetModifier('advcm_knight_effectiveness_modifier')]"
+                                    datacontext = "[GetPlayer.GetFaith]"
+                                    parentanchor = center
+                                    position = { 0 1 }
+                                    size = { 30 30 }
+                                    texture = "[StaticModifier.GetIcon]"
+                                    tooltipwidget = {
+                                        using = modifier_advcm_tooltip
+                                    }
+                                    
+                                }
+                        }
+						
+						dockable_button = {
+                            name = "advcm_max_personal_schemes_button"
+                            onclick = "[GetScriptedGui('advcm_add_modifier_max_personal_schemes').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+                            onrightclick = "[GetScriptedGui('advcm_remove_modifier_max_personal_schemes').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+                            button_ignore = none
+                            using = tooltip_ne 
+                            
+                            icon = {
+                                    datacontext = "[GetPlayer]"
+                                    datacontext = "[GetModifier('advcm_max_personal_schemes_modifier')]"
+                                    datacontext = "[GetPlayer.GetFaith]"
+                                    parentanchor = center
+                                    position = { 0 1 }
+                                    size = { 30 30 }
+                                    texture = "[StaticModifier.GetIcon]"
+                                    tooltipwidget = {
+                                        using = modifier_advcm_tooltip
+                                    }
+                                    
+                                }
+                        }
+						
+						dockable_button = {
+                            name = "advcm_max_hostile_schemes_button"
+                            onclick = "[GetScriptedGui('advcm_add_modifier_max_hostile_schemes').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+                            onrightclick = "[GetScriptedGui('advcm_remove_modifier_max_hostile_schemes').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+                            button_ignore = none
+                            using = tooltip_ne 
+                            
+                            icon = {
+                                    datacontext = "[GetPlayer]"
+                                    datacontext = "[GetModifier('advcm_max_hostile_schemes_modifier')]"
+                                    datacontext = "[GetPlayer.GetFaith]"
+                                    parentanchor = center
+                                    position = { 0 1 }
+                                    size = { 30 30 }
+                                    texture = "[StaticModifier.GetIcon]"
+                                    tooltipwidget = {
+                                        using = modifier_advcm_tooltip
+                                    }
+                                    
+                                }
+                        }
+						
+						dockable_button = {
+                            name = "advcm_domain_limit_button"
+                            onclick = "[GetScriptedGui('advcm_add_modifier_domain_limit').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+                            onrightclick = "[GetScriptedGui('advcm_remove_modifier_domain_limit').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+                            button_ignore = none
+                            using = tooltip_ne 
+                            
+                            icon = {
+                                    datacontext = "[GetPlayer]"
+                                    datacontext = "[GetModifier('advcm_domain_limit_modifier')]"
+                                    datacontext = "[GetPlayer.GetFaith]"
+                                    parentanchor = center
+                                    position = { 0 1 }
+                                    size = { 30 30 }
+                                    texture = "[StaticModifier.GetIcon]"
+                                    tooltipwidget = {
+                                        using = modifier_advcm_tooltip
+                                    }
+                                    
+                                }
+                        }
+						
+						dockable_button = {
+                            name = "advcm_vassal_limit_button"
+                            onclick = "[GetScriptedGui('advcm_add_modifier_vassal_limit').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+                            onrightclick = "[GetScriptedGui('advcm_remove_modifier_vassal_limit').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+                            button_ignore = none
+                            using = tooltip_ne 
+                            
+                            icon = {
+                                    datacontext = "[GetPlayer]"
+                                    datacontext = "[GetModifier('advcm_vassal_limit_modifier')]"
+                                    datacontext = "[GetPlayer.GetFaith]"
+                                    parentanchor = center
+                                    position = { 0 1 }
+                                    size = { 30 30 }
+                                    texture = "[StaticModifier.GetIcon]"
+                                    tooltipwidget = {
+                                        using = modifier_advcm_tooltip
+                                    }
+                                    
+                                }
+                        }
+						
+						dockable_button = {
+                            name = "advcm_men_at_arms_cap_button"
+                            onclick = "[GetScriptedGui('advcm_add_modifier_men_at_arms_cap').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+                            onrightclick = "[GetScriptedGui('advcm_remove_modifier_men_at_arms_cap').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+                            button_ignore = none
+                            using = tooltip_ne 
+                            
+                            icon = {
+                                    datacontext = "[GetPlayer]"
+                                    datacontext = "[GetModifier('advcm_men_at_arms_cap_modifier')]"
+                                    datacontext = "[GetPlayer.GetFaith]"
+                                    parentanchor = center
+                                    position = { 0 1 }
+                                    size = { 30 30 }
+                                    texture = "[StaticModifier.GetIcon]"
+                                    tooltipwidget = {
+                                        using = modifier_advcm_tooltip
+                                    }
+                                    
+                                }
+                        }
+						
+						dockable_button = {
+                            name = "advcm_men_at_arms_limit_button"
+                            onclick = "[GetScriptedGui('advcm_add_modifier_men_at_arms_limit').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+                            onrightclick = "[GetScriptedGui('advcm_remove_modifier_men_at_arms_limit').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+                            button_ignore = none
+                            using = tooltip_ne 
+                            
+                            icon = {
+                                    datacontext = "[GetPlayer]"
+                                    datacontext = "[GetModifier('advcm_men_at_arms_limit_modifier')]"
+                                    datacontext = "[GetPlayer.GetFaith]"
+                                    parentanchor = center
+                                    position = { 0 1 }
+                                    size = { 30 30 }
+                                    texture = "[StaticModifier.GetIcon]"
+                                    tooltipwidget = {
+                                        using = modifier_advcm_tooltip
+                                    }
+                                    
+                                }
+                        }
+						
+						dockable_button = {
+                            name = "advcm_diplomatic_range_button"
+                            onclick = "[GetScriptedGui('advcm_add_modifier_diplomatic_range').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+                            onrightclick = "[GetScriptedGui('advcm_remove_modifier_diplomatic_range').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+                            button_ignore = none
+                            using = tooltip_ne 
+                            
+                            icon = {
+                                    datacontext = "[GetPlayer]"
+                                    datacontext = "[GetModifier('advcm_diplomatic_range_modifier')]"
+                                    datacontext = "[GetPlayer.GetFaith]"
+                                    parentanchor = center
+                                    position = { 0 1 }
+                                    size = { 30 30 }
+                                    texture = "[StaticModifier.GetIcon]"
+                                    tooltipwidget = {
+                                        using = modifier_advcm_tooltip
+                                    }
+                                    
+                                }
+                        }
+						
+						
+						
+				    }
+				}
+		    }
+		}
+    }
+}
+
+template modifier_advcm_tooltip {
+	object_tooltip_pop_out = {
+		blockoverride "header_additions" {
+			hbox = {
+				icon = {
+					size = { 40 40 }
+					texture = "[StaticModifier.GetIcon]"
+					tintcolor = "[TooltipInfo.GetTintColor]"
+				}
+			}
+		}
+		blockoverride "title_text" {
+			text = "[StaticModifier.GetName]"
+		}
+
+		blockoverride "concept_link" {
+			text = "[Trait.GetTraitCategoryLabel]"
+		}
+		blockoverride "description_text" {
+			block "actual_description_text" {
+				text = "[StaticModifier.GetDescWithEffects]"
+			}
+		}
+        blockoverride "input_info_text" {
+            text = cheat_info_modifiers_desc
+        }
+        
+	}
+}

@@ -1,0 +1,183 @@
+
+
+# Advanced Cheat Menu Resources window by mrtats
+
+
+window = {
+	name = "advcm_resource_window"
+	parentanchor = top|right
+	position = { -50 100 }
+	size = { 200 100 }
+	layer = windows_layer
+	filter_mouse = all
+	allow_outside = yes
+	alwaystransparent = no
+	
+	visible = "[GetVariableSystem.Exists('advcm_resource_window_visible')]"
+	using = Window_Background
+	using = Window_Decoration
+	movable = yes
+	
+	state = {
+		name = _show
+		using = Animation_FadeIn_Quick
+	}
+	
+	state = {
+		name = _hide
+		using = Animation_FadeOut_Quick
+	}
+	
+	
+	vbox = {
+		using = Window_Margins
+		restrictparent_min = yes
+		
+		header_pattern = {
+			layoutpolicy_horizontal = expanding
+
+			blockoverride "header_text"
+			{
+				text = game_concept_perks
+			}
+
+			blockoverride "button_close"
+			{
+				onclick = "[GetVariableSystem.Toggle('advcm_resource_window_visible')]"
+			}
+		}
+		
+
+		
+		widget = {
+            size = { 350 100 }
+
+            
+            hbox = {
+                spacing = 5
+                margin_bottom = 2
+
+                button_normal = {
+                    size = { 50 50 }
+                    framesize = { 160 160 }
+                    texture = "gfx/interface/icons/lifestyles/diplomacy_lifestyle.dds"
+                    onclick = "[GetScriptedGui('advcm_add_diplomacy_pp').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+                    onrightclick = "[GetScriptedGui('advcm_remove_diplomacy_pp').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+                    button_ignore = none
+                    tooltip = advcm_diplo_pp_tt
+                    effectname = "NoHighlight"
+                    gfxtype = framedbuttongfx
+                    shaderfile = "gfx/FX/pdxgui_pushbutton.shader"
+                    using = tooltip_se
+
+
+                    highlight_icon = {
+                        size = { 100% 100% }
+                        texture = "gfx/interface/buttons/button_lifestyles_active_frame.dds"
+                    }
+                }
+
+                button_normal = {
+                    size = { 50 50 }
+                    framesize = { 160 160 }
+                    texture = "gfx/interface/icons/lifestyles/martial_lifestyle.dds"
+                    onclick = "[GetScriptedGui('advcm_add_martial_pp').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+                    onrightclick = "[GetScriptedGui('advcm_remove_martial_pp').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+                    button_ignore = none
+                    tooltip = advcm_martial_pp_tt
+                    effectname = "NoHighlight"
+                    gfxtype = framedbuttongfx
+                    shaderfile = "gfx/FX/pdxgui_pushbutton.shader"
+                    using = tooltip_se
+
+
+                    highlight_icon = {
+                        size = { 100% 100% }
+                        texture = "gfx/interface/buttons/button_lifestyles_active_frame.dds"
+                    }
+                }
+
+                button_normal = {
+                    size = { 50 50 }
+                    framesize = { 160 160 }
+                    texture = "gfx/interface/icons/lifestyles/stewardship_lifestyle.dds"
+                    onclick = "[GetScriptedGui('advcm_add_stewardship_pp').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+                    onrightclick = "[GetScriptedGui('advcm_remove_stewardship_pp').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+                    button_ignore = none
+                    tooltip = advcm_stewardship_pp_tt
+                    effectname = "NoHighlight"
+                    gfxtype = framedbuttongfx
+                    shaderfile = "gfx/FX/pdxgui_pushbutton.shader"
+                    using = tooltip_se
+
+
+                    highlight_icon = {
+                        size = { 100% 100% }
+                        texture = "gfx/interface/buttons/button_lifestyles_active_frame.dds"
+                    }
+                }
+
+                button_normal = {
+                    size = { 50 50 }
+                    framesize = { 160 160 }
+                    texture = "gfx/interface/icons/lifestyles/intrigue_lifestyle.dds"
+                    onclick = "[GetScriptedGui('advcm_add_intrigue_pp').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+                    onrightclick = "[GetScriptedGui('advcm_remove_intrigue_pp').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+                    button_ignore = none
+                    tooltip = advcm_intrigue_pp_tt
+                    effectname = "NoHighlight"
+                    gfxtype = framedbuttongfx
+                    shaderfile = "gfx/FX/pdxgui_pushbutton.shader"
+                    using = tooltip_se
+
+
+                    highlight_icon = {
+                        size = { 100% 100% }
+                        texture = "gfx/interface/buttons/button_lifestyles_active_frame.dds"
+                    }
+                }
+
+                button_normal = {
+                    size = { 50 50 }
+                    framesize = { 160 160 }
+                    texture = "gfx/interface/icons/lifestyles/learning_lifestyle.dds"
+                    onclick = "[GetScriptedGui('advcm_add_learning_pp').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+                    onrightclick = "[GetScriptedGui('advcm_remove_learning_pp').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+                    button_ignore = none
+                    tooltip = advcm_learning_pp_tt
+                    effectname = "NoHighlight"
+                    gfxtype = framedbuttongfx
+                    shaderfile = "gfx/FX/pdxgui_pushbutton.shader"
+                    using = tooltip_se
+
+
+                    highlight_icon = {
+                        size = { 100% 100% }
+                        texture = "gfx/interface/buttons/button_lifestyles_active_frame.dds"
+                    }
+                }
+
+
+                button_normal = {
+                    size = { 50 50 }
+                    framesize = { 160 160 }
+                    texture = "gfx/interface/icons/lifestyles/wanderer_lifestyle.dds"
+                    onclick = "[GetScriptedGui('advcm_add_wanderer_pp').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+                    onrightclick = "[GetScriptedGui('advcm_remove_wanderer_pp').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+                    button_ignore = none
+                    tooltip = advcm_wanderer_pp_tt
+                    effectname = "NoHighlight"
+                    gfxtype = framedbuttongfx
+                    shaderfile = "gfx/FX/pdxgui_pushbutton.shader"
+                    using = tooltip_se
+
+
+                    highlight_icon = {
+                        size = { 100% 100% }
+                        texture = "gfx/interface/buttons/button_lifestyles_active_frame.dds"
+                    }
+                }
+            }
+        }
+	}
+}

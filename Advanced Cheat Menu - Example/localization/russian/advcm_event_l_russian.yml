@@ -1,0 +1,10 @@
+﻿l_russian:
+ advcm_artifact_desc: "[GetPlayer.GetLocalizedText( 'test_saved_text' )]"
+ advcm_artifact_desc_append: "[selected_artifact.GetDesc] [GetPlayer.GetLocalizedText( 'test_saved_text' )]"
+ advcm_events.2.title: "Изменить описание Артефакта"
+ advcm_events.2.desc: "Введите текст описания и выберите один из вариантов."
+ artifact_new_desc: "Создать новое описание"
+ artifact_append_desc: "Добавить к существующему описанию"
+ advcm_events.1.title: "Изменить имя персонажа"
+ advcm_events.1.desc: "После ввода нового имени нажмите на кнопку принять."
+ advcm_events.1.option: "Принять!"                                                                    

@@ -1,0 +1,12 @@
+﻿l_german:
+ advcm_build_speed_modifier: "Extra Build Speed Reduction"
+ advcm_build_cost_modifier: "Extra Build Cost Reduction"
+ advcm_knight_limit_modifier: "Extra Knight Limit"
+ advcm_knight_effectiveness_modifier: "Extra Knight Effectiveness"
+ advcm_max_personal_schemes_modifier: "Extra Personal Schemes"
+ advcm_max_hostile_schemes_modifier: "Extra Hostile Schemes"
+ advcm_domain_limit_modifier: "Extra Domain Limit"
+ advcm_vassal_limit_modifier: "Extra Vassal Limit"
+ advcm_men_at_arms_cap_modifier: "Extra Men-at-Arms Cap"
+ advcm_men_at_arms_limit_modifier: "Extra Men-at-Arms Limit"
+ advcm_culture_tradition_max_add_modifier: "Extra Tradition Limit"

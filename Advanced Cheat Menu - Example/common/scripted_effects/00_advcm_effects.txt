@@ -1,0 +1,616 @@
+﻿cheat_enable_effect = {
+	hidden_effect = {
+		add_character_flag = cheats_enabled
+	}
+}
+
+cheat_disable_effect = {
+	hidden_effect = {
+		remove_character_flag = cheats_enabled
+	}
+}
+
+add_diplomacy_effect = {
+	every_living_character = {
+		limit = { has_character_flag = marked_for_edit }
+
+		hidden_effect = {
+			add_diplomacy_skill = root.var:advcm_diplomacy_value
+		}
+	}
+}
+
+remove_diplomacy_effect = {
+	every_living_character = {
+		limit = { has_character_flag = marked_for_edit }
+
+		hidden_effect = {
+			add_diplomacy_skill = {
+                value = root.var:advcm_diplomacy_value
+                multiply = -1
+            }
+		}
+	}
+}
+
+add_martial_effect = {
+	every_living_character = {
+		limit = { has_character_flag = marked_for_edit }
+
+		hidden_effect = {
+			add_martial_skill = root.var:advcm_martial_value
+		}
+	}
+}
+
+remove_martial_effect = {
+	every_living_character = {
+		limit = { has_character_flag = marked_for_edit }
+
+		hidden_effect = {
+			add_martial_skill = {
+                value = root.var:advcm_martial_value
+                multiply = -1
+            }
+		}
+	}
+}
+
+add_stewardship_effect = {
+	every_living_character = {
+		limit = { has_character_flag = marked_for_edit }
+
+		hidden_effect = {
+			add_stewardship_skill = root.var:advcm_stewardship_value
+		}
+	}
+}
+
+remove_stewardship_effect = {
+	every_living_character = {
+		limit = { has_character_flag = marked_for_edit }
+
+		hidden_effect = {
+			add_stewardship_skill = {
+                value = root.var:advcm_stewardship_value
+                multiply = -1
+            }
+		}
+	}
+}
+
+add_intrigue_effect = {
+	every_living_character = {
+		limit = { has_character_flag = marked_for_edit }
+
+		hidden_effect = {
+			add_intrigue_skill = root.var:advcm_intrigue_value
+		}
+	}
+}
+
+remove_intrigue_effect = {
+	every_living_character = {
+		limit = { has_character_flag = marked_for_edit }
+
+		hidden_effect = {
+			add_intrigue_skill = {
+                value = root.var:advcm_intrigue_value
+                multiply = -1
+            }
+		}
+	}
+}
+
+add_learning_effect = {
+	every_living_character = {
+		limit = { has_character_flag = marked_for_edit }
+
+		hidden_effect = {
+			add_learning_skill = root.var:advcm_learning_value
+		}
+	}
+}
+
+remove_learning_effect = {
+	every_living_character = {
+		limit = { has_character_flag = marked_for_edit }
+
+		hidden_effect = {
+			add_learning_skill = {
+                value = root.var:advcm_learning_value
+                multiply = -1
+            }
+		}
+	}
+}
+
+add_prowess_effect = {
+	every_living_character = {
+		limit = { has_character_flag = marked_for_edit }
+
+		hidden_effect = {
+			add_prowess_skill = root.var:advcm_prowess_value
+		}
+	}
+}
+
+remove_prowess_effect = {
+	every_living_character = {
+		limit = { has_character_flag = marked_for_edit }
+
+		hidden_effect = {
+			add_prowess_skill = {
+                value = root.var:advcm_prowess_value
+                multiply = -1
+            }
+		}
+	}
+}
+
+add_diplomacy_perkpoint_effect = {
+	every_living_character = {
+		limit = { has_character_flag = marked_for_edit }
+
+		hidden_effect = {
+			add_diplomacy_lifestyle_perk_points = 1
+		}
+	}
+}
+
+remove_diplomacy_perkpoint_effect = {
+	every_living_character = {
+		limit = { has_character_flag = marked_for_edit }
+
+		hidden_effect = {
+			add_diplomacy_lifestyle_perk_points = -1
+		}
+	}
+}
+
+add_martial_perkpoint_effect = {
+	every_living_character = {
+		limit = { has_character_flag = marked_for_edit }
+
+		hidden_effect = {
+			add_martial_lifestyle_perk_points = 1
+		}
+	}
+}
+
+remove_martial_perkpoint_effect = {
+	every_living_character = {
+		limit = { has_character_flag = marked_for_edit }
+
+		hidden_effect = {
+			add_martial_lifestyle_perk_points = -1
+		}
+	}
+}
+
+add_stewardship_perkpoint_effect = {
+	every_living_character = {
+		limit = { has_character_flag = marked_for_edit }
+
+		hidden_effect = {
+			add_stewardship_lifestyle_perk_points = 1
+		}
+	}
+}
+
+remove_stewardship_perkpoint_effect = {
+	every_living_character = {
+		limit = { has_character_flag = marked_for_edit }
+
+		hidden_effect = {
+			add_stewardship_lifestyle_perk_points = -1
+		}
+	}
+}
+
+add_intrigue_perkpoint_effect = {
+	every_living_character = {
+		limit = { has_character_flag = marked_for_edit }
+
+		hidden_effect = {
+			add_intrigue_lifestyle_perk_points = 1
+		}
+	}
+}
+
+remove_intrigue_perkpoint_effect = {
+	every_living_character = {
+		limit = { has_character_flag = marked_for_edit }
+
+		hidden_effect = {
+			add_intrigue_lifestyle_perk_points = -1
+		}
+	}
+}
+
+add_learning_perkpoint_effect = {
+	every_living_character = {
+		limit = { has_character_flag = marked_for_edit }
+
+		hidden_effect = {
+			add_learning_lifestyle_perk_points = 1
+		}
+	}
+}
+
+remove_learning_perkpoint_effect = {
+	every_living_character = {
+		limit = { has_character_flag = marked_for_edit }
+
+		hidden_effect = {
+			add_learning_lifestyle_perk_points = -1
+		}
+	}
+}
+
+advcm_set_skill_values_effect = {
+
+	if = { 
+        limit = { root = { has_variable = advcm_diplomacy_value }}
+        
+        change_variable = {
+            name = advcm_diplomacy_value
+            subtract = 0
+        }
+            
+        change_variable = {
+            name = advcm_martial_value
+            subtract = 0
+        }
+            
+        change_variable = {
+            name = advcm_stewardship_value
+            subtract = 0
+        }
+            
+        change_variable = {
+            name = advcm_intrigue_value
+            subtract = 0
+        }
+            
+        change_variable = {
+            name = advcm_learning_value
+            subtract = 0
+        }
+            
+        change_variable = {
+            name = advcm_prowess_value
+            subtract = 0
+        }
+    }
+    
+    else = {
+        set_variable = {
+            name = advcm_diplomacy_value
+            value = 10
+        }
+            
+        set_variable = {
+            name = advcm_martial_value
+            value = 10
+        }
+            
+        set_variable = {
+            name = advcm_stewardship_value
+            value = 10
+        }
+            
+        set_variable = {
+            name = advcm_intrigue_value
+            value = 10
+        }
+            
+        set_variable = {
+            name = advcm_learning_value
+            value = 10
+        }
+            
+        set_variable = {
+            name = advcm_prowess_value
+            value = 10
+        }
+    }
+}
+
+advcm_set_resources_values_effect = {
+
+	set_global_variable = {
+	    name = advcm_increment_value
+	    value = 500
+	}
+}
+
+
+clear_all_marks_effect = {
+	every_living_character = {
+		limit = { has_character_flag = marked_for_edit }
+		
+		hidden_effect = {
+			remove_character_flag = marked_for_edit
+			remove_list_global_variable = { name = marked_characters target = this}
+		}
+	}
+}
+
+set_sexuality_heterosexual = {
+	every_living_character = {
+		limit = { has_character_flag = marked_for_edit }
+		
+		hidden_effect = {
+			set_sexuality = heterosexual
+		}
+	}
+}
+
+set_sexuality_homosexual = {
+	every_living_character = {
+		limit = { has_character_flag = marked_for_edit }
+		
+		hidden_effect = {
+			set_sexuality = homosexual
+		}
+	}
+}
+
+set_sexuality_bisexual = {
+	every_living_character = {
+		limit = { has_character_flag = marked_for_edit }
+		
+		hidden_effect = {
+			set_sexuality = bisexual
+		}
+	}
+}
+
+set_sexuality_asexual = {
+	every_living_character = {
+		limit = { has_character_flag = marked_for_edit }
+		
+		hidden_effect = {
+			set_sexuality = asexual
+		}
+	}
+}
+
+
+advcm_marked_characters_list_effect = {
+	every_living_character = {
+		limit = { has_character_flag = marked_for_edit }
+		
+		hidden_effect = {
+			add_to_global_variable_list = { name = marked_characters target = this }
+		}
+	}
+}
+
+advcm_enabled = {
+
+	if = {
+		limit = { NOT = { has_global_variable = advcm_enabled } }
+		set_global_variable = {
+			name = advcm_enabled
+			value = 1
+		}
+		debug_log = "Advanced Cheat Menu is enabled"
+	}
+}
+
+advcm_marriage_interaction_on_accept_effect = {
+
+	#No longer concubine
+	if = {
+		limit = {
+			scope:secondary_recipient = { is_concubine = yes }
+		}
+		scope:secondary_recipient = {
+			random_consort = {
+				limit = {
+					any_concubine = { this = scope:secondary_recipient }
+				}
+				remove_concubine = scope:secondary_recipient
+			}
+		}
+	}
+	if = {
+		limit = {
+			scope:secondary_actor = { is_concubine = yes }
+		}
+		scope:secondary_actor = {
+			random_consort = {
+				limit = {
+					any_concubine = { this = scope:secondary_actor }
+				}
+				remove_concubine = scope:secondary_actor
+			}
+		}
+	}
+
+	#Marriage notification events
+	hidden_effect = {
+		scope:actor = {
+			if = {
+				limit = { NOT = { this = scope:recipient } }
+				trigger_event = marriage_interaction.0010
+			}
+			else = { #In my own court
+				if = {
+					limit = { #Betrothal?
+						OR = {
+							scope:secondary_actor = { is_adult = no }
+							scope:secondary_recipient = { is_adult = no }
+						}
+					}
+					send_interface_toast = {
+						title = arrange_marriage_interaction_accept_betrothal_toast
+						left_icon = scope:secondary_actor 
+						right_icon = scope:secondary_recipient
+						custom_tooltip  = arrange_marriage_interaction_accept_betrothal_toast_desc
+					}
+				}
+				else = {
+					send_interface_toast = {
+						title = arrange_marriage_interaction_accept_toast
+						left_icon = scope:secondary_actor 
+						right_icon = scope:secondary_recipient
+						custom_tooltip  = arrange_marriage_interaction_accept_toast_desc
+					}
+				}
+			}
+		}
+
+		# Apply any relevant opinion penalties for relatives of spouse.
+		scope:secondary_actor = {
+			if = { # Polygamy
+				limit = { 
+					any_consort = {
+						count >= 2
+					}
+				}
+				every_consort = {
+					# If the spouse themselves does not believe in polygamy...
+					limit = {
+						NOR = {
+							culture = { has_cultural_tradition = tradition_polygamous }
+							faith = { has_doctrine = doctrine_polygamy }
+							faith = { has_doctrine = doctrine_concubines }
+						}
+					}
+
+					#... then family members who also do not believe in polygamy aren't happy about having a relative forced into polygamous union with you.
+					every_close_family_member = {
+						if = {
+							limit = { 
+								NOR = {
+									culture = { has_cultural_tradition = tradition_polygamous }
+									faith = { has_doctrine = doctrine_polygamy }
+									faith = { has_doctrine = doctrine_concubines }
+								}
+							}
+							add_opinion = {
+								target = scope:secondary_actor
+								modifier = relative_in_blasphemous_union_opinion
+							}
+						}
+					}
+
+					# NOTE: Spouse's own opinions handled in the 'on_marriage' code on_action inside of marriage_concubinage.txt, and are not included here.
+				}
+			}
+		}
+		scope:secondary_recipient = {
+			if = { #Same-sex relations
+				limit = {
+					allowed_to_marry_same_sex_trigger = no
+					sex_same_as = scope:secondary_actor
+				}
+				every_close_family_member = {
+					if = {
+						limit = { 
+							allowed_to_marry_same_sex_trigger = no
+						}
+						add_opinion = {
+							target = scope:secondary_actor
+							modifier = relative_in_blasphemous_union_opinion
+						}
+					}
+				}
+			}
+		}
+	}
+
+	###MANAGEMENT SCRIPT FOR VARIOUS EVENTS/CONTENT###
+	
+	#If your spouse councillor had boosted the chance of marriage, remove modifier
+	if = {
+		limit = {
+			scope:secondary_actor = {
+				has_character_modifier = heir_easier_to_marry_off_modifier
+			}
+			scope:actor = { player_heir = scope:secondary_actor }
+		}
+		scope:secondary_actor = {
+			remove_character_modifier = heir_easier_to_marry_off_modifier
+		}
+	}
+	if = {
+		limit = {
+			scope:secondary_actor = {
+				is_child_of = scope:actor
+				has_character_modifier = child_easier_to_marry_off_modifier
+			}
+		}
+		scope:secondary_actor = {
+			remove_character_modifier = child_easier_to_marry_off_modifier
+		}
+	}
+
+	#AI Break up consideration after marriage
+	scope:secondary_recipient = { 
+		if = {
+			limit = {
+				is_adult = yes
+				is_ai = yes
+			}
+			scope:secondary_actor = { save_scope_as = new_spouse_secondary_actor }
+			trigger_event = lover.0205
+		}
+	}
+	scope:secondary_actor = {
+		if = {
+			limit = {
+				is_adult = yes
+				is_ai = yes
+			}
+			scope:secondary_recipient = { save_scope_as = new_spouse_secondary_recipient }
+			trigger_event = lover.0205
+		}
+	}
+
+	# Struggle parameters
+
+	#interfaith wedding costs piety
+	if = {
+		limit = {
+			scope:secondary_actor = {
+				NOT = { faith = scope:secondary_recipient.faith }
+			}
+			scope:actor ={
+				any_character_struggle = {
+					has_struggle_phase_parameter = interfaith_marriages_between_involved_characters_costs_piety
+				}
+			}
+		}
+		scope:actor = {
+			add_piety = major_piety_loss
+		}
+	}
+	#interfaith wedding provides piety
+	if = {
+		limit = {
+			scope:secondary_actor = {
+				NOT = { faith = scope:secondary_recipient.faith }
+			}
+			scope:actor ={
+				any_character_struggle = {
+					has_struggle_phase_parameter = interfaith_marriages_between_involved_characters_gives_piety
+				}
+			}
+		}
+		scope:actor = {
+			add_piety = medium_piety_gain
+		}
+	}
+}
+
+#KeizerHarm - CK3 Mod Co-op
+advcm_fix_variable_error = { 
+   if = { 
+     limit = {has_variable = $X$ var:$X$ = flag:$X$ exists = scope:$X$ scope:$X$ = flag:$X$} 
+     set_variable = {name = $X$ value = flag:$X$} var:$X$ = {save_scope_as = $X$} 
+   } 
+ }

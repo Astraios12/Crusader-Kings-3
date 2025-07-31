@@ -1,0 +1,190 @@
+﻿namespace = advcm_events
+
+#Character Naming
+advcm_events.1 = {
+	type = character_event
+	title = advcm_events.1.title
+	desc = advcm_events.1.desc
+	theme = default
+	left_portrait = {
+		character = scope:change_name
+		animation = personality_bold
+	}
+
+	widgets = {
+		widget = {
+			gui = "event_window_widget_name_child"
+			container = "dynamic_birth_name"
+			controller = name_character
+			setup_scope = { scope:change_name = { save_scope_as = name_character_target } }
+		}
+	}
+
+	option = {
+		name = advcm_events.1.option
+	}
+}
+
+advcm_events.2 = {
+	type = character_event
+	title = advcm_events.2.title
+	desc = advcm_events.2.desc
+	theme = default
+	right_portrait = root
+	
+	artifact = {
+		target = scope:selected_artifact
+		position = lower_center_portrait
+	}
+
+	widget = {
+		gui = "event_window_widget_enter_text"
+		container = "dynamic_birth_name"
+		controller = {
+			type = text
+			data = {
+				key = test_saved_text
+				default = architect_advcm_desc
+			}
+		}
+		setup_scope = {
+			root = { save_scope_as = text_target }
+		}
+	}
+
+	option = {
+		name = artifact_new_desc
+		store_localized_text_in_death = test_saved_text
+		scope:selected_artifact = {
+			set_artifact_description = advcm_artifact_desc
+		}
+		remove_variable = test_saved_text
+	}
+	
+	option = {
+		name = artifact_append_desc
+		store_localized_text_in_death = test_saved_text
+		scope:selected_artifact = {
+			set_artifact_description = advcm_artifact_desc_append
+		}
+		remove_variable = test_saved_text
+	}
+}
+
+advcm_events.999 = {
+    orphan = yes
+    hidden = yes
+	type = character_event
+    immediate = {
+        advcm_fix_variable_error = { X = artifact_modifier_list }
+		advcm_fix_variable_error = { X = advcm_commander_traits }
+		advcm_fix_variable_error = { X = advcm_title_selected_char }
+		advcm_fix_variable_error = { X = artifact_quality_list }
+		advcm_fix_variable_error = { X = advcm_other_traits }
+		advcm_fix_variable_error = { X = weapon_type_list }
+		advcm_fix_variable_error = { X = court_type_list }
+		advcm_fix_variable_error = { X = advcm_health_traits}
+		advcm_fix_variable_error = { X = armor_type_list }
+		advcm_fix_variable_error = { X = advcm_fame_traits}
+		advcm_fix_variable_error = { X = table}
+		advcm_fix_variable_error = { X = diwan }
+		advcm_fix_variable_error = { X = test }
+		advcm_fix_variable_error = { X = regalia_type_list }
+		advcm_fix_variable_error = { X = advcm_lifestyle_traits }
+		advcm_fix_variable_error = { X = advcm_physical_traits }
+		advcm_fix_variable_error = { X = change_name }
+		advcm_fix_variable_error = { X = selected_artifact }
+		advcm_fix_variable_error = { X = artifact_quality }
+		advcm_fix_variable_error = { X = selected_culture}
+		advcm_fix_variable_error = { X = innovation_culture }
+		advcm_fix_variable_error = { X = selected_faith }
+		advcm_fix_variable_error = { X = artifact_modifier}
+		advcm_fix_variable_error = { X = artifact_type}
+		advcm_fix_variable_error = { X = advcm_societal_tradition_list}
+		advcm_fix_variable_error = { X = advcm_regional_tradition_list}
+		advcm_fix_variable_error = { X = advcm_combat_tradition_list}
+		advcm_fix_variable_error = { X = advcm_ritual_tradition_list}
+		advcm_fix_variable_error = { X = religion_list}
+		advcm_fix_variable_error = { X = advcm_ritual_tradition_list}
+		advcm_fix_variable_error = { X = advcm_realm_tradition_list}
+		advcm_fix_variable_error = { X = danger}
+		advcm_fix_variable_error = { X = travel}
+		advcm_fix_variable_error = { X = wit}
+		advcm_fix_variable_error = { X = advcm_character_spawner_none}
+		advcm_fix_variable_error = { X = advcm_seduce_scheme_power_mult}
+		advcm_fix_variable_error = { X = advcm_character_spawner_preset_list}
+		advcm_fix_variable_error = { X = advcm_cc_chronicler}
+		advcm_fix_variable_error = { X = advcm_cc_chief_eunuch}
+		advcm_fix_variable_error = { X = advcm_cc_seneschal}
+		advcm_fix_variable_error = { X = advcm_cc_court_scholar}
+		advcm_fix_variable_error = { X = advcm_cc_court_gardener}
+		advcm_fix_variable_error = { X = advcm_cc_court_musician}
+		advcm_fix_variable_error = { X = advcm_cc_court_jester}
+		advcm_fix_variable_error = { X = advcm_cc_court_artificer}
+		advcm_fix_variable_error = { X = advcm_cc_court_physician}
+		advcm_fix_variable_error = { X = advcm_cc_court_poet}
+		advcm_fix_variable_error = { X = advcm_cc_antiquarian}
+		advcm_fix_variable_error = { X = advcm_cc_caravan_master}
+		advcm_fix_variable_error = { X = advcm_cc_executioner}
+		advcm_fix_variable_error = { X = advcm_cc_champion}
+		advcm_fix_variable_error = { X = advcm_cc_bodyguard}
+		advcm_fix_variable_error = { X = advcm_cc_lady_in_waiting}
+		advcm_fix_variable_error = { X = advcm_cc_court_tutor}
+		advcm_fix_variable_error = { X = advcm_cc_high_almoner}
+		advcm_fix_variable_error = { X = advcm_cc_royal_architect}
+		advcm_fix_variable_error = { X = advcm_cc_chief_qadi}
+		advcm_fix_variable_error = { X = advcm_cc_master_assassin}
+		advcm_fix_variable_error = { X = advcm_cc_master_of_horse}
+		advcm_fix_variable_error = { X = advcm_cc_master_of_hunt}
+		advcm_fix_variable_error = { X = advcm_cc_wet_nurse}
+		advcm_fix_variable_error = { X = advcm_cc_keeper_of_swans}
+		advcm_fix_variable_error = { X = advcm_cc_OP}
+		advcm_fix_variable_error = { X = advcm_cc_garuda}
+		advcm_fix_variable_error = { X = advcm_cc_food_taster}
+		advcm_fix_variable_error = { X = advcm_cc_cupbearer}
+		advcm_fix_variable_error = { X = advcm_cc_cultural_emissary}
+		advcm_fix_variable_error = { X = fame}
+		advcm_fix_variable_error = { X = english}
+		advcm_fix_variable_error = { X = spanish}
+		advcm_fix_variable_error = { X = korean}
+		advcm_fix_variable_error = { X = russian}
+		advcm_fix_variable_error = { X = german}
+		advcm_fix_variable_error = { X = physical}
+		advcm_fix_variable_error = { X = simp_chinese}
+		advcm_fix_variable_error = { X = advcm_cc_akolouthos}
+		advcm_fix_variable_error = { X = advcm_cc_charioteer}
+		advcm_fix_variable_error = { X = advcm_cc_bookmaker}
+		advcm_fix_variable_error = { X = advcm_character_spawner_executioner}
+		advcm_fix_variable_error = { X = advcm_temp_physical_traits_list}
+		advcm_fix_variable_error = { X = advcm_temp_lifestyle_traits_list}
+		advcm_fix_variable_error = { X = advcm_temp_fame_traits_list}
+		advcm_fix_variable_error = { X = advcm_temp_commander_traits_list}
+		advcm_fix_variable_error = { X = advcm_temp_health_traits_list}
+		advcm_fix_variable_error = { X = advcm_temp_other_traits_list}
+		advcm_fix_variable_error = { X = innovation_menu_tribal_regional_list}
+		advcm_fix_variable_error = { X = innovation_menu_early_medieval_military_list}
+		advcm_fix_variable_error = { X = innovation_menu_high_medieval_military_list}
+		advcm_fix_variable_error = { X = innovation_menu_late_medieval_military_list}
+		advcm_fix_variable_error = { X = innovation_menu_tribal_civic_list}
+		advcm_fix_variable_error = { X = innovation_menu_early_medieval_regional_list}
+		advcm_fix_variable_error = { X = innovation_menu_early_medieval_civic_list}
+		advcm_fix_variable_error = { X = innovation_menu_late_medieval_civic_list}
+		advcm_fix_variable_error = { X = innovation_menu_high_medieval_civic_list}
+		advcm_fix_variable_error = { X = innovation_menu_high_medieval_regional_list}
+		advcm_fix_variable_error = { X = innovation_menu_late_medieval_regional_list}
+		advcm_fix_variable_error = { X = advcm_artifact_quality_frame}
+		advcm_fix_variable_error = { X = all}		
+    }
+}
+
+advcm_events.9999 = {
+	hidden = yes
+	type = character_event
+
+	immediate = {
+		death = natural
+	}
+}
+	
+	
+

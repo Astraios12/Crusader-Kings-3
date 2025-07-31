@@ -1,0 +1,853 @@
+﻿advcm_cc_OP_sgui = {
+	
+	scope = character
+
+	effect = {
+
+		clear_variable_list = advcm_character_spawner_traits_list
+
+		set_variable = {
+            name = advcm_character_spawner_diplomacy
+            value = 100
+        }
+
+		set_variable = {
+            name = advcm_character_spawner_martial
+            value = 100
+        }
+
+		set_variable = {
+            name = advcm_character_spawner_stewardship
+            value = 100
+        }
+
+		set_variable = {
+            name = advcm_character_spawner_intrigue
+            value = 100
+        }
+
+		set_variable = {
+            name = advcm_character_spawner_learning
+            value = 100
+        }
+
+		set_variable = {
+            name = advcm_character_spawner_learning
+            value = 100
+        }
+
+		set_variable = {
+            name = advcm_character_spawner_prowess
+            value = 100
+        }
+
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:education_diplomacy_5 }
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:diligent}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:ambitious }
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:gregarious }
+
+	}
+}
+
+advcm_cc_court_physician_sgui = {
+	scope = character
+
+	effect = {
+
+		clear_variable_list = advcm_character_spawner_traits_list
+		advcm_cc_reset_skill_effect = yes
+
+		set_variable = {
+            name = advcm_character_spawner_learning
+            value = 20
+        }
+
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:education_learning_5 }
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:diligent}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:content}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:generous}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:lifestyle_physician }
+
+	}
+}
+
+advcm_cc_cultural_emissary_sgui = {
+	scope = character
+
+	effect = {
+
+		clear_variable_list = advcm_character_spawner_traits_list
+		advcm_cc_reset_skill_effect = yes
+
+		set_variable = {
+            name = advcm_character_spawner_diplomacy
+            value = 20
+        }
+
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:education_diplomacy_5 }
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:just}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:content}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:gregarious}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:diplomat }
+		
+	}
+}
+
+advcm_cc_keeper_of_swans_sgui = {
+	scope = character
+
+	effect = {
+
+		clear_variable_list = advcm_character_spawner_traits_list
+		advcm_cc_reset_skill_effect = yes
+
+		set_variable = {
+            name = advcm_character_spawner_stewardship
+            value = 20
+        }
+
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:education_stewardship_5 }
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:just}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:content}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:gregarious}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:lifestyle_hunter }
+		
+	}
+}
+
+advcm_cc_chief_qadi_sgui = {
+	scope = character
+
+	effect = {
+
+		global_var:advcm_character_spawner_selected_char = {
+			save_scope_as = selected_char
+		}
+
+		clear_variable_list = advcm_character_spawner_traits_list
+		advcm_cc_reset_skill_effect = yes
+
+		set_variable = {
+            name = advcm_character_spawner_learning
+            value = 20
+        }
+
+		if = {
+			limit = {
+				scope:selected_char.faith = {
+					has_doctrine = doctrine_gender_male_dominated
+				}
+			}
+			set_variable = { name = advcm_character_spawner_selected_gender value = flag:advcm_character_spawner_male }
+		}
+		else_if = {
+			limit = {
+				scope:selected_char.faith = {
+					has_doctrine = doctrine_gender_female_dominated
+				}
+			}
+			set_variable = { name = advcm_character_spawner_selected_gender value = flag:advcm_character_spawner_female }
+		}
+
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:education_learning_5 }
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:just}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:generous}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:temperate}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:scholar }
+		
+	}
+}
+
+advcm_cc_garuda_sgui = {
+	scope = character
+
+	effect = {
+
+		clear_variable_list = advcm_character_spawner_traits_list
+		advcm_cc_reset_skill_effect = yes
+
+		set_variable = {
+            name = advcm_character_spawner_martial
+            value = 20
+        }
+
+		set_variable = {
+            name = advcm_character_spawner_prowess
+            value = 25
+        }
+
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:education_martial_5 }
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:just}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:generous}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:temperate}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:lifestyle_blademaster }
+		
+	}
+}
+
+advcm_cc_court_gardener_sgui = {
+	scope = character
+
+	effect = {
+
+		clear_variable_list = advcm_character_spawner_traits_list
+		advcm_cc_reset_skill_effect = yes
+
+		set_variable = {
+            name = advcm_character_spawner_stewardship
+            value = 20
+        }
+
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:education_stewardship_5 }
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:patient}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:generous}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:temperate}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:lifestyle_herbalist }
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:lifestyle_gardener }
+		
+	}
+}
+
+advcm_cc_lady_in_waiting_sgui = {
+	scope = character
+
+	effect = {
+
+		clear_variable_list = advcm_character_spawner_traits_list
+		advcm_cc_reset_skill_effect = yes
+
+		set_variable = {
+            name = advcm_character_spawner_diplomacy
+            value = 20
+        }
+
+		set_variable = { name = advcm_character_spawner_selected_gender value = flag:advcm_character_spawner_female }
+
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:education_diplomacy_5 }
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:gregarious}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:generous}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:honest}
+		
+	}
+}
+
+advcm_cc_antiquarian_sgui = {
+	scope = character
+
+	effect = {
+
+		clear_variable_list = advcm_character_spawner_traits_list
+		advcm_cc_reset_skill_effect = yes
+
+		set_variable = {
+            name = advcm_character_spawner_learning
+            value = 20
+        }
+
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:education_learning_5 }
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:shy}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:diligent}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:honest}
+        add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:administrator}
+		
+	}
+}
+
+advcm_cc_caravan_master_sgui = {
+	scope = character
+
+	effect = {
+
+		clear_variable_list = advcm_character_spawner_traits_list
+		advcm_cc_reset_skill_effect = yes
+
+		set_variable = {
+            name = advcm_character_spawner_stewardship
+            value = 20
+        }
+
+		set_variable = {
+            name = advcm_character_spawner_learning
+            value = 20
+        }
+
+		set_variable = {
+            name = advcm_character_spawner_martial
+            value = 20
+        }
+
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:education_stewardship_5 }
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:brave}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:diligent}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:honest}
+        add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:adventurer}
+		
+	}
+}
+
+advcm_cc_wet_nurse_sgui = {
+	scope = character
+
+	effect = {
+
+		clear_variable_list = advcm_character_spawner_traits_list
+		advcm_cc_reset_skill_effect = yes
+
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:education_stewardship_5 }
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:brave}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:diligent}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:honest}
+        add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:strong}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:loyal}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:physique_good_3}
+	}
+}
+
+advcm_cc_court_tutor_sgui = {
+	scope = character
+
+	effect = {
+
+		clear_variable_list = advcm_character_spawner_traits_list
+		advcm_cc_reset_skill_effect = yes
+
+		set_variable = {
+            name = advcm_character_spawner_learning
+            value = 20
+        }
+
+		set_variable = {
+            name = advcm_character_spawner_diplomacy
+            value = 20
+        }
+
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:education_learning_5 }
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:patient}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:diligent}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:honest}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:loyal}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:shrewd}
+	}
+}
+
+advcm_cc_food_taster_sgui = {
+	scope = character
+
+	effect = {
+
+		clear_variable_list = advcm_character_spawner_traits_list
+		advcm_cc_reset_skill_effect = yes
+
+		set_variable = {
+            name = advcm_character_spawner_intrigue
+            value = 20
+        }
+
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:education_intrigue_5 }
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:gluttonous}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:diligent}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:honest}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:comfort_eater}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:lifestyle_herbalist}
+	}
+}
+
+advcm_cc_master_of_horse_sgui = {
+	scope = character
+
+	effect = {
+
+		clear_variable_list = advcm_character_spawner_traits_list
+		advcm_cc_reset_skill_effect = yes
+
+		set_variable = {
+            name = advcm_character_spawner_martial
+            value = 20
+        }
+
+		set_variable = {
+            name = advcm_character_spawner_prowess
+            value = 20
+        }
+
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:education_martial_5 }
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:gluttonous}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:diligent}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:honest}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:overseer}
+	}
+}
+
+advcm_cc_master_of_hunt_sgui = {
+	scope = character
+
+	effect = {
+
+		clear_variable_list = advcm_character_spawner_traits_list
+		advcm_cc_reset_skill_effect = yes
+
+		set_variable = {
+            name = advcm_character_spawner_learning
+            value = 20
+        }
+
+		set_variable = {
+            name = advcm_character_spawner_prowess
+            value = 20
+        }
+
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:education_learning_5 }
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:brave}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:diligent}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:honest}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:lifestyle_hunter}
+	}
+}
+
+advcm_cc_royal_architect_sgui = {
+	scope = character
+
+	effect = {
+
+		clear_variable_list = advcm_character_spawner_traits_list
+		advcm_cc_reset_skill_effect = yes
+
+		set_variable = {
+            name = advcm_character_spawner_stewardship
+            value = 20
+        }
+
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:education_stewardship_5 }
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:brave}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:diligent}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:honest}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:architect}
+	}
+}
+
+advcm_cc_high_almoner_sgui = {
+	scope = character
+
+	effect = {
+
+		clear_variable_list = advcm_character_spawner_traits_list
+		advcm_cc_reset_skill_effect = yes
+
+		set_variable = {
+            name = advcm_character_spawner_learning
+            value = 20
+        }
+
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:education_learning_5 }
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:generous}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:diligent}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:compassionate}
+	}
+}
+
+advcm_cc_seneschal_sgui = {
+	scope = character
+
+	effect = {
+
+		clear_variable_list = advcm_character_spawner_traits_list
+		advcm_cc_reset_skill_effect = yes
+
+		set_variable = {
+            name = advcm_character_spawner_stewardship
+            value = 20
+        }
+
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:education_stewardship_5 }
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:generous}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:diligent}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:compassionate}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:overseer}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:administrator}
+	}
+}
+
+advcm_cc_cupbearer_sgui = {
+	scope = character
+
+	effect = {
+
+		clear_variable_list = advcm_character_spawner_traits_list
+		advcm_cc_reset_skill_effect = yes
+
+		set_variable = {
+            name = advcm_character_spawner_diplomacy
+            value = 20
+        }
+
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:education_diplomacy_5 }
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:trusting}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:diligent}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:honest}
+	}
+}
+
+advcm_cc_chief_eunuch_sgui = {
+	scope = character
+
+	effect = {
+
+		clear_variable_list = advcm_character_spawner_traits_list
+		advcm_cc_reset_skill_effect = yes
+
+		set_variable = {
+            name = advcm_character_spawner_diplomacy
+            value = 20
+        }
+
+		set_variable = {
+            name = advcm_character_spawner_intrigue
+            value = 20
+        }
+
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:education_diplomacy_5 }
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:greedy}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:diligent}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:deceitful}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:eunuch_1}
+	}
+}
+
+advcm_cc_court_jester_sgui = {
+	scope = character
+
+	effect = {
+
+		clear_variable_list = advcm_character_spawner_traits_list
+		advcm_cc_reset_skill_effect = yes
+
+		set_variable = {
+            name = advcm_character_spawner_diplomacy
+            value = 20
+        }
+
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:education_diplomacy_5 }
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:stubborn}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:diligent}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:gregarious}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:shrewd}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:poet}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:athletic}
+	}
+}
+
+advcm_cc_court_poet_sgui = {
+	scope = character
+
+	effect = {
+
+		clear_variable_list = advcm_character_spawner_traits_list
+		advcm_cc_reset_skill_effect = yes
+
+		set_variable = {
+            name = advcm_character_spawner_diplomacy
+            value = 20
+        }
+
+		set_variable = {
+            name = advcm_character_spawner_learning
+            value = 20
+        }
+
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:education_diplomacy_5 }
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:stubborn}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:diligent}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:gregarious}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:poet}
+	}
+}
+
+advcm_cc_court_musician_sgui = {
+	scope = character
+
+	effect = {
+
+		clear_variable_list = advcm_character_spawner_traits_list
+		advcm_cc_reset_skill_effect = yes
+
+		set_variable = {
+            name = advcm_character_spawner_diplomacy
+            value = 20
+        }
+
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:education_diplomacy_5 }
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:stubborn}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:diligent}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:gregarious}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:poet}
+	}
+}
+
+advcm_cc_bodyguard_sgui = {
+	scope = character
+
+	effect = {
+
+		clear_variable_list = advcm_character_spawner_traits_list
+		advcm_cc_reset_skill_effect = yes
+
+		set_variable = {
+            name = advcm_character_spawner_prowess
+            value = 20
+        }
+
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:education_martial_5 }
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:paranoid}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:diligent}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:brave}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:lifestyle_blademaster}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:gallant}
+	}
+}
+
+advcm_cc_champion_sgui = {
+	scope = character
+
+	effect = {
+
+		clear_variable_list = advcm_character_spawner_traits_list
+		advcm_cc_reset_skill_effect = yes
+
+		set_variable = {
+            name = advcm_character_spawner_prowess
+            value = 20
+        }
+
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:education_martial_5 }
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:paranoid}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:diligent}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:brave}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:lifestyle_blademaster}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:shieldmaiden}
+	}
+}
+
+advcm_cc_executioner_sgui = {
+	scope = character
+
+	effect = {
+
+		clear_variable_list = advcm_character_spawner_traits_list
+		advcm_cc_reset_skill_effect = yes
+
+		set_variable = {
+            name = advcm_character_spawner_prowess
+            value = 20
+        }
+
+		set_variable = {
+            name = advcm_character_spawner_intrigue
+            value = 20
+        }
+
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:education_intrigue_5 }
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:paranoid}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:diligent}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:sadistic}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:torturer}
+	}
+}
+
+advcm_cc_court_artificer_sgui = {
+	scope = character
+
+	effect = {
+
+		clear_variable_list = advcm_character_spawner_traits_list
+		advcm_cc_reset_skill_effect = yes
+
+        set_variable = {
+            name = advcm_character_spawner_court_artificer
+            value = yes
+        }
+
+		set_variable = {
+            name = advcm_character_spawner_learning
+            value = 25
+        }
+
+		set_variable = {
+            name = advcm_character_spawner_stewardship
+            value = 25
+        }
+
+		set_variable = {
+            name = advcm_character_spawner_diplomacy
+            value = 25
+        }
+
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:education_learning_5 }
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:honest}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:diligent}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:gregarious}
+	}
+}
+
+advcm_cc_master_assassin_sgui = {
+	scope = character
+
+	effect = {
+
+		global_var:advcm_character_spawner_selected_char = {
+			save_scope_as = selected_char
+		}
+
+		clear_variable_list = advcm_character_spawner_traits_list
+		advcm_cc_reset_skill_effect = yes
+
+		set_variable = {
+            name = advcm_character_spawner_intrigue
+            value = 25
+        }
+
+		set_variable = {
+            name = advcm_character_spawner_prowess
+            value = 25
+        }
+
+		set_variable = { name = advcm_character_spawner_selected_dynasty value = flag:advcm_character_spawner_none }
+
+		if = {
+			limit = {
+				scope:selected_char.faith = {
+					has_doctrine = doctrine_gender_male_dominated
+				}
+			}
+			set_variable = { name = advcm_character_spawner_selected_gender value = flag:advcm_character_spawner_male }
+		}
+		else_if = {
+			limit = {
+				scope:selected_char.faith = {
+					has_doctrine = doctrine_gender_female_dominated
+				}
+			}
+			set_variable = { name = advcm_character_spawner_selected_gender value = flag:advcm_character_spawner_female }
+		}
+
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:education_intrigue_5 }
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:brave}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:zealous}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:deceitful}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:lifestyle_blademaster}
+	}
+}
+
+advcm_cc_court_scholar_sgui = {
+	scope = character
+
+	effect = {
+
+		clear_variable_list = advcm_character_spawner_traits_list
+		advcm_cc_reset_skill_effect = yes
+
+		set_variable = {
+            name = advcm_character_spawner_learning
+            value = 25
+        }
+
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:education_learning_5 }
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:honest}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:diligent}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:gregarious}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:theologian}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:scholar}
+	}
+}
+
+advcm_cc_chronicler_sgui = {
+	scope = character
+
+	effect = {
+
+		clear_variable_list = advcm_character_spawner_traits_list
+		advcm_cc_reset_skill_effect = yes
+
+		set_variable = {
+            name = advcm_character_spawner_learning
+            value = 25
+        }
+		set_variable = {
+            name = advcm_character_spawner_diplomacy
+            value = 25
+        }
+
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:education_learning_5 }
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:honest}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:diligent}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:gregarious}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:diplomat}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:poet}
+	}
+}
+
+advcm_cc_charioteer_sgui = {
+	scope = character
+
+	effect = {
+
+		clear_variable_list = advcm_character_spawner_traits_list
+		advcm_cc_reset_skill_effect = yes
+
+		set_variable = {
+            name = advcm_character_spawner_prowess
+            value = 25
+        }
+
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:education_martial_5 }
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:honest}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:diligent}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:gregarious}
+	}
+}
+
+advcm_cc_bookmaker_sgui = {
+	scope = character
+
+	effect = {
+
+		clear_variable_list = advcm_character_spawner_traits_list
+		advcm_cc_reset_skill_effect = yes
+
+		set_variable = {
+            name = advcm_character_spawner_stewardship
+            value = 20
+        }
+		set_variable = {
+            name = advcm_character_spawner_intrigue
+            value = 30
+        }
+
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:education_stewardship_5 }
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:honest}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:diligent}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:gregarious}
+	}
+}
+
+advcm_cc_akolouthos_sgui = {
+	scope = character
+
+	effect = {
+
+		clear_variable_list = advcm_character_spawner_traits_list
+		advcm_cc_reset_skill_effect = yes
+
+		set_variable = {
+            name = advcm_character_spawner_martial
+            value = 25
+        }
+
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:education_martial_5 }
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:honest}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:diligent}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:brave}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:gallant}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:physique_good_3}
+		add_to_variable_list = { name = advcm_character_spawner_traits_list target = trait:loyal}
+	}
+}

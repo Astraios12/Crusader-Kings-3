@@ -1,5 +1,5 @@
 guiType = {
-    name = astraios_slaves_window
+    name = my_slaves_window
     type = window
     size = { 600 400 }
     position = { center }
@@ -10,7 +10,7 @@ guiType = {
         title = {
             name = title_text
             position = { 250 10 }
-            text = "astraios_slaves_TITLE"
+            text = "MY_SLAVES_TITLE"
         }
 
         scroll_area = {
@@ -39,7 +39,7 @@ guiType = {
             name = close_button
             position = { 250 370 }
             text = "Close"
-            on_click = "[GuiCloseWindow('astraios_slaves_window')]"
+            on_click = "[GuiCloseWindow('my_slaves_window')]"
         }
     }
 }

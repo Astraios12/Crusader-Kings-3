@@ -1,0 +1,20 @@
+﻿advcm_title_list_effect = {
+
+	every_empire = {
+		add_to_global_variable_list = { name = advcm_title_list target = this }
+	}
+
+	every_kingdom = {
+		add_to_global_variable_list = { name = advcm_title_list target = this }
+	}
+	
+	every_duchy = {
+		add_to_global_variable_list = { name = advcm_title_list target = this }
+	}
+
+	every_county = {
+		add_to_global_variable_list = { name = advcm_title_list target = this }
+	}
+
+	
+}

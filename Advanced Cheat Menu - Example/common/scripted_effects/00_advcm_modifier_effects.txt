@@ -1,0 +1,19 @@
+﻿advcm_add_modifier = {
+	every_living_character = {
+		limit = { has_character_flag = marked_for_edit }
+
+		hidden_effect = {
+			add_character_modifier = $MODIFIER$
+		}
+	}
+}
+
+advcm_remove_modifier = {
+	every_living_character = {
+		limit = { has_character_flag = marked_for_edit }
+
+		hidden_effect = {
+			remove_character_modifier = $MODIFIER$
+		}
+	}
+}

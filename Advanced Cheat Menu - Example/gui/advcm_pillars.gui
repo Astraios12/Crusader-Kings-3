@@ -1,0 +1,94 @@
+window = {
+	name = "advcm_pillars_window"
+	parentanchor = top|right
+	position = { -50 100 }
+	size = { 300 300 }
+	layer = windows_layer
+	filter_mouse = all
+	allow_outside = yes
+	alwaystransparent = no
+	
+	using = Window_Background
+	using = Window_Decoration
+	movable = yes
+	visible = "[GetVariableSystem.Exists('advcm_pillars_window_visible')]"
+	
+	state = {
+		name = _show
+		using = Animation_FadeIn_Quick
+	}
+	
+	state = {
+		name = _hide
+		using = Animation_FadeOut_Quick
+	}
+	
+	
+	vbox = {
+		using = Window_Margins
+		restrictparent_min = yes
+        layoutpolicy_vertical = expanding
+        layoutpolicy_horizontal = expanding
+		
+		header_pattern = {
+			layoutpolicy_horizontal = expanding
+
+			blockoverride "header_text"
+			{
+				text = CULTURE_VIEW_PILLARS
+			}
+
+			blockoverride "button_close"
+			{
+				onclick = "[GetVariableSystem.Toggle('advcm_pillars_window_visible')]"
+			}
+		}
+		
+
+		
+		
+
+
+        scrollbox = {
+            name = "traditions_holder"
+            datacontext = "[GetPlayer.MakeScope.Var('selected_culture').Culture]"
+            layoutpolicy_horizontal = expanding
+            layoutpolicy_vertical = expanding
+            scrollbarpolicy_horizontal = always_off
+
+            blockoverride "scrollbox_content" {
+                vbox = {
+                    layoutpolicy_horizontal = expanding
+                    layoutpolicy_vertical = expanding
+
+                    datamodel = "[GetAllCulturePillars]"
+                    
+                    item = {
+
+                        button_standard_hover = {
+                            layoutpolicy_horizontal = expanding
+
+                            visible = "[Or(Or(AdvcmEthosPillar, AdvcmMartialPillar),Or(AdvcmLanguagePillar, AdvcmHeritagePillar))]"
+
+                            size = { 0 40 }
+                            onclick = "[GetScriptedGui('advcm_add_pillar').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('pillar', CulturePillar.MakeScope).End)]"
+
+                            hbox = {
+
+                                margin = { 10 0 }
+								spacing = 10
+                                layoutpolicy_horizontal = expanding
+                                text_single = {
+                                    text = "[CulturePillar.GetNameNoTooltip]"
+                                    default_format = "#clickable"
+                                }
+
+                                expand ={}
+                            }
+                        }
+                    }
+                }
+            }
+        }
+	}
+}

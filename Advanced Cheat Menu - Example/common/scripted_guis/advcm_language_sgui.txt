@@ -1,0 +1,17 @@
+advcm_language_detection = {
+
+    saved_scopes = { language }
+	
+	effect = {
+		set_global_variable = {
+			name = game_language
+			value = scope:language
+		}
+	}
+}
+
+advcm_russian_gui_shown = {
+    is_shown = {
+        is_russian = yes
+    }
+}

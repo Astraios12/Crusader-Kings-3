@@ -1,0 +1,63 @@
+﻿advcm_heritages_list_effect = {
+	every_culture_global = {
+	  if = {
+		limit = {
+		  NOT = {
+			any_in_global_list = {
+			  variable = advcm_heritage_list
+			  has_same_culture_heritage = prev
+			}
+		  }
+		}
+		add_to_global_variable_list = { name = advcm_heritage_list target = this }
+	  }
+	}
+}
+
+change_myculture_effect = {
+
+    every_in_global_list = {
+		variable = marked_characters
+        
+
+		hidden_effect = {
+			set_culture = root.culture
+		}
+	}
+}
+
+change_myculture_county_effect = {
+
+	every_in_global_list = {
+		variable = marked_characters
+		
+		every_sub_realm_county = {
+			set_county_culture = root.culture
+		}
+
+		every_vassal_or_below = {
+			set_culture = root.culture
+		}
+		
+		set_culture = root.culture
+	}
+}
+
+change_otherculture_county_effect = {
+	every_in_global_list = {
+		variable = marked_characters
+		
+		every_sub_realm_county = {
+			set_county_culture = prev.culture
+		}
+
+		every_vassal_or_below = {
+			set_culture = prev.culture
+		}
+		
+	}
+}
+
+
+
+    

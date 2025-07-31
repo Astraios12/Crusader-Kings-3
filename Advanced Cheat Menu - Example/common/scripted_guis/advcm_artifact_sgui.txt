@@ -1,0 +1,1273 @@
+﻿advcm_artifact_select_char = {
+	scope = character
+	
+	effect = {
+		set_global_variable = {
+			name = advcm_artifact_selected_char
+			value = this
+		}
+	}
+}
+
+advcm_take_artifact = {
+	scope = character
+	
+	saved_scopes = { selected_artifact }
+	
+	effect = {
+	
+		save_scope_as = new_owner
+		
+		scope:selected_artifact = {
+			set_owner = scope:new_owner
+		}
+	}
+}
+
+advcm_destroy_artifact = {
+	scope = character
+	
+	saved_scopes = { selected_artifact }
+	
+	effect = {
+	
+		destroy_artifact = scope:selected_artifact
+	
+	}
+}
+
+advcm_edit_artifact_desc = {
+	scope = character
+	
+	effect = {
+		trigger_event = { id = advcm_events.2 }
+	}
+}
+
+advcm_get_artifact_list = {
+
+	scope = character
+	
+	effect = {
+		
+		every_in_global_list = {
+			variable = marked_characters
+			every_character_artifact  = {
+				add_to_global_variable_list = { name = advcm_artifact_list target = this }
+			}
+		}
+	
+	
+	}
+
+}
+
+advcm_clear_artifact_list = {
+	scope = character
+	
+	effect = {
+		clear_global_variable_list = advcm_artifact_list
+	}
+}
+
+advcm_weapon_list = {
+	scope = character
+	
+	effect = {
+		
+		add_to_global_variable_list = { name = weapon_type_list target = flag:advcm_axe}
+		add_to_global_variable_list = { name = weapon_type_list target = flag:advcm_dagger}
+		add_to_global_variable_list = { name = weapon_type_list target = flag:advcm_hammer}
+		add_to_global_variable_list = { name = weapon_type_list target = flag:advcm_mace}
+		add_to_global_variable_list = { name = weapon_type_list target = flag:advcm_spear}
+		add_to_global_variable_list = { name = weapon_type_list target = flag:advcm_sword}
+		add_to_global_variable_list = { name = weapon_type_list target = flag:advcm_longsword}
+		if = {
+			limit = {
+				has_fp3_dlc_trigger = yes
+			}
+			add_to_global_variable_list = { name = weapon_type_list target = flag:advcm_sassanian_sword}
+		}
+		if = {
+			limit = {
+				has_dlc_feature = tours_and_tournaments
+			}
+			add_to_global_variable_list = { name = weapon_type_list target = flag:advcm_bow}
+			add_to_global_variable_list = { name = weapon_type_list target = flag:advcm_longbow}
+			add_to_global_variable_list = { name = weapon_type_list target = flag:advcm_composite_bow}
+		    add_to_global_variable_list = { name = weapon_type_list target = flag:advcm_crossbow}
+		}
+	}
+}
+
+advcm_armor_list = {
+	scope = character
+	
+	effect = {
+		
+		add_to_global_variable_list = { name = armor_type_list target = flag:advcm_armor}
+	}
+}
+
+advcm_regalia_list = {
+	scope = character
+	
+	effect = {
+		
+		add_to_global_variable_list = { name = regalia_type_list target = flag:advcm_crown}
+		add_to_global_variable_list = { name = regalia_type_list target = flag:advcm_regalia}
+		add_to_global_variable_list = { name = regalia_type_list target = flag:advcm_necklace}
+		add_to_global_variable_list = { name = regalia_type_list target = flag:advcm_brooch}
+	}
+}
+
+advcm_court_list = {
+	scope = character
+	
+	effect = {
+		
+		add_to_global_variable_list = { name = court_type_list target = flag:advcm_small_shield}
+		add_to_global_variable_list = { name = court_type_list target = flag:advcm_large_shield}
+		add_to_global_variable_list = { name = court_type_list target = flag:advcm_tapestry}
+		add_to_global_variable_list = { name = court_type_list target = flag:advcm_throne}
+		add_to_global_variable_list = { name = court_type_list target = flag:advcm_small_box}
+		add_to_global_variable_list = { name = court_type_list target = flag:advcm_medium_box}
+		add_to_global_variable_list = { name = court_type_list target = flag:advcm_goblet}
+		add_to_global_variable_list = { name = court_type_list target = flag:advcm_cabinet}
+		add_to_global_variable_list = { name = court_type_list target = flag:advcm_chest}
+		add_to_global_variable_list = { name = court_type_list target = flag:advcm_divan}
+		add_to_global_variable_list = { name = court_type_list target = flag:advcm_table}
+	}
+}
+
+advcm_quality_list = {
+	scope = character
+	
+	effect = {
+		
+		add_to_global_variable_list = { name = artifact_quality_list target = flag:advcm_common}
+		add_to_global_variable_list = { name = artifact_quality_list target = flag:advcm_masterwork}
+		add_to_global_variable_list = { name = artifact_quality_list target = flag:advcm_famed}
+		add_to_global_variable_list = { name = artifact_quality_list target = flag:advcm_illustrious}
+	}
+}
+
+advcm_modifier_list = {
+	scope = character
+	
+	effect = {
+		
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_diplomacy}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_martial}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_stewardship}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_intrigue}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_learning}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_prowess}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_knight_limit}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_knight_effectiveness}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_tolerance_advantage}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_controlled_province_advantage}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_levy_reinforcement_rate}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_levy_reinforcement_rate_same_faith}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_raid_speed}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_enemy_hard_casualty_modifier}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_hard_casualty_modifier}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_heavy_cavalry_toughness_mult}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_heavy_infantry_toughness_mult}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_plains_advantage}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_farmlands_advantage}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_hills_advantage}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_mountains_advantage}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_desert_advantage}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_desert_mountains_advantage}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_oasis_advantage}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_jungle_advantage}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_forest_advantage}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_taiga_advantage}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_wetlands_advantage}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_steppe_advantage}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_floodplains_advantage}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_drylands_advantage}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_retreat_losses}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_pursue_efficiency}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_monthly_prestige}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_short_reign_duration_mult}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_court_grandeur_baseline_add}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_dynasty_opinion}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_monthly_dynasty_prestige_mult}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_monthly_dynasty_prestige}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_tyranny_loss_mult}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_dread_gain_mult}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_dread_baseline}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_child_opinion}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_spouse_opinion}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_general_opinion}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_vassal_opinion}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_courtier_and_guest_opinion}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_attraction_opinion}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_same_faith_opinion}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_mercenary_hire_cost_mult}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_vassal_tax_contribution_mult}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_vassal_limit}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_men_at_arms_maintenance}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_domain_tax_mult}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_domain_limit}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_build_gold_cost}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_build_speed}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_monthly_income_mult}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_monthly_piety}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_monthly_piety_gain_mult}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_owned_hostile_scheme_success_chance_add}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_owned_personal_scheme_success_chance_add}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_owned_scheme_secrecy_add}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_fertility}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_stress_gain_mult}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_health}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_monthly_diplomacy_lifestyle_xp_gain_mult}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_monthly_martial_lifestyle_xp_gain_mult}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_monthly_stewardship_lifestyle_xp_gain_mult}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_monthly_intrigue_lifestyle_xp_gain_mult}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_monthly_learning_lifestyle_xp_gain_mult}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_years_of_fertility}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_life_expectancy}
+		add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_epidemic_resistance}
+		#add_to_global_variable_list = { name = artifact_modifier_list target = flag:advcm_development_growth}
+		
+	}
+}
+
+advcm_set_artifact_type = {
+	scope = character
+	
+	saved_scopes = { artifact_type }
+	
+	effect = {
+		set_variable = { name = advcm_artifact_type value = scope:artifact_type }
+	}
+}
+
+advcm_set_artifact_quality = {
+	scope = character
+	
+	saved_scopes = { artifact_quality }
+	
+	effect = {
+		set_variable = { name = advcm_artifact_quality value = scope:artifact_quality }
+		set_variable = { name = advcm_artifact_quality_frame value = advcm_artifact_frame}
+	}
+}
+
+advcm_set_artifact_modifier_1 = {
+	scope = character
+	
+	saved_scopes = { artifact_modifier }
+	
+	effect = {
+		set_variable = { name = advcm_artifact_modifier_1 value = scope:artifact_modifier }
+	}
+}
+
+advcm_set_artifact_modifier_2 = {
+	scope = character
+	
+	saved_scopes = { artifact_modifier }
+	
+	effect = {
+		set_variable = { name = advcm_artifact_modifier_2 value = scope:artifact_modifier }
+	}
+}
+
+advcm_set_artifact_modifier_3 = {
+	scope = character
+	
+	saved_scopes = { artifact_modifier }
+	
+	effect = {
+		set_variable = { name = advcm_artifact_modifier_3 value = scope:artifact_modifier }
+	}
+}
+
+advcm_set_artifact_modifier_4 = {
+	scope = character
+	
+	saved_scopes = { artifact_modifier }
+	
+	effect = {
+		set_variable = { name = advcm_artifact_modifier_4 value = scope:artifact_modifier }
+	}
+}
+
+advcm_artifact_init = {
+	scope = character
+	
+	effect = {
+		set_variable = { name = advcm_artifact_type value = flag:advcm_axe }
+		set_variable = { name = advcm_artifact_quality value = flag:advcm_common }
+		set_variable = { name = advcm_artifact_modifier_1 value = flag:advcm_diplomacy }
+		set_variable = { name = advcm_artifact_modifier_2 value = flag:advcm_diplomacy }
+		set_variable = { name = advcm_artifact_modifier_3 value = flag:advcm_diplomacy }
+		set_variable = { name = advcm_artifact_modifier_4 value = flag:advcm_diplomacy }
+		
+	}
+}
+
+advcm_artifact_create = { 
+	scope = character
+	
+	effect = {
+		save_scope_as = modifier_target
+		if = {
+			limit = {
+				var:advcm_artifact_quality = flag:advcm_common
+			}
+			
+			if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_axe
+				}
+
+				advcm_create_weapon = { TYPE = axe VISUALS = axe RARITY = common WEALTH = 10 QUALITY = 10 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_dagger
+				}
+
+				advcm_create_weapon = { TYPE = dagger VISUALS = dagger RARITY = common WEALTH = 10 QUALITY = 10 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_hammer
+				}
+
+				advcm_create_weapon = { TYPE = hammer VISUALS = hammer RARITY = common WEALTH = 10 QUALITY = 10 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_mace
+				}
+
+				advcm_create_weapon = { TYPE = mace VISUALS = mace RARITY = common WEALTH = 10 QUALITY = 10 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_spear
+				}
+
+				advcm_create_weapon = { TYPE = spear VISUALS = spear RARITY = common WEALTH = 10 QUALITY = 10 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_sword
+				}
+
+				advcm_create_weapon = { TYPE = sword VISUALS = sword RARITY = common WEALTH = 10 QUALITY = 10 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_longsword
+				}
+
+				advcm_create_weapon = { TYPE = sword VISUALS = longsword RARITY = common WEALTH = 10 QUALITY = 10 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_sassanian_sword
+				}
+
+				advcm_create_weapon = { TYPE = sword VISUALS = sassanian_sword RARITY = common WEALTH = 10 QUALITY = 10 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_bow
+				}
+
+				advcm_create_bow = { TYPE = bow VISUALS = bow RARITY = common WEALTH = 10 QUALITY = 10 }
+			}
+
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_longbow
+				}
+
+				advcm_create_bow = { TYPE = longbow VISUALS = longbow RARITY = common WEALTH = 10 QUALITY = 10 }
+			}
+
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_composite_bow
+				}
+
+				advcm_create_bow = { TYPE = composite VISUALS = composite RARITY = common WEALTH = 10 QUALITY = 10 }
+			}
+
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_crossbow
+				}
+
+				advcm_create_bow = { TYPE = crossbow VISUALS = crossbow RARITY = common WEALTH = 10 QUALITY = 10 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_armor
+				}
+
+				advcm_create_armor = { VISUALS = armor RARITY = common WEALTH = 10 QUALITY = 10 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_brooch
+				}
+
+				advcm_create_brooch = { RARITY = common WEALTH = 10 QUALITY = 10 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_necklace
+				}
+
+				advcm_create_necklace = { RARITY = common WEALTH = 10 QUALITY = 10 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_crown
+				}
+
+				advcm_create_crown = { RARITY = common WEALTH = 10 QUALITY = 10 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_regalia
+				}
+
+				advcm_create_regalia = { RARITY = common WEALTH = 10 QUALITY = 10 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_throne
+				}
+
+				advcm_create_throne = { RARITY = common WEALTH = 10 QUALITY = 10 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_small_box
+				}
+
+				advcm_create_box = { SIZE = small RARITY = common WEALTH = 10 QUALITY = 10 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_medium_box
+				}
+
+				advcm_create_box = { SIZE = medium RARITY = common WEALTH = 10 QUALITY = 10 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_goblet
+				}
+
+				advcm_create_goblet = { RARITY = common WEALTH = 10 QUALITY = 10 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_chest
+				}
+
+				advcm_create_chest = { RARITY = common WEALTH = 10 QUALITY = 10 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_cabinet
+				}
+
+				advcm_create_cabinet = { VISUALS = cabinet RARITY = common WEALTH = 10 QUALITY = 10 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_divan
+				}
+
+				advcm_create_cabinet = { VISUALS = diwan RARITY = common WEALTH = 10 QUALITY = 10 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_table
+				}
+
+				advcm_create_cabinet = { VISUALS = table RARITY = common WEALTH = 10 QUALITY = 10 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_small_shield
+				}
+
+				advcm_create_wall_shield = {TYPE = wall_shield VISUALS = wall_shield RARITY = common WEALTH = 10 QUALITY = 10 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_large_shield
+				}
+
+				advcm_create_wall_shield = {TYPE = wall_shield_special VISUALS = wall_shield_medi RARITY = common WEALTH = 10 QUALITY = 10 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_tapestry
+				}
+
+				advcm_create_tapestry = { RARITY = common WEALTH = 10 QUALITY = 10 }
+			}
+		}
+		
+		else_if = {
+			limit = {
+				var:advcm_artifact_quality = flag:advcm_masterwork
+			}
+			
+			if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_axe
+				}
+
+				advcm_create_weapon = { TYPE = axe VISUALS = axe RARITY = masterwork WEALTH = 100 QUALITY = 100 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_dagger
+				}
+
+				advcm_create_weapon = { TYPE = dagger VISUALS = dagger RARITY = masterwork WEALTH = 100 QUALITY = 100 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_hammer
+				}
+
+				advcm_create_weapon = { TYPE = hammer VISUALS = hammer RARITY = masterwork WEALTH = 100 QUALITY = 100 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_mace
+				}
+
+				advcm_create_weapon = { TYPE = mace VISUALS = mace RARITY = masterwork WEALTH = 100 QUALITY = 100 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_spear
+				}
+
+				advcm_create_weapon = { TYPE = spear VISUALS = spear RARITY = masterwork WEALTH = 100 QUALITY = 100 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_sword
+				}
+
+				advcm_create_weapon = { TYPE = sword VISUALS = sword RARITY = masterwork WEALTH = 100 QUALITY = 100 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_longsword
+				}
+
+				advcm_create_weapon = { TYPE = sword VISUALS = longsword RARITY = masterwork WEALTH = 100 QUALITY = 100 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_sassanian_sword
+				}
+
+				advcm_create_weapon = { TYPE = sword VISUALS = sassanian_sword RARITY = masterwork WEALTH = 100 QUALITY = 100 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_bow
+				}
+
+				advcm_create_bow = { TYPE = bow VISUALS = bow RARITY = masterwork WEALTH = 100 QUALITY = 100 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_longbow
+				}
+
+				advcm_create_bow = { TYPE = longbow VISUALS = longbow RARITY = masterwork WEALTH = 100 QUALITY = 100 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_composite_bow
+				}
+
+				advcm_create_bow = { TYPE = composite VISUALS = composite RARITY = masterwork WEALTH = 100 QUALITY = 100 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_crossbow
+				}
+
+				advcm_create_bow = { TYPE = crossbow VISUALS = crossbow RARITY = masterwork WEALTH = 100 QUALITY = 100 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_armor
+				}
+
+				advcm_create_armor = { VISUALS = armor RARITY = masterwork WEALTH = 100 QUALITY = 100 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_brooch
+				}
+
+				advcm_create_brooch = { RARITY = masterwork WEALTH = 100 QUALITY = 100 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_necklace
+				}
+
+				advcm_create_necklace = { RARITY = masterwork WEALTH = 100 QUALITY = 100 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_crown
+				}
+
+				advcm_create_crown = { RARITY = masterwork WEALTH = 100 QUALITY = 100 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_regalia
+				}
+
+				advcm_create_regalia = { RARITY = masterwork WEALTH = 100 QUALITY = 100 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_throne
+				}
+
+				advcm_create_throne = { RARITY = masterwork WEALTH = 100 QUALITY = 100 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_small_box
+				}
+
+				advcm_create_box = { SIZE = small RARITY = masterwork WEALTH = 100 QUALITY = 100 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_medium_box
+				}
+
+				advcm_create_box = { SIZE = medium RARITY = masterwork WEALTH = 100 QUALITY = 100 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_goblet
+				}
+
+				advcm_create_goblet = { RARITY = masterwork WEALTH = 100 QUALITY = 100 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_chest
+				}
+
+				advcm_create_chest = { RARITY = masterwork WEALTH = 100 QUALITY = 100 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_cabinet
+				}
+
+				advcm_create_cabinet = { VISUALS = cabinet RARITY = masterwork WEALTH = 100 QUALITY = 100 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_divan
+				}
+
+				advcm_create_cabinet = { VISUALS = diwan RARITY = masterwork WEALTH = 100 QUALITY = 100 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_table
+				}
+
+				advcm_create_cabinet = { VISUALS = table RARITY = masterwork WEALTH = 100 QUALITY = 100 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_small_shield
+				}
+
+				advcm_create_wall_shield = {TYPE = wall_shield VISUALS = wall_shield RARITY = masterwork WEALTH = 100 QUALITY = 100 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_large_shield
+				}
+
+				advcm_create_wall_shield = {TYPE = wall_shield_special VISUALS = wall_shield_medi RARITY = masterwork WEALTH = 100 QUALITY = 100 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_tapestry
+				}
+
+				advcm_create_tapestry = { RARITY = masterwork WEALTH = 100 QUALITY = 100 }
+			}
+		}
+		else_if = {
+			limit = {
+				var:advcm_artifact_quality = flag:advcm_famed
+			}
+			
+			if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_axe
+				}
+
+				advcm_create_weapon = { TYPE = axe VISUALS = axe RARITY = famed WEALTH = 250 QUALITY = 250 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_dagger
+				}
+
+				advcm_create_weapon = { TYPE = dagger VISUALS = dagger RARITY = famed WEALTH = 250 QUALITY = 250 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_hammer
+				}
+
+				advcm_create_weapon = { TYPE = hammer VISUALS = hammer RARITY = famed WEALTH = 250 QUALITY = 250 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_mace
+				}
+
+				advcm_create_weapon = { TYPE = mace VISUALS = mace RARITY = famed WEALTH = 250 QUALITY = 250 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_spear
+				}
+
+				advcm_create_weapon = { TYPE = spear VISUALS = spear RARITY = famed WEALTH = 250 QUALITY = 250 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_sword
+				}
+
+				advcm_create_weapon = { TYPE = sword VISUALS = sword RARITY = famed WEALTH = 250 QUALITY = 250 }
+			}
+
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_longsword
+				}
+
+				advcm_create_weapon = { TYPE = sword VISUALS = longsword RARITY = famed WEALTH = 250 QUALITY = 250 }
+			}
+
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_sassanian_sword
+				}
+
+				advcm_create_weapon = { TYPE = sword VISUALS = sassanian_sword RARITY = famed WEALTH = 250 QUALITY = 250 }
+			}
+
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_bow
+				}
+
+				advcm_create_bow = { TYPE = bow VISUALS = bow RARITY = famed WEALTH = 250 QUALITY = 250 }
+			}
+
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_longbow
+				}
+
+				advcm_create_bow = { TYPE = longbow VISUALS = longbow RARITY = famed WEALTH = 250 QUALITY = 250 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_composite_bow
+				}
+
+				advcm_create_bow = { TYPE = composite VISUALS = composite RARITY = famed WEALTH = 250 QUALITY = 250 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_crossbow
+				}
+
+				advcm_create_bow = { TYPE = crossbow VISUALS = crossbow RARITY = famed WEALTH = 250 QUALITY = 250 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_armor
+				}
+
+				advcm_create_armor = { VISUALS = armor RARITY = famed WEALTH = 250 QUALITY = 250 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_brooch
+				}
+
+				advcm_create_brooch = { RARITY = famed WEALTH = 250 QUALITY = 250 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_necklace
+				}
+
+				advcm_create_necklace = { RARITY = famed WEALTH = 250 QUALITY = 250 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_crown
+				}
+
+				advcm_create_crown = { RARITY = famed WEALTH = 250 QUALITY = 250 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_regalia
+				}
+
+				advcm_create_regalia = { RARITY = famed WEALTH = 250 QUALITY = 250 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_throne
+				}
+
+				advcm_create_throne = { RARITY = famed WEALTH = 250 QUALITY = 250 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_small_box
+				}
+
+				advcm_create_box = { SIZE = small RARITY = famed WEALTH = 250 QUALITY = 250 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_medium_box
+				}
+
+				advcm_create_box = { SIZE = medium RARITY = famed WEALTH = 250 QUALITY = 250 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_goblet
+				}
+
+				advcm_create_goblet = { RARITY = famed WEALTH = 250 QUALITY = 250 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_chest
+				}
+
+				advcm_create_chest = { RARITY = famed WEALTH = 250 QUALITY = 250 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_cabinet
+				}
+
+				advcm_create_cabinet = { VISUALS = cabinet RARITY = famed WEALTH = 250 QUALITY = 250 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_divan
+				}
+
+				advcm_create_cabinet = { VISUALS = diwan RARITY = famed WEALTH = 250 QUALITY = 250 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_table
+				}
+
+				advcm_create_cabinet = { VISUALS = table RARITY = famed WEALTH = 250 QUALITY = 250 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_small_shield
+				}
+
+				advcm_create_wall_shield = {TYPE = wall_shield VISUALS = wall_shield RARITY = famed WEALTH = 250 QUALITY = 250 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_large_shield
+				}
+
+				advcm_create_wall_shield = {TYPE = wall_shield_special VISUALS = wall_shield_medi RARITY = famed WEALTH = 250 QUALITY = 250 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_tapestry
+				}
+
+				advcm_create_tapestry = { RARITY = famed WEALTH = 250 QUALITY = 250 }
+			}
+		}
+		else_if = {
+			limit = {
+				var:advcm_artifact_quality = flag:advcm_illustrious
+			}
+			
+			if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_axe
+				}
+
+				advcm_create_weapon = { TYPE = axe VISUALS = axe RARITY = illustrious WEALTH = 500 QUALITY = 500 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_dagger
+				}
+
+				advcm_create_weapon = { TYPE = dagger VISUALS = dagger RARITY = illustrious WEALTH = 500 QUALITY = 500 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_hammer
+				}
+
+				advcm_create_weapon = { TYPE = hammer VISUALS = hammer RARITY = illustrious WEALTH = 500 QUALITY = 500 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_mace
+				}
+
+				advcm_create_weapon = { TYPE = mace VISUALS = mace RARITY = illustrious WEALTH = 500 QUALITY = 500 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_spear
+				}
+
+				advcm_create_weapon = { TYPE = spear VISUALS = spear RARITY = illustrious WEALTH = 500 QUALITY = 500 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_sword
+				}
+
+				advcm_create_weapon = { TYPE = sword VISUALS = sword RARITY = illustrious WEALTH = 500 QUALITY = 500 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_longsword
+				}
+
+				advcm_create_weapon = { TYPE = sword VISUALS = longsword RARITY = illustrious WEALTH = 500 QUALITY = 500 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_sassanian_sword
+				}
+
+				advcm_create_weapon = { TYPE = sword VISUALS = sassanian_sword RARITY = illustrious WEALTH = 500 QUALITY = 500 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_bow
+				}
+
+				advcm_create_bow = { TYPE = bow VISUALS = bow RARITY = illustrious WEALTH = 500 QUALITY = 500 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_longbow
+				}
+
+				advcm_create_bow = { TYPE = longbow VISUALS = longbow RARITY = illustrious WEALTH = 500 QUALITY = 500 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_composite_bow
+				}
+
+				advcm_create_bow = { TYPE = composite VISUALS = composite RARITY = illustrious WEALTH = 500 QUALITY = 500 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_crossbow
+				}
+
+				advcm_create_bow = { TYPE = crossbow VISUALS = crossbow RARITY = illustrious WEALTH = 500 QUALITY = 500 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_armor
+				}
+
+				advcm_create_armor = { VISUALS = armor RARITY = illustrious WEALTH = 500 QUALITY = 500 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_brooch
+				}
+
+				advcm_create_brooch = { RARITY = illustrious WEALTH = 500 QUALITY = 500 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_necklace
+				}
+
+				advcm_create_necklace = { RARITY = illustrious WEALTH = 500 QUALITY = 500 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_crown
+				}
+
+				advcm_create_crown = { RARITY = illustrious WEALTH = 500 QUALITY = 500 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_regalia
+				}
+
+				advcm_create_regalia = { RARITY = illustrious WEALTH = 500 QUALITY = 500 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_throne
+				}
+
+				advcm_create_throne = { RARITY = illustrious WEALTH = 500 QUALITY = 500 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_small_box
+				}
+
+				advcm_create_box = { SIZE = small RARITY = illustrious WEALTH = 500 QUALITY = 500 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_medium_box
+				}
+
+				advcm_create_box = { SIZE = medium RARITY = illustrious WEALTH = 500 QUALITY = 500 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_goblet
+				}
+
+				advcm_create_goblet = { RARITY = illustrious WEALTH = 500 QUALITY = 500 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_chest
+				}
+
+				advcm_create_chest = { RARITY = illustrious WEALTH = 500 QUALITY = 500 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_cabinet
+				}
+
+				advcm_create_cabinet = { VISUALS = cabinet RARITY = illustrious WEALTH = 500 QUALITY = 500 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_divan
+				}
+
+				advcm_create_cabinet = { VISUALS = diwan RARITY = illustrious WEALTH = 500 QUALITY = 500 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_table
+				}
+
+				advcm_create_cabinet = { VISUALS = table RARITY = illustrious WEALTH = 500 QUALITY = 500 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_small_shield
+				}
+
+				advcm_create_wall_shield = {TYPE = wall_shield VISUALS = wall_shield RARITY = illustrious WEALTH = 500 QUALITY = 500 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_large_shield
+				}
+
+				advcm_create_wall_shield = {TYPE = wall_shield_special VISUALS = wall_shield_medi RARITY = illustrious WEALTH = 500 QUALITY = 500 }
+			}
+			else_if = {
+				limit = {
+					var:advcm_artifact_type = flag:advcm_tapestry
+				}
+
+				advcm_create_tapestry = { RARITY = illustrious WEALTH = 500 QUALITY = 500 }
+			}
+		}
+	}
+}
+
+advcm_set_mod_levels = {
+
+	scope = character
+
+	effect = {
+		set_variable = {
+			name = advcm_modifier1_value
+			value = 10
+		}
+			
+		set_variable = {
+			name = advcm_modifier2_value
+			value = 10
+		}
+			
+		set_variable = {
+			name = advcm_modifier3_value
+			value = 10
+		}
+			
+		set_variable = {
+			name = advcm_modifier4_value
+			value = 10
+		}
+	}
+}
+
+advcm_remove_1_mod1 = {
+    scope = character    
+    
+    effect = {
+        change_variable = {
+            name = advcm_modifier1_value
+            subtract = 1
+        }
+    }
+
+}
+
+advcm_add_1_mod1 = {
+    scope = character
+    
+    
+    effect = {
+        change_variable = {
+            name = advcm_modifier1_value
+            add = 1
+        }
+    }
+
+}
+
+advcm_remove_1_mod2 = {
+    scope = character
+    
+    effect = {
+        change_variable = {
+            name = advcm_modifier2_value
+            subtract = 1
+        }
+    }
+
+}
+
+advcm_add_1_mod2 = {
+    scope = character
+    
+    
+    effect = {
+        change_variable = {
+            name = advcm_modifier2_value
+            add = 1
+        }
+    }
+
+}
+
+advcm_remove_1_mod3 = {
+    scope = character
+    
+    effect = {
+        change_variable = {
+            name = advcm_modifier3_value
+            subtract = 1
+        }
+    }
+
+}
+
+advcm_add_1_mod3 = {
+    scope = character
+    
+    
+    effect = {
+        change_variable = {
+            name = advcm_modifier3_value
+            add = 1
+        }
+    }
+
+}
+
+advcm_remove_1_mod4 = {
+    scope = character
+    
+    
+    effect = {
+        change_variable = {
+            name = advcm_modifier4_value
+            subtract = 1
+        }
+    }
+
+}
+
+advcm_add_1_mod4 = {
+    scope = character
+    
+    
+    effect = {
+        change_variable = {
+            name = advcm_modifier4_value
+            add = 1
+        }
+    }
+
+}
+
+advcm_artifact_slow_comp_check = {
+    scope = character
+    
+    
+    is_valid = {
+		exists = var:advcm_modifier1_value
+	}
+}

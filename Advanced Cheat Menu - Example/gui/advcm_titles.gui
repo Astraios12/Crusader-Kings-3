@@ -1,0 +1,339 @@
+window = {
+	name = "advcm_title_window"
+	parentanchor = top|right
+	position = { -50 100 }
+	size = { 385 100 }
+	layer = windows_layer
+	filter_mouse = all
+	allow_outside = yes
+	alwaystransparent = no
+	visible = "[GetVariableSystem.Exists('advcm_title_window_visible')]"
+	
+	using = Window_Background
+	using = Window_Decoration
+	movable = yes
+    
+    datacontext = "[GetVariableSystem]"
+	datacontext = "[GetPlayer]"
+	
+	
+	state = {
+			name = init
+			trigger_on_create = yes
+			on_start = "[GetVariableSystem.Toggle('empire_checked')]"
+			on_start = "[GetVariableSystem.Toggle('kingdom_checked')]"
+			on_start = "[GetVariableSystem.Toggle('duchy_checked')]"
+			on_start = "[GetVariableSystem.Toggle('county_checked')]"
+			on_start = "[GetVariableSystem.Set('title_option', 'name')]"
+			on_start = "[GetVariableSystem.Set('title_show_owned', 'true')]"
+			
+	}
+	
+	state = {
+		name = _show
+		using = Animation_FadeIn_Quick
+		on_start = "[GetScriptedGui('advcm_get_title_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+	}
+	
+	state = {
+		name = _hide
+		using = Animation_FadeOut_Quick
+	}
+	
+	vbox = {
+		restrictparent_min = yes
+		using = Window_Margins
+		
+		header_pattern = {
+			layoutpolicy_horizontal = expanding
+
+
+			blockoverride "header_text"
+			{
+				text = game_concept_titles
+			}
+
+			blockoverride "button_close"
+			{
+				onclick = "[GetScriptedGui('advcm_clear_title_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+				onclick = "[GetVariableSystem.Clear('empire_checked')]"
+				onclick = "[GetVariableSystem.Clear('kingdom_checked')]"
+				onclick = "[GetVariableSystem.Clear('duchy_checked')]"
+				onclick = "[GetVariableSystem.Clear('county_checked')]"
+				onclick = "[GetVariableSystem.Toggle('advcm_title_window_visible')]"
+			}
+		}
+		
+		widget = {
+			size = { 385 165 }
+			datacontext = "[GetGlobalVariable('advcm_title_selected_char').Char]"
+			
+			
+			advcm_portrait_shoulders = {
+				visible = "[Character.IsValid]"
+				parentanchor = center
+				
+				blockoverride "portrait_button_template_onclick"
+				{
+					onclick = "[GetVariableSystem.Toggle('advcm_title_char_select_list_visible')]"
+				}
+			}
+			
+			advcm_portrait_shoulders = {
+				visible = "[Not(Character.IsValid)]"
+				parentanchor = center
+				
+				text_label_center = {
+						parentanchor = bottom|hcenter
+						position = { 0 -10 }
+						text = advcm_select_character
+						default_format = "#low;italic"
+						max_width = 235
+				}
+				
+				blockoverride "onclick" 
+				{
+					onclick = "[GetVariableSystem.Toggle('advcm_title_char_select_list_visible')]"
+				}
+			}
+		}
+		
+		hbox = {
+			button_checkbox_label = {
+				max_width = 150
+				
+				layoutpolicy_horizontal = expanding
+				onclick = "[GetVariableSystem.Set('title_option', Select_CString(GetVariableSystem.HasValue('title_option', 'name'), 'key', 'name'))]"
+				
+				
+				blockoverride "checkbox" 
+				{
+					checked = "[GetVariableSystem.HasValue('title_option', 'key')]"
+				}
+				
+				blockoverride "text"
+				{
+					text = advcm_show_key
+				}
+			}
+			
+			button_checkbox_label = {
+				max_width = 150
+				
+				layoutpolicy_horizontal = expanding
+				onclick = "[GetVariableSystem.Set('title_show_owned', Select_CString(GetVariableSystem.HasValue('title_show_owned', 'true'), 'false', 'true'))]"
+				
+				
+				blockoverride "checkbox" 
+				{
+					checked = "[GetVariableSystem.HasValue('title_show_owned', 'true')]"
+				}
+				
+				blockoverride "text"
+				{
+					text = advcm_show_owned_titles
+				}
+			}
+		
+		
+		}
+		
+		hbox = {
+			
+			spacing = 5
+			
+			button_checkbox_label = {
+				max_width = 150
+				
+				layoutpolicy_horizontal = expanding
+				onclick = "[GetVariableSystem.Toggle('empire_checked')]"
+				
+				
+				blockoverride "checkbox" 
+				{
+					checked = "[GetVariableSystem.Exists('empire_checked')]"
+				}
+				
+				blockoverride "text"
+				{
+					text = advcm_empires
+				}
+			}
+			
+			button_checkbox_label = {
+				max_width = 150
+				
+				layoutpolicy_horizontal = expanding
+				onclick = "[GetVariableSystem.Toggle('kingdom_checked')]"
+				
+				
+				blockoverride "checkbox" 
+				{
+					checked = "[GetVariableSystem.Exists('kingdom_checked')]"
+				}
+				
+				blockoverride "text"
+				{
+					text = advcm_kingdoms
+				}
+			}
+			
+			button_checkbox_label = {
+				max_width = 150
+				
+				layoutpolicy_horizontal = expanding
+				onclick = "[GetVariableSystem.Toggle('duchy_checked')]"
+				
+				
+				blockoverride "checkbox" 
+				{
+					checked = "[GetVariableSystem.Exists('duchy_checked')]"
+				}
+				
+				blockoverride "text"
+				{
+					text = advcm_duchies
+				}
+			}
+			
+			button_checkbox_label = {
+				max_width = 150
+				
+				layoutpolicy_horizontal = expanding
+				onclick = "[GetVariableSystem.Toggle('county_checked')]"
+				
+				
+				blockoverride "checkbox" 
+				{
+					checked = "[GetVariableSystem.Exists('county_checked')]"
+				}
+				
+				blockoverride "text"
+				{
+					text = advcm_counties
+				}
+			}
+		}
+        
+        scrollbox = {
+			layoutpolicy_horizontal = expanding
+			layoutpolicy_vertical = expanding
+			
+			minimumsize = { 470 500 }
+			
+			state = {
+				name = "advcm_title_list_refresh"
+				using = Animation_Refresh_FadeOut
+			}
+
+			state = {
+				using = Animation_Refresh_FadeIn
+				on_start = "[GetScriptedGui('advcm_get_title_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+			}
+			
+			blockoverride "scrollbox_content"
+			{
+            
+				vbox = {
+					name = "advcm_titles_selection_list"
+					datamodel = "[GetGlobalList('advcm_title_list')]"
+					layoutpolicy_horizontal = expanding
+					ignoreinvisible = yes
+					spacing = 3
+					
+					item = {
+						widget = {
+							name = "title_list_item"
+							layoutpolicy_horizontal = expanding
+							size = { 0 55 }
+							datacontext = "[Scope.GetLandedTitle]"
+							datacontext = "[GetGlobalVariable('advcm_title_selected_char').Char]"
+							visible = "[And(Or(And(GetVariableSystem.HasValue('title_show_owned', 'false'), Not(ObjectsEqual(Title.GetHolder, Character.Self))),GetVariableSystem.HasValue('title_show_owned', 'true')),Or(Or(And(GetVariableSystem.Exists('empire_checked'), EqualTo_int32(Title.GetTierFrame, '(int32)6')), And(GetVariableSystem.Exists('kingdom_checked'), EqualTo_int32(Title.GetTierFrame, '(int32)5'))), Or(And(GetVariableSystem.Exists('duchy_checked'), EqualTo_int32(Title.GetTierFrame, '(int32)4')), And(GetVariableSystem.Exists('county_checked'), EqualTo_int32(Title.GetTierFrame, '(int32)3')))))]"
+							
+							vbox = {
+								layoutpolicy_horizontal = expanding
+								spacing = 10
+
+								hbox = {
+									layoutpolicy_horizontal = expanding
+									margin = { 5 0 }
+									spacing = 7
+									
+
+									background = {
+										using = Background_Area
+										margin_right = 3
+										margin_left = 3
+									}
+
+									coa_title_tiny_crown = {}
+
+									text_single = {
+										layoutpolicy_horizontal = expanding
+										visible = "[GetVariableSystem.HasValue('title_option', 'name')]"
+										text = "[Title.GetNameNoTooltip]"
+									}
+									
+									text_single = {
+										layoutpolicy_horizontal = expanding
+										visible = "[GetVariableSystem.HasValue('title_option', 'key')]"
+										text = "[Title.GetKey]"
+									}
+									
+									button_round = {
+										size = { 40 40 }
+										tooltip = advcm_add_strong_claim_tt
+										icon = {
+											parentanchor = center
+											size = { 30 28 }
+											texture = "gfx/interface/icons/title_status/icon_claim_pressed.dds"
+										}
+										onclick = "[GetScriptedGui('advcm_strong_claim').Execute(GuiScope.SetRoot(Character.MakeScope).AddScope('claim_title', Title.MakeScope).End)]"
+									}
+									
+									button_round = {
+										size = { 40 40 }
+										tooltip = advcm_add_weak_claim_tt
+										icon = {
+											parentanchor = center
+											size = { 30 28 }
+											texture = "gfx/interface/icons/title_status/icon_claim_unpressed.dds"
+										}
+										onclick = "[GetScriptedGui('advcm_weak_claim').Execute(GuiScope.SetRoot(Character.MakeScope).AddScope('claim_title', Title.MakeScope).End)]"
+									}
+									
+									button_round = {
+										size = { 40 40 }
+										tooltip = advcm_take_title_tt
+										icon = {
+											parentanchor = center
+											size = { 35 35 }
+											texture = "gfx/interface/icons/council_task_types/task_fabricate_claim.dds"
+										}
+										onclick = "[GetScriptedGui('advcm_get_title').Execute(GuiScope.SetRoot(Character.MakeScope).AddScope('claim_title', Title.MakeScope).End)]"
+									}
+									
+									button_round = {
+										size = { 40 40 }
+										tooltip = advcm_destroy_title_tt
+										#visible = "[Not(Title.IsCounty)]"
+										icon = {
+											parentanchor = center
+											size = { 30 28 }
+											texture = "gfx/interface/icons/map_coa/icon_raider.dds"
+										}
+										onclick = "[GetScriptedGui('advcm_destroy_title').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('claim_title', Title.MakeScope).End)]"
+									}
+
+								}
+							}
+
+							expand = {}
+						}
+						
+					}
+				}
+			}
+		}
+    }
+}

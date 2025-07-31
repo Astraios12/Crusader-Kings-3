@@ -1,0 +1,14 @@
+template Advcm_Innovation_Anim
+{
+	state = {
+		name = _show
+		using = Animation_FadeIn_Quick
+		on_start = "[GetVariableSystem.Set( 'advcm_culture_era_tab', 'tribal' )]"
+		on_start = "[GetVariableSystem.Set( 'advcm_modded', Select_CString(GetGlobalVariable('ek_game_started').IsSet, '1', '0'))]"
+	}
+	
+	state = {
+		name = _hide
+		using = Animation_FadeOut_Quick
+	}
+}

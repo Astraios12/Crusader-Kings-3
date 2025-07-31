@@ -1,0 +1,285 @@
+﻿advcm_culture_change = {
+	scope = character
+	saved_scopes = { selected_culture }
+	
+	effect = {
+		every_in_global_list = {
+			variable = marked_characters
+
+			hidden_effect = {
+				set_culture = scope:selected_culture
+			}
+		}
+	}
+}
+
+advcm_culture_list_load = {
+	scope = character
+	
+	effect = {
+		advcm_heritages_list_effect = yes
+	}
+}
+
+
+
+advcm_change_myculture = {
+	scope = character
+	
+	effect = {
+		change_myculture_effect = yes
+	}
+}
+
+advcm_change_myculture_county = {
+	scope = character
+	
+	effect = {
+		change_myculture_county_effect = yes
+	}
+}
+
+advcm_change_otherculture_county = {
+	scope = character
+	
+	effect = {
+		change_otherculture_county_effect = yes
+	}
+}
+
+advcm_tradition_dlc_check = {
+	
+	scope = character
+	
+	saved_scopes = { tradition }
+	
+	is_valid = {
+		trigger_if = {
+			limit = { scope:tradition = culture_tradition:tradition_fp1_coastal_warriors }
+			has_fp1_dlc_trigger = yes
+		}
+		trigger_else_if = {
+			limit = { scope:tradition = culture_tradition:tradition_fp1_performative_honour }
+			
+			has_fp1_dlc_trigger = yes
+		}
+		trigger_else_if = {
+			limit = { scope:tradition = culture_tradition:tradition_fp1_northern_stories }
+			
+			has_fp1_dlc_trigger = yes
+		}
+		trigger_else_if = {
+			limit = { scope:tradition = culture_tradition:tradition_fp1_trials_by_combat }
+			
+			has_fp1_dlc_trigger = yes
+		}
+		trigger_else_if = {
+			limit = { scope:tradition = culture_tradition:tradition_fp1_the_right_to_prove }
+			
+			has_fp1_dlc_trigger = yes
+		}
+		trigger_else_if = {
+			limit = { scope:tradition = culture_tradition:tradition_fp2_state_ransoming }
+			
+			has_fp2_dlc_trigger = yes
+		}
+		trigger_else_if = {
+			limit = { scope:tradition = culture_tradition:tradition_fp2_strategy_gamers }
+			
+			has_fp2_dlc_trigger = yes
+		}
+		trigger_else_if = {
+			limit = { scope:tradition = culture_tradition:tradition_fp2_malleable_subjects }
+			
+			has_fp2_dlc_trigger = yes
+		}
+		trigger_else_if = {
+			limit = { scope:tradition = culture_tradition:tradition_fp2_ritualised_friendship }
+			
+			has_fp2_dlc_trigger = yes
+		}
+		trigger_else_if = {
+			limit = { scope:tradition = culture_tradition:tradition_ep2_avid_falconers }
+			
+			has_dlc_feature = tours_and_tournaments
+		}
+		trigger_else_if = {
+			limit = { scope:tradition = culture_tradition:tradition_fp3_frontier_warriors }
+			
+			has_fp3_dlc_trigger = yes
+		}
+		trigger_else_if = {
+			limit = { scope:tradition = culture_tradition:tradition_fp3_irrigation_experts }
+			
+			has_fp3_dlc_trigger = yes
+		}
+		trigger_else_if = {
+			limit = { scope:tradition = culture_tradition:tradition_fp3_beacon_of_learning }
+			
+			has_fp3_dlc_trigger = yes
+		}
+		trigger_else_if = {
+			limit = { scope:tradition = culture_tradition:tradition_fp3_enlightened_magnates }
+			
+			has_fp3_dlc_trigger = yes
+		}
+		trigger_else_if = {
+			limit = { scope:tradition = culture_tradition:tradition_fp3_jirga }
+			
+			has_fp3_dlc_trigger = yes
+		}
+		trigger_else_if = {
+			limit = { scope:tradition = culture_tradition:tradition_fp3_pragmatic_creed }
+			
+			has_fp3_dlc_trigger = yes
+		}
+		trigger_else_if = {
+			limit = { scope:tradition = culture_tradition:tradition_fp3_fierce_independence }
+			
+			has_fp3_dlc_trigger = yes
+		}
+		trigger_else_if = {
+			limit = { scope:tradition = culture_tradition:tradition_ep3_indomitable_azatani }
+			
+			has_dlc_feature = roads_to_power
+		}
+		trigger_else_if = {
+			limit = { scope:tradition = culture_tradition:tradition_ep3_audacious_cadets }
+			
+			has_dlc_feature = roads_to_power
+		}
+		trigger_else_if = {
+			limit = { scope:tradition = culture_tradition:tradition_ep3_imperial_tagmata }
+			
+			has_dlc_feature = roads_to_power
+		}
+		trigger_else_if = {
+			limit = { scope:tradition = culture_tradition:tradition_ep3_roman_ceremonies }
+			
+			has_dlc_feature = roads_to_power
+		}
+		trigger_else_if = {
+			limit = { scope:tradition = culture_tradition:tradition_ep3_palace_politics }
+			
+			has_dlc_feature = roads_to_power
+		}
+		trigger_else_if = {
+			limit = { scope:tradition = culture_tradition:tradition_ep3_cultivated_sophistication }
+			
+			has_dlc_feature = roads_to_power
+		}
+		trigger_else_if = {
+			limit = { scope:tradition = culture_tradition:tradition_debug }
+			
+			always = no
+		}
+		trigger_else = {
+			
+			always = yes
+		}
+	}
+}
+
+advcm_tradition_category_list_maker = {
+	scope = character
+	
+	saved_scopes = { tradition }
+	
+	effect = {
+		if = {
+			limit = {
+				scope:tradition = {
+					has_tradition_category = realm
+				}
+			}
+
+			add_to_global_variable_list = { name = advcm_realm_tradition_list target = scope:tradition}
+		}
+		else_if = {
+			limit = {
+				scope:tradition = {
+					has_tradition_category = combat
+				}
+			}
+
+			add_to_global_variable_list = { name = advcm_combat_tradition_list target = scope:tradition}
+		}
+		else_if = {
+			limit = {
+				scope:tradition = {
+					has_tradition_category = societal
+				}
+			}
+
+			add_to_global_variable_list = { name = advcm_societal_tradition_list target = scope:tradition}
+		}
+		else_if = {
+			limit = {
+				scope:tradition = {
+					has_tradition_category = ritual
+				}
+			}
+
+			add_to_global_variable_list = { name = advcm_ritual_tradition_list target = scope:tradition}
+		}
+		else_if = {
+			limit = {
+				scope:tradition = {
+					has_tradition_category = regional
+				}
+			}
+
+			add_to_global_variable_list = { name = advcm_regional_tradition_list target = scope:tradition}
+		}
+	}
+}
+
+advcm_add_tradition = {
+	scope = character
+	
+	saved_scopes = { tradition }
+	
+	effect = {
+		var:selected_culture = {
+			add_culture_tradition = scope:tradition
+		}
+		
+	}
+}
+
+#advcm_add_pillar = {
+	#scope = character
+	
+	#saved_scopes = { pillar }
+	
+	#effect = {
+		#var:selected_culture = {
+			#set_culture_pillar = scope:pillar
+		#}
+		
+	#}
+#}
+
+advcm_remove_tradition = {
+	scope = character
+	
+	saved_scopes = { tradition }
+	
+	effect = {
+		var:selected_culture = {
+			remove_culture_tradition = scope:tradition
+		}
+		
+	}
+}
+
+advcm_culture_has_tradition = {
+	
+	scope = character
+	
+	saved_scopes = { tradition }
+	
+	is_valid = {
+		var:selected_culture = { has_cultural_tradition = scope:tradition }
+	}
+}

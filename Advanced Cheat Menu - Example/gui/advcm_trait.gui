@@ -1,0 +1,836 @@
+
+
+# Advanced Cheat Menu Traits window by mrtats
+
+
+window = {
+	name = "advcm_trait_window"
+	parentanchor = top|right
+	position = { -50 100 }
+	size = { 425 0 }
+	layer = windows_layer
+	filter_mouse = all
+	allow_outside = yes
+	using = Window_Background
+	using = Window_Decoration
+	alwaystransparent = no
+	
+	movable = yes
+	
+	visible = "[GetVariableSystem.Exists('advcm_trait_window_visible')]"
+
+	
+	state = {
+		name = _show
+		using = Animation_FadeIn_Quick
+	}
+	
+	state = {
+		name = _hide
+		using = Animation_FadeOut_Quick
+	}
+	
+	vbox = {
+		margin_left = 40
+		margin_right = 40
+		margin_top = 20
+		margin_bottom = 20
+		ignoreinvisible = yes
+		restrictparent_min = yes
+		header_pattern = {
+			layoutpolicy_horizontal = expanding
+
+			#button_clear = {
+				#name = trait_list_clean
+				#onclick = "[GetScriptedGui('advcm_trait_list_cleanup').Execute(GuiScope.End)]"
+				#onclick = "[PdxGuiTriggerAllAnimations('advcm_build_traits_list')]"
+				#visible = "[InDebugMode]"
+				#tooltip = advcm_trait_cleanup_tt
+			#}
+			
+			blockoverride "header_text"
+			{
+				text = game_concept_traits
+			}
+			
+			blockoverride "button_close"
+			{
+				onclick = "[GetVariableSystem.Toggle('advcm_trait_window_visible')]"
+				onclick = "[GetVariableSystem.Clear('show_traits')]"
+
+			}
+		}
+		
+		
+        widget = {
+        
+            size = { 425 85 }
+			
+				
+			widget = {
+				size = { 425 85 }
+				position = { 0 0 }
+				
+				vbox = {
+					spacing = 3
+					hbox = {
+						spacing = 5
+						
+						ignoreinvisible = yes
+						
+						button_standard = {
+							visible = "[Not(GetScriptedGui('advcm_russian_gui_shown').IsShown(GuiScope.End))]"
+							layoutpolicy_horizontal = expanding
+							size = { 107 30 }
+							onclick = "[GetVariableSystem.Set('show_traits', 'physical')]"
+							button_ignore = none
+							text = game_concept_physical_traits
+							tooltip = advcm_physical_traits_tt
+							using = tooltip_ne
+						}
+
+						button_standard = {
+							visible = "[GetScriptedGui('advcm_russian_gui_shown').IsShown(GuiScope.End)]"
+							layoutpolicy_horizontal = expanding
+							size = { 152 30 }
+							onclick = "[GetVariableSystem.Set('show_traits', 'physical')]"
+							button_ignore = none
+							text = game_concept_physical_traits
+							tooltip = advcm_physical_traits_tt
+							using = tooltip_ne
+						}
+						
+						
+						button_standard = {
+							visible = "[Not(GetScriptedGui('advcm_russian_gui_shown').IsShown(GuiScope.End))]"
+							layoutpolicy_horizontal = expanding
+							size = { 100 30 }
+							onclick = "[GetVariableSystem.Set('show_traits', 'education')]"
+							button_ignore = none
+							text = game_concept_education
+							tooltip = advcm_education_traits_tt
+							using = tooltip_ne
+						
+						}
+
+						button_standard = {
+							visible = "[GetScriptedGui('advcm_russian_gui_shown').IsShown(GuiScope.End)]"
+							layoutpolicy_horizontal = expanding
+							size = { 60 30 }
+							onclick = "[GetVariableSystem.Set('show_traits', 'education')]"
+							button_ignore = none
+							text = game_concept_education
+							tooltip = advcm_education_traits_tt
+							using = tooltip_ne
+						
+						}
+						button_standard = {
+							visible = "[Not(GetScriptedGui('advcm_russian_gui_shown').IsShown(GuiScope.End))]"
+							layoutpolicy_horizontal = expanding
+							size = { 108 30 }
+							onclick = "[GetVariableSystem.Set('show_traits', 'commander')]"
+							button_ignore = none
+							text = game_concept_commander
+							tooltip = advcm_commander_traits_tt
+							using = tooltip_ne
+						
+						}
+
+						button_standard = {
+							visible = "[GetScriptedGui('advcm_russian_gui_shown').IsShown(GuiScope.End)]"
+							layoutpolicy_horizontal = expanding
+							size = { 80 30 }
+							onclick = "[GetVariableSystem.Set('show_traits', 'commander')]"
+							button_ignore = none
+							text = game_concept_commander
+							tooltip = advcm_commander_traits_tt
+							using = tooltip_ne
+						
+						}
+						
+						button_standard = {
+							visible = "[Not(GetScriptedGui('advcm_russian_gui_shown').IsShown(GuiScope.End))]"
+							layoutpolicy_horizontal = expanding
+							size = { 75 30 }
+							onclick = "[GetVariableSystem.Set('show_traits', 'lifestyle')]"
+							button_ignore = none
+							text = game_concept_lifestyle
+							tooltip = advcm_lifestyle_traits_tt
+							using = tooltip_ne
+						
+						}
+
+						button_standard = {
+							visible = "[GetScriptedGui('advcm_russian_gui_shown').IsShown(GuiScope.End)]"
+							layoutpolicy_horizontal = expanding
+							size = { 99 30 }
+							onclick = "[GetVariableSystem.Set('show_traits', 'lifestyle')]"
+							button_ignore = none
+							text = game_concept_lifestyle
+							tooltip = advcm_lifestyle_traits_tt
+							using = tooltip_ne
+						
+						}
+					}
+					
+					hbox = {
+					
+						spacing = 5
+						
+						button_standard = {
+							name = "personality_traits_button"
+							layoutpolicy_horizontal = expanding
+							size = { 97 30 }
+							onclick = "[GetVariableSystem.Set('show_traits', 'personality')]"
+							
+							button_ignore = none
+							text = game_concept_personality
+							tooltip = advcm_personality_traits_tt
+							using = tooltip_ne
+						
+						}
+
+						button_standard = {
+							visible = "[Not(GetScriptedGui('advcm_russian_gui_shown').IsShown(GuiScope.End))]"
+							layoutpolicy_horizontal = expanding
+							size = { 65 30 }
+							onclick = "[GetVariableSystem.Set('show_traits', 'health')]"
+							
+							button_ignore = none
+							text = game_concept_health
+							tooltip = advcm_health_traits_tt
+							using = tooltip_ne
+						
+						}
+						
+						button_standard = {
+							visible = "[GetScriptedGui('advcm_russian_gui_shown').IsShown(GuiScope.End)]"
+							layoutpolicy_horizontal = expanding
+							size = { 76 30 }
+							onclick = "[GetVariableSystem.Set('show_traits', 'health')]"
+							
+							button_ignore = none
+							text = game_concept_health
+							tooltip = advcm_health_traits_tt
+							using = tooltip_ne
+						
+						}
+
+						button_standard = {
+							visible = "[Not(GetScriptedGui('advcm_russian_gui_shown').IsShown(GuiScope.End))]"
+							layoutpolicy_horizontal = expanding
+							size = { 55 30 }
+							onclick = "[GetVariableSystem.Set('show_traits', 'fame')]"
+							
+							button_ignore = none
+							text = game_concept_prestige_experience
+							tooltip = advcm_fame_traits_tt
+							using = tooltip_ne
+						
+						}
+						
+						button_standard = {
+							visible = "[GetScriptedGui('advcm_russian_gui_shown').IsShown(GuiScope.End)]"
+							layoutpolicy_horizontal = expanding
+							size = { 83 30 }
+							onclick = "[GetVariableSystem.Set('show_traits', 'fame')]"
+							
+							button_ignore = none
+							text = game_concept_prestige_experience
+							tooltip = advcm_fame_traits_tt
+							using = tooltip_ne
+						
+						}
+						
+						button_standard = {
+							layoutpolicy_horizontal = expanding
+							size = { 64 30 }
+							onclick = "[GetVariableSystem.Set('show_traits', 'other')]"
+							
+							button_ignore = none
+							text = activity_invite_rule_other_witches
+							tooltip = advcm_other_traits_tt
+							using = tooltip_ne
+						
+						}
+
+						button_standard = {
+							layoutpolicy_horizontal = expanding
+							size = { 64 30 }
+							onclick = "[GetVariableSystem.Set('show_traits', 'debug')]"
+							visible = "[InDebugMode]"
+							
+							button_ignore = none
+							text = "[Localize('#D Debug')]"
+							tooltip = advcm_other_traits_tt
+							using = tooltip_ne
+						
+						}
+						
+					}
+				}
+			}
+			
+        }
+        
+        widget = {
+        
+            size = { 425 800 }
+            layoutpolicy_vertical = expanding
+            
+            
+            
+            
+           vbox = {
+				name = "trait_selection_panel"
+				layoutpolicy_vertical = expanding
+
+				
+				scrollbox = {
+					name = "physical_trait_selection_list"
+					layoutpolicy_vertical = expanding
+					layoutpolicy_horizontal = expanding
+					minimumsize = { 405 100% }
+					scissor = yes
+
+					visible = "[GetVariableSystem.HasValue( 'show_traits', 'physical' )]"
+					using =  Animation_Tab_Switch
+
+					blockoverride "scrollbox_content"
+					{
+						vbox_advcm_trait_selection_content = {
+							layoutpolicy_horizontal = expanding
+							datamodel = "[GetGlobalList('advcm_physical_traits_list')]"
+							
+							blockoverride "test_visible"
+							{
+								visible = "[EqualTo_string(Trait.GetTraitCategoryLabel, Localize('TRAIT_CATEGORY_PHYSICAL'))]"
+							}
+						}
+					}
+				}
+
+
+				scrollbox = {
+					name = "education_trait_selection_list"
+					layoutpolicy_vertical = expanding
+					layoutpolicy_horizontal = expanding
+					minimumsize = { 375 100% }
+
+					visible = "[GetVariableSystem.HasValue( 'show_traits', 'education' )]"
+					using =  Animation_Tab_Switch
+
+					blockoverride "scrollbox_content"
+					{
+						vbox_advcm_trait_selection_content = {
+							layoutpolicy_horizontal = expanding
+							datamodel = "[GetEducationTraits]"
+						}
+					}
+				}
+				
+				scrollbox = {
+					name = "commander_trait_selection_list"
+					layoutpolicy_vertical = expanding
+					layoutpolicy_horizontal = expanding
+					minimumsize = { 375 100% }
+
+					visible = "[GetVariableSystem.HasValue( 'show_traits', 'commander' )]"
+					using =  Animation_Tab_Switch
+
+					blockoverride "scrollbox_content"
+					{
+						vbox_advcm_trait_selection_content = {
+							layoutpolicy_horizontal = expanding
+							datamodel = "[GetGlobalList('advcm_commander_traits_list')]"
+
+						}
+					}
+				}
+
+				scrollbox = {
+					name = "personality_trait_selection_list"
+					layoutpolicy_vertical = expanding
+					layoutpolicy_horizontal = expanding
+					minimumsize = { 375 100% }
+
+					visible = "[GetVariableSystem.HasValue( 'show_traits', 'personality' )]"
+					using =  Animation_Tab_Switch
+
+					blockoverride "scrollbox_content"
+					{
+						vbox_advcm_trait_selection_content = {
+							layoutpolicy_horizontal = expanding
+							datamodel = "[GetPersonalityTraits]"
+						}
+					}
+				}
+				
+				scrollbox = {
+					name = "health_trait_selection_list"
+					layoutpolicy_vertical = expanding
+					layoutpolicy_horizontal = expanding
+					minimumsize = { 375 100% }
+
+					visible = "[GetVariableSystem.HasValue( 'show_traits', 'health' )]"
+					using =  Animation_Tab_Switch
+
+					blockoverride "scrollbox_content"
+					{
+						vbox_advcm_trait_selection_content = {
+							layoutpolicy_horizontal = expanding
+							datamodel = "[GetGlobalList('advcm_health_traits_list')]"
+
+						}
+					}
+				}
+				
+				scrollbox = {
+					name = "fame_trait_selection_list"
+					layoutpolicy_vertical = expanding
+					layoutpolicy_horizontal = expanding
+					minimumsize = { 375 100% }
+
+					visible = "[GetVariableSystem.HasValue( 'show_traits', 'fame' )]"
+					using =  Animation_Tab_Switch
+
+					blockoverride "scrollbox_content"
+					{
+						vbox_advcm_trait_selection_content = {
+							layoutpolicy_horizontal = expanding
+							datamodel = "[GetGlobalList('advcm_fame_traits_list')]"
+
+						}
+					}
+				}
+
+				scrollbox = {
+					name = "other_trait_selection_list"
+					layoutpolicy_vertical = expanding
+					layoutpolicy_horizontal = expanding
+					minimumsize = { 375 100% }
+
+					visible = "[GetVariableSystem.HasValue( 'show_traits', 'other' )]"
+					using =  Animation_Tab_Switch
+
+					blockoverride "scrollbox_content"
+					{
+						vbox_advcm_trait_selection_content = {
+							layoutpolicy_horizontal = expanding
+							datamodel = "[GetGlobalList('advcm_other_traits_list')]"
+						}
+					}
+				}
+				
+				scrollbox = {
+					name = "lifestyle_trait_selection_list"
+					layoutpolicy_vertical = expanding
+					layoutpolicy_horizontal = expanding
+					minimumsize = { 375 100% }
+
+					visible = "[GetVariableSystem.HasValue( 'show_traits', 'lifestyle' )]"
+					using =  Animation_Tab_Switch
+					
+
+					blockoverride "scrollbox_content"
+					{
+						vbox_advcm_trait_selection_content = {
+							layoutpolicy_horizontal = expanding
+							datamodel = "[GetGlobalList('advcm_lifestyle_traits_list')]"
+							
+						}
+					}
+				}
+
+				scrollbox = {
+					layoutpolicy_vertical = expanding
+					layoutpolicy_horizontal = expanding
+					minimumsize = { 375 100% }
+
+					visible = "[GetVariableSystem.HasValue( 'show_traits', 'debug' )]"
+					using =  Animation_Tab_Switch
+					
+
+					blockoverride "scrollbox_content"
+					{
+
+						#debug_vbox_advcm_all_trait_selection_content = {
+							#datamodel = "[GetAllTraits]"
+						#}
+
+						#debug_vbox_advcm_trait_selection_content = {
+							#layoutpolicy_horizontal = expanding
+							#datamodel = "[GetGlobalList('advcm_temp_all_traits_list')]"
+						#}
+
+						vbox_advcm_trait_selection_content = {
+							layoutpolicy_horizontal = expanding
+							datamodel = "[GetAllTraits]"
+						}
+					}
+				}
+
+			}
+        }
+	}
+}
+
+widget = {
+	name = "advcm_traits_list_builder_widget"
+	
+	visible = "[Not(GetScriptedGui('advcm_trait_lists_complete').IsValid(GuiScope.AddScope('traits_size', MakeScopeValue(IntToFixedPoint(GetDataModelSize(GetAllTraits)))).End))]"
+
+	debug_vbox_advcm_trait_selection_content = {
+		layoutpolicy_horizontal = expanding
+		datamodel = "[GetAllTraits]"
+	}
+}
+
+template advcm_character_trait_tooltip {
+	object_tooltip_pop_out = {
+
+		blockoverride "header_additions" {
+			hbox = {
+				margin_right = 10
+				margin_top = 8
+				margin_left = -4
+
+				trait_icon_texture = {
+					blockoverride "icon_size"
+					{
+						size = { 52 52 }
+						tintcolor = "[TooltipInfo.GetTintColor]"
+					}
+				}
+			}
+		}
+
+		blockoverride "title_text" {
+			margin = { 0 8 }
+			text = "[Trait.GetNameNoTooltipWithDefault( Character.Self )]"
+		}
+
+		blockoverride "concept_link" {
+			text = "[Trait.GetTraitCategoryLabel]"
+		}
+
+		blockoverride "description_text" {
+			block "actual_description_text" {
+				text = "[Trait.GetFullDescription( Character.Self, Faith.Self )]"
+			}
+		}
+
+		blockoverride "extra_data_after_description"
+		{
+			vbox = {
+				name = "trait_level_tracks"
+				layoutpolicy_horizontal = expanding
+				visible = "[DataModelHasItems( Trait.GetLevelTracks )]"
+				allow_outside = yes
+
+				spacer = {
+					size = { 10 10 }
+				}
+
+				text_label_left = {
+					layoutpolicy_horizontal = expanding
+					text = "TRAIT_LEVEL_TRACKS_HEADER"
+				}
+
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					datamodel = "[Trait.GetLevelTracks]"
+					spacing = 5
+					allow_outside = yes
+
+					item = {
+						hbox = {
+							layoutpolicy_horizontal = expanding
+							allow_outside = yes
+							spacing = 5
+							margin_right = 20
+
+							vbox = {
+								margin_top = 6
+
+								icon = {
+									size = { 30 30 }
+									texture = "[TraitLevelTrack.GetIcon( Trait.Self, Character.Self )]"
+								}
+							}
+
+							vbox = {
+								layoutpolicy_horizontal = expanding
+								spacing = 5
+
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									text = "[TraitLevelTrack.GetName]"
+								}
+
+								widget = {
+									size = { 0 15 }
+									layoutpolicy_horizontal = expanding
+									allow_outside = yes
+
+									datacontext = "[Character.GetTraitTrackProgressBar( Trait.Self, TraitLevelTrack.Self )]"
+
+									hbox_complex_bar_progress_next = {
+										size = { 0 15 }
+										layoutpolicy_horizontal = expanding
+										tooltip = "TRAIT_LEVEL_TRACK_PROGRESS_TOOTLIP"
+										using = tooltip_se
+									}
+
+									hbox_complex_bar_levels = {
+										size = { 0 15 }
+										layoutpolicy_horizontal = expanding
+
+										blockoverride "marker"
+										{
+											widget_level_marker = {
+												scale = 0.75
+												datacontext = "[TraitLevelTrack.GetEntryForXp( ComplexBarItem.GetValue )]"
+												visible = "[GreaterThanOrEqualTo_int32( TraitLevelTrackEntry.GetLevel, '(int32)0' )]"
+
+												blockoverride "visible_active"
+												{
+													visible = "[EqualTo_int32( Character.GetTraitTrackLevel( Trait.Self, TraitLevelTrack.Self ), TraitLevelTrackEntry.GetLevel )]"
+												}
+
+												blockoverride "visible_inactive"
+												{
+													visible = "[Not( EqualTo_int32( Character.GetTraitTrackLevel( Trait.Self, TraitLevelTrack.Self ), TraitLevelTrackEntry.GetLevel ) )]"
+												}
+
+												blockoverride "marker_tooltip"
+												{
+													tooltip = "TRAIT_LEVEL_TRACK_TT"
+													using = tooltip_se
+												}
+
+												blockoverride "marker_text"
+												{
+													text = "[TraitLevelTrackEntry.GetLevel]"
+												}
+											}
+										}
+									}
+								}
+							}
+
+							hbox = {
+
+								using = advcm_trait_track_plus_buttons
+							}
+
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+
+types advcm_trait_menu_types
+{
+
+	type vbox_advcm_trait_selection_content = fixedgridbox
+	{
+		datacontext = "[GetPlayer]"
+		datacontext = "[Scope.Trait]"
+		layoutpolicy_horizontal = expanding
+		addcolumn = 425
+		addrow = 53
+
+		item = {
+			widget = {
+				size = { 390 53 }
+				datacontext = "[Scope.Trait]"
+				layoutpolicy_horizontal = expanding
+				block "test_visible"
+				{
+					visible = yes
+				}
+				button_standard_hover = {
+					name = "trait_item"
+					layoutpolicy_horizontal = expanding
+					layoutpolicy_vertical = expanding
+					size = { 100% 50 }
+					onclick = "[GetScriptedGui('advcm_add_trait').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('trait', Trait.MakeScope).End)]"
+					onrightclick = "[GetScriptedGui('advcm_remove_trait').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('trait', Trait.MakeScope).End)]"
+					button_ignore = none
+					tooltip = advcm_trait_button_tt
+
+					hbox = {
+						margin = { 5 0 }
+						margin_right = 10
+						spacing = 10
+
+						advcm_icon_trait = {
+							blockoverride "faith_context"
+							{
+								datacontext = "[GetPlayer.GetFaith]"
+							}
+							blockoverride "tooltip_placement"
+							{
+								using = tooltip_ws
+							}
+						}
+
+						text_single = {
+							layoutpolicy_horizontal = expanding
+							text = "[Trait.GetNameNoTooltip( Character.Self )]"
+							default_format = "#clickable"
+						}
+					}
+				}
+			}
+		}
+	}
+
+	type debug_vbox_advcm_trait_selection_content = overlappingitembox
+	{
+		datacontext = "[GetPlayer]"
+		datacontext = "[Scope.Trait]"
+		layoutpolicy_horizontal = expanding
+		#flipdirection = yes
+		#addcolumn = 1
+		#addrow = 1
+
+		item = {
+			widget = {
+				size = { 0 0 }
+				datacontext = "[Scope.Trait]"
+				hbox = {
+					state = {
+						name = advcm_physical_traits_list 
+						trigger_when = "[And(AdvcmPhysicalTraitCatCheck, Not(EqualTo_string(Trait.GetNameNoTooltip( GetNullCharacter ), Localize(''))))]"
+						on_finish = "[GetScriptedGui('advcm_traits_list_builder').Execute(GuiScope.AddScope('trait', Trait.MakeScope).AddScope('flag', MakeScopeFlag('physical')).End)]"
+					}
+					state = {
+						name = advcm_commander_traits_list 
+						trigger_when = "[And(AdvcmCommanderTraitCatCheck, Not(EqualTo_string(Trait.GetNameNoTooltip( GetNullCharacter ), Localize(''))))]"
+						on_finish = "[GetScriptedGui('advcm_traits_list_builder').Execute(GuiScope.AddScope('trait', Trait.MakeScope).AddScope('flag', MakeScopeFlag('commander')).End)]"
+					}
+					state = {
+						name = advcm_lifestyle_traits_list 
+						trigger_when = "[And(AdvcmLifestyleTraitCatCheck, Not(EqualTo_string(Trait.GetNameNoTooltip( GetNullCharacter ), Localize(''))))]"
+						on_finish = "[GetScriptedGui('advcm_traits_list_builder').Execute(GuiScope.AddScope('trait', Trait.MakeScope).AddScope('flag', MakeScopeFlag('lifestyle')).End)]"
+					}
+					state = {
+						name = advcm_health_traits_list 
+						trigger_when = "[And(AdvcmHealthTraitCatCheck, Not(EqualTo_string(Trait.GetNameNoTooltip( GetNullCharacter ), Localize(''))))]"
+						on_finish = "[GetScriptedGui('advcm_traits_list_builder').Execute(GuiScope.AddScope('trait', Trait.MakeScope).AddScope('flag', MakeScopeFlag('health')).End)]"
+					}
+					state = {
+						name = advcm_fame_traits_list 
+						trigger_when = "[And(AdvcmFameTraitCatCheck, Not(EqualTo_string(Trait.GetNameNoTooltip( GetNullCharacter ), Localize(''))))]"
+						on_finish = "[GetScriptedGui('advcm_traits_list_builder').Execute(GuiScope.AddScope('trait', Trait.MakeScope).AddScope('flag', MakeScopeFlag('fame')).End)]"
+					}
+					state = {
+						name = advcm_other_traits_list 
+						trigger_when = "[And(AdvcmOtherTraitCatCheck, Not(EqualTo_string(Trait.GetNameNoTooltip( GetNullCharacter ), Localize(''))))]"
+						on_finish = "[GetScriptedGui('advcm_traits_list_builder').Execute(GuiScope.AddScope('trait', Trait.MakeScope).AddScope('flag', MakeScopeFlag('other')).End)]"
+					}
+					state = {
+						name = advcm_all_traits_list
+						trigger_when = "[Trait.IsValid]" 
+						on_finish = "[GetScriptedGui('advcm_traits_list_builder').Execute(GuiScope.AddScope('trait', Trait.MakeScope).AddScope('flag', MakeScopeFlag('all')).End)]"
+					}
+				}
+			}
+		}
+	}
+
+	type advcm_trait_icon_base = trait_icon_texture
+	{
+		alwaystransparent = yes
+
+		tooltipwidget = {
+			using = advcm_character_trait_tooltip
+		}
+		block "tooltip_placement"
+		{
+			using = tooltip_se
+		}
+	}
+
+	type advcm_icon_trait = container
+	{
+		block "faith_context"
+		{
+			datacontext = "[Character.GetFaith]"
+		}
+
+		advcm_trait_icon_base = {
+			name = "normal_trait"
+			visible = "[Not( Or( Or( Or( Trait.IsGenetic, Trait.IsInheritable ), Faith.IsTraitVirtue( Trait.Self ) ), Faith.IsTraitSin( Trait.Self ) ) )]"
+			
+			blockoverride "glow"
+			{
+				block "trait_glow"
+				{
+				}
+			}
+		}
+		advcm_trait_icon_base = {
+			name = "inheritable_trait"
+			visible = "[Or( Trait.IsGenetic, Trait.IsInheritable )]"
+
+			blockoverride "glow"
+			{
+				block "trait_glow"
+				{
+					glow = {
+						using = Color_Blue
+						using = Glow_Standard
+						block "glow_radius"
+						{
+							glow_radius = 5
+						}
+					}
+				}
+			}
+		}
+		advcm_trait_icon_base = {
+			name = "virtue_trait"
+			visible = "[Faith.IsTraitVirtue( Trait.Self )]"
+
+			blockoverride "glow"
+			{
+				block "trait_glow"
+				{
+					glow = {
+						using = Color_Green
+						using = Glow_Standard
+						block "glow_radius"
+						{
+							glow_radius = 5
+						}
+					}
+				}
+			}
+		}
+		advcm_trait_icon_base = {
+			name = "sin_trait"
+			visible = "[Faith.IsTraitSin( Trait.Self )]"
+
+			blockoverride "glow"
+			{
+				block "trait_glow"
+				{
+					glow = {
+						using = Color_Red
+						using = Glow_Standard
+						block "glow_radius"
+						{
+							glow_radius = 5
+						}
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,441 @@
+﻿advcm_fp1_check = {
+	scope = culture
+	
+	is_valid = {
+		has_fp1_dlc_trigger = yes
+	}
+}
+
+advcm_fp3_check = {
+	scope = character
+
+	saved_scopes = { inno_flag }
+	
+	is_valid = {
+		has_fp3_dlc_trigger = yes
+		OR = {
+			scope:inno_flag = flag:_fritware
+			scope:inno_flag = flag:_mural_sextant
+		}
+	}
+}
+
+advcm_innovation_selected_culture = {
+	scope = character
+	
+	saved_scopes = { innovation_culture }
+	
+	effect = {
+		set_variable = {
+			name = selected_culture
+			value = scope:innovation_culture 
+		}
+	}
+}
+
+advcm_open_marriage = {
+	scope = character
+	
+	saved_scopes = { target }
+	
+	effect = {
+		open_interaction_window = {
+			interaction = advcm_marriage_interaction
+			actor = root
+			recipient = scope:target
+		}
+	}
+}
+
+advcm_open_vassal_contract = {
+	scope = character
+	
+	saved_scopes = { target }
+	
+	effect = {
+		open_interaction_window = {
+			interaction = advcm_modify_vassal_contract_interaction
+			recipient = scope:target.liege
+			actor = scope:target
+		}
+	}
+}
+
+advcm_trait_lists_complete = {
+
+	saved_scopes = { traits_size }
+   
+    is_valid = {
+		global_variable_list_size = {name = advcm_temp_all_traits_list value >= scope:traits_size }
+	}
+
+}
+
+advcm_trait_list_cleanup = {
+	effect = {
+		clear_global_variable_list = advcm_other_traits_list
+		clear_global_variable_list = advcm_commander_traits_list
+		clear_global_variable_list = advcm_lifestyle_traits_list
+		clear_global_variable_list = advcm_health_traits_list
+		clear_global_variable_list = advcm_fame_traits_list
+		clear_global_variable_list = advcm_physical_traits_list
+		clear_global_variable_list = advcm_temp_all_traits_list
+
+	}
+}
+
+
+
+advcm_traits_list_builder = {
+	saved_scopes = { trait flag }
+	effect = {
+
+		if = {
+			limit = { scope:flag = flag:physical }
+			add_to_global_variable_list = { name = advcm_physical_traits_list target = scope:trait }
+		}
+		if = {
+			limit = { scope:flag = flag:commander }
+			add_to_global_variable_list = { name = advcm_commander_traits_list target = scope:trait }
+		}
+		if = {
+			limit = { scope:flag = flag:lifestyle }
+			add_to_global_variable_list = { name = advcm_lifestyle_traits_list target = scope:trait }
+		}
+		if = {
+			limit = { scope:flag = flag:health }
+			add_to_global_variable_list = { name = advcm_health_traits_list target = scope:trait }
+		}
+		if = {
+			limit = { scope:flag = flag:fame }
+			add_to_global_variable_list = { name = advcm_fame_traits_list target = scope:trait }
+		}
+		if = {
+			limit = { scope:flag = flag:other }
+			add_to_global_variable_list = { name = advcm_other_traits_list target = scope:trait }
+		}
+		if = {
+			limit = { scope:flag = flag:all }
+			add_to_global_variable_list = { name = advcm_temp_all_traits_list target = scope:trait }
+		}
+
+	}
+}
+
+advcm_add_trait = {
+	scope = character
+	
+	saved_scopes = { trait }
+	
+	effect = {
+		every_in_global_list = {
+			variable = marked_characters
+
+			hidden_effect = {
+				add_trait = scope:trait
+			}
+		}
+	}
+}
+
+advcm_remove_trait = {
+	scope = character
+	
+	saved_scopes = { trait }
+	
+	effect = {
+		every_in_global_list = {
+			variable = marked_characters
+
+			hidden_effect = {
+				remove_trait = scope:trait
+			}
+		}
+	}
+}
+
+advcm_set_trait_track = {
+	scope = character
+	
+	saved_scopes = { trait_track }
+	
+	effect = {
+	
+		set_variable = { name = advcm_trait_track value = scope:trait_track }
+		
+	}
+}
+
+advcm_add_trait_xp = {
+	scope = character
+
+	saved_scopes = { trait advcm_trait_track }
+
+	effect = {
+		every_in_global_list = {
+			variable = marked_characters
+
+			hidden_effect = {
+
+				if = {
+					limit = {
+						
+						root.var:advcm_trait_track = flag:none
+					}
+
+
+					add_trait_xp = {
+						trait = scope:trait
+						value = 10
+					}
+				}
+
+				else_if = {
+					limit = {
+						root.var:advcm_trait_track = flag:hunter
+					}
+
+					add_trait_xp = {
+						trait = scope:trait
+						track = hunter
+						value = 10
+					}
+				}
+
+				else_if = {
+					limit = {
+						root.var:advcm_trait_track = flag:falconer
+					}
+
+					add_trait_xp = {
+						trait = scope:trait
+						track = falconer
+						value = 10
+					}
+				}
+
+				else_if = {
+					limit = {
+						root.var:advcm_trait_track = flag:foot 
+					}
+
+					add_trait_xp = {
+						trait = scope:trait
+						track = foot
+						value = 10
+					}
+				}
+
+				else_if = {
+					limit = {
+						root.var:advcm_trait_track = flag:bow 
+					}
+
+					add_trait_xp = {
+						trait = scope:trait
+						track = bow
+						value = 10
+					}
+				}
+
+				else_if = {
+					limit = {
+						root.var:advcm_trait_track = flag:horse 
+					}
+
+					add_trait_xp = {
+						trait = scope:trait
+						track = horse
+						value = 10
+					}
+				}
+
+				else_if = {
+					limit = {
+						root.var:advcm_trait_track = flag:wit 
+					}
+
+					add_trait_xp = {
+						trait = scope:trait
+						track = wit
+						value = 10
+					}
+				}
+
+				else_if = {
+					limit = {
+						root.var:advcm_trait_track = flag:travel
+					}
+
+					add_trait_xp = {
+						trait = scope:trait
+						track = travel
+						value = 10
+					}
+				}
+
+				else_if = {
+					limit = {
+						root.var:advcm_trait_track = flag:danger
+					}
+
+					add_trait_xp = {
+						trait = scope:trait
+						track = danger
+						value = 10
+					}
+				}
+
+				else_if = {
+					limit = {
+						root.var:advcm_trait_track = flag:bandit
+					}
+
+					add_trait_xp = {
+						trait = scope:trait
+						track = bandit
+						value = 10
+					}
+				}
+
+				else_if = {
+					limit = {
+						root.var:advcm_trait_track = flag:trickster
+					}
+
+					add_trait_xp = {
+						trait = scope:trait
+						track = trickster
+						value = 10
+					}
+				}
+
+				else_if = {
+					limit = {
+						root.var:advcm_trait_track = flag:thief
+					}
+
+					add_trait_xp = {
+						trait = scope:trait
+						track = thief
+						value = 10
+					}
+				}
+
+				else_if = {
+					limit = {
+						root.var:advcm_trait_track = flag:poacher
+					}
+
+					add_trait_xp = {
+						trait = scope:trait
+						track = poacher
+						value = 10
+					}
+				}
+
+				else_if = {
+					limit = {
+						root.var:advcm_trait_track = flag:marauder
+					}
+
+					add_trait_xp = {
+						trait = scope:trait
+						track = marauder
+						value = 10
+					}
+				}
+
+				
+			}
+		}
+	}
+}
+
+advcm_sexuality_heterosexual = {
+	scope = character
+	
+	effect = {
+		every_living_character = {
+			limit = { has_character_flag = marked_for_edit }
+			
+			hidden_effect = {
+				set_sexuality = heterosexual
+			}
+		}
+	}
+}
+
+advcm_sexuality_homosexual = {
+	scope = character
+	
+	effect = {
+		every_living_character = {
+			limit = { has_character_flag = marked_for_edit }
+			
+			hidden_effect = {
+				set_sexuality = homosexual
+			}
+		}
+	}
+}
+
+advcm_sexuality_bisexual = {
+	scope = character
+	
+	effect = {
+		every_living_character = {
+			limit = { has_character_flag = marked_for_edit }
+			
+			hidden_effect = {
+				set_sexuality = bisexual
+			}
+		}
+	}
+}
+
+advcm_sexuality_asexual = {
+	scope = character
+	
+	effect = {
+		every_living_character = {
+			limit = { has_character_flag = marked_for_edit }
+			
+			hidden_effect = {
+				set_sexuality = asexual
+			}
+		}
+	}
+}
+
+advcm_clear_all_marks = {
+	scope = character
+	
+	effect = {
+		every_living_character = {
+			limit = { has_character_flag = marked_for_edit }
+			
+			hidden_effect = {
+				remove_character_flag = marked_for_edit
+				remove_list_global_variable = { name = marked_characters target = this}
+			}
+		}
+	}
+}
+
+
+advcm_add_legitimacy = {
+	scope = character
+
+	effect = {
+		add_legitimacy = 100
+	}
+}
+	
+advcm_remove_legitimacy = {
+	scope = character
+
+	effect = {
+		add_legitimacy = -100
+	}
+}

@@ -1,0 +1,61 @@
+window = {
+	name = "advcm_mods_window"
+	parentanchor = top|right
+	position = { -50 100 }
+	size = { 200 100 }
+	layer = windows_layer
+	filter_mouse = all
+	allow_outside = yes
+	alwaystransparent = no
+	
+	visible = "[GetVariableSystem.Exists('advcm_mods_window_visible')]"
+	using = Window_Background
+	using = Window_Decoration
+	movable = yes
+	
+	state = {
+		name = _show
+		using = Animation_FadeIn_Quick
+	}
+	
+	state = {
+		name = _hide
+		using = Animation_FadeOut_Quick
+	}
+	
+	
+	vbox = {
+		using = Window_Margins
+		restrictparent_min = yes
+		
+		header_pattern = {
+			layoutpolicy_horizontal = expanding
+
+			blockoverride "header_text"
+			{
+				text = advcm_mods
+			}
+
+			blockoverride "button_close"
+			{
+				onclick = "[GetVariableSystem.Toggle('advcm_mods_window_visible')]"
+			}
+		}
+		
+
+		
+		widget = {
+            size = { 200 250 }
+
+            
+            hbox = {
+                spacing = 5
+                margin_bottom = 10
+                
+
+                vbox = {
+                }
+            }
+        }
+	}
+}

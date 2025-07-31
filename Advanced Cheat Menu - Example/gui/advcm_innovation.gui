@@ -1,0 +1,895 @@
+window = {
+	name = "advcm_innovation_window"
+	parentanchor = top|right
+	position = { -50 100 }
+	size = { 700 650 }
+	layer = windows_layer
+	filter_mouse = all
+	allow_outside = yes
+	alwaystransparent = no
+	max_height = 950
+	
+	using = Window_Background
+	using = Window_Decoration
+	movable = yes
+	
+	visible = "[GetVariableSystem.Exists('advcm_innovation_window_visible')]"
+    
+    datacontext = "[GetVariableSystem]"
+	datacontext = "[GetPlayer]"
+	
+	state = {
+		name = init
+		
+		trigger_on_create = yes
+		
+		on_start = "[GetVariableSystem.Set('advcm_culture_tradition_category', 'debug')]"
+		on_start = "[GetVariableSystem.Set( 'advcm_culture_tradition_tab', 'tradition' )]"
+		on_start = "[GetScriptedGui('advcm_military_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+		on_start = "[GetScriptedGui('advcm_civic_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+		on_start = "[GetScriptedGui('advcm_regional_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+		
+		
+	}	
+
+	state = {
+		name = load_innovation_lists
+
+		trigger_when = "[Not(GetScriptedGui('advcm_build_innovation_list_check').IsValid(GuiScope.SetRoot(GetPlayer.MakeScope).End))]"
+
+		on_start = "[GetScriptedGui('advcm_military_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+		on_start = "[GetScriptedGui('advcm_civic_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+		on_start = "[GetScriptedGui('advcm_regional_list').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+	}
+	
+	state = {
+		name = _show
+		
+		on_finish = "[GetVariableSystem.Set('advcm_culture_tradition_category', 'realm')]"
+	}
+	
+	state = {
+		name = _hide
+		
+		on_start = "[GetVariableSystem.Set('advcm_culture_tradition_category', 'debug')]"
+		
+		duration = 0.1
+	}
+	
+	
+	using = Advcm_Innovation_Anim
+	
+	
+	vbox = {
+		
+		using = Advcm_Innovation_Header
+	
+		hbox = {
+			name = "tradition_innovation_tabs"
+			layoutpolicy_horizontal = expanding
+
+			button_tab = {
+				layoutpolicy_horizontal = expanding
+				onclick = "[GetVariableSystem.Set( 'advcm_culture_tradition_tab', 'tradition' )]"
+				down = "[GetVariableSystem.HasValue( 'advcm_culture_tradition_tab', 'tradition' )]"
+
+				text_single = {
+					parentanchor = center
+					text = CULTURE_VIEW_TRADITIONS
+					maximumsize = { 400 -1 }
+					default_format = "#low"
+				}
+			}
+
+			#button_tab = {
+				#layoutpolicy_horizontal = expanding
+				#onclick = "[GetVariableSystem.Set( 'advcm_culture_tradition_tab', 'pillars' )]"
+				#down = "[GetVariableSystem.HasValue( 'advcm_culture_tradition_tab', 'pillars' )]"
+
+				#text_single = {
+					#parentanchor = center
+					#text = CULTURE_VIEW_OVERVIEW
+					#maximumsize = { 400 -1 }
+					#default_format = "#low"
+				#}
+			#}
+
+			
+			button_tab = {
+				layoutpolicy_horizontal = expanding
+				onclick = "[GetVariableSystem.Set( 'advcm_culture_tradition_tab', 'innovation' )]"
+				down = "[GetVariableSystem.HasValue( 'advcm_culture_tradition_tab', 'innovation' )]"
+
+				text_single = {
+					parentanchor = center
+					text = game_concept_innovations
+					maximumsize = { 400 -1 }
+					default_format = "#low"
+				}
+			}
+			
+			expand = {}
+			
+		}
+	
+		
+		vbox = {
+			using = Advcm_Innovation_Eras_Vanilla
+			layoutpolicy_horizontal = expanding
+			layoutpolicy_vertical = expanding
+			
+			visible = "[GetVariableSystem.HasValue('advcm_culture_tradition_tab', 'innovation')]"
+			
+			spacer = {
+				size = { 70 10 }
+			}
+			
+			scrollbox = {
+				layoutpolicy_horizontal = expanding
+				layoutpolicy_vertical = expanding
+			
+				blockoverride "scrollbox_content"
+				{
+			
+					vbox = {
+					
+						vbox = {
+							layoutpolicy_horizontal = expanding
+							datacontext = "[GetPlayer.MakeScope.Var('selected_culture').Culture]"
+						
+							using = Advcm_Military_Group
+							
+							using = Advcm_Innovation_Military_Vanilla
+							
+							using = Advcm_Civic_Group
+							
+							using = Advcm_Innovation_Civic_Vanilla
+							
+							using = Advcm_Regional_Group
+							
+							using = Advcm_Innovation_Regional_Vanilla
+						}
+					}
+					
+				}
+			}
+		
+			expand = {}
+		}
+		
+		vbox = {
+			layoutpolicy_horizontal = expanding
+			layoutpolicy_vertical = expanding
+			
+			visible = "[GetVariableSystem.HasValue('advcm_culture_tradition_tab', 'tradition')]"
+			
+			hbox = {
+				layoutpolicy_horizontal = expanding
+				margin_bottom = -4
+				advcm_add_tradition_category = {
+					blockoverride "button_check"
+					{
+						onclick = "[GetVariableSystem.Set('advcm_culture_tradition_category', 'realm')]"
+						down = "[GetVariableSystem.HasValue('advcm_culture_tradition_category', 'realm')]"
+					}
+					
+					blockoverride "tab_text" {
+						text = tradition_group_realm
+					}
+				}
+				
+				advcm_add_tradition_category = {
+					blockoverride "button_check"
+					{
+						onclick = "[GetVariableSystem.Set('advcm_culture_tradition_category', 'combat')]"
+						down = "[GetVariableSystem.HasValue('advcm_culture_tradition_category', 'combat')]"
+					}
+					
+					blockoverride "tab_text" {
+						text = tradition_group_combat
+					}
+				}
+				
+				advcm_add_tradition_category = {
+					blockoverride "button_check"
+					{
+						onclick = "[GetVariableSystem.Set('advcm_culture_tradition_category', 'societal')]"
+						down = "[GetVariableSystem.HasValue('advcm_culture_tradition_category', 'societal')]"
+					}
+					
+					blockoverride "tab_text" {
+						text = tradition_group_societal
+					}
+				}
+			}
+			
+			hbox = {
+				margin_bottom = 5
+				layoutpolicy_horizontal = expanding
+				advcm_add_tradition_category = {
+					blockoverride "button_check"
+					{
+						onclick = "[GetVariableSystem.Set('advcm_culture_tradition_category', 'ritual')]"
+						down = "[GetVariableSystem.HasValue('advcm_culture_tradition_category', 'ritual')]"
+					}
+					
+					blockoverride "tab_text" {
+						text = tradition_group_ritual
+					}
+				}
+				
+				advcm_add_tradition_category = {
+					blockoverride "button_check"
+					{
+						onclick = "[GetVariableSystem.Set('advcm_culture_tradition_category', 'regional')]"
+						down = "[GetVariableSystem.HasValue('advcm_culture_tradition_category', 'regional')]"
+					}
+					
+					blockoverride "tab_text" {
+						text = tradition_group_regional
+					}
+				}
+				
+			}
+			
+			spacer = {
+				size = { 70 10 }
+			}
+			
+			scrollbox = {
+				layoutpolicy_horizontal = expanding
+				layoutpolicy_vertical = expanding
+				visible = "[GetVariableSystem.HasValue('advcm_culture_tradition_category', 'debug')]"
+			
+				blockoverride "scrollbox_content"
+				{
+			
+					vbox = {
+						vbox = {
+							layoutpolicy_horizontal = expanding
+							datacontext = "[GetPlayer.MakeScope.Var('selected_culture').Culture]"
+							
+							hbox = {
+								datamodel = "[GetAllCultureTraditions]"
+								
+								item = {
+									advcm_widget_tradition_item_list = {
+									}
+								}
+							}
+							
+						}
+					}
+					
+				}
+			}
+			
+			scrollbox = {
+				layoutpolicy_horizontal = expanding
+				layoutpolicy_vertical = expanding
+				visible = "[GetVariableSystem.HasValue('advcm_culture_tradition_category', 'realm')]"
+			
+				blockoverride "scrollbox_content"
+				{
+			
+					vbox = {
+						vbox = {
+							layoutpolicy_horizontal = expanding
+							datacontext = "[GetPlayer.MakeScope.Var('selected_culture').Culture]"
+							
+							
+							dynamicgridbox = {
+								datamodel = "[GetGlobalList('advcm_realm_tradition_list')]"
+								datamodel_wrap = 3
+								flipdirection = yes								
+								
+								item = {
+									advcm_widget_tradition_item = {
+										datacontext = "[Scope.CultureTradition]"
+									}
+								}
+							}
+						}
+					}
+					
+				}
+			}
+			
+			scrollbox = {
+				layoutpolicy_horizontal = expanding
+				layoutpolicy_vertical = expanding
+				visible = "[GetVariableSystem.HasValue('advcm_culture_tradition_category', 'combat')]"
+			
+				blockoverride "scrollbox_content"
+				{
+			
+					vbox = {
+						vbox = {
+							layoutpolicy_horizontal = expanding
+							datacontext = "[GetPlayer.MakeScope.Var('selected_culture').Culture]"
+							
+							
+							dynamicgridbox = {
+								datamodel = "[GetGlobalList('advcm_combat_tradition_list')]"
+								datamodel_wrap = 3
+								flipdirection = yes								
+								
+								item = {
+									advcm_widget_tradition_item = {
+										datacontext = "[Scope.CultureTradition]"
+									}
+								}
+							}
+						}
+					}
+					
+				}
+			}
+			
+			scrollbox = {
+				layoutpolicy_horizontal = expanding
+				layoutpolicy_vertical = expanding
+				visible = "[GetVariableSystem.HasValue('advcm_culture_tradition_category', 'societal')]"
+			
+				blockoverride "scrollbox_content"
+				{
+			
+					vbox = {
+						vbox = {
+							layoutpolicy_horizontal = expanding
+							datacontext = "[GetPlayer.MakeScope.Var('selected_culture').Culture]"
+							
+							
+							dynamicgridbox = {
+								datamodel = "[GetGlobalList('advcm_societal_tradition_list')]"
+								datamodel_wrap = 3
+								flipdirection = yes								
+								
+								item = {
+									advcm_widget_tradition_item = {
+										datacontext = "[Scope.CultureTradition]"
+									}
+								}
+							}
+						}
+					}
+					
+				}
+			}
+			
+			scrollbox = {
+				layoutpolicy_horizontal = expanding
+				layoutpolicy_vertical = expanding
+				visible = "[GetVariableSystem.HasValue('advcm_culture_tradition_category', 'ritual')]"
+			
+				blockoverride "scrollbox_content"
+				{
+			
+					vbox = {
+						vbox = {
+							layoutpolicy_horizontal = expanding
+							datacontext = "[GetPlayer.MakeScope.Var('selected_culture').Culture]"
+							
+							
+							dynamicgridbox = {
+								datamodel = "[GetGlobalList('advcm_ritual_tradition_list')]"
+								datamodel_wrap = 3
+								flipdirection = yes								
+								
+								item = {
+									advcm_widget_tradition_item = {
+										datacontext = "[Scope.CultureTradition]"
+									}
+								}
+							}
+						}
+					}
+					
+				}
+			}
+			
+			scrollbox = {
+				layoutpolicy_horizontal = expanding
+				layoutpolicy_vertical = expanding
+				visible = "[GetVariableSystem.HasValue('advcm_culture_tradition_category', 'regional')]"
+			
+				blockoverride "scrollbox_content"
+				{
+			
+					vbox = {
+						vbox = {
+							layoutpolicy_horizontal = expanding
+							datacontext = "[GetPlayer.MakeScope.Var('selected_culture').Culture]"
+							
+							
+							dynamicgridbox = {
+								datamodel = "[GetGlobalList('advcm_regional_tradition_list')]"
+								datamodel_wrap = 3
+								flipdirection = yes								
+								
+								item = {
+									advcm_widget_tradition_item = {
+										datacontext = "[Scope.CultureTradition]"
+									}
+								}
+							}
+						}
+					}
+					
+				}
+			}
+		
+			expand = {}
+		}
+
+		vbox = {
+			layoutpolicy_horizontal = expanding
+			layoutpolicy_vertical = expanding
+
+			visible = "[GetVariableSystem.HasValue('advcm_culture_tradition_tab', 'pillars')]"
+
+			container_pillar_item = {
+				datacontext = "[GetPlayer.MakeScope.Var('selected_culture').Culture]"
+				datacontext = "[Culture.GetEthos]"
+				blockoverride "icon_size" {
+					size = { 400 100 }
+				}
+
+				button_round = {
+					parentanchor = bottom|right
+					onclick = "[GetVariableSystem.Toggle('advcm_pillars_window_visible')]"
+					onclick = "[GetVariableSystem.Set('advcm_culture_pillar_type', Localize('pillar_type_ethos'))]"
+					position = { -8 -8 }
+
+					tooltip = "CULTURE_CLICK_TO_REPLACE"
+
+					button_change = {
+						alwaystransparent = yes
+						parentanchor = center
+					}
+				}
+			}
+
+			vbox = {
+				layoutpolicy_horizontal = expanding
+
+				text_label_left = {
+					layoutpolicy_horizontal = expanding
+					margin = { 10 6 }
+					text = "[culture_pillars|E]"
+					default_format = "#low"
+					align = nobaseline
+				}
+			}
+
+			hbox = {
+
+				layoutpolicy_horizontal = expanding
+				layoutpolicy_vertical = expanding
+
+				maximumsize = { 594 104 }
+
+				widget = {
+
+					layoutpolicy_horizontal = expanding
+
+					vbox = {
+						margin_left = 10
+
+						hbox = {
+							name = "heritage"
+							datacontext = "[GetPlayer.MakeScope.Var('selected_culture').Culture]"
+							datacontext = "[Culture.GetHeritage]"
+							layoutpolicy_horizontal = expanding
+
+							hbox = {
+								spacing = 10
+
+								tooltipwidget = {
+									using = culture_pillar_tooltip
+								}
+
+								icon_doctrine = {
+									visible = "[ObjectsEqual( Culture.GetHeritage, GetPlayer.GetCulture.GetHeritage )]"
+									size = { 44 44 }
+									texture = "gfx/interface/icons/culture_pillars/heritage.dds"
+								}
+
+								icon_doctrine = {
+									visible = "[Not( ObjectsEqual( Culture.GetHeritage, GetPlayer.GetCulture.GetHeritage ))]"
+									size = { 44 44 }
+									texture = "gfx/interface/icons/culture_pillars/heritage_diverge.dds"
+								}
+
+								text_multi = {
+									datacontext = "[Culture.GetHeritage]"
+									text = "CULTURE_VIEW_HERITAGE_TEXT"
+									autoresize = yes
+									max_width = 220
+								}
+
+								button_change = {
+									onclick = "[GetVariableSystem.Toggle('advcm_pillars_window_visible')]"
+									onclick = "[GetVariableSystem.Set('advcm_culture_pillar_type', Localize('pillar_type_heritage'))]"
+
+									tooltip = "CULTURE_CLICK_TO_REPLACE"
+								}
+							}
+
+							expand = {}
+						}
+
+						hbox = {
+							name = "martial"
+							datacontext = "[GetPlayer.MakeScope.Var('selected_culture').Culture]"
+							datacontext = "[Culture.GetMartial]"
+							layoutpolicy_horizontal = expanding
+
+							# Only show Martial if culture affects martial customs,
+							# which is only the case if we are able to modify
+							# the culture pillars.
+							visible = "[HasDlcFeature( 'diverge_culture' )]"
+
+							spacing = 10
+
+							icon_doctrine = {
+								size = { 44 44 }
+								texture = "[CulturePillar.GetIcon]"
+							}
+
+							vbox = {
+								layoutpolicy_horizontal = expanding
+
+								hbox = {
+									layoutpolicy_horizontal = expanding
+
+									spacing = 5
+
+									tooltipwidget = {
+										using = culture_pillar_tooltip
+									}
+
+									text_multi = {
+										text = "CULTURE_VIEW_MARTIAL_CUSTOM_TEXT"
+										autoresize = yes
+										max_width = 220
+									}
+
+									button_change = {
+										onclick = "[GetVariableSystem.Toggle('advcm_pillars_window_visible')]"
+										onclick = "[GetVariableSystem.Set('advcm_culture_pillar_type', Localize('pillar_type_martial_custom'))]"
+
+										tooltip = "CULTURE_CLICK_TO_REPLACE"
+									}
+
+									expand = {}
+								}
+							}
+						}
+					}
+				}
+
+				widget = {
+					layoutpolicy_horizontal = expanding
+					layoutpolicy_vertical = expanding
+					
+
+					vbox = {
+						margin_left = 10
+
+						hbox = {
+							name = "language"
+							datacontext = "[GetPlayer.MakeScope.Var('selected_culture').Culture]"
+							datacontext = "[Culture.GetLanguage]"
+							layoutpolicy_horizontal = expanding
+
+							hbox = {
+								spacing = 10
+
+								tooltipwidget = {
+									using = culture_pillar_tooltip
+								}
+
+								icon_culture_pillar = {
+									visible = "[ObjectsEqual( Culture.GetLanguage, GetPlayer.GetCulture.GetLanguage )]"
+									texture = "gfx/interface/icons/culture_pillars/language.dds"
+								}
+
+								icon_culture_pillar = {
+									visible = "[Not( ObjectsEqual( Culture.GetLanguage, GetPlayer.GetCulture.GetLanguage ))]"
+									texture = "gfx/interface/icons/culture_pillars/language_diverge.dds"
+								}
+
+								text_multi = {
+									datacontext = "[Culture.GetLanguage]"
+									text = "CULTURE_VIEW_LANGUAGE_TEXT"
+									autoresize = yes
+									max_width = 220
+								}
+
+								button_adopt_court_language = {
+									datacontext = "[GetPlayer]"
+									layoutpolicy_horizontal = expanding
+
+									onclick = "[ToggleGameViewData( 'language', CulturePillar.Self )]"
+									enabled = "[Character.CanAdoptCourtLanguage( CulturePillar.Self )]"
+									tooltip = "ADOPT_COURT_LANGUAGE_CULTURE_WINDOW"
+									visible = "[And( HasDlcFeature( 'royal_court' ), And( Character.HasRoyalCourt, Not( ObjectsEqual( CulturePillar.Self, Character.GetCourtLanguage ) ) ) )]"
+								}
+
+								button_change = {
+									onclick = "[GetVariableSystem.Toggle('advcm_pillars_window_visible')]"
+									onclick = "[GetVariableSystem.Set('advcm_culture_pillar_type', Localize('pillar_type_language'))]"
+
+									tooltip = "CULTURE_CLICK_TO_REPLACE"
+								}
+							}
+
+							expand = {}
+						}
+
+						hbox = {
+							layoutpolicy_horizontal = expanding
+							datacontext = "[GetPlayer.MakeScope.Var('selected_culture').Culture]"
+
+							hbox = {
+								spacing = 10
+
+								tooltip = "CULTURE_AESTHETICS_TOOLTIP"
+
+								icon_culture_pillar = {
+									texture = "gfx/interface/icons/culture_pillars/aesthetics.dds"
+								}
+
+								text_multi = {
+									text = "CULTURE_AESTHETICS"
+									autoresize = yes
+									max_width = 220
+								}
+							}
+
+							expand = {}
+						}
+					}
+				}
+			}
+
+			text_label_left = {
+				layoutpolicy_horizontal = expanding
+				margin = { 10 6 }
+				text = "[traditions|E]"
+				align = nobaseline
+
+				text_single = {
+					datacontext = "[GetPlayer.MakeScope.Var('selected_culture').Culture]"
+					parentanchor = vcenter|right
+					position = {-14 0}
+					text = "[GetDataModelSize(Culture.GetTraditions)]/[Culture.GetMaxNumberOfTraditions]"
+					tooltip = "[Culture.GetMaxNumberOfTraditionsBreakdown]"
+					default_format = "#low"
+					align = nobaseline
+				}
+			}
+
+			hbox = {
+				layoutpolicy_horizontal = expanding
+				button_standard = {
+					name = "add_tradition"
+					text = "ADD_TRADITION_LABEL"
+					minimumsize = { 590 0 }
+					onclick = "[Culture.OpenAddTraditionWindow]"
+					tooltip = "ADD_TRADITION_TOOLTIP"
+					using = tooltip_nw
+				}
+				expand = {}
+			}
+
+			scrollbox = {
+				name = "traditions_holder"
+				datacontext = "[GetPlayer.MakeScope.Var('selected_culture').Culture]"
+				layoutpolicy_horizontal = expanding
+				layoutpolicy_vertical = expanding
+				scrollbarpolicy_horizontal = always_off
+
+				blockoverride "scrollbox_content" {
+					vbox = {
+						fixedgridbox = {
+							datamodel = "[Culture.GetTraditions]"
+							visible = "[CultureWindow.IsInReformationMode]"
+							flipdirection = yes
+							addcolumn = 284
+							addrow = 180
+							datamodel_wrap = 2
+
+							item = {
+								widget = {
+									name = "traditions"
+									datacontext = "[CultureTradition]"
+									size = { 276 168 }
+
+									tooltipwidget = {
+										using = culture_tradition_tooltip
+									}
+
+									widget_tradition_icon = {
+										block "icon_size" {
+											size = { 276 138 }
+										}
+									}
+
+									advcm_widget_tradition_selectable_glow = {
+										block "icon_size" {
+											size = { 276 138 }
+										}
+									}
+
+									text_label_center = {
+										name = "name"
+										parentanchor = bottom|hcenter
+										maximumsize = { 220 44 }
+										text = "[CultureTradition.GetNameNoTooltip]"
+										using = Font_Size_Medium
+										multiline = yes
+										align = center
+										elide = right
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+
+			expand = {}
+
+		}
+		
+		expand = {}
+        
+    }
+}
+
+types AdvcmInnovationTypes
+{
+	
+	
+	type advcm_add_tradition_category = button_tab {
+		layoutpolicy_horizontal = expanding
+		block button_check
+		{
+			onclick = "[NOP]"
+			down = "[NOP]"
+		}
+
+		hbox = {
+			text_single = {
+				layoutpolicy_horizontal = expanding
+				align = center
+				block tab_text
+				{
+					text = "placeholder"
+				}
+				default_format = "#low"
+			}
+		}
+	}
+	
+	type advcm_widget_tradition_item = widget {
+		size = {  167 140  }
+
+		tooltipwidget = {
+			using = culture_tradition_tooltip_clickable
+			
+			blockoverride "above_description_text" {
+				visible = "[Not(GetScriptedGui('advcm_tradition_dlc_check').IsValid(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('tradition', CultureTradition.MakeScope).End))]"
+				text = advcm_tradition_warning
+			}
+
+		}
+
+		vbox = {
+			
+			button_standard = {
+				enabled = "[GetScriptedGui('advcm_tradition_dlc_check').IsValid(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('tradition', CultureTradition.MakeScope).End)]"
+				size = {  158 85  }
+				onclick = "[GetScriptedGui('advcm_add_tradition').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('tradition', CultureTradition.MakeScope).End)]"
+				onrightclick = "[GetScriptedGui('advcm_remove_tradition').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('tradition', CultureTradition.MakeScope).End)]"
+				button_ignore = none
+				rightclicksound = "event:/SFX/UI/Generic/sfx_ui_generic_icon_select"
+
+				widget_tradition_icon = {
+					block "icon_size" {
+						size = { 158 85 }
+					}
+				}
+				
+				icon = {
+					name = "selection_glow"
+					visible = "[GetScriptedGui('advcm_culture_has_tradition').IsValid(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('tradition', CultureTradition.MakeScope).End)]"
+					parentanchor = center
+					size = { 100% 100% }
+
+					state = {
+						trigger_on_create = yes
+
+						name = max_glow
+						next = min_glow
+						duration = 1
+						using = Animation_Curve_Default
+						alpha = 0.5
+					}
+
+					state = {
+						name = min_glow
+						next = max_glow
+						duration = 1.6
+						using = Animation_Curve_Default
+						alpha = 0.3
+					}
+
+					background = {
+						texture = "gfx/interface/component_effects/innovation_glow.dds"
+						margin = { 14 12 }
+						spriteType = Corneredstretched
+						spriteborder = { 30 30 }
+						tintcolor = { 1 0.8 0.6 1 }
+					}
+				}
+			}
+			hbox = {
+				margin_top = 4
+
+				text_label_center = {
+					name = "name"
+					text = "[CultureTradition.GetNameNoTooltip]"
+					maximumsize = { 158 44 }
+					multiline = yes
+					align = center|nobaseline
+
+					using = Font_Size_Small
+				}
+				
+				widget = {
+					size = { 0 20 }
+					allow_outside = yes
+
+					warning_icon = {
+						visible = "[Not(GetScriptedGui('advcm_tradition_dlc_check').IsValid(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('tradition', CultureTradition.MakeScope).End))]"
+						position = { 6 -2 }
+						widgetanchor = left
+						size = { 20 20 }
+					}
+				}
+			}
+		}
+	}
+	
+	type advcm_widget_tradition_item_list = widget {
+		size = {  167 140  }
+
+		vbox = {
+			using = Animation_Tab_Switch
+			
+			
+			state = {
+				name = list_builder
+				trigger_when = "[GetVariableSystem.Exists('advcm_innovation_window_visible')]"
+				on_start = "[GetScriptedGui('advcm_tradition_category_list_maker').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('tradition', CultureTradition.MakeScope).End)]"
+			}
+			
+
+		}
+	}
+
+	type advcm_widget_tradition_selectable_glow = widget
+	{
+
+		size = { 276 138 }
+
+		button_standard_clean = {
+			onclick = "[Culture.OpenReplaceTraditionWindow(CultureTradition.Self)]"
+			size = { 276 138 }
+		}
+	}
+
+}

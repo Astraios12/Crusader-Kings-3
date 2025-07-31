@@ -1,0 +1,177 @@
+﻿advcm_add_modifier_build_speed = {
+	scope = character
+	
+	effect = {
+		advcm_add_modifier = { MODIFIER = advcm_build_speed_modifier }
+	}
+}
+
+advcm_remove_modifier_build_speed = {
+	scope = character
+	
+	effect = {
+		advcm_remove_modifier = { MODIFIER = advcm_build_speed_modifier }
+	}
+}
+
+advcm_add_modifier_build_cost = {
+	scope = character
+	
+	effect = {
+		advcm_add_modifier = { MODIFIER = advcm_build_cost_modifier }
+	}
+}
+
+advcm_remove_modifier_build_cost = {
+	scope = character
+	
+	effect = {
+		advcm_remove_modifier = { MODIFIER = advcm_build_cost_modifier }
+	}
+}
+
+advcm_add_modifier_knight_limit = {
+	scope = character
+	
+	effect = {
+		advcm_add_modifier = { MODIFIER = advcm_knight_limit_modifier }
+	}
+}
+
+advcm_remove_modifier_knight_limit = {
+	scope = character
+	
+	effect = {
+		advcm_remove_modifier = { MODIFIER = advcm_knight_limit_modifier }
+	}
+}
+
+advcm_add_modifier_knight_effectiveness = {
+	scope = character
+	
+	effect = {
+		advcm_add_modifier = { MODIFIER = advcm_knight_effectiveness_modifier }
+	}
+}
+
+advcm_remove_modifier_knight_effectiveness = {
+	scope = character
+	
+	effect = {
+		advcm_remove_modifier = { MODIFIER = advcm_knight_effectiveness_modifier }
+	}
+}
+
+advcm_add_modifier_max_personal_schemes = {
+	scope = character
+	
+	effect = {
+		advcm_add_modifier = { MODIFIER = advcm_max_personal_schemes_modifier }
+	}
+}
+
+advcm_remove_modifier_max_personal_schemes = {
+	scope = character
+	
+	effect = {
+		advcm_remove_modifier = { MODIFIER = advcm_max_personal_schemes_modifier }
+	}
+}
+
+advcm_add_modifier_max_hostile_schemes = {
+	scope = character
+	
+	effect = {
+		advcm_add_modifier = { MODIFIER = advcm_max_hostile_schemes_modifier }
+	}
+}
+
+advcm_remove_modifier_max_hostile_schemes = {
+	scope = character
+	
+	effect = {
+		advcm_remove_modifier = { MODIFIER = advcm_max_hostile_schemes_modifier }
+	}
+}
+
+advcm_add_modifier_domain_limit = {
+	scope = character
+	
+	effect = {
+		advcm_add_modifier = { MODIFIER = advcm_domain_limit_modifier }
+	}
+}
+
+advcm_remove_modifier_domain_limit = {
+	scope = character
+	
+	effect = {
+		advcm_remove_modifier = { MODIFIER = advcm_domain_limit_modifier }
+	}
+}
+
+advcm_add_modifier_vassal_limit = {
+	scope = character
+	
+	effect = {
+		advcm_add_modifier = { MODIFIER = advcm_vassal_limit_modifier }
+	}
+}
+
+advcm_remove_modifier_vassal_limit = {
+	scope = character
+	
+	effect = {
+		advcm_remove_modifier = { MODIFIER = advcm_vassal_limit_modifier }
+	}
+}
+
+advcm_add_modifier_men_at_arms_cap = {
+	scope = character
+	
+	effect = {
+		advcm_add_modifier = { MODIFIER = advcm_men_at_arms_cap_modifier }
+	}
+}
+
+advcm_remove_modifier_men_at_arms_cap = {
+	scope = character
+	
+	effect = {
+		advcm_remove_modifier = { MODIFIER = advcm_men_at_arms_cap_modifier }
+	}
+}
+
+advcm_add_modifier_men_at_arms_limit = {
+	scope = character
+	
+	effect = {
+		advcm_add_modifier = { MODIFIER = advcm_men_at_arms_limit_modifier }
+	}
+}
+
+advcm_remove_modifier_men_at_arms_limit = {
+	scope = character
+	
+	effect = {
+		advcm_remove_modifier = { MODIFIER = advcm_men_at_arms_limit_modifier }
+	}
+}
+
+advcm_add_modifier_diplomatic_range = {
+	scope = character
+	
+	effect = {
+		advcm_add_modifier = { MODIFIER = advcm_diplomatic_range_modifier }
+	}
+}
+
+advcm_remove_modifier_diplomatic_range = {
+	scope = character
+	
+	effect = {
+		advcm_remove_modifier = { MODIFIER = advcm_diplomatic_range_modifier }
+	}
+}
+
+

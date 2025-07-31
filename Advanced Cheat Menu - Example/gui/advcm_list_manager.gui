@@ -1,0 +1,60 @@
+window = {
+	name = "advcm_list_manager"
+	parentanchor = top|right
+	size = { 1 1 }
+	layer = windows_layer
+	filter_mouse = all
+	allow_outside = yes
+	alwaystransparent = yes
+	
+	visible = yes
+
+    state = {
+        name = advcm_build_traits_list
+        trigger_when = "[And(GetPlayer.IsValid, Not(GetScriptedGui('advcm_trait_slow_comp_check').IsValid(GuiScope.End)))]"
+        on_finish = "[GetScriptedGui('advcm_traits_lists_builder').Execute(GuiScope.End)]"
+    }
+
+	state = {
+		name = english_language_detection
+		trigger_when = "[EqualTo_string(Localize('ACHIEVEMENT_GROUP_easy_achievements'), 'Easy')]"
+		on_finish = "[GetScriptedGui('advcm_language_detection').Execute(GuiScope.AddScope('language', MakeScopeFlag('english')).End)]"
+	}
+
+	state = {
+		name = french_language_detection
+		trigger_when = "[EqualTo_string('Facile', Localize('ACHIEVEMENT_GROUP_easy_achievements'))]"
+		on_finish = "[GetScriptedGui('advcm_language_detection').Execute(GuiScope.AddScope('language', MakeScopeFlag('french')).End)]" 
+	}
+
+	state = {
+		name = german_language_detection
+		trigger_when = "[EqualTo_string('Einfach', Localize('ACHIEVEMENT_GROUP_easy_achievements'))]"
+		on_finish = "[GetScriptedGui('advcm_language_detection').Execute(GuiScope.AddScope('language', MakeScopeFlag('german')).End)]"
+	}
+
+	state = {
+		name = spanish_language_detection
+		trigger_when = "[EqualTo_string('Fácil', Localize('ACHIEVEMENT_GROUP_easy_achievements'))]"
+		on_finish = "[GetScriptedGui('advcm_language_detection').Execute(GuiScope.AddScope('language', MakeScopeFlag('spanish')).End)]"
+	}
+
+	state = {
+		name = korean_language_detection
+		trigger_when = "[EqualTo_string('쉬움', Localize('ACHIEVEMENT_GROUP_easy_achievements'))]"
+		on_finish = "[GetScriptedGui('advcm_language_detection').Execute(GuiScope.AddScope('language', MakeScopeFlag('korean')).End)]"
+	}
+
+	state = {
+		name = russian_language_detection
+		trigger_when = "[EqualTo_string('Простые', Localize('ACHIEVEMENT_GROUP_easy_achievements'))]"
+		on_finish = "[GetScriptedGui('advcm_language_detection').Execute(GuiScope.AddScope('language', MakeScopeFlag('russian')).End)]"
+	}
+
+	state = {
+		name = simp_chinese_language_detection
+		trigger_when = "[EqualTo_string('简单', Localize('ACHIEVEMENT_GROUP_easy_achievements'))]"
+		on_finish = "[GetScriptedGui('advcm_language_detection').Execute(GuiScope.AddScope('language', MakeScopeFlag('simp_chinese')).End)]"
+	}
+
+}

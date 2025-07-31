@@ -1,0 +1,22 @@
+template Advcm_Innovation_Header
+{
+	restrictparent_min = yes
+	using = Window_Margins
+	
+	header_pattern = {
+		layoutpolicy_horizontal = expanding
+
+
+		blockoverride "header_text"
+		{
+			text = advcm_innovation_menu_title
+			
+		}
+
+		blockoverride "button_close"
+		{
+			onclick = "[GetVariableSystem.Toggle('advcm_innovation_window_visible')]"
+			
+		}
+	}
+}

@@ -1,0 +1,213 @@
+template advcm_trait_track_plus_buttons 
+{
+
+    button_round = {
+
+        visible = "[LessThan_int32(GetDataModelSize(Trait.GetLevelTracks), '(int32)2')]"
+
+        size = { 14 14 }
+        onclick = "[GetScriptedGui('advcm_set_trait_track').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('trait_track', MakeScopeFlag('none')).End)]"
+        onclick = "[GetScriptedGui('advcm_add_trait_xp').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('trait', Trait.MakeScope).End)]"
+
+        button_plus_small = {
+            name = "increase_skill"
+            parentanchor = center
+            alwaystransparent = yes
+        }
+    }
+
+    button_round = {
+
+        visible = "[EqualTo_string(TraitLevelTrack.GetName, Localize('trait_track_hunter'))]"
+
+        size = { 14 14 }
+        onclick = "[GetScriptedGui('advcm_set_trait_track').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('trait_track', MakeScopeFlag('hunter')).End)]"
+        onclick = "[GetScriptedGui('advcm_add_trait_xp').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('trait', Trait.MakeScope).End)]"
+
+        button_plus_small = {
+            name = "increase_skill"
+            parentanchor = center
+            alwaystransparent = yes
+        }
+    }
+
+    button_round = {
+
+        visible = "[EqualTo_string(TraitLevelTrack.GetName, Localize('trait_track_falconer'))]"
+
+        size = { 14 14 }
+        onclick = "[GetScriptedGui('advcm_set_trait_track').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('trait_track', MakeScopeFlag('falconer')).End)]"
+        onclick = "[GetScriptedGui('advcm_add_trait_xp').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('trait', Trait.MakeScope).End)]"
+
+        button_plus_small = {
+            name = "increase_skill"
+            parentanchor = center
+            alwaystransparent = yes
+        }
+    }
+
+    button_round = {
+
+        visible = "[EqualTo_string(TraitLevelTrack.GetName, Localize('trait_track_foot'))]"
+
+        size = { 14 14 }
+        onclick = "[GetScriptedGui('advcm_set_trait_track').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('trait_track', MakeScopeFlag('foot')).End)]"
+        onclick = "[GetScriptedGui('advcm_add_trait_xp').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('trait', Trait.MakeScope).End)]"
+
+        button_plus_small = {
+            name = "increase_skill"
+            parentanchor = center
+            alwaystransparent = yes
+        }
+    }
+
+    button_round = {
+
+        visible = "[EqualTo_string(TraitLevelTrack.GetName, Localize('trait_track_bow'))]"
+
+        size = { 14 14 }
+        onclick = "[GetScriptedGui('advcm_set_trait_track').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('trait_track', MakeScopeFlag('bow')).End)]"
+        onclick = "[GetScriptedGui('advcm_add_trait_xp').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('trait', Trait.MakeScope).End)]"
+
+        button_plus_small = {
+            name = "increase_skill"
+            parentanchor = center
+            alwaystransparent = yes
+        }
+    }
+
+    button_round = {
+
+        visible = "[EqualTo_string(TraitLevelTrack.GetName, Localize('trait_track_horse'))]"
+
+        size = { 14 14 }
+        onclick = "[GetScriptedGui('advcm_set_trait_track').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('trait_track', MakeScopeFlag('horse')).End)]"
+        onclick = "[GetScriptedGui('advcm_add_trait_xp').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('trait', Trait.MakeScope).End)]"
+
+        button_plus_small = {
+            name = "increase_skill"
+            parentanchor = center
+            alwaystransparent = yes
+        }
+    }
+
+    button_round = {
+
+        visible = "[EqualTo_string(TraitLevelTrack.GetName, Localize('trait_track_wit'))]"
+
+        size = { 14 14 }
+        onclick = "[GetScriptedGui('advcm_set_trait_track').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('trait_track', MakeScopeFlag('wit')).End)]"
+        onclick = "[GetScriptedGui('advcm_add_trait_xp').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('trait', Trait.MakeScope).End)]"
+
+        button_plus_small = {
+            name = "increase_skill"
+            parentanchor = center
+            alwaystransparent = yes
+        }
+    }
+
+    button_round = {
+
+        visible = "[EqualTo_string(TraitLevelTrack.GetName, Localize('trait_track_travel'))]"
+
+        size = { 14 14 }
+        onclick = "[GetScriptedGui('advcm_set_trait_track').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('trait_track', MakeScopeFlag('travel')).End)]"
+        onclick = "[GetScriptedGui('advcm_add_trait_xp').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('trait', Trait.MakeScope).End)]"
+
+        button_plus_small = {
+            name = "increase_skill"
+            parentanchor = center
+            alwaystransparent = yes
+        }
+    }
+
+    button_round = {
+
+        visible = "[EqualTo_string(TraitLevelTrack.GetName, Localize('trait_track_danger'))]"
+
+        size = { 14 14 }
+        onclick = "[GetScriptedGui('advcm_set_trait_track').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('trait_track', MakeScopeFlag('danger')).End)]"
+        onclick = "[GetScriptedGui('advcm_add_trait_xp').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('trait', Trait.MakeScope).End)]"
+
+        button_plus_small = {
+            name = "increase_skill"
+            parentanchor = center
+            alwaystransparent = yes
+        }
+    }
+
+    button_round = {
+
+        visible = "[EqualTo_string(TraitLevelTrack.GetName, Localize('trait_track_bandit'))]"
+
+        size = { 14 14 }
+        onclick = "[GetScriptedGui('advcm_set_trait_track').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('trait_track', MakeScopeFlag('bandit')).End)]"
+        onclick = "[GetScriptedGui('advcm_add_trait_xp').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('trait', Trait.MakeScope).End)]"
+
+        button_plus_small = {
+            name = "increase_skill"
+            parentanchor = center
+            alwaystransparent = yes
+        }
+    }
+
+    button_round = {
+
+        visible = "[EqualTo_string(TraitLevelTrack.GetName, Localize('trait_track_trickster'))]"
+
+        size = { 14 14 }
+        onclick = "[GetScriptedGui('advcm_set_trait_track').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('trait_track', MakeScopeFlag('trickster')).End)]"
+        onclick = "[GetScriptedGui('advcm_add_trait_xp').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('trait', Trait.MakeScope).End)]"
+
+        button_plus_small = {
+            name = "increase_skill"
+            parentanchor = center
+            alwaystransparent = yes
+        }
+    }
+
+    button_round = {
+
+        visible = "[EqualTo_string(TraitLevelTrack.GetName, Localize('trait_track_thief'))]"
+
+        size = { 14 14 }
+        onclick = "[GetScriptedGui('advcm_set_trait_track').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('trait_track', MakeScopeFlag('thief')).End)]"
+        onclick = "[GetScriptedGui('advcm_add_trait_xp').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('trait', Trait.MakeScope).End)]"
+
+        button_plus_small = {
+            name = "increase_skill"
+            parentanchor = center
+            alwaystransparent = yes
+        }
+    }
+
+    button_round = {
+
+        visible = "[EqualTo_string(TraitLevelTrack.GetName, Localize('trait_track_poacher'))]"
+
+        size = { 14 14 }
+        onclick = "[GetScriptedGui('advcm_set_trait_track').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('trait_track', MakeScopeFlag('poacher')).End)]"
+        onclick = "[GetScriptedGui('advcm_add_trait_xp').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('trait', Trait.MakeScope).End)]"
+
+        button_plus_small = {
+            name = "increase_skill"
+            parentanchor = center
+            alwaystransparent = yes
+        }
+    }
+
+    button_round = {
+
+        visible = "[EqualTo_string(TraitLevelTrack.GetName, Localize('trait_track_marauder'))]"
+
+        size = { 14 14 }
+        onclick = "[GetScriptedGui('advcm_set_trait_track').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('trait_track', MakeScopeFlag('marauder')).End)]"
+        onclick = "[GetScriptedGui('advcm_add_trait_xp').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('trait', Trait.MakeScope).End)]"
+
+        button_plus_small = {
+            name = "increase_skill"
+            parentanchor = center
+            alwaystransparent = yes
+        }
+    }
+}

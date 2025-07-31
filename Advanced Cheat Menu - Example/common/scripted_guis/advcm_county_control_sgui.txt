@@ -1,0 +1,27 @@
+﻿advcm_increase_county_control = {
+	scope = character
+	
+	effect = {
+		every_living_character = {
+			limit = { has_character_flag = marked_for_edit }
+			
+			every_held_title = {
+				change_county_control  = 100
+			}
+		}
+	}
+}
+
+advcm_increase_development = {
+	scope = character
+	
+	effect = {
+		every_living_character = {
+			limit = { has_character_flag = marked_for_edit }
+			
+			every_held_title = {
+				change_development_level  = 100
+			}
+		}
+	}
+}

@@ -1,0 +1,460 @@
+﻿advcm_character_spawner_select_char = {
+	scope = character
+	
+	effect = {
+		set_global_variable = {
+			name = advcm_character_spawner_selected_char
+			value = this
+		}
+	}
+}
+
+advcm_character_spawner_init = {
+	scope = character
+	
+	effect = {
+		set_variable = { name = advcm_character_spawner_diplomacy value = 10 }
+		set_variable = { name = advcm_character_spawner_martial value = 10 }
+		set_variable = { name = advcm_character_spawner_stewardship value = 10 }
+		set_variable = { name = advcm_character_spawner_intrigue value = 10 }
+		set_variable = { name = advcm_character_spawner_learning value = 10 }
+		set_variable = { name = advcm_character_spawner_prowess value = 10 }
+		set_variable = { name = advcm_character_spawner_age value = 18 }
+		set_variable = { name = advcm_character_spawner_health value = 5 }
+		set_variable = { name = advcm_character_spawner_fertility value = 0.90 }
+		set_variable = { name = advcm_character_spawner_culture value = this.culture }
+		set_variable = { name = advcm_character_spawner_religion value = this.faith }
+		set_variable = { name = advcm_character_spawner_selected_gender value = flag:advcm_character_spawner_male }
+		set_variable = { name = advcm_character_spawner_selected_dynasty value = flag:advcm_character_spawner_generated }
+		trigger_event = { on_action = on_advcm_character_creator_presets_load }
+	}
+}
+
+advcm_character_spawner_slow_comp_check = {
+	
+	scope = character
+
+	is_valid = {
+		exists = var:advcm_character_spawner_diplomacy
+	}
+}
+
+advcm_character_spawner_diplomacy_add = {
+	scope = character
+
+	is_valid = {
+        var:advcm_character_spawner_diplomacy < 100
+    }
+    
+    effect = {
+        change_variable = {
+            name = advcm_character_spawner_diplomacy
+            add = 1
+        }
+    }
+}
+
+advcm_character_spawner_diplomacy_sub = {
+	scope = character
+
+	is_valid = {
+        var:advcm_character_spawner_diplomacy > 0
+    }
+    
+    effect = {
+        change_variable = {
+            name = advcm_character_spawner_diplomacy
+            subtract = 1
+        }
+    }
+}
+
+advcm_character_spawner_martial_add = {
+	scope = character
+
+	is_valid = {
+        var:advcm_character_spawner_martial < 100
+    }
+    
+    effect = {
+        change_variable = {
+            name = advcm_character_spawner_martial
+            add = 1
+        }
+    }
+}
+
+advcm_character_spawner_martial_sub = {
+	scope = character
+
+	is_valid = {
+        var:advcm_character_spawner_martial > 0
+    }
+    
+    effect = {
+        change_variable = {
+            name = advcm_character_spawner_martial
+            subtract = 1
+        }
+    }
+}
+
+advcm_character_spawner_stewardship_add = {
+	scope = character
+
+	is_valid = {
+        var:advcm_character_spawner_stewardship < 100
+    }
+    
+    effect = {
+        change_variable = {
+            name = advcm_character_spawner_stewardship
+            add = 1
+        }
+    }
+}
+
+advcm_character_spawner_stewardship_sub = {
+	scope = character
+
+	is_valid = {
+        var:advcm_character_spawner_stewardship > 0
+    }
+    
+    effect = {
+        change_variable = {
+            name = advcm_character_spawner_stewardship
+            subtract = 1
+        }
+    }
+}
+
+advcm_character_spawner_intrigue_add = {
+	scope = character
+
+	is_valid = {
+        var:advcm_character_spawner_intrigue < 100
+    }
+    
+    effect = {
+        change_variable = {
+            name = advcm_character_spawner_intrigue
+            add = 1
+        }
+    }
+}
+
+advcm_character_spawner_intrigue_sub = {
+	scope = character
+
+	is_valid = {
+        var:advcm_character_spawner_intrigue > 0
+    }
+    
+    effect = {
+        change_variable = {
+            name = advcm_character_spawner_intrigue
+            subtract = 1
+        }
+    }
+}
+
+advcm_character_spawner_learning_add = {
+	scope = character
+
+	is_valid = {
+        var:advcm_character_spawner_learning < 100
+    }
+    
+    effect = {
+        change_variable = {
+            name = advcm_character_spawner_learning
+            add = 1
+        }
+    }
+}
+
+advcm_character_spawner_learning_sub = {
+	scope = character
+
+	is_valid = {
+        var:advcm_character_spawner_learning > 0
+    }
+    
+    effect = {
+        change_variable = {
+            name = advcm_character_spawner_learning
+            subtract = 1
+        }
+    }
+}
+
+advcm_character_spawner_prowess_add = {
+	scope = character
+
+	is_valid = {
+        var:advcm_character_spawner_prowess < 100
+    }
+    
+    effect = {
+        change_variable = {
+            name = advcm_character_spawner_prowess
+            add = 1
+        }
+    }
+}
+
+advcm_character_spawner_prowess_sub = {
+	scope = character
+
+	is_valid = {
+        var:advcm_character_spawner_prowess > 0
+    }
+    
+    effect = {
+        change_variable = {
+            name = advcm_character_spawner_prowess
+            subtract = 1
+        }
+    }
+}
+
+advcm_character_spawner_age_add = {
+	scope = character
+
+	is_valid = {
+        var:advcm_character_spawner_age < 100
+    }
+    
+    effect = {
+        change_variable = {
+            name = advcm_character_spawner_age
+            add = 1
+        }
+    }
+}
+
+advcm_character_spawner_age_sub = {
+	scope = character
+
+	is_valid = {
+        var:advcm_character_spawner_age > 0
+    }
+    
+    effect = {
+        change_variable = {
+            name = advcm_character_spawner_age
+            subtract = 1
+        }
+    }
+}
+
+advcm_character_spawner_health_add = {
+	scope = character
+
+	is_valid = {
+        var:advcm_character_spawner_health < 100
+    }
+    
+    effect = {
+        change_variable = {
+            name = advcm_character_spawner_health
+            add = 1
+        }
+    }
+}
+
+advcm_character_spawner_health_sub = {
+	scope = character
+
+	is_valid = {
+        var:advcm_character_spawner_health > 0
+    }
+    
+    effect = {
+        change_variable = {
+            name = advcm_character_spawner_health
+            subtract = 1
+        }
+    }
+}
+
+advcm_character_spawner_fertility_add = {
+	scope = character
+
+	is_valid = {
+        var:advcm_character_spawner_fertility < 10
+    }
+    
+    effect = {
+        change_variable = {
+            name = advcm_character_spawner_fertility
+            add = 0.1
+        }
+    }
+}
+
+advcm_character_spawner_fertility_sub = {
+	scope = character
+
+	is_valid = {
+        var:advcm_character_spawner_fertility > 0
+    }
+    
+    effect = {
+        change_variable = {
+            name = advcm_character_spawner_fertility
+            subtract = 0.1
+        }
+    }
+}
+
+advcm_character_spawner_culture_select = {
+	scope = character
+
+	saved_scopes = { selected_culture }
+    
+    effect = {
+        set_variable = { name = advcm_character_spawner_culture value = scope:selected_culture }
+    }
+}
+
+advcm_character_spawner_religion_select = {
+	scope = character
+
+	saved_scopes = { selected_faith }
+    
+    effect = {
+        set_variable = { name = advcm_character_spawner_religion value = scope:selected_faith }
+    }
+}
+
+advcm_character_spawner_trait_list_add = {
+	scope = character
+
+	saved_scopes = { trait }
+    
+    effect = {
+        add_to_variable_list = { name = advcm_character_spawner_traits_list target = scope:trait }
+    }
+}
+
+
+advcm_character_spawner_trait_list_remove = {
+	scope = character
+
+	saved_scopes = { trait }
+    
+    effect = {
+        remove_list_variable = { name = advcm_character_spawner_traits_list target = scope:trait }
+    }
+}
+
+advcm_character_spawner_select_gender = {
+	scope = character
+
+    effect = {
+		if = {
+			limit = {var:advcm_character_spawner_selected_gender = flag:advcm_character_spawner_male }
+
+			set_variable = { name = advcm_character_spawner_selected_gender value = flag:advcm_character_spawner_female }
+		}
+		else = {
+			set_variable = { name = advcm_character_spawner_selected_gender value = flag:advcm_character_spawner_male }
+		}
+    }
+}
+
+advcm_character_spawner_select_gender_loc = {
+	scope = character
+    
+   is_valid = {
+	 var:advcm_character_spawner_selected_gender = flag:advcm_character_spawner_male
+   }
+}
+
+advcm_character_spawner_select_dynasty = {
+	scope = character
+
+    effect = {
+		if = {
+			limit = {var:advcm_character_spawner_selected_dynasty = flag:advcm_character_spawner_generated }
+
+			set_variable = { name = advcm_character_spawner_selected_dynasty value = flag:advcm_character_spawner_none }
+		}
+		else = {
+			set_variable = { name = advcm_character_spawner_selected_dynasty value = flag:advcm_character_spawner_generated }
+		}
+    }
+}
+
+advcm_character_spawner_select_dynasty_loc = {
+	scope = character
+    
+   is_valid = {
+	 var:advcm_character_spawner_selected_dynasty = flag:advcm_character_spawner_generated
+   }
+}
+
+advcm_character_spawner_check_child = {
+	scope = character
+
+    effect = {
+		if = {
+			limit = { exists = var:advcm_character_spawner_child }
+
+			remove_variable = advcm_character_spawner_child 
+		}
+		else = {
+			set_variable = { name = advcm_character_spawner_child value = flag:advcm_child_yes }
+		}
+    }
+}
+
+
+advcm_character_spawner_check_child_checked = {
+
+	scope = character
+    
+   is_valid = {
+	 var:advcm_character_spawner_child ?= flag:advcm_child_yes
+   }
+}
+
+advcm_create_character = {
+	scope = character
+
+	effect = {
+		if = {
+			limit = {exists = var:advcm_character_spawner_child}
+			if = {
+				limit = { var:advcm_character_spawner_selected_gender = flag:advcm_character_spawner_female }
+				advcm_create_child_character_effect = { GENDER = female }
+			}
+			else = {
+				advcm_create_child_character_effect = { GENDER = male }
+			}
+		}
+		else = {
+			if = {
+				limit = { var:advcm_character_spawner_selected_gender = flag:advcm_character_spawner_female }
+				if = {
+					limit = { var:advcm_character_spawner_selected_dynasty = flag:advcm_character_spawner_generated }
+					advcm_create_character_effect = { GENDER = female DYNASTY = generate }
+				}
+				else = {
+					advcm_create_character_effect = { GENDER = female DYNASTY = none }
+				}
+			}
+			else = {
+				if = {
+					limit = { var:advcm_character_spawner_selected_dynasty = flag:advcm_character_spawner_generated }
+					advcm_create_character_effect = { GENDER = male DYNASTY = generate }
+				}
+				else = {
+					advcm_create_character_effect = { GENDER = male DYNASTY = none }
+				}
+			}
+		}
+	}
+}
