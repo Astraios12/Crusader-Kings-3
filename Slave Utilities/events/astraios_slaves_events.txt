@@ -1,0 +1,19 @@
+namespace = astraios_slaves
+
+event = {
+    id = astraios_slaves.001
+    is_triggered_only = yes
+
+    immediate = {
+        gui_open_window = astraios_slaves_window
+    }
+}
+
+event = {
+    id = astraios_slaves.100
+    is_triggered_only = yes
+
+    immediate = {
+        remove_character_flag = slave
+    }
+}

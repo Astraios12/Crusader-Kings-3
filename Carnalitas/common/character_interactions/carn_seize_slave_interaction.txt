@@ -137,7 +137,7 @@ carn_seize_slave_interaction = {
 				}
 				add_opinion = {
 					target = scope:actor
-					modifier = carn_stole_my_slave_opinion
+					modifier = carn_stole_astraios_slave_opinion
 				}
 			}
 			set_relation_slave_owner = scope:actor

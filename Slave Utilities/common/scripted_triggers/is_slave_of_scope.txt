@@ -1,0 +1,7 @@
+is_slave_of_scope = {
+    has_character_flag = slave
+    has_variable = {
+        name = slave_owner
+        value = scope:root
+    }
+}

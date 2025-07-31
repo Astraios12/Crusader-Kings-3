@@ -1,0 +1,9 @@
+guiType = {
+    name = astraios_slaves_hud_button
+    type = button
+    position = { 1200 900 }
+    size = { 40 40 }
+    tooltip = "Open My Slaves"
+    icon = "gfx/interface/icons/chain_icon.dds"
+    on_click = "[GuiOpenWindow('astraios_slaves_window')]"
+}

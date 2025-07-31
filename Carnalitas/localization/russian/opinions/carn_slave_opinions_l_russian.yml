@@ -11,7 +11,7 @@
  carn_refused_manumission_demand_demand_opinion:0 "Отказано в Манумиссии"
  carn_illegal_refused_manumission_demand_opinion:0 "Незаконно Отказано в Манумиссии"
  carn_freed_me_from_slavery_opinion:0 "Освободил Меня от Рабства"
- carn_stole_my_slave_opinion:0 "Захватил Моего Раба"
+ carn_stole_astraios_slave_opinion:0 "Захватил Моего Раба"
  carn_wants_to_be_your_slave_opinion:0 "Желает Иметь Хозяина"
  carn_forced_me_into_prostitution_opinion:0 "Принудил Меня к Проституции"
  carn_former_slave_or_slave_owner_opinion:0 "Бывшый Раб"
