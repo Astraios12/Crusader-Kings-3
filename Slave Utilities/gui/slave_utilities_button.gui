@@ -8,6 +8,7 @@ guiType = {
 guiType = {
     name = slave_utilities_button
     type = button
+    parentanchor = bottom|right
     position = { 275 45 }
     size = { 34 34 }
     icon = "gfx/interface/icons/slave_window/slave_window_button.dds"
