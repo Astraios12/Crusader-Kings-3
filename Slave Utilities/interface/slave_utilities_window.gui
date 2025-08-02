@@ -1,5 +1,5 @@
 guiType = {
-    name = my_slaves_window
+    name = slave_utilities_window
     type = window
     size = { 600 400 }
     position = { center }
@@ -17,13 +17,14 @@ guiType = {
             name = slave_scroll
             position = { 20 40 }
             size = { 560 320 }
-
             vertical_scrollbar = yes
+
             content = {
                 repeat = {
                     name = slave_entry
                     scope_type = character
                     data = "[GetAllCharacters|HasTrigger('is_slave_of_scope')]"
+
                     children = {
                         text_box = {
                             name = name_text
@@ -37,9 +38,9 @@ guiType = {
 
         button = {
             name = close_button
-            position = { 250 370 }
+            position = { 250 360 }
             text = "Close"
-            on_click = "[GuiCloseWindow('my_slaves_window')]"
+            on_click = "[GuiCloseWindow('slave_utilities_window')]"
         }
     }
 }
