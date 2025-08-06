@@ -1,0 +1,36 @@
+gui_script = {
+    name = "SlaveManagementWindow"
+
+    function = {
+        name = "Show"
+        body = "SlaveManagementWindow.ShowWindow = yes"
+    }
+
+    function = {
+        name = "Hide"
+        body = "SlaveManagementWindow.ShowWindow = no"
+    }
+}
+
+gui_script = {
+    name = "FreeSlave"
+    parameters = { character:slave }
+    body = "
+        if = {
+            limit = { has_trait = trait_slave }
+            remove_trait = trait_slave
+        }
+    "
+}
+
+gui_script = {
+    name = "SellSlave"
+    parameters = { character:slave }
+    body = "
+        if = {
+            limit = { has_trait = trait_slave }
+            remove_trait = trait_slave
+            add_gold = 25
+        }
+    "
+}

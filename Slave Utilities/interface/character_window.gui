@@ -1,0 +1,16 @@
+blockoverride = {
+    name = "legend_tab_container"
+    before = "legend_tab"
+
+    widget = {
+        button = {
+            name = "open_slave_management"
+            default_texture = "gfx/interface/illustrations/slave_tab_button.dds"
+            quad_texture_size = { 40 40 }
+            tooltip = slave_management_tooltip_button
+            position = { 0 0 }
+            size = { 40 40 }
+            onclick = "[SlaveManagementWindow.Show]"
+        }
+    }
+}

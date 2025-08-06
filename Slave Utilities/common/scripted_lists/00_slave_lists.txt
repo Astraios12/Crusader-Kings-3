@@ -1,0 +1,25 @@
+all_slaves = {
+    filter = {
+        has_trait = trait_slave
+        exists = employer
+        employer = { character = scope:player }
+    }
+}
+
+adult_slaves = {
+    filter = {
+        has_trait = trait_slave
+        is_adult = yes
+        exists = employer
+        employer = { character = scope:player }
+    }
+}
+
+child_slaves = {
+    filter = {
+        has_trait = trait_slave
+        is_adult = no
+        exists = employer
+        employer = { character = scope:player }
+    }
+}
