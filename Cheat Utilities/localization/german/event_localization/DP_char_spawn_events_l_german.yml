@@ -1,0 +1,63 @@
+﻿l_german:
+ 
+ char_spawner.t:1 "Charakter-Spawn-Menü"
+ char_spawner.d:0 "Spawne jeden Charakter, den du brauchst. Oben können Sie auswählen, wie viele Sie möchten."
+ 
+ char_spawner.numb.t:1 "Anzahl von Charakteren"
+ char_spawner.numb.d:0 "Wählen Sie die Anzahl der Charaktere aus, in denen Sie spawnen möchten. Gilt für alles im Menü, außer Ratsmitglieder."
+ 
+ char_spawner.councillors.t:1 "Spawn-Ratsmitglieder"
+ char_spawner.councillors.d:0 "Diese Ratsmitglieder erscheinen in der entsprechenden Position."
+ 
+ char_spawner.heirs.t:1 "Spawn-Kinder"
+ char_spawner.heirs.d:0 "Es gibt drei verschiedene Arten von Erben, die Sie mit diesem Menü erstellen können. Außerordentlich; Durchschnittlich und erbärmlich. Sie können auch das Geschlecht und das Alter des Kindes auswählen."
+ 
+ char_spawner.courtiers.t:1 "Spawn Höflinge"
+ char_spawner.courtiers.d:0 "Fügen Sie Ihrem Hof ​​neue Leute hinzu."
+ 
+ char_spawner.numb1:0 "1"
+ char_spawner.numb2:0 "2"
+ char_spawner.numb5:0 "5"
+ char_spawner.numb10:0 "10"
+ 
+ char_spawner.add_immortal:0 "Unsterblichkeit: An"
+ char_spawner.remove_immortal:0 "Unsterblichkeit: Aus"
+ char_spawner.add_100_stat_man:0 "100 Statistik Mann: An"
+ char_spawner.remove_100_stat_man:0 "100 Statistik Mann: Aus"
+ char_spawner.switch_m:0 "Geschlecht: Männlich"
+ char_spawner.switch_f:0 "Geschlecht: Weiblich"
+ 
+ char_spawner.diplo_councillor:0 "Kanzler"
+ char_spawner.martial_councillor:0 "Marschall"
+ char_spawner.steward_councillor:0 "Steward"
+ char_spawner.intrigue_councillor:0 "Spionagemeister"
+ char_spawner.learning_councillor:0 "Hofkaplan"
+ 
+ char_spawner.norm_heir:0 "Durchschnitt"
+ char_spawner.great_heir:0 "Außerordentlich"
+ char_spawner.shitty_heir:0 "Erbärmlich"
+ 
+ char_spawner.heir_age_0:0 "Alter des Kindes: 0"
+ char_spawner.heir_age_3:0 "Alter des Kindes: 3"
+ char_spawner.heir_age_6:0 "Alter des Kindes: 6"
+ char_spawner.heir_age_9:0 "Alter des Kindes: 9"
+ char_spawner.heir_age_12:0 "Alter des Kindes: 12"
+ char_spawner.heir_age_15:0 "Alter des Kindes: 15"
+ char_spawner.heir_age_18:0 "Alter des Kindes: 18"
+ 
+ char_spawner.m_vassal:0 "Männlicher Vasall"
+ char_spawner.f_vassal:0 "Weiblicher Vasall"
+ char_spawner.m_dyn_vassal:0 "Männlicher Vasall (Dynastie)"
+ char_spawner.f_dyn_vassal:0 "Weiblicher Vasall (Dynastie)"
+ 
+ char_spawner.courtiers.m_courtier:0 "Normaler männlicher Höfling"
+ char_spawner.courtiers.f_courtier:0 "Normaler weiblicher Höfling"
+  char_spawner.courtiers.m_courtier_good:0 "Großer männlicher Höfling"
+ char_spawner.courtiers.f_courtier_good:0 "Große weibliche Höfling"
+ 
+ char_numb_1_TT:0 "eines Der Charakter erscheint mit den aktuellen Einstellungen."
+ char_numb_2_TT:0 "zwei Der Charakter erscheint mit den aktuellen Einstellungen."
+ char_numb_5_TT:0 "fünf Der Charakter erscheint mit den aktuellen Einstellungen."
+ char_numb_10_TT:0 "zehn Der Charakter erscheint mit den aktuellen Einstellungen."
+ 
+ improved_stats_effect_TT:0 "Die Werte Ihres Hofkaplans werden sich verbessern; Dies liegt an Einschränkungen im Spiel."

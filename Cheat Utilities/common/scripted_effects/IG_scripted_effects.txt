@@ -1,0 +1,411 @@
+﻿maxout_building_effect = {
+	if = {
+		limit = {
+			OR = {
+				has_building = $BUILDING$_07
+				has_building = $BUILDING$_06
+				has_building = $BUILDING$_05
+				has_building = $BUILDING$_04
+				has_building = $BUILDING$_03
+				has_building = $BUILDING$_02
+				has_building = $BUILDING$_01
+			}
+		}
+		add_building = 	$BUILDING$_08
+	}
+}
+
+maxout_building_fourlevels_effect = {
+	if = {
+		limit = {
+			OR = {
+				has_building = $BUILDING$_03
+				has_building = $BUILDING$_02
+				has_building = $BUILDING$_01
+			}
+		}
+		add_building = 	$BUILDING$_04
+	}
+}
+
+maxout_building_threelevels_effect = {
+	if = {
+		limit = {
+			OR = {
+				has_building = $BUILDING$_02
+				has_building = $BUILDING$_01
+			}
+		}
+		add_building = 	$BUILDING$_03
+	}
+}
+
+maxout_building_twolevels_effect = {
+	if = {
+		limit = {
+			has_building = $BUILDING$_01
+		}
+		add_building = 	$BUILDING$_02
+	}
+}
+maxout_realm_buildings_effect = {	
+	maxout_building_effect = { BUILDING = windmills }
+	maxout_building_effect = { BUILDING = watermills }
+	maxout_building_effect = { BUILDING = guild_halls }
+	maxout_building_effect = { BUILDING = hospices }
+	maxout_building_effect = { BUILDING = pastures }
+	maxout_building_effect = { BUILDING = outposts }
+	maxout_building_effect = { BUILDING = logging_camps }
+	maxout_building_effect = { BUILDING = peat_quarries }
+	maxout_building_effect = { BUILDING = hill_forts }
+	maxout_building_effect = { BUILDING = plantations }
+	maxout_building_effect = { BUILDING = quarries }
+	maxout_building_effect = { BUILDING = hunting_grounds }
+	maxout_building_effect = { BUILDING = military_camps }
+	maxout_building_effect = { BUILDING = pastures }
+	maxout_building_effect = { BUILDING = ramparts }
+	maxout_building_effect = { BUILDING = curtain_walls }
+	maxout_building_effect = { BUILDING = watchtowers }
+	maxout_building_effect = { BUILDING = cereal_fields }
+	maxout_building_effect = { BUILDING = barracks }
+	maxout_building_effect = { BUILDING = camel_farms }
+	maxout_building_effect = { BUILDING = hill_farms }
+	maxout_building_effect = { BUILDING = elephant_pens }
+	maxout_building_effect = { BUILDING = common_tradeport }
+	maxout_building_effect = { BUILDING = orchards }
+	maxout_building_effect = { BUILDING = farm_estates }
+	maxout_building_effect = { BUILDING = regimental_grounds }
+	maxout_building_effect = { BUILDING = monastic_schools }
+	maxout_building_effect = { BUILDING = warrior_lodges }
+	maxout_building_effect = { BUILDING = scriptorium }
+	maxout_building_effect = { BUILDING = murex_farm }
+	maxout_building_effect = { BUILDING = qanats }
+	maxout_building_effect = { BUILDING = megalith }
+	maxout_building_effect = { BUILDING = stables }
+	maxout_building_effect = { BUILDING = smiths }
+	maxout_building_effect = { BUILDING = horse_pastures }
+	maxout_building_effect = { BUILDING = hillside_grazing }
+	maxout_building_effect = { BUILDING = caravanserai }
+	maxout_building_effect = { BUILDING = workshops }
+	
+	
+	maxout_building_fourlevels_effect = { BUILDING = castle }
+	maxout_building_fourlevels_effect = { BUILDING = city }
+	maxout_building_fourlevels_effect = { BUILDING = temple }
+	maxout_building_fourlevels_effect = { BUILDING = kutna_hora_mines }
+	maxout_building_fourlevels_effect = { BUILDING = rammelsberg_mines }
+	maxout_building_fourlevels_effect = { BUILDING = kremnica_mines }
+	maxout_building_fourlevels_effect = { BUILDING = falun_mines }
+	maxout_building_fourlevels_effect = { BUILDING = schwaz_mines }
+	maxout_building_fourlevels_effect = { BUILDING = argentiera_mines }
+	maxout_building_fourlevels_effect = { BUILDING = kollur_mines }
+	maxout_building_fourlevels_effect = { BUILDING = siderokausia_mines }
+	maxout_building_fourlevels_effect = { BUILDING = mali_mines }
+	
+	maxout_building_threelevels_effect = { BUILDING = military_academy }
+	maxout_building_threelevels_effect = { BUILDING = march }
+	maxout_building_threelevels_effect = { BUILDING = siege_works }
+	maxout_building_threelevels_effect = { BUILDING = royal_armory }
+	maxout_building_threelevels_effect = { BUILDING = jousting_lists }
+	maxout_building_threelevels_effect = { BUILDING = blacksmiths }
+	maxout_building_threelevels_effect = { BUILDING = archery_ranges }
+	maxout_building_threelevels_effect = { BUILDING = tax_assessor }
+	maxout_building_threelevels_effect = { BUILDING = leisure_palace }
+	maxout_building_threelevels_effect = { BUILDING = royal_forest }
+	maxout_building_threelevels_effect = { BUILDING = burial_site }
+	
+	maxout_building_twolevels_effect = { BUILDING = tribe }
+	maxout_building_twolevels_effect = { BUILDING = longhouses }
+	maxout_building_twolevels_effect = { BUILDING = war_camps }
+	maxout_building_twolevels_effect = { BUILDING = palisades }
+	maxout_building_twolevels_effect = { BUILDING = market_villages }
+	maxout_building_twolevels_effect = { BUILDING = alhambra }
+	maxout_building_twolevels_effect = { BUILDING = citadel_of_aleppo }
+	maxout_building_twolevels_effect = { BUILDING = hagia_sophia }
+}
+
+destroy_anylevel_building_effect = {
+	if = {
+		limit = { has_building = $BUILDING$_08 }
+		remove_building = $BUILDING$_08
+	}
+	else_if = {
+		limit = { has_building = $BUILDING$_07 }
+		remove_building = $BUILDING$_07
+	}
+	else_if = {
+		limit = { has_building = $BUILDING$_06 }
+		remove_building = $BUILDING$_06
+	}
+	else_if = {
+		limit = { has_building = $BUILDING$_05 }
+		remove_building = $BUILDING$_05
+	}
+	else_if = {
+		limit = { has_building = $BUILDING$_04 }
+		remove_building = $BUILDING$_04
+	}
+	else_if = {
+		limit = { has_building = $BUILDING$_03 }
+		remove_building = $BUILDING$_03
+	}
+	else_if = {
+		limit = { has_building = $BUILDING$_02 }
+		remove_building = $BUILDING$_02
+	}
+	else = { remove_building = $BUILDING$_01 }
+}
+	
+
+
+clear_vanilla_buildings_effect = {
+	destroy_anylevel_building_effect = { BUILDING = stables }
+	destroy_anylevel_building_effect = { BUILDING = hospices }
+	destroy_anylevel_building_effect = { BUILDING = pastures }
+	destroy_anylevel_building_effect = { BUILDING = outposts }
+	destroy_anylevel_building_effect = { BUILDING = logging_camps }
+	destroy_anylevel_building_effect = { BUILDING = peat_quarries }
+	destroy_anylevel_building_effect = { BUILDING = hill_forts }
+	destroy_anylevel_building_effect = { BUILDING = plantations }
+	destroy_anylevel_building_effect = { BUILDING = quarries }
+	destroy_anylevel_building_effect = { BUILDING = hunting_grounds }
+	destroy_anylevel_building_effect = { BUILDING = military_camps }
+	destroy_anylevel_building_effect = { BUILDING = pastures }
+	destroy_anylevel_building_effect = { BUILDING = ramparts }
+	destroy_anylevel_building_effect = { BUILDING = curtain_walls }
+	destroy_anylevel_building_effect = { BUILDING = watchtowers }
+	destroy_anylevel_building_effect = { BUILDING = cereal_fields }
+	destroy_anylevel_building_effect = { BUILDING = barracks }
+	destroy_anylevel_building_effect = { BUILDING = camel_farms }
+	destroy_anylevel_building_effect = { BUILDING = hill_farms }
+	destroy_anylevel_building_effect = { BUILDING = elephant_pens }
+	destroy_anylevel_building_effect = { BUILDING = common_tradeport }
+	destroy_anylevel_building_effect = { BUILDING = orchards }
+	destroy_anylevel_building_effect = { BUILDING = farm_estates }
+	destroy_anylevel_building_effect = { BUILDING = regimental_grounds }
+	destroy_anylevel_building_effect = { BUILDING = monastic_schools }
+}
+
+maxout_domicile_twolevels_effect = {
+	if = {
+		limit = {
+			has_domicile_building_or_higher = $BUILDING$_02
+		}
+	}
+	else_if = {
+		limit = {
+			has_domicile_building_or_higher = $BUILDING$_01
+		}
+		add_domicile_building =	$BUILDING$_02
+	}
+}
+
+maxout_domicile_threelevels_effect = {
+	if = {
+		limit = {
+			has_domicile_building_or_higher = $BUILDING$_03
+		}
+	}
+	else_if = {
+		limit = {
+			has_domicile_building_or_higher = $BUILDING$_02
+		}
+		add_domicile_building =	$BUILDING$_03
+	}
+	else_if = {
+		limit = {
+			has_domicile_building_or_higher = $BUILDING$_01
+		}
+		add_domicile_building =	$BUILDING$_02
+		add_domicile_building =	$BUILDING$_03
+	}
+}
+
+maxout_domicile_fourlevels_effect = {
+	if = {
+		limit = {
+			has_domicile_building_or_higher = $BUILDING$_04
+		}
+	}
+	else_if = {
+		limit = {
+			has_domicile_building_or_higher = $BUILDING$_03
+		}
+		add_domicile_building =	$BUILDING$_04
+	}
+	else_if = {
+		limit = {
+			has_domicile_building_or_higher = $BUILDING$_02
+		}
+		add_domicile_building =	$BUILDING$_03
+		add_domicile_building =	$BUILDING$_04
+	}
+	else_if = {
+		limit = {
+			has_domicile_building_or_higher = $BUILDING$_01
+		}
+		add_domicile_building =	$BUILDING$_02
+		add_domicile_building =	$BUILDING$_03
+		add_domicile_building =	$BUILDING$_04
+	}
+}
+
+maxout_domicile_fivelevels_effect = {
+	if = {
+		limit = {
+			has_domicile_building_or_higher = $BUILDING$_05
+		}
+	}
+	else_if = {
+		limit = {
+			has_domicile_building_or_higher = $BUILDING$_04
+		}
+		add_domicile_building =	$BUILDING$_05
+	}
+	else_if = {
+		limit = {
+			has_domicile_building_or_higher = $BUILDING$_03
+		}
+		add_domicile_building =	$BUILDING$_04
+		add_domicile_building =	$BUILDING$_05
+	}
+	else_if = {
+		limit = {
+			has_domicile_building_or_higher = $BUILDING$_02
+		}
+		add_domicile_building =	$BUILDING$_03
+		add_domicile_building =	$BUILDING$_04
+		add_domicile_building =	$BUILDING$_05
+	}
+	else_if = {
+		limit = {
+			has_domicile_building_or_higher = $BUILDING$_01
+		}
+		add_domicile_building =	$BUILDING$_02
+		add_domicile_building =	$BUILDING$_03
+		add_domicile_building =	$BUILDING$_04
+		add_domicile_building =	$BUILDING$_05
+	}
+}
+
+maxout_domicile_sixlevels_effect = {
+	if = {
+		limit = {
+			has_domicile_building_or_higher = $BUILDING$_06
+		}
+	}
+	else_if = {
+		limit = {
+			has_domicile_building_or_higher = $BUILDING$_05
+		}
+		add_domicile_building =	$BUILDING$_06
+	}
+	else_if = {
+		limit = {
+			has_domicile_building_or_higher = $BUILDING$_04
+		}
+		add_domicile_building =	$BUILDING$_05
+		add_domicile_building =	$BUILDING$_06
+	}
+	else_if = {
+		limit = {
+			has_domicile_building_or_higher = $BUILDING$_03
+		}
+		add_domicile_building =	$BUILDING$_04
+		add_domicile_building =	$BUILDING$_05
+		add_domicile_building =	$BUILDING$_06
+	}
+	else_if = {
+		limit = {
+			has_domicile_building_or_higher = $BUILDING$_02
+		}
+		add_domicile_building =	$BUILDING$_03
+		add_domicile_building =	$BUILDING$_04
+		add_domicile_building =	$BUILDING$_05
+		add_domicile_building =	$BUILDING$_06
+	}
+	else_if = {
+		limit = {
+			has_domicile_building_or_higher = $BUILDING$_01
+		}
+		add_domicile_building =	$BUILDING$_02
+		add_domicile_building =	$BUILDING$_03
+		add_domicile_building =	$BUILDING$_04
+		add_domicile_building =	$BUILDING$_05
+		add_domicile_building =	$BUILDING$_06
+	}
+}
+maxout_camp_buildings_effect = {
+	maxout_domicile_fourlevels_effect = { BUILDING = camp_main }
+	
+	maxout_domicile_sixlevels_effect = { BUILDING = supply_tent }
+	maxout_domicile_sixlevels_effect = { BUILDING = barber_tent }
+	maxout_domicile_sixlevels_effect = { BUILDING = baggage_train }
+	maxout_domicile_sixlevels_effect = { BUILDING = mess_tent }
+	maxout_domicile_sixlevels_effect = { BUILDING = camp_fire }
+	maxout_domicile_sixlevels_effect = { BUILDING = proving_grounds }
+	maxout_domicile_sixlevels_effect = { BUILDING = camp_perimeter }
+}
+
+maxout_estate_buildings_effect = {
+	maxout_domicile_fivelevels_effect = { BUILDING = estate_main }
+	
+	
+	#Branchable - Two Levels
+	maxout_domicile_twolevels_effect = { BUILDING = library }
+	maxout_domicile_twolevels_effect = { BUILDING = workshop }
+	maxout_domicile_twolevels_effect = { BUILDING = storage }
+	
+	#Branchable - Three Levels
+	maxout_domicile_threelevels_effect = { BUILDING = temple_small }
+	maxout_domicile_threelevels_effect = { BUILDING = garden }
+	maxout_domicile_threelevels_effect = { BUILDING = stable }
+	maxout_domicile_threelevels_effect = { BUILDING = grazing_land }
+	
+	#Official - Six levels
+	maxout_domicile_sixlevels_effect = { BUILDING = market }
+	maxout_domicile_sixlevels_effect = { BUILDING = barracks }
+	maxout_domicile_sixlevels_effect = { BUILDING = watchtower }
+	maxout_domicile_sixlevels_effect = { BUILDING = guest_room }
+	maxout_domicile_sixlevels_effect = { BUILDING = grain_field }
+	maxout_domicile_sixlevels_effect = { BUILDING = vineyard }
+	maxout_domicile_sixlevels_effect = { BUILDING = olive }
+	maxout_domicile_sixlevels_effect = { BUILDING = silk }
+	
+	
+	#Official - Five levels
+	maxout_domicile_fivelevels_effect = { BUILDING = reception_hall }
+	
+	
+	#Official - Four levels
+	maxout_domicile_fourlevels_effect = { BUILDING = living_quarters }	
+	maxout_domicile_fourlevels_effect = { BUILDING = trophy_room }
+	maxout_domicile_fourlevels_effect = { BUILDING = office }
+	maxout_domicile_fourlevels_effect = { BUILDING = servants_quarters }
+	maxout_domicile_fourlevels_effect = { BUILDING = bath }
+	maxout_domicile_fourlevels_effect = { BUILDING = courtyard }
+	maxout_domicile_fourlevels_effect = { BUILDING = grand_solar }
+	maxout_domicile_fourlevels_effect = { BUILDING = guardhouse }
+	
+	
+	#Official - Three levels
+	maxout_domicile_threelevels_effect = { BUILDING = wine_cellar }
+	maxout_domicile_threelevels_effect = { BUILDING = cabinet_of_curiosities }
+	
+	#Branch - Six levels
+	maxout_domicile_sixlevels_effect = { BUILDING = temple_crypt }
+	maxout_domicile_sixlevels_effect = { BUILDING = temple_large }
+	maxout_domicile_sixlevels_effect = { BUILDING = temple_monastery }
+	maxout_domicile_sixlevels_effect = { BUILDING = garden_leisure }
+	maxout_domicile_sixlevels_effect = { BUILDING = garden_fruit }
+	maxout_domicile_sixlevels_effect = { BUILDING = stable_grand }
+	maxout_domicile_sixlevels_effect = { BUILDING = stable_kennel }
+	maxout_domicile_sixlevels_effect = { BUILDING = stable_chariot }
+	maxout_domicile_sixlevels_effect = { BUILDING = workshop_carpenter }
+	maxout_domicile_sixlevels_effect = { BUILDING = workshop_mason }
+	maxout_domicile_sixlevels_effect = { BUILDING = workshop_textile }
+	maxout_domicile_sixlevels_effect = { BUILDING = horse_pasture }
+	maxout_domicile_sixlevels_effect = { BUILDING = camel_pasture }
+	maxout_domicile_sixlevels_effect = { BUILDING = elephant_pasture }
+	
+}

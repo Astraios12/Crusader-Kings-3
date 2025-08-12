@@ -1,0 +1,16 @@
+decisions pictures 
+Example:
+
+ picture = gfx/interface/illustrations/decisions/open_tab.dds
+TO
+	picture = { 
+		reference = "gfx/interface/illustrations/decisions/open_tab.dds" 
+	}
+	
+Reworked Max out buildings decision + added a ton of buildings
+
+Updated character interaction categories
+
+Added Provisions to currency menu
+
+Max out Domicile Buildings

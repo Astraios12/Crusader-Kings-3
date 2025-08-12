@@ -1,0 +1,13 @@
+﻿l_german:
+ daddy_pika_information:0 "Informationsmenü"
+ information_desc:0 "Hier werden allgemeine Informationen wie nützliche Tipps, das Finden von Funktionen und das Änderungsprotokoll angezeigt."
+ information_TT:0 "Klicken Sie hier, um die Details zu diesem Mod anzuzeigen."
+ 
+ dp_information.changelog.t:0 "Protokolle ändern"
+ dp_information.changelog.d:0 "1.3.4\n- Ereignisse werden schneller ausgelöst, sollten jetzt weniger Kopfschmerzen bereiten."
+ dp_information.useful_tips.t:0 "Nützliche Tipps"
+ dp_information.useful_tips.d:0 "Eigenschaftsmenüs\n- Klicken Sie einmal zum Hinzufügen und erneut zum Entfernen.\n- Wenn eine Eigenschaft nicht angezeigt wird, bedeutet dies nicht, dass die Mod defekt ist, sondern dass eine widersprüchliche Eigenschaft vorhanden ist.\n- Einige Interaktionen werden aufgrund der Umstände bei bestimmten Charakteren nicht angezeigt.\n- Spawning a Ein Haufen Kinder kann ein großes Problem sein, glauben Sie mir.\n- Es gibt eine Unsterblichkeitseigenschaft, die im Eigenschaftenbereich des Charaktereditors zu finden ist. Sie können auch unter Eigenschaftengeschenke nachsehen."
+ 
+ use_new_system:0 "Das neue System"
+ use_new_system_desc:0 "Das alte System wurde durch etwas Neues ersetzt. Möchten Sie es versuchen?"
+ use_new_system_tooltip:0 "Wenn Sie darauf klicken, wird ein Ereignis geöffnet."

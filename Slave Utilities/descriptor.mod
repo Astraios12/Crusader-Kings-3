@@ -1,7 +1,7 @@
-version="0.0.0.1"
-tags={
-	"Gameplay"
-	"Utilities"
-}
 name="Slave Utilities"
-supported_version="1.16.2.3"
+path="mod/Slave Utilities"
+dependencies={
+ "Carnalitas"
+ "Carnalitas Slavery Expansion"
+}
+supported_version="1.11.*"

@@ -1,0 +1,67 @@
+﻿
+namespace = ig_char_event
+
+ig_char_event.1 = {
+	type = character_event
+	title = "Provisions"
+	desc = dp_char_interactions.gold.event.d
+	theme = default
+	left_portrait = {
+		character = scope:currency_scope
+		animation = personality_bold
+	}
+
+	option = {
+		name = dp_char_interactions.provisions.plus_10000
+		scope:currency_scope.domicile = {
+			change_provisions = 10000
+		}
+		trigger_event = ig_char_event.1
+	}
+
+	option = {
+		name = dp_char_interactions.provisions.plus_1000
+		scope:currency_scope.domicile = {
+			change_provisions = 1000
+		}
+		trigger_event = ig_char_event.1
+	}
+
+	option = {
+		name = dp_char_interactions.provisions.plus_100
+		scope:currency_scope.domicile = {
+			change_provisions = 100
+		}
+		trigger_event = ig_char_event.1
+	}
+
+	option = {
+		name = dp_char_interactions.provisions.minus_100
+		scope:currency_scope.domicile = {
+			change_provisions = -100
+		}
+		trigger_event = ig_char_event.1
+	}
+
+	option = {
+		name = dp_char_interactions.provisions.minus_1000
+		scope:currency_scope.domicile = {
+			change_provisions = -1000
+		}
+		trigger_event = ig_char_event.1
+	}
+	
+	option = {
+		name = dp_char_interactions.provisions.minus_10000
+		scope:currency_scope.domicile = {
+			change_provisions = -10000
+		}
+		trigger_event = ig_char_event.1
+	}
+	
+	
+	option = {
+		name = dp_char_interactions.end
+		trigger_event = dp_char_interactions.10
+	}
+}

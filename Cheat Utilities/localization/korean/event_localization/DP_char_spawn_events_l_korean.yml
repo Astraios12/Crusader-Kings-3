@@ -1,0 +1,63 @@
+﻿l_korean:
+ 
+ char_spawner.t:1 "캐릭터 생성 메뉴"
+ char_spawner.d:0 "필요한 캐릭터를 생성하세요. 상단에서 원하는 수를 선택할 수 있습니다."
+ 
+ char_spawner.numb.t:1 "문자 수"
+ char_spawner.numb.d:0 "스폰할 캐릭터 수를 선택합니다. 의원을 제외한 메뉴의 모든 항목에 적용됩니다."
+ 
+ char_spawner.councillors.t:1 "스폰 카운셀러"
+ char_spawner.councillors.d:0 "이 의원은 해당 위치에서 생성됩니다."
+ 
+ char_spawner.heirs.t:1 "새끼를 낳다"
+ char_spawner.heirs.d:0 "이 메뉴로 생성할 수 있는 세 가지 유형의 상속인이 있습니다. 기이한; 평균적이고 한심합니다. 성별과 아이의 나이도 선택할 수 있습니다."
+ 
+ char_spawner.courtiers.t:1 "스폰 궁정"
+ char_spawner.courtiers.d:0 "법원에 새로운 사람을 추가하십시오."
+ 
+ char_spawner.numb1:0 "1"
+ char_spawner.numb2:0 "2"
+ char_spawner.numb5:0 "5"
+ char_spawner.numb10:0 "10"
+ 
+ char_spawner.add_immortal:0 "불멸: 켜짐"
+ char_spawner.remove_immortal:0 "불멸: 꺼짐"
+ char_spawner.add_100_stat_man:0 "100 스탯맨: 켜짐"
+ char_spawner.remove_100_stat_man:0 "100 스탯맨: 꺼짐"
+ char_spawner.switch_m:0 "성별: 남성"
+ char_spawner.switch_f:0 "성별: 여성"
+ 
+ char_spawner.diplo_councillor:0 "장관"
+ char_spawner.martial_councillor:0 "육군 원수"
+ char_spawner.steward_councillor:0 "청지기"
+ char_spawner.intrigue_councillor:0 "스파이마스터"
+ char_spawner.learning_councillor:0 "법원 채플린"
+ 
+ char_spawner.norm_heir:0 "평균"
+ char_spawner.great_heir:0 "기이한"
+ char_spawner.shitty_heir:0 "불쌍한"
+ 
+ char_spawner.heir_age_0:0 "아동 연령: 0"
+ char_spawner.heir_age_3:0 "아동 연령: 3"
+ char_spawner.heir_age_6:0 "아동 연령: 6"
+ char_spawner.heir_age_9:0 "아동 연령: 9"
+ char_spawner.heir_age_12:0 "아동 연령: 12"
+ char_spawner.heir_age_15:0 "아동 연령: 15"
+ char_spawner.heir_age_18:0 "아동 연령: 18"
+ 
+ char_spawner.m_vassal:0 "남성 가신"
+ char_spawner.f_vassal:0 "여성 가신"
+ char_spawner.m_dyn_vassal:0 "남성 가신 (왕조)"
+ char_spawner.f_dyn_vassal:0 "여성 가신 (왕조)"
+ 
+ char_spawner.courtiers.m_courtier:0 "일반 남성 궁정"
+ char_spawner.courtiers.f_courtier:0 "일반 여성 궁정"
+  char_spawner.courtiers.m_courtier_good:0 "위대한 남성 궁정"
+ char_spawner.courtiers.f_courtier_good:0 "위대한 여성 궁정"
+ 
+ char_numb_1_TT:0 "현재 설정으로 한 캐릭터가 생성됩니다."
+ char_numb_2_TT:0 "현재 설정으로 두 캐릭터가 생성됩니다."
+ char_numb_5_TT:0 "현재 설정으로 5명의 캐릭터가 생성됩니다."
+ char_numb_10_TT:0 "현재 설정으로 10명의 캐릭터가 생성됩니다."
+ 
+ improved_stats_effect_TT:0 "법원 채플린의 통계가 향상됩니다. 이것은 게임의 한계 때문입니다."

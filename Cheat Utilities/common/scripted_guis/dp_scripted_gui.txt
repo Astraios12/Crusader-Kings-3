@@ -1,0 +1,63 @@
+﻿toggle_character_editor = {
+	scope = character
+	
+	is_shown = {
+	}
+
+	effect = {
+		every_living_character = {
+			limit = {
+				has_global_variable_list = current_edits
+			}
+			save_scope_as = char_editor
+		}
+	}
+}
+
+toggle_editor_event = {
+	scope = character
+	
+	is_shown = {
+	}
+
+	effect = {
+		trigger_event = dp_char_editor.1000
+	}
+}
+
+add_character_effect = {
+	scope = character
+	
+	every_living_character = {
+		limit = {
+			has_character_flag = target_character
+		}
+
+		root = {
+			add_to_variable_list = {
+				name = editing_character
+				target = prev
+			}
+		}
+	}
+}
+
+gui_toggler = {
+	scope = character
+
+	is_shown = {
+		has_variable = gui_toggler
+	}
+
+	effect = {
+		if = {
+			limit = {
+				has_variable = gui_toggler
+			}
+			remove_variable = gui_toggler
+		}
+		else = {
+			set_variable = gui_toggler
+		}
+	}
+}

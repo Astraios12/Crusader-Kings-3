@@ -1,0 +1,63 @@
+﻿l_simp_chinese:
+ 
+ char_spawner.t:1 "角色生成"
+ char_spawner.d:0 "上帝造人"
+ 
+ char_spawner.numb.t:1 "生成角色数量"
+ char_spawner.numb.d:0 "多多少少"
+ 
+ char_spawner.councillors.t:1 "生成内阁"
+ char_spawner.councillors.d:0 "选择岗位生成"
+ 
+ char_spawner.heirs.t:1 "生成子女"
+ char_spawner.heirs.d:0 "三种选择"
+ 
+ char_spawner.courtiers.t:1 "生成廷臣"
+ char_spawner.courtiers.d:0 "添加新人"
+ 
+ char_spawner.numb1:0 "1"
+ char_spawner.numb2:0 "2"
+ char_spawner.numb5:0 "5"
+ char_spawner.numb10:0 "10"
+ 
+ char_spawner.add_immortal:0 "永生: On"
+ char_spawner.remove_immortal:0 "永生: Off"
+ char_spawner.add_100_stat_man:0 "100战神: On"
+ char_spawner.remove_100_stat_man:0 "100战神: Off"
+ char_spawner.switch_m:0 "性别: 男"
+ char_spawner.switch_f:0 "性别: 女"
+ 
+ char_spawner.diplo_councillor:0 "掌玺大臣"
+ char_spawner.martial_councillor:0 "军事统帅"
+ char_spawner.steward_councillor:0 "财政总管"
+ char_spawner.intrigue_councillor:0 "间谍首脑"
+ char_spawner.learning_councillor:0 "主教"
+ 
+ char_spawner.norm_heir:0 "平凡人"
+ char_spawner.great_heir:0 "人上人"
+ char_spawner.shitty_heir:0 "垃圾人"
+ 
+ char_spawner.heir_age_0:0 "Child Age: 0"
+ char_spawner.heir_age_3:0 "Child Age: 3"
+ char_spawner.heir_age_6:0 "Child Age: 6"
+ char_spawner.heir_age_9:0 "Child Age: 9"
+ char_spawner.heir_age_12:0 "Child Age: 12"
+ char_spawner.heir_age_15:0 "Child Age: 15"
+ char_spawner.heir_age_18:0 "Child Age: 18"
+ 
+ char_spawner.m_vassal:0 "男封臣"
+ char_spawner.f_vassal:0 "女封臣"
+ char_spawner.m_dyn_vassal:0 "同族男封臣"
+ char_spawner.f_dyn_vassal:0 "同族女封臣"
+ 
+ char_spawner.courtiers.m_courtier:0 "男廷臣"
+ char_spawner.courtiers.f_courtier:0 "女廷臣"
+  char_spawner.courtiers.m_courtier_good:0 "完美男廷臣"
+ char_spawner.courtiers.f_courtier_good:0 "完美女廷臣"
+ 
+ char_numb_1_TT:0 "一名角色将按照当前选择生成"
+ char_numb_2_TT:0 "二名角色将按照当前选择生成"
+ char_numb_5_TT:0 "五名角色将按照当前选择生成"
+ char_numb_10_TT:0 "十名角色将按照当前选择生成"
+ 
+ improved_stats_effect_TT:0 "你的宫廷牧师的属性将会提高;这是由于游戏系统的局限性所导致的。"

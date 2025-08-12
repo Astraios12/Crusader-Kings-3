@@ -1,7 +1,0 @@
-SlaveManagementWindow = {
-    scopes = {
-        all_slaves = all_slaves
-        adult_slaves = adult_slaves
-        child_slaves = child_slaves
-    }
-}
